@@ -6,6 +6,7 @@ import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.da
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants.dart';
+import '../../size_config.dart';
 
 class SetupScreen extends StatefulWidget {
   const SetupScreen({Key? key}) : super(key: key);
@@ -21,11 +22,14 @@ class _SetupScreenState extends State<SetupScreen> {
     ActivityInsightsScreen(),
   ];
 
+  //late SizeConfig _sizes;
   int _selectedIndex = 0;
   MenuState _selectedMenu = MenuState.pay;
 
   @override
   Widget build(BuildContext context) {
+    //final SizeConfig _sizes = SizeConfig().init(context);
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -43,7 +47,14 @@ class _SetupScreenState extends State<SetupScreen> {
         currentIndex: _selectedIndex,
         onTap: (int index) => setState(() {
           _selectedIndex = index;
-          _selectedMenu = index as MenuState;
+          _selectedMenu = MenuState.values[index];
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    _menuOptions[_selectedIndex]),
+          );
         }),
       ),
     );

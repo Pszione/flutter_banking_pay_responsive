@@ -7,6 +7,8 @@ class SizeConfig {
   static late double defaultSize;
   static late Orientation orientation;
 
+  //SizeConfig(BuildContext context) => this.init(context);
+
   SizeConfig init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
     screenWidth = _mediaQueryData!.size.width;
