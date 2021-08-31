@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Transaction {
-  Transaction({
+class TransactionModel {
+  TransactionModel({
     this.title,
     this.avatar,
     this.month,
@@ -24,8 +24,8 @@ class Transaction {
   Color? color;
 }
 
-List<Transaction> myTransactions = [
-  Transaction(
+List<TransactionModel> myTransactions = [
+  TransactionModel(
     title: "Supreme Leader",
     avatar: "assets/icons/avatar1.png",
     month: "Jan",
@@ -36,7 +36,7 @@ List<Transaction> myTransactions = [
     changePercentageIndicator: "up",
     color: Colors.green[100],
   ),
-  Transaction(
+  TransactionModel(
     title: "Jane Doe",
     avatar: "assets/icons/avatar2.png",
     month: "Mar",
@@ -47,7 +47,7 @@ List<Transaction> myTransactions = [
     changePercentage: "4.54%",
     color: Colors.orange[100],
   ),
-  Transaction(
+  TransactionModel(
     title: "Alex Doe",
     avatar: "assets/icons/avatar3.png",
     month: "Mar",
@@ -58,7 +58,7 @@ List<Transaction> myTransactions = [
     changePercentageIndicator: "down",
     color: Colors.red[100],
   ),
-  Transaction(
+  TransactionModel(
     title: "Sam Doe",
     avatar: "assets/icons/avatar4.png",
     month: "Mar",
@@ -69,7 +69,7 @@ List<Transaction> myTransactions = [
     changePercentage: "30%",
     color: Colors.deepPurple[100],
   ),
-  Transaction(
+  TransactionModel(
     title: "Supreme Leader",
     avatar: "assets/icons/avatar1.png",
     month: "Jan",
@@ -80,7 +80,7 @@ List<Transaction> myTransactions = [
     changePercentageIndicator: "up",
     color: Colors.green[100],
   ),
-  Transaction(
+  TransactionModel(
     title: "Target Supermarket",
     //avatar: "assets/icons/avatar2.png",
     month: "Mar",
@@ -91,7 +91,7 @@ List<Transaction> myTransactions = [
     changePercentage: "4.54%",
     color: Colors.red[100],
   ),
-  Transaction(
+  TransactionModel(
     title: "Steam Games",
     //avatar: "assets/icons/avatar2.png",
     month: "Mar",
