@@ -10,6 +10,7 @@ const kWhiteColor = Colors.white;
 const kTextBodyColor = kPrimaryColor;
 const kTextWhiteColor = Colors.white;
 const kTextGrayColor = Colors.grey;
+Color kTextRedColor = Colors.red.shade400;
 
 const kTextHighHeightSpacing = 1.5;
 const kTextMediumHeightSpacing = 1.35;

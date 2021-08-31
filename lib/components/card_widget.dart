@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
+import 'dart:core';
+
+import 'package:flutter_banking_pay_responsive/models/card_brand.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CardWidget extends StatelessWidget {
   const CardWidget({Key? key, required this.card}) : super(key: key);
@@ -54,7 +58,10 @@ class CardWidget extends StatelessWidget {
                       ),
                       Text(
                         '${card.expDate}',
-                        style: AppTextStyle.kCardSubtitle,
+                        style: !hasCardExpired(card.expDate)
+                            ? AppTextStyle.kCardSubtitle
+                            : AppTextStyle.kCardSubtitle
+                                .copyWith(color: kTextRedColor),
                       ),
                     ],
                   ),
@@ -78,17 +85,53 @@ class CardWidget extends StatelessWidget {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SizedBox(
                 width: 50,
                 height: 50,
-                // TODO: get from enum of different brands
-                child: Image.asset('assets/icons/logo_master_card.png'),
+                child: buildCardLogo(),
               ),
+              if (hasCardExpired(card.expDate))
+                Text(
+                  "EXPIRED",
+                  style: AppTextStyle.kCardTitle.copyWith(color: kTextRedColor),
+                ),
             ],
           )
         ],
       ),
     );
+  }
+
+  Widget? buildCardLogo() {
+    if (card.cardBrand == CardBrand.mastercard) {
+      return Image.asset('assets/icons/logo_master_card.png');
+    } else if (card.cardBrand == CardBrand.visa) {
+      return Image.asset('assets/icons/logo_visa_card.png');
+    } else if (card.cardBrand == CardBrand.visaPlatinum) {
+      return SvgPicture.asset(
+        'assets/icons/logo_visa_card_platinum.svg',
+        color: Colors.white,
+      );
+    }
+    return null;
+  }
+
+  bool hasCardExpired(String? expDate) {
+    if (expDate == null || expDate.isEmpty) {
+      return true; // warning
+    } else if (expDate.contains('/')) {
+      var currentYear = DateTime.now();
+      var expMonth = expDate.split('/').first;
+      var expYear = expDate.split('/').last;
+
+      var cardDate = expYear.length <= 2
+          ? DateTime(2000 + int.parse(expYear), int.parse(expMonth))
+          : DateTime(int.parse(expYear), int.parse(expMonth));
+
+      return cardDate.isBefore(currentYear);
+    }
+    return false;
   }
 }
