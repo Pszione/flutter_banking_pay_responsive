@@ -31,11 +31,14 @@ class _SetupScreenState extends State<SetupScreen> {
     //final SizeConfig _sizes = SizeConfig().init(context);
 
     return Scaffold(
+      body: Center(
+        child: _menuOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: kComplementaryColor,
         unselectedItemColor: kTextGrayColor,
-        iconSize: 28, // MenuState.pay == _selectedMenu ? 28 : 22,
+        iconSize: kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
         items: const [
           BottomNavigationBarItem(
               icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
