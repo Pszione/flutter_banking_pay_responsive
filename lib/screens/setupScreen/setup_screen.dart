@@ -28,8 +28,6 @@ class _SetupScreenState extends State<SetupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final SizeConfig _sizes = SizeConfig().init(context);
-
     return Scaffold(
       body: Center(
         child: _menuOptions.elementAt(_selectedIndex),
