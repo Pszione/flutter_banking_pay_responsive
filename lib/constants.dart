@@ -21,8 +21,12 @@ const kDefaultPadding = 20.0;
 const kHalfPadding = kDefaultPadding / 2;
 const kMediumPadding = kDefaultPadding / 1.5;
 const kSmallPadding = kDefaultPadding / 3;
+
 const kMaxWebsiteWidth = 1440.0; // max width of our web
 const kMediumIconSize = 28.0;
 const kHugeIconSize = 36.0;
+BorderRadius kDefaultBorderRadius =
+    BorderRadius.circular(kHugeIconSizeAsDouble);
+const kHugeIconSizeAsDouble = 20.0;
 
 const kDefaultDuration = Duration(milliseconds: 1000);

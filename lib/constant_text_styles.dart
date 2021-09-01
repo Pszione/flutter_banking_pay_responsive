@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class AppTextStyle {
+  const AppTextStyle();
   //AppTextStyle({required SizeConfig sizes});
   //SizeConfig _sizes;
 
@@ -35,7 +36,8 @@ class AppTextStyle {
 
   static TextStyle kListTileTitle = TextStyle(
     color: kTextBodyColor, // kPrimaryColor
-    fontSize: 20,
+    fontSize: 19,
+    fontWeight: FontWeight.w600,
     //fontSize: SizeConfig().getProportionateScreenWidth(20),
   );
 

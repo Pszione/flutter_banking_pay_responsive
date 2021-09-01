@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
-import 'package:flutter_banking_pay_responsive/models/card.dart';
+import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
 
 import '../../constant_text_styles.dart';
 import '../../constants.dart';
-import '../../size_config.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -68,8 +66,11 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            children: const <Widget>[
-              UserCardsSection(),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const UserCardsSection(),
+              const SizedBox(height: kDefaultPadding),
+              const RecentTransactionsSection(),
             ],
           ),
         ),
