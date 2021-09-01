@@ -49,13 +49,8 @@ class _SetupScreenState extends State<SetupScreen> {
         onTap: (int index) => setState(() {
           _selectedIndex = index;
           _selectedMenu = MenuState.values[index];
-
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    _menuOptions[_selectedIndex]),
-          );
+          // this will work as Navigator.push route
+          // because our Scaffold body will update its state
         }),
       ),
     );
