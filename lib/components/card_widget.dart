@@ -5,102 +5,131 @@ import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'dart:core';
 
 import 'package:flutter_banking_pay_responsive/models/card_brand.dart';
+import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key, required this.card}) : super(key: key);
+  const CardWidget({Key? key, required this.card, this.isClickable = true})
+      : super(key: key);
   final CardModel card;
+  final bool isClickable;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: make it clickable and editable
-    return Container(
-      padding: const EdgeInsets.all(kDefaultPadding),
-      height: 200,
-      width: 350,
-      decoration: BoxDecoration(
-        color: card.cardColor ?? Colors.black,
-        borderRadius: BorderRadius.circular(28),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(kDefaultPadding),
+          width: 350,
+          height: 200,
+          decoration: BoxDecoration(
+            color: card.cardColor ?? Colors.black,
+            borderRadius: BorderRadius.circular(28),
+          ),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "CARD NAME",
-                    style: AppTextStyle.kCardTitle,
-                  ),
-                  Text(
-                    '${card.cardHolderName}',
-                    style: AppTextStyle.kCardSubtitle,
-                  ),
-                ],
-              ),
-              Text(
-                '${card.cardNumber}',
-                style: AppTextStyle.kCardSubtitle,
-              ),
-              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "EXP DATE",
+                        "CARD NAME",
                         style: AppTextStyle.kCardTitle,
                       ),
                       Text(
-                        '${card.expDate}',
-                        style: !hasCardExpired(card.expDate)
-                            ? AppTextStyle.kCardSubtitle
-                            : AppTextStyle.kCardSubtitle
-                                .copyWith(color: kTextRedColor),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: kDefaultPadding),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "CVV NUMBER",
-                        style: AppTextStyle.kCardTitle,
-                      ),
-                      Text(
-                        '${card.cvv}',
+                        '${card.cardHolderName}',
                         style: AppTextStyle.kCardSubtitle,
                       ),
                     ],
+                  ),
+                  Text(
+                    '${card.cardNumber}',
+                    style: AppTextStyle.kCardSubtitle,
+                  ),
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "EXP DATE",
+                            style: AppTextStyle.kCardTitle,
+                          ),
+                          Text(
+                            '${card.expDate}',
+                            style: !hasCardExpired(card.expDate)
+                                ? AppTextStyle.kCardSubtitle
+                                : AppTextStyle.kCardSubtitle
+                                    .copyWith(color: kTextRedColor),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(width: kDefaultPadding),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "CVV NUMBER",
+                            style: AppTextStyle.kCardTitle,
+                          ),
+                          Text(
+                            '${card.cvv}',
+                            style: AppTextStyle.kCardSubtitle,
+                          ),
+                        ],
+                      )
+                    ],
                   )
                 ],
-              )
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: buildCardLogo(),
+                  ),
+                  if (hasCardExpired(card.expDate))
+                    Text(
+                      "EXPIRED",
+                      style: AppTextStyle.kCardTitle
+                          .copyWith(color: kTextRedColor),
+                    ),
+                ],
+              ),
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SizedBox(
-                width: 50,
-                height: 50,
-                child: buildCardLogo(),
-              ),
-              if (hasCardExpired(card.expDate))
-                Text(
-                  "EXPIRED",
-                  style: AppTextStyle.kCardTitle.copyWith(color: kTextRedColor),
+        ),
+        // Clickable
+        if (isClickable)
+          Padding(
+            padding: const EdgeInsets.all(kDefaultPadding * 2.2),
+            child: InkWell(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      const ActivityInsightsScreen(),
                 ),
-            ],
-          )
-        ],
-      ),
+              ),
+              child: const SizedBox(
+                width: 350,
+                height: 200,
+                // decoration: BoxDecoration(
+                //   color: Colors.black,
+                //   borderRadius: BorderRadius.circular(28),
+                // ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 
