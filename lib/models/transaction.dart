@@ -27,7 +27,7 @@ class TransactionModel {
 List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Supreme Leader",
-    avatar: "assets/icons/avatar1.png",
+    avatar: "assets/icons/avatars/avatar1.png",
     month: "Jan",
     price: 22.47,
     paymentMethod: 'Google Pay',
@@ -38,7 +38,7 @@ List<TransactionModel> myTransactions = [
   ),
   TransactionModel(
     title: "Jane Doe",
-    avatar: "assets/icons/avatar2.png",
+    avatar: "assets/icons/avatars/avatar2.png",
     month: "Mar",
     price: 1230,
     paymentMethod: 'Google Pay',
@@ -49,7 +49,7 @@ List<TransactionModel> myTransactions = [
   ),
   TransactionModel(
     title: "Alex Doe",
-    avatar: "assets/icons/avatar3.png",
+    avatar: "assets/icons/avatars/avatar3.png",
     month: "Mar",
     price: 200,
     paymentMethod: 'Google Pay',
@@ -60,7 +60,7 @@ List<TransactionModel> myTransactions = [
   ),
   TransactionModel(
     title: "Sam Doe",
-    avatar: "assets/icons/avatar4.png",
+    avatar: "assets/icons/avatars/avatar4.png",
     month: "Mar",
     price: 1215.6,
     paymentMethod: 'Bank Deposit',
@@ -71,7 +71,7 @@ List<TransactionModel> myTransactions = [
   ),
   TransactionModel(
     title: "Supreme Leader",
-    avatar: "assets/icons/avatar1.png",
+    avatar: "assets/icons/avatars/avatar1.png",
     month: "Jan",
     price: 215,
     paymentMethod: 'Google Pay',
@@ -82,7 +82,7 @@ List<TransactionModel> myTransactions = [
   ),
   TransactionModel(
     title: "Target Supermarket",
-    //avatar: "assets/icons/avatar2.png",
+    //avatar: "assets/icons/avatars/avatar2.png",
     month: "Mar",
     price: 1230,
     paymentMethod: 'Credit Card',
@@ -93,7 +93,7 @@ List<TransactionModel> myTransactions = [
   ),
   TransactionModel(
     title: "Steam Games",
-    //avatar: "assets/icons/avatar2.png",
+    //avatar: "assets/icons/avatars/avatar2.png",
     month: "Mar",
     price: 102,
     paymentMethod: 'Credit Card',
