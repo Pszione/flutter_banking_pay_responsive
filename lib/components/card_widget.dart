@@ -9,10 +9,17 @@ import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key, required this.card, this.isClickable = true})
+  const CardWidget(
+      {Key? key,
+      required this.card,
+      this.width = 350,
+      this.height = 200,
+      this.isClickable = true})
       : super(key: key);
   final CardModel card;
+  final double width, height;
   final bool isClickable;
+  //final GestureTapCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +27,8 @@ class CardWidget extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.all(kDefaultPadding),
-          width: 350,
-          height: 200,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             color: card.cardColor ?? Colors.black,
             borderRadius: BorderRadius.circular(28),
@@ -109,23 +116,18 @@ class CardWidget extends StatelessWidget {
         ),
         // Clickable
         if (isClickable)
-          Padding(
-            padding: const EdgeInsets.all(kDefaultPadding * 2.2),
+          Container(
+            padding: const EdgeInsets.all(kDefaultPadding * 2.3),
+            width: width,
+            height: height,
             child: InkWell(
+              enableFeedback: true,
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) =>
                       const ActivityInsightsScreen(),
                 ),
-              ),
-              child: const SizedBox(
-                width: 350,
-                height: 200,
-                // decoration: BoxDecoration(
-                //   color: Colors.black,
-                //   borderRadius: BorderRadius.circular(28),
-                // ),
               ),
             ),
           ),
