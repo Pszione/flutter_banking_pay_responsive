@@ -7,6 +7,7 @@ const kComplementaryColor = Color(0xFF1A73E9);
 const kBackgroundColor = Color(0xfffff9f4);
 const kDarkColor = Color(0xFF191923);
 const kWhiteColor = Colors.white;
+const kGrayColor = Color(0xFFE5E5E5);
 const kTextBodyColor = kPrimaryColor;
 const kTextWhiteColor = Colors.white;
 const kTextGrayColor = Colors.grey;
@@ -26,7 +27,7 @@ const kMaxWebsiteWidth = 1440.0; // max width of our web
 const kMediumIconSize = 28.0;
 const kHugeIconSize = 36.0;
 BorderRadius kDefaultBorderRadius =
-    BorderRadius.circular(kHugeIconSizeAsDouble);
-const kHugeIconSizeAsDouble = 20.0;
+    BorderRadius.circular(kDefaultBorderRadiusAsDouble);
+const kDefaultBorderRadiusAsDouble = 20.0;
 
-const kDefaultDuration = Duration(milliseconds: 1000);
+const kDefaultDuration = Duration(milliseconds: 700);
