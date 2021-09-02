@@ -5,8 +5,10 @@ import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'dart:core';
 
 import 'package:flutter_banking_pay_responsive/models/card_brand.dart';
-import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
+
+import 'app_sliding_bottom_sheet.dart';
 
 class CardWidget extends StatelessWidget {
   const CardWidget(
@@ -122,13 +124,63 @@ class CardWidget extends StatelessWidget {
             height: height,
             child: InkWell(
               enableFeedback: true,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      const ActivityInsightsScreen(),
+              onTap: () => AppSlidingBottomSheet(
+                context: context,
+                bodyWidget: Material(
+                  child: Padding(
+                    padding: const EdgeInsets.all(kDefaultPadding),
+                    child: Column(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: const StadiumBorder(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding * 2),
+                          ),
+                          child: const Text('Close'),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                        Builder(
+                            // sheetController needs a builder around it to get the right context
+                            builder: (context) {
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder(),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: kDefaultPadding * 2),
+                            ),
+                            child: const Text('Show more'),
+                            onPressed: () =>
+                                SheetController.of(context)!.expand(),
+                          );
+                        }),
+                        Container(
+                          width: double.infinity,
+                          height: 350,
+                          color: kTertiaryColor,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 350,
+                          color: kPrimaryColor,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 350,
+                          color: kDarkColor,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ).showStyledSheet(),
+              // onTap: () => Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (BuildContext context) =>
+              //         const ActivityInsightsScreen(),
+              //   ),
+              // ),
             ),
           ),
       ],
