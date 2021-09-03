@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../constant_text_styles.dart';
 import '../constants.dart';
 
-class AppBarComplete extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarComplete(
+class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
+  AppBarComplete(
       {Key? key,
       required this.title,
       this.hasSearchField = false,
@@ -15,23 +15,32 @@ class AppBarComplete extends StatelessWidget implements PreferredSizeWidget {
   final bool hasNotifications;
 
   @override
+  State<AppBarComplete> createState() => _AppBarCompleteState();
+
+  @override
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+}
+
+class _AppBarCompleteState extends State<AppBarComplete> {
+  bool isSearching = false;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: title != null
+      title: widget.title != null && !isSearching
           ? Text(
-              '$title',
+              '${widget.title}',
               style: AppTextStyle.kMenuTitle,
             )
           : null,
       automaticallyImplyLeading: true,
-      leadingWidth: 100,
+      leadingWidth: MediaQuery.of(context).size.width * 0.8, // 100,
       leading: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (hasNotifications)
+          if (widget.hasNotifications)
             IconButton(
               // padding: EdgeInsets.all(8.0),
               padding: const EdgeInsets.only(left: kDefaultPadding),
@@ -43,15 +52,27 @@ class AppBarComplete extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {},
             ),
           // TODO: make it clickable
-          if (hasSearchField)
+          if (widget.hasSearchField)
             IconButton(
               icon: const Icon(
                 Icons.search_rounded,
                 color: kDarkColor,
                 size: kMediumIconSize,
               ),
-              onPressed: () {},
-            )
+              onPressed: () => {
+                setState(() {
+                  isSearching = !isSearching;
+                })
+              },
+            ),
+          if (widget.hasSearchField && isSearching)
+            Container(
+              width: MediaQuery.of(context).size.width * 0.57,
+              height:
+                  kMediumIconSize * 1.2, // widget.preferredSize.height / 1.6,
+              decoration: BoxDecoration(
+                  borderRadius: kDefaultBorderRadius, color: kPrimaryColor),
+            ),
         ],
       ),
       actions: [
