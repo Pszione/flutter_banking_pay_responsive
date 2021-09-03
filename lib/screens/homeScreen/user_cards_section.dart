@@ -9,7 +9,7 @@ class UserCardsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.separated(
           physics: const ClampingScrollPhysics(),
@@ -22,6 +22,7 @@ class UserCardsSection extends StatelessWidget {
           itemBuilder: (context, index) {
             return CardWidget(
               card: myCards[index],
+              onPress: () {},
             );
           }),
     );

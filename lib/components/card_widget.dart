@@ -5,23 +5,29 @@ import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'dart:core';
 
 import 'package:flutter_banking_pay_responsive/models/card_brand.dart';
+import 'package:flutter_banking_pay_responsive/models/i_card_implementation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 import 'app_sliding_bottom_sheet.dart';
 
-class CardWidget extends StatelessWidget {
-  const CardWidget(
+class CardWidget extends StatelessWidget implements ICardImplementation {
+  CardWidget(
       {Key? key,
       required this.card,
       this.width = 350,
       this.height = 200,
-      this.isClickable = true})
+      this.isClickable = true,
+      required this.onPress})
       : super(key: key);
-  final CardModel card;
-  final double width, height;
-  final bool isClickable;
-  //final GestureTapCallback onPress;
+  @override
+  late CardModel card;
+  @override
+  late double width, height;
+  @override
+  late bool isClickable;
+  @override
+  GestureTapCallback onPress;
 
   @override
   Widget build(BuildContext context) {

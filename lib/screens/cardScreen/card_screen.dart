@@ -33,6 +33,7 @@ class CardScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CardWidget(
                   card: myCards[index],
+                  onPress: () {},
                 );
               },
             ),
