@@ -24,6 +24,7 @@ class UserCardsSection extends StatelessWidget {
           itemBuilder: (context, index) {
             return CardWidget(
               card: myCards[index],
+              width: 320,
               onPress: () {},
             );
           }),

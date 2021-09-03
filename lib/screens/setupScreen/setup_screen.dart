@@ -6,7 +6,6 @@ import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.da
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants.dart';
-import '../../size_config.dart';
 
 class SetupScreen extends StatefulWidget {
   const SetupScreen({Key? key}) : super(key: key);
@@ -51,6 +50,7 @@ class _SetupScreenState extends State<SetupScreen> {
           _selectedMenu = MenuState.values[index];
           // this will work as Navigator.push route
           // because our Scaffold body will update its state
+          // unfortunately wwe can not maintain widget state
         }),
       ),
     );

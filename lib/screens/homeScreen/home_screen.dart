@@ -9,14 +9,8 @@ import '../../constants.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  get userCards => null;
-
-  //late SizeConfig _sizes;
-
   @override
   Widget build(BuildContext context) {
-    //final SizeConfig _sizes = SizeConfig().init(context);
-
     return Scaffold(
       appBar: AppBarComplete(
         title: 'My Bank',
@@ -26,16 +20,47 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(kDefaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const UserCardsSection(),
               const SizedBox(height: kDefaultPadding),
               const RecentTransactionsSection(),
+              const SizedBox(height: kDefaultPadding),
+              const TransferMoneySection(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class TransferMoneySection extends StatelessWidget {
+  const TransferMoneySection({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const CircleAvatar(
+            radius: kMediumIconSize,
+            child: Icon(
+              Icons.add,
+              size: 50,
+            ),
+          ),
+          const SizedBox(height: kHalfPadding),
+          Text(
+            'Transfer Money',
+            style: AppTextStyle.kListTileTitle,
+          ),
+        ],
       ),
     );
   }
