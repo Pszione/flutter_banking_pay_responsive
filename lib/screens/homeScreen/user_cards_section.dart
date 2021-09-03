@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 
+import '../../constants.dart';
+
 class UserCardsSection extends StatelessWidget {
   const UserCardsSection({
     Key? key,
@@ -14,7 +16,7 @@ class UserCardsSection extends StatelessWidget {
       child: ListView.separated(
           physics: const ClampingScrollPhysics(),
           separatorBuilder: (context, index) {
-            return const SizedBox(width: 10);
+            return const SizedBox(width: kHalfPadding);
           },
           itemCount: myCards.length,
           shrinkWrap: true,

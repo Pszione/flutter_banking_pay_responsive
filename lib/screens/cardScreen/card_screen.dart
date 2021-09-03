@@ -12,7 +12,7 @@ class CardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarComplete(
+      appBar: AppBarComplete(
         title: 'My Cards',
         hasNotifications: true,
       ),
@@ -25,21 +25,23 @@ class CardScreen extends StatelessWidget {
             child: ListView.separated(
               physics: const ClampingScrollPhysics(),
               separatorBuilder: (context, index) {
-                return const SizedBox(height: 20);
+                return const SizedBox(height: kDefaultPadding);
               },
               itemCount: myCards.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return CardWidget(
-                  card: myCards[index],
-                  onPress: () {},
+                return Center(
+                  child: CardWidget(
+                    card: myCards[index],
+                    onPress: () {},
+                  ),
                 );
               },
             ),
           ),
           const CircleAvatar(
-            radius: kHugeIconSize,
+            radius: kMediumIconSize,
             child: Icon(
               Icons.add,
               size: 50,
