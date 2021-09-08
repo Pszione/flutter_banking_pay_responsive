@@ -46,6 +46,12 @@ class AppTextStyle {
     fontSize: 15,
     //fontSize: SizeConfig().getProportionateScreenWidth(15),
   );
+
+  static TextStyle kSmallWhiteSubtitle = TextStyle(
+    color: kWhiteColor,
+    fontSize: 15,
+    //fontSize: SizeConfig().getProportionateScreenWidth(15),
+  );
 }
 
 // Duplicates

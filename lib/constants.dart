@@ -7,7 +7,7 @@ const kComplementaryColor = Color(0xFF1A73E9);
 const kBackgroundColor = Color(0xfffff9f4);
 const kDarkColor = Color(0xFF191923);
 const kWhiteColor = Colors.white;
-const kGrayColor = Color(0xFFE5E5E5);
+const kGrayColor = Color(0xFFD8D8D8);
 const kTextBodyColor = kPrimaryColor;
 const kTextWhiteColor = Colors.white;
 const kTextGrayColor = Colors.grey;
@@ -26,8 +26,15 @@ const kSmallPadding = kDefaultPadding / 3;
 const kMaxWebsiteWidth = 1440.0; // max width of our web
 const kMediumIconSize = 28.0;
 const kHugeIconSize = 36.0;
-BorderRadius kDefaultBorderRadius =
-    BorderRadius.circular(kDefaultBorderRadiusAsDouble);
+var kDefaultBorderRadius = BorderRadius.circular(kDefaultBorderRadiusAsDouble);
 const kDefaultBorderRadiusAsDouble = 20.0;
+var kHugeBorderRadius = BorderRadius.circular(28);
+
+var kBoxDownShadowSubtle = BoxShadow(
+  offset: const Offset(0.0, 6.0),
+  color: kDarkColor.withOpacity(0.2),
+  spreadRadius: 1,
+  blurRadius: 2,
+);
 
 const kDefaultDuration = Duration(milliseconds: 700);

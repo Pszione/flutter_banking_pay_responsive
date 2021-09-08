@@ -25,7 +25,7 @@ class CardScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: Responsive.isMobileLarge(context) ? 522 : 200,
+                height: Responsive.isMobileLarge(context) ? 522 : 200 * 1.07,
                 child: ListView.separated(
                   physics: const ClampingScrollPhysics(),
                   separatorBuilder: (context, index) {
@@ -43,6 +43,7 @@ class CardScreen extends StatelessWidget {
                       onPress: () {},
                     );
                   },
+                  padding: const EdgeInsets.only(bottom: kDefaultPadding),
                 ),
               ),
               Column(
