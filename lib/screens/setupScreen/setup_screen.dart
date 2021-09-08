@@ -33,8 +33,8 @@ class _SetupScreenState extends State<SetupScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: kComplementaryColor,
-        unselectedItemColor: kTextGrayColor,
+        //selectedItemColor: kComplementaryColor,
+        //unselectedItemColor: kTextGrayColor,
         iconSize: kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
         items: const [
           BottomNavigationBarItem(

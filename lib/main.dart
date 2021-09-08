@@ -4,11 +4,11 @@ import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  /*const*/ MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -16,23 +16,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Banking Pay',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: kWhiteColor,
-          elevation: 0,
-        ),
-        scaffoldBackgroundColor: kWhiteColor,
-        primarySwatch: createMaterialColor(kComplementaryColor),
-        fontFamily: GoogleFonts.poppins().fontFamily,
-        // textTheme: GoogleFonts.poppinsTextTheme(
-        //   // GoogleFonts.robotoTextTheme
-        //   Theme.of(context).textTheme,
-        // ),
-      ),
+      theme: appThemeData,
       home: SetupScreen(),
     );
   }
+
+  final ThemeData appThemeData = ThemeData(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: kWhiteColor,
+      elevation: 0,
+    ),
+    colorScheme: appColorScheme,
+
+    scaffoldBackgroundColor: kBackgroundColor,
+    // primarySwatch: createMaterialColor(kComplementaryColor),
+    fontFamily: GoogleFonts.poppins().fontFamily,
+  );
 }
+
+ColorScheme appColorScheme = const ColorScheme.light(
+  primary: kPrimaryColor,
+  secondary: kSecondaryColor,
+  //primaryVariant:
+  //secondaryVariant: ,
+  surface: kWhiteColor,
+  background: kWhiteColor,
+);
 
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];

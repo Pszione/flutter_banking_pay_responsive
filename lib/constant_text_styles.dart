@@ -14,7 +14,7 @@ class AppTextStyle {
   );
 
   static TextStyle kMenuTitle = TextStyle(
-    color: kPrimaryColor, // kPrimaryColor
+    color: kTextBodyColor, // kPrimaryColor
     fontWeight: FontWeight.w600,
     fontSize: 20,
     //fontSize: SizeConfig().getProportionateScreenWidth(20),

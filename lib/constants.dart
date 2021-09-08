@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xff00444f);
+const kPrimaryColor = Color(0xFF1A73E9);
 const kSecondaryColor = Color(0xffff7b67);
 const kTertiaryColor = Color(0xfffcd76b);
-const kComplementaryColor = Color(0xFF1A73E9);
-const kBackgroundColor = Color(0xfffff9f4);
+const kComplementaryColor = Color(0xff00444f);
+const kBackgroundColor = Color(0xfffff4ec); // Color(0xFFDBFFFB)
+const kDarkBackgroundColor = Color(0xff41444f);
 const kDarkColor = Color(0xFF191923);
 const kWhiteColor = Colors.white;
 const kGrayColor = Color(0xFFD8D8D8);
-const kTextBodyColor = kPrimaryColor;
+const kTextBodyColor = kComplementaryColor;
 const kTextWhiteColor = Colors.white;
 const kTextGrayColor = Colors.grey;
 Color kTextRedColor = Colors.red.shade400;
