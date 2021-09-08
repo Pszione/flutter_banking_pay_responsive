@@ -12,22 +12,24 @@ class UserCardsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 200 * 1.07,
       child: ListView.separated(
-          physics: const ClampingScrollPhysics(),
-          separatorBuilder: (context, index) {
-            return const SizedBox(width: kHalfPadding);
-          },
-          itemCount: myCards.length,
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return CardWidget(
-              card: myCards[index],
-              width: 320,
-              onPress: () {},
-            );
-          }),
+        physics: const ClampingScrollPhysics(),
+        separatorBuilder: (context, index) {
+          return const SizedBox(width: kHalfPadding);
+        },
+        itemCount: myCards.length,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return CardWidget(
+            card: myCards[index],
+            width: 320,
+            onPress: () {},
+          );
+        },
+        padding: const EdgeInsets.only(right: kHalfPadding),
+      ),
     );
   }
 }

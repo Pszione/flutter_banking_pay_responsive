@@ -11,6 +11,7 @@ class CardModel {
     required this.expDate,
     this.cardBrand = CardBrand.mastercard,
     this.cardColor,
+    this.nickname,
   });
 
   String? cardHolderName;
@@ -19,6 +20,7 @@ class CardModel {
   String? cvv;
   CardBrand cardBrand;
   Color? cardColor;
+  String? nickname;
 }
 
 List<CardModel> myCards = [
@@ -27,7 +29,7 @@ List<CardModel> myCards = [
     cardNumber: "****  ****  ****  1234",
     cvv: "**5",
     expDate: "12/21",
-    cardColor: kPrimaryColor,
+    cardColor: kComplementaryColor,
     cardBrand: CardBrand.mastercard,
   ),
   CardModel(
@@ -37,6 +39,7 @@ List<CardModel> myCards = [
     expDate: "01/22",
     cardBrand: CardBrand.visaPlatinum,
     cardColor: kSecondaryColor,
+    nickname: 'C6 Pink',
   ),
   CardModel(
     cardHolderName: "Mr Pedro",
@@ -45,5 +48,14 @@ List<CardModel> myCards = [
     expDate: "12/20",
     cardBrand: CardBrand.americanExpress,
     // cardColor: kSecondaryColor,
+    nickname: 'Black Unlimited',
+  ),
+  CardModel(
+    cardHolderName: "Mr Pedro",
+    cardNumber: "****  ****  ****  2552",
+    cvv: "**5",
+    expDate: "20/20",
+    cardBrand: CardBrand.mastercard,
+    cardColor: Colors.white,
   ),
 ];
