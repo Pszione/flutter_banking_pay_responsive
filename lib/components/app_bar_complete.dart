@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
+import '../theme_provider.dart';
 
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
-  AppBarComplete(
+  const AppBarComplete(
       {Key? key,
       required this.title,
       this.hasSearchField = false,
-      this.hasNotifications = true})
+      this.hasNotifications = true,
+      this.hasDarkThemeToggle = false})
       : super(key: key);
   final String? title;
   final bool hasSearchField;
   final bool hasNotifications;
+  final bool hasDarkThemeToggle;
 
   @override
   State<AppBarComplete> createState() => _AppBarCompleteState();
@@ -26,6 +31,8 @@ class _AppBarCompleteState extends State<AppBarComplete> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return AppBar(
       centerTitle: true,
       title: widget.title != null && !isSearching
@@ -81,10 +88,20 @@ class _AppBarCompleteState extends State<AppBarComplete> {
           icon: const CircleAvatar(
             backgroundImage:
                 NetworkImage('https://placeimg.com/640/480/people'),
+            backgroundColor: kComplementaryColor,
           ),
           iconSize: kHugeIconSize,
           onPressed: () {},
         ),
+        if (widget.hasDarkThemeToggle)
+          Switch.adaptive(
+            value: themeProvider.isDarkMode,
+            onChanged: (bool value) {
+              //final provider = Provider.of<ThemeProvider>(context);
+              themeProvider.toggleTheme(value);
+            },
+            activeColor: kTertiaryColor,
+          ),
       ],
     );
   }

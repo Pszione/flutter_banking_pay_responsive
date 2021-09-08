@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
+import 'package:flutter_banking_pay_responsive/theme_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  //const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Banking Pay',
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      theme: AppThemes.lightThemeData,
-      darkTheme: AppThemes.darkThemeData,
-      home: SetupScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => ThemeProvider(), // initialize instance
+      builder: (context, _) => MaterialApp(
+        title: 'Banking Pay',
+        debugShowCheckedModeBanner: false,
+        // themeMode: ThemeMode.system,
+        themeMode: Provider.of<ThemeProvider>(context).themeMode,
+        theme: AppThemes.lightThemeData,
+        darkTheme: AppThemes.darkThemeData,
+        home: SetupScreen(),
+      ),
     );
   }
 }
