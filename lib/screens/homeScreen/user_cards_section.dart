@@ -18,10 +18,14 @@ class UserCardsSection extends StatelessWidget {
         separatorBuilder: (context, index) {
           return const SizedBox(width: kHalfPadding);
         },
-        itemCount: myCards.length,
+        itemCount: myCards.length + 1,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
+          // checking if the index item is the last item of the list or not
+          if (index == myCards.length) {
+            return CardOutlineWidget(width: 320, onPress: () {});
+          }
           return CardWidget(
             card: myCards[index],
             width: 320,

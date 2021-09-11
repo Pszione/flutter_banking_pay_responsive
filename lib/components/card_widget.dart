@@ -10,6 +10,103 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'app_sliding_bottom_sheet.dart';
 
+class CardOutlineWidget extends StatelessWidget {
+  const CardOutlineWidget({
+    Key? key,
+    this.width = 350,
+    this.height = 200,
+    this.isClickable = true,
+    required this.onPress,
+  }) : super(key: key);
+
+  final double width, height;
+  final bool isClickable;
+  final GestureTapCallback onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    Color? color = Theme.of(context).colorScheme.primary;
+
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(kDefaultPadding),
+          width: width,
+          height: height,
+          decoration: ShapeDecoration(
+            // color: Colors.transparent,
+            color: Theme.of(context).scaffoldBackgroundColor,
+            shadows: [kBoxDownShadowSubtle],
+            shape: RoundedRectangleBorder(
+              borderRadius: kDefaultBorderRadius,
+              side: BorderSide(
+                width: 3,
+                //color: kLightGrayColor,
+                color: color,
+              ),
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.add,
+                  color: Theme.of(context).primaryColorDark,
+                  size: kHugeIconSize * 1.2,
+                ),
+                Text('Add payment method',
+                    style: AppTextStyles.getBodyText(context)
+                        .copyWith(color: color)),
+              ],
+            ),
+          ),
+        ),
+        // Clickable
+        if (isClickable)
+          Container(
+            padding: const EdgeInsets.all(kDefaultPadding * 2.3),
+            width: width,
+            height: height,
+            child: InkWell(
+              splashColor: Theme.of(context).colorScheme.secondary,
+              focusColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              borderRadius: kHugeBorderRadius,
+              radius: kInkWellMediumRadius,
+              onTap: () => // onPressed
+                  AppSlidingBottomSheet(
+                context: context,
+                snappings: [0.3, 0.5],
+                headerColor: Theme.of(context).colorScheme.secondary,
+                bodyWidget: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: const StadiumBorder(),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: kDefaultPadding * 2),
+                        ),
+                        child: const Text('Close'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                      Container(
+                        height: 290,
+                        color: kWhiteColor,
+                      ),
+                    ],
+                  ),
+                ),
+              ).showStyledSheet(),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
 class CardWidget extends StatelessWidget implements ICardImplementation {
   CardWidget(
       {Key? key,
