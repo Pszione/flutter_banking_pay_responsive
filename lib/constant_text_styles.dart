@@ -62,4 +62,10 @@ class AppTextStyles {
         fontSize: 15,
         //fontSize: SizeConfig().getProportionateScreenWidth(15),
       );
+
+  static TextStyle kSmallBoldText() => const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.3,
+      );
 }

@@ -37,6 +37,7 @@ FloatingActionButtonLocation kFloatingButtonLocationAdaptive(
 const kMaxWebsiteWidth = 1440.0; // max width of our web
 const kHugeIconSize = 33.0;
 const kMediumIconSize = 28.0;
+const kSmallIconSize = 22.0;
 const kVerySmallIconSize = 10.0;
 const kInkWellMediumRadius = 90.0;
 var kHugeBorderRadius = BorderRadius.circular(28);
@@ -57,6 +58,8 @@ var kTextBoxShadowSubtle = BoxShadow(
   spreadRadius: 1.4,
   blurRadius: 1.5,
 );
+
+var kDivider = const Divider(thickness: 2);
 
 const kDefaultDuration = Duration(milliseconds: 700);
 

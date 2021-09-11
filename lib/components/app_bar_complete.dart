@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../constant_text_styles.dart';
 import '../constants.dart';
 import '../theme_provider.dart';
+import 'google_account_dialog.dart';
 
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
   const AppBarComplete(
@@ -37,9 +38,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
       centerTitle: true,
       title: isSearching ? SearchBarField() : showTitleOrNull(context),
       automaticallyImplyLeading: true,
-      // TODO: respond to colorScheme
-      // iconTheme: Theme.of(context).iconTheme,
-      leadingWidth: 99, // MediaQuery.of(context).size.width * 0.8, // 100,
+      leadingWidth: 99,
       leading: Row(
         // mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,12 +75,14 @@ class _AppBarCompleteState extends State<AppBarComplete> {
         IconButton(
           padding: const EdgeInsets.only(right: kDefaultPadding),
           icon: const CircleAvatar(
+            // backgroundImage:
+            //     NetworkImage('https://placeimg.com/640/480/people'),
             backgroundImage:
-                NetworkImage('https://placeimg.com/640/480/people'),
+                AssetImage('assets/images/35244548_pedro_santos.png'),
             backgroundColor: kComplementaryColor,
           ),
           iconSize: kHugeIconSize,
-          onPressed: () {},
+          onPressed: () => GoogleAccountDialog().showDialogDismissible(context),
         ),
         if (widget.hasDarkThemeToggle)
           Switch.adaptive(
