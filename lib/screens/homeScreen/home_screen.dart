@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
+import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
 
 import '../../constant_text_styles.dart';
 import '../../constants.dart';
+import '../../snackbar_errors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,21 +17,27 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBarComplete(
         title: 'My Bank',
         hasSearchField: true,
+        hasDarkThemeToggle: true,
       ),
       // Cards
       body: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(kDefaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const UserCardsSection(),
-              const SizedBox(height: kDefaultPadding),
-              const RecentTransactionsSection(),
-              const SizedBox(height: kDefaultPadding),
-              const TransferMoneySection(),
-            ],
+          // Un focus keyboard/textfield
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.translucent,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const UserCardsSection(),
+                const SizedBox(height: kDefaultPadding),
+                const RecentTransactionsSection(),
+                const SizedBox(height: kDefaultPadding),
+                const TransferMoneySection(),
+              ],
+            ),
           ),
         ),
       ),
@@ -45,22 +53,30 @@ class TransferMoneySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const CircleAvatar(
-            radius: kMediumIconSize,
-            child: Icon(
-              Icons.add,
-              size: 50,
+      child: IconButton(
+        iconSize: 160,
+        splashRadius: kInkWellMediumRadius,
+        onPressed: () =>
+            AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+        icon: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: kMediumIconSize,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              child: Icon(
+                Icons.ios_share,
+                size: kHugeIconSize,
+                color: Theme.of(context).primaryColorDark,
+              ),
             ),
-          ),
-          const SizedBox(height: kHalfPadding),
-          Text(
-            'Transfer Money',
-            style: AppTextStyle.kListTileTitle,
-          ),
-        ],
+            const SizedBox(height: kHalfPadding),
+            Text(
+              'Transfer Money',
+              style: AppTextStyles.kListTileTitle,
+            ),
+          ],
+        ),
       ),
     );
   }

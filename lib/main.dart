@@ -52,6 +52,12 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       backgroundColor: kWhiteColor,
       elevation: 0,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: kSecondaryColor,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
+      elevation: 8,
+    ),
     ),
     colorScheme: AppThemes.appColorScheme,
 
@@ -64,6 +70,12 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       backgroundColor: kDarkBackgroundColor,
       elevation: 0,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: kSecondaryColor,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
+      elevation: 8,
+    ),
     ),
     colorScheme: AppThemes.appDarkColorScheme,
 
