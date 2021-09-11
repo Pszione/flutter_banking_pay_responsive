@@ -7,7 +7,6 @@ import 'dart:core';
 import 'package:flutter_banking_pay_responsive/models/card_brand.dart';
 import 'package:flutter_banking_pay_responsive/models/i_card_implementation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 
 import 'app_sliding_bottom_sheet.dart';
 
@@ -20,6 +19,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
       this.isClickable = true,
       required this.onPress})
       : super(key: key);
+
   @override
   late CardModel card;
   @override
@@ -130,71 +130,23 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
             width: width,
             height: height,
             child: InkWell(
-              enableFeedback: true,
-              onTap: () => AppSlidingBottomSheet(
+              splashColor: Theme.of(context).colorScheme.secondary,
+              focusColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              borderRadius: kHugeBorderRadius,
+              radius: kInkWellMediumRadius,
+              onTap: () => // onPressed
+                  AppSlidingBottomSheet(
                 context: context,
-                bodyWidget: Material(
-                  child: Padding(
-                    padding: const EdgeInsets.all(kDefaultPadding),
-                    child: Column(
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: const StadiumBorder(),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: kDefaultPadding * 2),
-                          ),
-                          child: const Text('Close'),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        Builder(
-                            // sheetController needs a builder around it to get the right context
-                            builder: (context) {
-                          return ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shape: const StadiumBorder(),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: kDefaultPadding * 2),
-                            ),
-                            child: const Text('Show more'),
-                            onPressed: () =>
-                                SheetController.of(context)!.expand(),
-                          );
-                        }),
-                        Container(
-                          width: double.infinity,
-                          height: 350,
-                          color: kTertiaryColor,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: 350,
-                          color: kPrimaryColor,
-                        ),
-                        Container(
-                          width: double.infinity,
-                          height: 350,
-                          color: kDarkColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                headerColor: getCardColorNullSafety(card),
+                bodyWidget: CardOverviewSlidingSheet(card: card),
               ).showStyledSheet(),
-              // onTap: () => Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (BuildContext context) =>
-              //         const ActivityInsightsScreen(),
-              //   ),
-              // ),
             ),
           ),
       ],
     );
   }
 
-  Widget? buildCardLogo() {
   Color getCardColor(bool withOpacity) {
     Color selectedColor = card.cardColor ?? Colors.black45;
     return withOpacity ? selectedColor.withOpacity(0.8) : selectedColor;
@@ -244,5 +196,84 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
       return cardDate.isBefore(currentYear);
     }
     return false;
+  }
+}
+
+class CardOverviewSlidingSheet extends StatelessWidget {
+  const CardOverviewSlidingSheet({Key? key, required this.card})
+      : super(key: key);
+
+  final CardModel card;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Stack(
+        //alignment: AlignmentDirectional.topCenter,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 450,
+            color: CardWidget.getCardColorNullSafety(card),
+          ),
+          Container(
+            width: double.infinity,
+            height: 430,
+            margin: const EdgeInsets.only(
+                left: kDefaultPadding,
+                right: kDefaultPadding,
+                bottom: kHalfPadding),
+            padding: const EdgeInsets.only(
+                left: kDefaultPadding,
+                right: kDefaultPadding,
+                top: kDefaultPadding),
+            decoration: BoxDecoration(
+              color: kWhiteColor,
+              borderRadius: kHugeBorderRadius,
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: kDefaultPadding * 2),
+                  ),
+                  child: const Text('Close'),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ),
+              // Builder(
+              //     // sheetController needs a builder around it to get the right context
+              //     builder: (context) {
+              //   return ElevatedButton(
+              //     style: ElevatedButton.styleFrom(
+              //       shape: const StadiumBorder(),
+              //       padding: const EdgeInsets.symmetric(
+              //           horizontal: kDefaultPadding * 2),
+              //     ),
+              //     child: const Text('Show more'),
+              //     onPressed: () =>
+              //         SheetController.of(context)!.expand(),
+              //   );
+              // }),
+
+              // const Padding(
+              //   padding: EdgeInsets.all(kDefaultPadding),
+              // ),
+              // const SizedBox(height: kHalfPadding),
+              Text(
+                CardWidget.getCardNickname(card)!,
+                style: AppTextStyles.getBodyText(context)
+                    .copyWith(fontSize: 22, overflow: TextOverflow.ellipsis),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
