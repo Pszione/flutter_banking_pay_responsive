@@ -35,50 +35,40 @@ class _AppBarCompleteState extends State<AppBarComplete> {
 
     return AppBar(
       centerTitle: true,
-      title: widget.title != null && !isSearching
-          ? Text(
-              '${widget.title}',
-              style: AppTextStyle.kMenuTitle,
-            )
-          : null,
+      title: isSearching ? SearchBarField() : showTitleOrNull(context),
       automaticallyImplyLeading: true,
-      leadingWidth: MediaQuery.of(context).size.width * 0.8, // 100,
+      // TODO: respond to colorScheme
+      // iconTheme: Theme.of(context).iconTheme,
+      leadingWidth: 99, // MediaQuery.of(context).size.width * 0.8, // 100,
       leading: Row(
-        mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if (widget.hasNotifications)
             IconButton(
-              // padding: EdgeInsets.all(8.0),
               padding: const EdgeInsets.only(left: kDefaultPadding),
               icon: const Icon(
                 Icons.notifications_active_outlined,
-                color: kDarkColor,
-                size: kMediumIconSize,
               ),
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      const ActivityInsightsScreen(),
+                  maintainState: true,
+                ),
+              ),
             ),
-          // TODO: make it clickable
           if (widget.hasSearchField)
             IconButton(
               icon: const Icon(
                 Icons.search_rounded,
-                color: kDarkColor,
-                size: kMediumIconSize,
               ),
               onPressed: () => {
                 setState(() {
                   isSearching = !isSearching;
                 })
               },
-            ),
-          if (widget.hasSearchField && isSearching)
-            Container(
-              width: MediaQuery.of(context).size.width * 0.57,
-              height:
-                  kMediumIconSize * 1.2, // widget.preferredSize.height / 1.6,
-              decoration: BoxDecoration(
-                  borderRadius: kDefaultBorderRadius, color: kPrimaryColor),
             ),
         ],
       ),
@@ -100,9 +90,57 @@ class _AppBarCompleteState extends State<AppBarComplete> {
               //final provider = Provider.of<ThemeProvider>(context);
               themeProvider.toggleTheme(value);
             },
-            activeColor: kTertiaryColor,
+            activeColor: kSecondaryColor,
           ),
       ],
+    );
+  }
+
+  Text? showTitleOrNull(BuildContext context) {
+    return widget.title != null
+        ? Text(
+            '${widget.title}',
+            style: AppTextStyles.getBodyText(context),
+          )
+        : null;
+  }
+}
+
+class SearchBarField extends StatelessWidget {
+  const SearchBarField({
+    Key? key,
+  }) : super(key: key);
+
+  //TextEditingController controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.57,
+      height: kMediumIconSize * 1.2, // widget.preferredSize.height / 1.6,
+      decoration: BoxDecoration(
+        borderRadius: kDefaultBorderRadius,
+        color: kTextBodyColor.withOpacity(0.85),
+      ),
+      child: TextField(
+        onChanged: (String value) {
+          // search by string
+        },
+        maxLines: 1,
+        keyboardType: TextInputType.name,
+        style: AppTextStyles.kSmallWhiteSubtitle(context),
+        textAlign: TextAlign.start,
+        textAlignVertical: TextAlignVertical.center,
+        textCapitalization: TextCapitalization.sentences,
+        decoration: InputDecoration(
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          hintText: 'Search',
+          hintStyle: AppTextStyles.kSmallWhiteSubtitle(context),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+        ),
+      ),
     );
   }
 }

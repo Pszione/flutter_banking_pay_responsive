@@ -53,7 +53,17 @@ class AppThemes {
   static final ThemeData lightThemeData = ThemeData(
     appBarTheme: const AppBarTheme(
       backgroundColor: kWhiteColor,
+      centerTitle: true,
       elevation: 0,
+      iconTheme: IconThemeData(
+        color: kDarkColor,
+        size: kMediumIconSize,
+      ),
+    ),
+    iconTheme: const IconThemeData(
+      color: kDarkColor,
+      size: kMediumIconSize,
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: kSecondaryColor,
       shape: RoundedRectangleBorder(
@@ -80,7 +90,18 @@ class AppThemes {
   static final ThemeData darkThemeData = ThemeData(
     appBarTheme: const AppBarTheme(
       backgroundColor: kDarkBackgroundColor,
+      centerTitle: true,
       elevation: 0,
+      //clipBehavior: Clip.antiAlias,
+      iconTheme: IconThemeData(
+        color: kWhiteColor,
+        size: kMediumIconSize,
+      ),
+    ),
+    iconTheme: const IconThemeData(
+      color: kWhiteColor,
+      size: kMediumIconSize,
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: kSecondaryColor,
       shape: RoundedRectangleBorder(
