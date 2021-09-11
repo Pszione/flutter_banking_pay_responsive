@@ -27,12 +27,18 @@ class _SetupScreenState extends State<SetupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final currentThemeMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark
+            ? ThemeMode.dark
+            : ThemeMode.light;
+
     return Scaffold(
       body: Center(
         child: _menuOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         //selectedItemColor: kComplementaryColor,
         //unselectedItemColor: kTextGrayColor,
         iconSize: kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,

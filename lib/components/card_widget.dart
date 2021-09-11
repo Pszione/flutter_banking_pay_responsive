@@ -38,8 +38,9 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: card.cardColor ?? Colors.black,
-            borderRadius: BorderRadius.circular(28),
+            color: getCardColor(true),
+            borderRadius: kHugeBorderRadius,
+            boxShadow: [kBoxDownShadowSubtle],
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,17 +55,17 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                     children: [
                       Text(
                         "CARD NAME",
-                        style: AppTextStyle.kCardTitle,
+                        style: AppTextStyles.kCardTitle,
                       ),
                       Text(
                         '${card.cardHolderName}',
-                        style: AppTextStyle.kCardSubtitle,
+                        style: AppTextStyles.kCardSubtitle,
                       ),
                     ],
                   ),
                   Text(
                     '${card.cardNumber}',
-                    style: AppTextStyle.kCardSubtitle,
+                    style: AppTextStyles.kCardSubtitle,
                   ),
                   Row(
                     children: [
@@ -73,13 +74,13 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                         children: [
                           Text(
                             "EXP DATE",
-                            style: AppTextStyle.kCardTitle,
+                            style: AppTextStyles.kCardTitle,
                           ),
                           Text(
                             '${card.expDate}',
                             style: !hasCardExpired(card.expDate)
-                                ? AppTextStyle.kCardSubtitle
-                                : AppTextStyle.kCardSubtitle
+                                ? AppTextStyles.kCardSubtitle
+                                : AppTextStyles.kCardSubtitle
                                     .copyWith(color: kTextRedColor),
                           ),
                         ],
@@ -90,11 +91,11 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                         children: [
                           Text(
                             "CVV NUMBER",
-                            style: AppTextStyle.kCardTitle,
+                            style: AppTextStyles.kCardTitle,
                           ),
                           Text(
                             '${card.cvv}',
-                            style: AppTextStyle.kCardSubtitle,
+                            style: AppTextStyles.kCardSubtitle,
                           ),
                         ],
                       )
@@ -109,12 +110,12 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                   SizedBox(
                     width: 50,
                     height: 50,
-                    child: buildCardLogo(),
+                    child: buildCardLogo(card),
                   ),
                   if (hasCardExpired(card.expDate))
                     Text(
                       "EXPIRED",
-                      style: AppTextStyle.kCardTitle
+                      style: AppTextStyles.kCardTitle
                           .copyWith(color: kTextRedColor),
                     ),
                 ],
@@ -194,6 +195,23 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
   }
 
   Widget? buildCardLogo() {
+  Color getCardColor(bool withOpacity) {
+    Color selectedColor = card.cardColor ?? Colors.black45;
+    return withOpacity ? selectedColor.withOpacity(0.8) : selectedColor;
+  }
+
+  static Color getCardColorNullSafety(CardModel card) {
+    if (card.cardColor != null) {
+      if (card.cardColor == Colors.white) {
+        return kGrayColor;
+      } else {
+        return card.cardColor!.withOpacity(0.9);
+      }
+    }
+    return Colors.black;
+  }
+
+  static Widget? buildCardLogo(CardModel card) {
     if (card.cardBrand == CardBrand.mastercard) {
       return Image.asset('assets/icons/logo_master_card.png');
     } else if (card.cardBrand == CardBrand.visa) {
@@ -207,7 +225,11 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
     return null;
   }
 
-  bool hasCardExpired(String? expDate) {
+  static String? getCardNickname(CardModel card) {
+    return card.nickname ?? card.cardNumber;
+  }
+
+  static bool hasCardExpired(String? expDate) {
     if (expDate == null || expDate.isEmpty) {
       return true; // warning
     } else if (expDate.contains('/')) {

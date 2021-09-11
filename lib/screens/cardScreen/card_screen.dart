@@ -53,7 +53,7 @@ class CardScreen extends StatelessWidget {
                     radius: kMediumIconSize,
                     child: Icon(
                       Icons.add,
-                      size: 50,
+                      size: kHugeIconSize * 1.2,
                     ),
                   ),
                   const SizedBox(height: kHalfPadding),
