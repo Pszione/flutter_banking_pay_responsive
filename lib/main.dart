@@ -69,6 +69,7 @@ class AppThemes {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
       elevation: 8,
+      //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
     ),
     cardTheme: CardTheme(
       elevation: 0,

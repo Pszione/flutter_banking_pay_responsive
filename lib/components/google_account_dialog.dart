@@ -11,96 +11,66 @@ class GoogleAccountDialog {
   Future<String?> showDialogDismissible(BuildContext context) {
     return showDialog<String>(
       context: context,
-      barrierDismissible: true, // click outside to dismiss
       useSafeArea: true,
+      barrierDismissible: true, // click outside to dismiss
       barrierColor: Colors.black.withOpacity(0.70),
       builder: (BuildContext context) => AlertDialog(
         title: buildGoogleHeader(context),
         elevation: 0,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
         titlePadding: const EdgeInsets.all(kHalfPadding),
         contentPadding: EdgeInsets.zero,
         insetPadding: const EdgeInsets.symmetric(
             horizontal: kDefaultPadding, vertical: kHugePadding),
-        shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        // TODO: scroll is not working
         content: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: 400, // MediaQuery.of(context).size.width * 0.9,
-            height: 400,
+            height: 420,
             child: Column(
               children: [
-                Text('Hello, Pedro Santos'),
+                buildAccountItem(
+                  context,
+                  'Pedro Santos',
+                  'pedrinho554@gmail.com',
+                  'assets/images/35244548_pedro_santos.png',
+                  () => Navigator.pop(context),
+                ),
+                buildManageAccountButton(context),
+                const SizedBox(height: kHalfPadding),
                 kDivider,
+                Column(
+                  children: [
+                    buildAccountItem(
+                      context,
+                      'Oused Games',
+                      'ousedgames@gmail.com',
+                      'assets/icons/logo_master_card.png',
+                      () {},
+                    ),
+                    buildAccountItem(
+                      context,
+                      'Eu Acredito Na Humanidade',
+                      'euacreditoblog@gmail.com',
+                      'assets/images/_earth_TEST07B.jpg',
+                      () {},
+                    ),
+                  ],
+                ),
                 const Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: InkWell(
-                        splashColor: Theme.of(context).colorScheme.secondary,
-                        child: BorderDefaultPadding(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.person_add,
-                                  size: kSmallIconSize),
-                              const SizedBox(width: 14),
-                              Text(
-                                'Add another account',
-                                style: AppTextStyles.kSmallBoldText(),
-                              )
-                            ],
-                          ),
-                        ),
-                        onTap: () => Navigator.pop(context),
-                      ),
-                    ),
+                    buildListButtonItem(context, 'Add another account',
+                        Icons.person_add, () => Navigator.pop(context)),
                     kDivider,
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: InkWell(
-                        splashColor: Theme.of(context).colorScheme.secondary,
-                        child: BorderDefaultPadding(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.settings_rounded,
-                                  size: kSmallIconSize),
-                              const SizedBox(width: 14),
-                              Text(
-                                'Settings',
-                                style: AppTextStyles.kSmallBoldText(),
-                              )
-                            ],
-                          ),
-                        ),
-                        // TODO: add link
-                        onTap: () => Navigator.pop(context),
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: InkWell(
-                        splashColor: Theme.of(context).colorScheme.secondary,
-                        child: BorderDefaultPadding(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.help_outline_sharp,
-                                  size: kSmallIconSize),
-                              const SizedBox(width: 14),
-                              Text(
-                                'Help',
-                                style: AppTextStyles.kSmallBoldText(),
-                              )
-                            ],
-                          ),
-                        ),
-                        // TODO: add FAQ link
-                        onTap: () => Navigator.pop(context),
-                      ),
-                    ),
+                    // TODO: add link
+                    buildListButtonItem(context, 'Settings',
+                        Icons.settings_rounded, () => Navigator.pop(context)),
+                    // TODO: add FAQ link
+                    buildListButtonItem(context, 'Help',
+                        Icons.help_outline_sharp, () => Navigator.pop(context)),
                   ],
                 ),
                 kDivider
@@ -111,6 +81,114 @@ class GoogleAccountDialog {
         actionsAlignment: MainAxisAlignment.center,
         actionsPadding: EdgeInsets.zero,
         actions: buildPolicyAndTermsButtons(context),
+      ),
+    );
+  }
+
+  Stack buildGoogleHeader(BuildContext context) {
+    return Stack(
+      children: [
+        IconButton(
+          // padding: const EdgeInsets.only(
+          //     left: kHalfPadding / 2, top: kHalfPadding / 2),
+          alignment: Alignment.topLeft,
+          icon: const Icon(Icons.close_rounded),
+          onPressed: () => Navigator.pop(context, 'X'),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: kHalfPadding / 2),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Google', style: AppTextStyles.getBodyText(context))
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  SizedBox buildAccountItem(BuildContext context, String label, String email,
+      String? imagePath, GestureTapCallback onPressed) {
+    return SizedBox(
+      width: double.infinity,
+      height: 60,
+      child: InkWell(
+        splashColor: Theme.of(context).colorScheme.secondary,
+        child: BorderDefaultPadding(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundImage:
+                        imagePath != null ? AssetImage(imagePath) : null,
+                    backgroundColor: kComplementaryColor,
+                    radius: kSmallIconSize,
+                  ),
+                  const SizedBox(width: 14),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(label, style: AppTextStyles.kSmallBoldText()),
+                      Text(email, style: AppTextStyles.kSmallText()),
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+        onTap: onPressed,
+      ),
+    );
+  }
+
+  TextButton buildManageAccountButton(BuildContext context) {
+    return TextButton(
+      child: Text(
+        'Manage your Google Account',
+        style: AppTextStyles.kSmallBoldText()
+            .copyWith(color: Theme.of(context).primaryColorDark),
+        maxLines: 1,
+        overflow: TextOverflow.visible,
+      ),
+      style: TextButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape:
+            StadiumBorder(side: BorderSide(color: kLightGrayColor, width: 2)),
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding, vertical: kHalfPadding * 0.9),
+      ),
+      onPressed: () {},
+    );
+  }
+
+  SizedBox buildListButtonItem(BuildContext context, String label,
+      IconData icon, GestureTapCallback onPressed) {
+    return SizedBox(
+      width: double.infinity,
+      height: 40,
+      child: InkWell(
+        splashColor: Theme.of(context).colorScheme.secondary,
+        child: BorderDefaultPadding(
+          child: Row(
+            children: [
+              Icon(icon, size: kSmallIconSize),
+              const SizedBox(width: 14),
+              Text(
+                label,
+                style: AppTextStyles.kSmallBoldText(),
+              )
+            ],
+          ),
+        ),
+        onTap: onPressed,
       ),
     );
   }
@@ -135,29 +213,6 @@ class GoogleAccountDialog {
         ),
       ),
     ];
-  }
-
-  Stack buildGoogleHeader(BuildContext context) {
-    return Stack(
-      children: [
-        IconButton(
-          // padding: const EdgeInsets.only(
-          //     left: kHalfPadding / 2, top: kHalfPadding / 2),
-          alignment: Alignment.topLeft,
-          icon: const Icon(Icons.close_rounded),
-          onPressed: () => Navigator.pop(context, 'X'),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: kHalfPadding / 2),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Google', style: AppTextStyles.getBodyText(context))
-            ],
-          ),
-        )
-      ],
-    );
   }
 }
 
