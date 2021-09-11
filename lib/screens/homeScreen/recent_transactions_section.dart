@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/components/example_card_with_buttons.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 
@@ -17,20 +18,22 @@ class RecentTransactionsSection extends StatelessWidget {
       children: [
         Text(
           'Recent Transactions',
-          style: AppTextStyle.kBodyText,
+          style: AppTextStyles.kMenuTitle(context),
         ),
         const SizedBox(height: kHalfPadding),
-        ListView.separated(
+        ListView.builder(
           itemCount: myTransactions.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          separatorBuilder: (context, index) {
-            return const SizedBox(height: kHalfPadding);
-          },
+          // separatorBuilder: (context, index) {
+          //   return const SizedBox(height: kHalfPadding);
+          // },
           itemBuilder: (context, index) {
             return TransactionCard(transaction: myTransactions[index]);
           },
         ),
+        // Example
+        // const ExampleCardWithButtons(),
       ],
     );
   }

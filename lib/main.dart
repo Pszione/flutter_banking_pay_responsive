@@ -34,18 +34,20 @@ class AppThemes {
   static ColorScheme appColorScheme = const ColorScheme.light(
     primary: kPrimaryColor,
     secondary: kSecondaryColor,
-    //primaryVariant:
-    //secondaryVariant: ,
+    primaryVariant: kPrimaryColor,
+    secondaryVariant: kComplementaryColor,
     surface: kWhiteColor,
     background: kWhiteColor,
+    error: kErrorColor,
   );
   static ColorScheme appDarkColorScheme = const ColorScheme.dark(
     primary: kPrimaryColor,
-    secondary: kPrimaryColor,
+    secondary: kSecondaryColor,
     primaryVariant: kPrimaryColor,
-    secondaryVariant: kPrimaryColor,
+    secondaryVariant: kComplementaryColor,
     surface: kDarkBackgroundColor,
     background: kDarkBackgroundColor,
+    error: kErrorColor,
   );
 
   static final ThemeData lightThemeData = ThemeData(
@@ -58,11 +60,20 @@ class AppThemes {
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
       elevation: 8,
     ),
+    cardTheme: CardTheme(
+      elevation: 0,
+      //clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: kDefaultBorderRadius,
+      ),
+      color: Colors.transparent,
     ),
     colorScheme: AppThemes.appColorScheme,
-
-    scaffoldBackgroundColor: kBackgroundColor, // kWhiteColor
-    // primarySwatch: createMaterialColor(kComplementaryColor),
+    primaryColor: kWhiteColor,
+    primaryColorDark: kDarkColor,
+    scaffoldBackgroundColor: kBackgroundColor,
+    backgroundColor: kBackgroundColor,
+    dialogBackgroundColor: kSecondaryColor,
     fontFamily: GoogleFonts.poppins().fontFamily,
   );
 
@@ -76,15 +87,25 @@ class AppThemes {
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
       elevation: 8,
     ),
+    cardTheme: CardTheme(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: kDefaultBorderRadius,
+      ),
+      color: Colors.transparent,
     ),
     colorScheme: AppThemes.appDarkColorScheme,
-
+    primaryColor: kDarkBackgroundColor,
+    primaryColorDark: kWhiteColor,
     scaffoldBackgroundColor: kDarkBackgroundColor,
-    // primarySwatch: createMaterialColor(kComplementaryColor),
+    backgroundColor: kDarkBackgroundColor,
+    dialogBackgroundColor: kSecondaryColor,
     fontFamily: GoogleFonts.poppins().fontFamily,
   );
 
   MaterialColor createMaterialColor(Color color) {
+    // primarySwatch: createMaterialColor(kComplementaryColor),
+
     List strengths = <double>[.05];
     final swatch = <int, Color>{};
     final int r = color.red, g = color.green, b = color.blue;
