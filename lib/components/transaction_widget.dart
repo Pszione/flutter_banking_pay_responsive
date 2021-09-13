@@ -9,7 +9,14 @@ import '../constant_text_styles.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;
-  const TransactionCard({Key? key, required this.transaction})
+  final bool isClickable;
+  final GestureTapCallback onPress;
+
+  const TransactionCard(
+      {Key? key,
+      required this.transaction,
+      this.isClickable = true,
+      required this.onPress})
       : super(key: key);
 
   @override
@@ -23,15 +30,9 @@ class TransactionCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(kHalfPadding),
         child: InkWell(
-          // TODO: use sliding modal
           borderRadius: kDefaultBorderRadius,
           splashColor: Theme.of(context).colorScheme.secondary,
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    const ActivityInsightsScreen()),
-          ),
+          onTap: () => onPress.call(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

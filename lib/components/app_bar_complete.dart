@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../constant_text_styles.dart';

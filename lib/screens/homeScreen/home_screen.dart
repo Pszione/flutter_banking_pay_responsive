@@ -36,7 +36,6 @@ class HomeScreen extends StatelessWidget {
                 const RecentTransactionsSection(),
                 const SizedBox(height: kDefaultPadding),
                 const TransferMoneySection(),
-                CardWidget.demoCardInfo(context),
               ],
             ),
           ),

@@ -9,7 +9,6 @@ import 'package:flutter_banking_pay_responsive/models/i_card_implementation.dart
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'app_sliding_bottom_sheet.dart';
-import 'card_overview_sliding_sheet.dart';
 
 class CardWidget extends StatelessWidget implements ICardImplementation {
   CardWidget(
@@ -28,7 +27,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
   @override
   late bool isClickable;
   @override
-  GestureTapCallback onPress;
+  late GestureTapCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -136,13 +135,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
               highlightColor: Colors.transparent,
               borderRadius: kHugeBorderRadius,
               radius: kInkWellMediumRadius,
-              onTap: () => // onPressed
-                  AppSlidingBottomSheet(
-                context: context,
-                headerColor:
-                    CardModel.getCardColorNullSafety(card: card, opacity: 0.85),
-                bodyWidget: CardOverviewSlidingSheet(card: card),
-              ).showStyledSheet(),
+              onTap: () => onPress.call(),
             ),
           ),
       ],
@@ -243,6 +236,7 @@ class CardOutlineWidget extends StatelessWidget {
               highlightColor: Colors.transparent,
               borderRadius: kHugeBorderRadius,
               radius: kInkWellMediumRadius,
+              // TODO
               onTap: () => AppSlidingBottomSheet.demoSheet(context),
               // onTap: () => // onPressed
               //     AppSlidingBottomSheet(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_alert_dialog.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
+import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
+import 'package:flutter_banking_pay_responsive/components/card_overview_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
@@ -48,15 +50,21 @@ class CardScreen extends StatelessWidget {
                   },
                   itemCount: myCards.length,
                   shrinkWrap: true,
+                  itemBuilder: (_, index) {
+                    return CardWidget(
+                      card: myCards[index],
+                      onPress: () => AppSlidingBottomSheet(
+                        context: context,
+                        headerColor: CardModel.getCardColorNullSafety(
+                            card: myCards[index], opacity: 0.85),
+                        bodyWidget:
+                            CardOverviewSlidingSheet(card: myCards[index]),
+                      ).showStyledSheet(),
+                    );
+                  },
                   scrollDirection: Responsive.isMobileLarge(context)
                       ? Axis.vertical
                       : Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return CardWidget(
-                      card: myCards[index],
-                      onPress: () {},
-                    );
-                  },
                   padding: const EdgeInsets.only(bottom: kDefaultPadding),
                 ),
               ),

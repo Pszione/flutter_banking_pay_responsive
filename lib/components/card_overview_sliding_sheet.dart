@@ -3,7 +3,6 @@ import 'package:flutter_banking_pay_responsive/models/card.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
-import 'card_widget.dart';
 
 class CardOverviewSlidingSheet extends StatelessWidget {
   const CardOverviewSlidingSheet({Key? key, required this.card})
