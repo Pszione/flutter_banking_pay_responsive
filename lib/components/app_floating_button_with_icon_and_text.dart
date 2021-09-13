@@ -8,13 +8,13 @@ class AppFloatingButtonIconAndText extends StatelessWidget {
     Key? key,
     required this.label,
     required this.icon,
-    this.tooltip = '',
+    this.tooltip,
     required this.onPressed,
   }) : super(key: key);
 
   final String? label, tooltip;
   final IconData? icon;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class AppFloatingButtonIconAndText extends StatelessWidget {
       tooltip: tooltip,
       foregroundColor: Theme.of(context).primaryColorDark,
       icon: Icon(icon, size: kHugeIconSize),
+      isExtended: label != null,
       label: Text(label ?? '', style: AppTextStyles.kFloatingButtonText()),
     );
   }

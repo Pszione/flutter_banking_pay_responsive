@@ -44,12 +44,15 @@ class CardScreen extends StatelessWidget {
                 height: Responsive.isMobileLarge(context) ? 522 : 200 * 1.07,
                 child: ListView.separated(
                   physics: const ClampingScrollPhysics(),
+                  scrollDirection: Responsive.isMobileLarge(context)
+                      ? Axis.vertical
+                      : Axis.horizontal,
                   separatorBuilder: (context, index) {
                     return const SizedBox(
                         width: kHalfPadding, height: kDefaultPadding);
                   },
-                  itemCount: myCards.length,
                   shrinkWrap: true,
+                  itemCount: myCards.length,
                   itemBuilder: (_, index) {
                     return CardWidget(
                       card: myCards[index],
@@ -62,9 +65,6 @@ class CardScreen extends StatelessWidget {
                       ).showStyledSheet(),
                     );
                   },
-                  scrollDirection: Responsive.isMobileLarge(context)
-                      ? Axis.vertical
-                      : Axis.horizontal,
                   padding: const EdgeInsets.only(bottom: kDefaultPadding),
                 ),
               ),

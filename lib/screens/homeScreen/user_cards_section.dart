@@ -17,12 +17,12 @@ class UserCardsSection extends StatelessWidget {
       height: 200 * 1.07,
       child: ListView.separated(
         physics: const ClampingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
         separatorBuilder: (context, index) {
           return const SizedBox(width: kHalfPadding);
         },
-        itemCount: myCards.length + 1,
         shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
+        itemCount: myCards.length + 1,
         itemBuilder: (_, index) {
           // checking if the index item is the last item of the list or not
           if (index == myCards.length) {

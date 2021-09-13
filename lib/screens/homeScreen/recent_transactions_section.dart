@@ -23,13 +23,13 @@ class RecentTransactionsSection extends StatelessWidget {
         ),
         const SizedBox(height: kHalfPadding),
         ListView.builder(
-          //physics: const NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           // separatorBuilder: (context, index) {
           //   return const SizedBox(height: kHalfPadding);
           // },
-          itemCount: myTransactions.length,
           shrinkWrap: true,
-          itemBuilder: (context, index) {
+          itemCount: myTransactions.length,
+          itemBuilder: (_, index) {
             return TransactionCard(
               transaction: myTransactions[index],
               onPress: () => Navigator.push(
