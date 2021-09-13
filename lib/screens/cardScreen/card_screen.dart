@@ -16,7 +16,7 @@ class CardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarComplete(
+      appBar: const AppBarComplete(
         title: 'My Cards',
         hasNotifications: true,
       ),

@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarComplete(
+      appBar: const AppBarComplete(
         title: 'My Bank',
         hasSearchField: true,
         hasDarkThemeToggle: true,

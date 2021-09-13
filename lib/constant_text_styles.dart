@@ -17,6 +17,7 @@ class AppTextStyles {
             // color: kTextBodyColor,
             fontWeight: FontWeight.w700,
             fontSize: 20,
+            letterSpacing: 1,
             //fontSize: sizes.getProportionateScreenWidth(20),
           );
 

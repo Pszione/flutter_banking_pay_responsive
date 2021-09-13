@@ -51,14 +51,21 @@ class _SetupScreenState extends State<SetupScreen> {
               icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
         ],
         currentIndex: _selectedIndex,
-        onTap: (int index) => setState(() {
-          _selectedIndex = index;
-          _selectedMenu = MenuState.values[index];
-          // this will work as Navigator.push route
-          // because our Scaffold body will update its state
-          // unfortunately wwe can not maintain widget state
-        }),
+        onTap: (int index) => changeSelectedMenu(index),
       ),
     );
+  }
+
+  void changeSelectedMenu(int index) {
+    setState(() {
+      if (index < 0 || index >= MenuState.values.length) {
+        index = 0;
+      }
+      _selectedIndex = index;
+      _selectedMenu = MenuState.values[index];
+      // this will work as Navigator.push route
+      // because our Scaffold body will update its state
+      // unfortunately wwe can not maintain widget state
+    });
   }
 }

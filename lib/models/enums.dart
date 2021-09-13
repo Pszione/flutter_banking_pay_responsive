@@ -1,1 +1,1 @@
-enum MenuState { pay, cards, insights, messages }
+enum MenuState { pay, cards, insights }

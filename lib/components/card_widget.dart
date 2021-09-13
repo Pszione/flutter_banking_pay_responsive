@@ -182,11 +182,13 @@ class CardOutlineWidget extends StatelessWidget {
     Key? key,
     this.width = 350,
     this.height = 200,
+    this.backgroundColor,
     this.isClickable = true,
     required this.onPress,
   }) : super(key: key);
 
   final double width, height;
+  final Color? backgroundColor;
   final bool isClickable;
   final GestureTapCallback onPress;
 
@@ -219,7 +221,7 @@ class CardOutlineWidget extends StatelessWidget {
               children: [
                 Icon(
                   Icons.add,
-                  color: Theme.of(context).primaryColorDark,
+                  color: backgroundColor ?? Theme.of(context).primaryColorDark,
                   size: kHugeIconSize * 1.2,
                 ),
                 Text('Add payment method',

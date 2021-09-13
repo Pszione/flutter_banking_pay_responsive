@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../constant_text_styles.dart';
@@ -43,6 +44,14 @@ class _AppBarCompleteState extends State<AppBarComplete> {
         // mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          if (!widget.hasNotifications) // false
+            IconButton(
+              padding: const EdgeInsets.only(left: kDefaultPadding),
+              icon: const Icon(
+                Icons.arrow_back_ios,
+              ),
+              onPressed: () => Navigator.maybePop(context, 'Back'),
+            ),
           if (widget.hasNotifications)
             IconButton(
               padding: const EdgeInsets.only(left: kDefaultPadding),
@@ -72,6 +81,15 @@ class _AppBarCompleteState extends State<AppBarComplete> {
         ],
       ),
       actions: [
+        if (widget.hasDarkThemeToggle)
+          Switch.adaptive(
+            value: themeProvider.isDarkMode,
+            onChanged: (bool value) {
+              //final provider = Provider.of<ThemeProvider>(context);
+              themeProvider.toggleTheme(value);
+            },
+            activeColor: kSecondaryColor,
+          ),
         IconButton(
           padding: const EdgeInsets.only(right: kDefaultPadding),
           icon: const CircleAvatar(
@@ -84,15 +102,6 @@ class _AppBarCompleteState extends State<AppBarComplete> {
           iconSize: kHugeIconSize,
           onPressed: () => GoogleAccountDialog().showDialogDismissible(context),
         ),
-        if (widget.hasDarkThemeToggle)
-          Switch.adaptive(
-            value: themeProvider.isDarkMode,
-            onChanged: (bool value) {
-              //final provider = Provider.of<ThemeProvider>(context);
-              themeProvider.toggleTheme(value);
-            },
-            activeColor: kSecondaryColor,
-          ),
       ],
     );
   }
