@@ -21,6 +21,39 @@ class CardModel {
   CardBrand cardBrand;
   Color? cardColor;
   String? nickname;
+
+  static Color getCardColorNullSafety(
+      {required CardModel card, double opacity = 1.0}) {
+    Color selectedColor = card.cardColor ?? Colors.black45;
+
+    if (selectedColor == Colors.white) {
+      // TODO: is it the right way to do it?
+      return kGrayColor;
+    } else {
+      return selectedColor.withOpacity(opacity);
+    }
+  }
+
+  static String? getCardNickname(CardModel card) {
+    return card.nickname ?? card.cardNumber;
+  }
+
+  static bool hasCardExpired(String? expDate) {
+    if (expDate == null || expDate.isEmpty) {
+      return true; // warning
+    } else if (expDate.contains('/')) {
+      var currentYear = DateTime.now();
+      var expMonth = expDate.split('/').first;
+      var expYear = expDate.split('/').last;
+
+      var cardDate = expYear.length <= 2
+          ? DateTime(2000 + int.parse(expYear), int.parse(expMonth))
+          : DateTime(int.parse(expYear), int.parse(expMonth));
+
+      return cardDate.isBefore(currentYear);
+    }
+    return false;
+  }
 }
 
 List<CardModel> myCards = [

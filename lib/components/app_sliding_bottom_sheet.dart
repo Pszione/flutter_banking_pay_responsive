@@ -53,4 +53,48 @@ class AppSlidingBottomSheet {
           builder: (context, state) => bodyWidget,
         ),
       );
+
+  static Future<Widget> demoSheet(BuildContext context) =>
+      AppSlidingBottomSheet(
+        context: context,
+        snappings: [0.3, 0.5],
+        headerColor: Theme.of(context).colorScheme.secondary,
+        bodyWidget: Container(
+          color: kWhiteColor,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: kDefaultPadding * 2),
+                  ),
+                  child: const Text('Close'),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                Container(
+                  height: 290,
+                  color: kWhiteColor,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 30),
+                      Text(
+                        'Demo sliding sheet',
+                        style: Theme.of(context).textTheme.headline5!,
+                      ),
+                      const SizedBox(height: 30),
+                      Text(
+                        'Do you like it? Han?',
+                        style: Theme.of(context).textTheme.subtitle1!,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ).showStyledSheet();
 }
