@@ -7,25 +7,28 @@ import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 
 import '../../constants.dart';
 
-class ActivityInsightsScreen extends StatelessWidget {
+class ActivityInsightsScreen extends StatefulWidget {
   const ActivityInsightsScreen({Key? key}) : super(key: key);
 
-  // void scrollToIndex(int index) {
-  //   itemController.jumpTo(index: index);
-  //   //itemController.scrollTo(index: index, duration: kDefaultDuration);
+  @override
+  State<ActivityInsightsScreen> createState() => _ActivityInsightsScreenState();
+}
+
+class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
+// implements AutomaticKeepAliveClientMixin<ActivityInsightsScreen> //
+{
+  // @override
+  // void updateKeepAlive() {
+  //   super.updateKeepAlive();
   // }
   //
-  // void scrollToNext() {
-  //   setState(() {
-  //     currentIndex++;
-  //     if (currentIndex >= myTransactions.length) currentIndex = 0;
-  //   });
-  //   print(currentIndex);
-  //   scrollToIndex(currentIndex);
-  // }
+  // @override
+  // bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
+    // super.build(context);
+
     print(myTransactions.length);
     return Scaffold(
       appBar: const AppBarComplete(
