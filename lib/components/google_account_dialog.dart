@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
@@ -50,7 +51,7 @@ class GoogleAccountDialog {
                       'Oused Games',
                       'oused.games@gmail.com',
                       'assets/icons/logo_master_card.png',
-                      kVerySmallIconSize,
+                      kSmallIconSize02,
                       () {},
                     ),
                     buildAccountItem(
@@ -74,9 +75,14 @@ class GoogleAccountDialog {
                     kDivider,
                     // TODO: add link
                     BuildGoogleListButton(
-                        label: 'Settings',
-                        icon: Icons.settings_rounded,
-                        onPress: () => Navigator.pop(context)),
+                      label: 'Settings',
+                      icon: Icons.settings_rounded,
+                      onPress: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const SettingsScreen())),
+                    ),
                     // TODO: add FAQ link
                     BuildGoogleListButton(
                         label: 'Help',

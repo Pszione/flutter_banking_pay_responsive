@@ -83,7 +83,7 @@ class BuildGoogleListSettingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 60,
+      height: 75,
       child: InkWell(
         splashColor: Theme.of(context).colorScheme.secondary,
         child: Padding(
@@ -97,23 +97,27 @@ class BuildGoogleListSettingButton extends StatelessWidget {
                   width: kDefaultRowSpacing,
                   child: Icon(icon, size: kMediumIconSize)),
               const SizedBox(width: 14), // 14
-              Column(
-                // mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    label,
-                    maxLines: 1,
-                    style: AppTextStyles.kSmallBoldText(),
-                  ),
-                  if (description != null)
+              Container(
+                //color: Colors.green,
+                width: 255,
+                child: Column(
+                  // mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      description!,
-                      maxLines: 2,
-                      style: AppTextStyles.kSmallText(),
+                      label,
+                      maxLines: 1,
+                      style: AppTextStyles.kSmallBoldText(),
                     ),
-                ],
+                    if (description != null)
+                      Text(
+                        description!,
+                        maxLines: 2,
+                        style: AppTextStyles.kSmallText(),
+                      ),
+                  ],
+                ),
               ),
               const Spacer(),
               Switch.adaptive(
