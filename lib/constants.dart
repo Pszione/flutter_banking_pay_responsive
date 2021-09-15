@@ -23,6 +23,7 @@ const kTextSmallHeightSpacing = 1.0;
 
 const kHugePadding = 33.0;
 const kDefaultPadding = 20.0;
+const kDefaultRowSpacing = kDefaultPadding * 1.5;
 const kHalfPadding = kDefaultPadding / 2;
 const kMediumPadding = kDefaultPadding / 1.5;
 const kSmallPadding = kDefaultPadding / 3;
@@ -36,8 +37,9 @@ FloatingActionButtonLocation kFloatingButtonLocationAdaptive(
 
 const kMaxWebsiteWidth = 1440.0; // max width of our web
 const kHugeIconSize = 33.0;
-const kMediumIconSize = 28.0;
+const kMediumIconSize = 27.0;
 const kSmallIconSize = 22.0;
+const kSmallIconSize02 = 15.0;
 const kVerySmallIconSize = 10.0;
 const kInkWellMediumRadius = 90.0;
 var kHugeBorderRadius = BorderRadius.circular(28);
@@ -59,7 +61,7 @@ var kTextBoxShadowSubtle = BoxShadow(
   blurRadius: 1.5,
 );
 
-var kDivider = const Divider(thickness: 2);
+var kDivider = const Divider(thickness: 2, height: 0);
 
 const kDefaultDuration = Duration(milliseconds: 700);
 

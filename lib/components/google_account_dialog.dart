@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
+import 'google_list_decorations.dart';
 
 class GoogleAccountDialog {
   const GoogleAccountDialog({
@@ -29,12 +30,14 @@ class GoogleAccountDialog {
             width: 400, // MediaQuery.of(context).size.width * 0.9,
             height: 420,
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 buildAccountItem(
                   context,
                   'Pedro Santos',
                   'pedrinho554@gmail.com',
                   'assets/images/35244548_pedro_santos.png',
+                  kSmallIconSize,
                   () => Navigator.pop(context),
                 ),
                 buildManageAccountButton(context),
@@ -45,8 +48,9 @@ class GoogleAccountDialog {
                     buildAccountItem(
                       context,
                       'Oused Games',
-                      'ousedgames@gmail.com',
+                      'oused.games@gmail.com',
                       'assets/icons/logo_master_card.png',
+                      kVerySmallIconSize,
                       () {},
                     ),
                     buildAccountItem(
@@ -54,6 +58,7 @@ class GoogleAccountDialog {
                       'Eu Acredito Na Humanidade',
                       'euacreditoblog@gmail.com',
                       'assets/images/_earth_TEST07B.jpg',
+                      kSmallIconSize02,
                       () {},
                     ),
                   ],
@@ -62,15 +67,21 @@ class GoogleAccountDialog {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    buildListButtonItem(context, 'Add another account',
-                        Icons.person_add, () => Navigator.pop(context)),
+                    BuildGoogleListButton(
+                        label: 'Add another account',
+                        icon: Icons.person_add,
+                        onPress: () => Navigator.pop(context)),
                     kDivider,
                     // TODO: add link
-                    buildListButtonItem(context, 'Settings',
-                        Icons.settings_rounded, () => Navigator.pop(context)),
+                    BuildGoogleListButton(
+                        label: 'Settings',
+                        icon: Icons.settings_rounded,
+                        onPress: () => Navigator.pop(context)),
                     // TODO: add FAQ link
-                    buildListButtonItem(context, 'Help',
-                        Icons.help_outline_sharp, () => Navigator.pop(context)),
+                    BuildGoogleListButton(
+                        label: 'Help',
+                        icon: Icons.help_outline_sharp,
+                        onPress: () => Navigator.pop(context)),
                   ],
                 ),
                 kDivider
@@ -109,7 +120,7 @@ class GoogleAccountDialog {
   }
 
   SizedBox buildAccountItem(BuildContext context, String label, String email,
-      String? imagePath, GestureTapCallback onPressed) {
+      String? imagePath, double imageSize, GestureTapCallback onPressed) {
     return SizedBox(
       width: double.infinity,
       height: 60,
@@ -123,11 +134,12 @@ class GoogleAccountDialog {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // SizedBox?
                   CircleAvatar(
                     backgroundImage:
                         imagePath != null ? AssetImage(imagePath) : null,
                     backgroundColor: kComplementaryColor,
-                    radius: kSmallIconSize,
+                    radius: imageSize, // kSmall
                   ),
                   const SizedBox(width: 14),
                   Column(
@@ -169,30 +181,6 @@ class GoogleAccountDialog {
     );
   }
 
-  SizedBox buildListButtonItem(BuildContext context, String label,
-      IconData icon, GestureTapCallback onPressed) {
-    return SizedBox(
-      width: double.infinity,
-      height: 40,
-      child: InkWell(
-        splashColor: Theme.of(context).colorScheme.secondary,
-        child: BorderDefaultPadding(
-          child: Row(
-            children: [
-              Icon(icon, size: kSmallIconSize),
-              const SizedBox(width: 14),
-              Text(
-                label,
-                style: AppTextStyles.kSmallBoldText(),
-              )
-            ],
-          ),
-        ),
-        onTap: onPressed,
-      ),
-    );
-  }
-
   List<Widget> buildPolicyAndTermsButtons(BuildContext context) {
     return <Widget>[
       TextButton(
@@ -213,22 +201,5 @@ class GoogleAccountDialog {
         ),
       ),
     ];
-  }
-}
-
-class BorderDefaultPadding extends StatelessWidget {
-  const BorderDefaultPadding({
-    Key? key,
-    this.child,
-  }) : super(key: key);
-
-  final Widget? child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      child: child,
-    );
   }
 }
