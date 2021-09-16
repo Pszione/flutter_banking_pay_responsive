@@ -23,8 +23,12 @@ class GoogleAccountDialog {
         titlePadding: const EdgeInsets.fromLTRB(
             kDefaultPadding, kHalfPadding, kDefaultPadding, 0),
         contentPadding: EdgeInsets.zero,
-        insetPadding: const EdgeInsets.only(
-            left: kDefaultPadding, right: kDefaultPadding),
+        insetPadding: EdgeInsets.only(
+            left: kDefaultPadding,
+            right: kDefaultPadding,
+            bottom: MediaQuery.of(context).orientation == Orientation.portrait
+                ? 90
+                : 0),
         title: buildGoogleHeader(context),
         // TODO: scroll is not working
         content: SizedBox(

@@ -32,26 +32,33 @@ class _SetupScreenState extends State<SetupScreen> {
             ? ThemeMode.dark
             : ThemeMode.light;
 
-    return Scaffold(
-      body: Center(
-        child: _menuOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        //selectedItemColor: kComplementaryColor,
-        //unselectedItemColor: kTextGrayColor,
-        iconSize: kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.solidCreditCard), label: 'Cards'),
-          BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: (int index) => changeSelectedMenu(index),
+    return WillPopScope(
+      onWillPop: () {
+        //return Future.value(false);
+        return Future.value(popSelectedMenu());
+      },
+      child: Scaffold(
+        body: Center(
+          child: _menuOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          //selectedItemColor: kComplementaryColor,
+          //unselectedItemColor: kTextGrayColor,
+          iconSize:
+              kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.solidCreditCard), label: 'Cards'),
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: (int index) => changeSelectedMenu(index),
+        ),
       ),
     );
   }
@@ -67,5 +74,24 @@ class _SetupScreenState extends State<SetupScreen> {
       // because our Scaffold body will update its state
       // unfortunately wwe can not maintain widget state
     });
+  }
+
+  bool popSelectedMenu() {
+    if (_selectedIndex == 0) {
+      return false;
+    }
+    if (_selectedIndex < MenuState.values.length) {
+      changeSelectedMenu(_selectedIndex - 1);
+    }
+    return false; // or will exit app
+  }
+
+  void popNavigationWithResult(/*BuildContext context, */ bool success) {
+    Navigator.pop(context, success); // return value
+  }
+
+  void popNavigationWithResults(/*BuildContext context, */ dynamic results) {
+    //popNavigationWithResults(context, 'from_back_button');
+    Navigator.pop(context, results); // return value
   }
 }
