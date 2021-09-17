@@ -22,3 +22,28 @@ class ThemeProvider extends ChangeNotifier {
   //     ? ThemeMode.dark
   //     : ThemeMode.light;
 }
+
+class SettingsProvider extends ChangeNotifier {
+  List<bool> options = [true, false, false, true];
+
+  bool isValidIndex(int index) => index >= 0 && index <= options.length;
+
+  void changeOption(int index, bool state) {
+    if (isValidIndex(index)) {
+      options[index] = state;
+      notifyListeners();
+
+      print(options);
+    } else {
+      print('error: index $index is out of bounds');
+    }
+  }
+
+  void invertOptionValue(int index) {
+    if (isValidIndex(index)) {
+      changeOption(index, !options[index]); // opposite
+    } else {
+      print('error: index $index is out of bounds');
+    }
+  }
+}

@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
+import 'package:flutter_banking_pay_responsive/models/settings_texts.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../data_providers.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+
     return Scaffold(
       appBar: const AppBarComplete(
         title: 'Settings',

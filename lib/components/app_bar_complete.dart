@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
-import '../theme_provider.dart';
+import '../data_providers.dart';
 import 'google_account_dialog.dart';
 
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {

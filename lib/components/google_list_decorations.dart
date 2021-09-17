@@ -21,13 +21,13 @@ class BorderDefaultPadding extends StatelessWidget {
 }
 
 class BuildGoogleListButton extends StatelessWidget {
-  const BuildGoogleListButton(
-      {Key? key,
-      this.horizontalPadding = kDefaultPadding,
-      required this.label,
-      required this.icon,
-      required this.onPress})
-      : super(key: key);
+  const BuildGoogleListButton({
+    Key? key,
+    this.horizontalPadding = kDefaultPadding,
+    required this.label,
+    required this.icon,
+    required this.onPress,
+  }) : super(key: key);
 
   final double horizontalPadding;
   final String label;
@@ -40,6 +40,7 @@ class BuildGoogleListButton extends StatelessWidget {
       width: double.infinity,
       height: 45,
       child: InkWell(
+        onTap: onPress,
         splashColor: Theme.of(context).colorScheme.secondary,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
@@ -57,7 +58,6 @@ class BuildGoogleListButton extends StatelessWidget {
             ],
           ),
         ),
-        onTap: onPress,
       ),
     );
   }
@@ -70,14 +70,18 @@ class BuildGoogleListSettingButton extends StatelessWidget {
       required this.label,
       this.description,
       required this.icon,
+      required this.switchValue,
       required this.onPress})
       : super(key: key);
 
   final double horizontalPadding;
-  final String label;
+  final String? label;
   final String? description;
-  final IconData icon;
-  final GestureTapCallback onPress;
+  final IconData? icon;
+  final bool switchValue;
+  final Function(bool) onPress;
+  //final ValueChanged<bool> onPress;
+  //final Function(int, bool) onHeyyy;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +89,10 @@ class BuildGoogleListSettingButton extends StatelessWidget {
       width: double.infinity,
       height: 75,
       child: InkWell(
+        onTap: () {
+          // InkWell will act as switch
+          onPress.call(!switchValue); // hehehe
+        },
         splashColor: Theme.of(context).colorScheme.secondary,
         child: Padding(
           padding: EdgeInsets.only(
@@ -106,7 +114,7 @@ class BuildGoogleListSettingButton extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      label,
+                      label ?? '',
                       maxLines: 1,
                       style: AppTextStyles.kSmallBoldText(),
                     ),
@@ -121,17 +129,13 @@ class BuildGoogleListSettingButton extends StatelessWidget {
               ),
               const Spacer(),
               Switch.adaptive(
-                value: true,
-                onChanged: (bool value) {
-                  //final provider = Provider.of<ThemeProvider>(context);
-                  //themeProvider.toggleTheme(value);
-                },
+                value: switchValue,
+                onChanged: onPress,
                 activeColor: kSecondaryColor,
               ),
             ],
           ),
         ),
-        onTap: onPress,
       ),
     );
   }
