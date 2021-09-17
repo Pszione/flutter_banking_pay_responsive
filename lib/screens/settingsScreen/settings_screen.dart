@@ -26,34 +26,52 @@ class SettingsScreen extends StatelessWidget {
           children: [
             const SizedBox(height: kHugePadding),
             BuildGoogleListSettingButton(
-              label: 'Email updates',
-              description: 'Get exclusive offers, tips, and invites',
-              icon: Icons.email_outlined,
-              onPress: () {},
+              label: SettingsTexts.optionEmailUpdates().label,
+              description: SettingsTexts.optionEmailUpdates().description,
+              icon: SettingsTexts.optionEmailUpdates().icon,
+              switchValue: settingsProvider
+                  .options[SettingsTexts.optionEmailUpdates().saveIndex!],
+              onPress: (bool value) =>
+                  // switch automagically inverts !value
+                  settingsProvider.changeOption(
+                SettingsTexts.optionEmailUpdates().saveIndex!,
+                value,
+              ),
             ),
             BuildGoogleListSettingButton(
-              label: 'Purchase notifications',
-              description: 'See transactions details after you make a purchase',
-              icon: Icons.shopping_bag_outlined,
-              onPress: () {},
-            ),
-            BuildGoogleListSettingButton(
-              label: 'Updates about your tickets',
+              label: SettingsTexts.optionPurchaseNotifications().label,
               description:
-                  'Stay up-to-date on your events, flights, saved offers and more',
-              icon: Icons.approval,
-              onPress: () {},
+                  SettingsTexts.optionPurchaseNotifications().description,
+              icon: SettingsTexts.optionPurchaseNotifications().icon,
+              switchValue: settingsProvider.options[
+                  SettingsTexts.optionPurchaseNotifications().saveIndex!],
+              onPress: (bool value) => settingsProvider.invertOptionValue(
+                SettingsTexts.optionPurchaseNotifications().saveIndex!,
+              ),
+            ),
+            BuildGoogleListSettingButton(
+              label: SettingsTexts.optionTicketsUpdates().label,
+              description: SettingsTexts.optionTicketsUpdates().description,
+              icon: SettingsTexts.optionTicketsUpdates().icon,
+              switchValue: settingsProvider
+                  .options[SettingsTexts.optionTicketsUpdates().saveIndex!],
+              onPress: (bool value) => settingsProvider.invertOptionValue(
+                SettingsTexts.optionTicketsUpdates().saveIndex!,
+              ),
             ),
             const SizedBox(height: kDefaultPadding),
             kDivider,
             const SizedBox(height: kDefaultPadding),
             BuildGoogleListSettingButton(
-              label: 'Edit account info',
-              description: 'Update your name, address, or other account info',
-              icon: Icons.account_circle_sharp,
-              onPress: () {},
+              label: SettingsTexts.optionEditAccountInfo().label,
+              description: SettingsTexts.optionEditAccountInfo().description,
+              icon: SettingsTexts.optionEditAccountInfo().icon,
+              switchValue: settingsProvider
+                  .options[SettingsTexts.optionEditAccountInfo().saveIndex!],
+              onPress: (bool value) => settingsProvider.invertOptionValue(
+                SettingsTexts.optionEditAccountInfo().saveIndex!,
+              ),
             ),
-            // homescreen
           ],
         ),
       ),
