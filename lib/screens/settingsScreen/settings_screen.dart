@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import '../../data_providers.dart';
+import '../../utils.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -69,11 +70,27 @@ class SettingsScreen extends StatelessWidget {
               switchValue: settingsProvider
                   .options[SettingsTexts.optionEditAccountInfo().saveIndex!],
               onPress: (bool value) => settingsProvider.invertOptionValue(
-                SettingsTexts.optionEditAccountInfo().saveIndex!,
-              ),
+                  SettingsTexts.optionEditAccountInfo().saveIndex!),
+              //
+              overrideSwitchButton: buildOptionEditAccountInfo(context),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Padding buildOptionEditAccountInfo(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: kHalfPadding / 2),
+      child: IconButton(
+        icon: Icon(
+          Icons.add_to_home_screen_rounded,
+          size: kMediumIconSize * 1.2,
+          color: Theme.of(context).primaryColorDark.withOpacity(0.65),
+        ),
+        onPressed: () => Https.launchURL(
+            url: 'https://myaccount.google.com/', forceWebView: false),
       ),
     );
   }

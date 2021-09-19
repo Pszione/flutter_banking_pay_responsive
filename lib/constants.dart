@@ -67,3 +67,6 @@ const kDefaultDuration = Duration(milliseconds: 700);
 
 // You can get the status bar height with MediaQuery.of(context).padding.top,
 // the keyboard height with MediaQuery.of(context).viewInsets.bottom
+
+// *Settings
+const ksMaxRecentTransactionsCount = 6;

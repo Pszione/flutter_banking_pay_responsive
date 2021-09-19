@@ -28,7 +28,9 @@ class RecentTransactionsSection extends StatelessWidget {
           //   return const SizedBox(height: kHalfPadding);
           // },
           shrinkWrap: true,
-          itemCount: myTransactions.length,
+          itemCount: myTransactions.length <= ksMaxRecentTransactionsCount
+              ? myTransactions.length
+              : ksMaxRecentTransactionsCount,
           itemBuilder: (_, index) {
             return TransactionCard(
               transaction: myTransactions[index],

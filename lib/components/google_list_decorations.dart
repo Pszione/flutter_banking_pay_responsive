@@ -71,7 +71,8 @@ class BuildGoogleListSettingButton extends StatelessWidget {
       this.description,
       required this.icon,
       required this.switchValue,
-      required this.onPress})
+      required this.onPress,
+      this.overrideSwitchButton})
       : super(key: key);
 
   final double horizontalPadding;
@@ -82,6 +83,7 @@ class BuildGoogleListSettingButton extends StatelessWidget {
   final Function(bool) onPress;
   //final ValueChanged<bool> onPress;
   //final Function(int, bool) onHeyyy;
+  final Widget? overrideSwitchButton;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,9 @@ class BuildGoogleListSettingButton extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // InkWell will act as switch
-          onPress.call(!switchValue); // hehehe
+          if (overrideSwitchButton == null) {
+            onPress.call(!switchValue);
+          } // hehehe
         },
         splashColor: Theme.of(context).colorScheme.secondary,
         child: Padding(
@@ -128,11 +132,14 @@ class BuildGoogleListSettingButton extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              Switch.adaptive(
-                value: switchValue,
-                onChanged: onPress,
-                activeColor: kSecondaryColor,
-              ),
+              if (overrideSwitchButton == null)
+                Switch.adaptive(
+                  value: switchValue,
+                  onChanged: onPress,
+                  activeColor: kSecondaryColor,
+                ),
+              // build another widget instead
+              if (overrideSwitchButton != null) overrideSwitchButton!,
             ],
           ),
         ),

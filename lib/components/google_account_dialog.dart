@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
+import '../data_providers.dart';
+import '../utils.dart';
 import 'google_list_decorations.dart';
 
 class GoogleAccountDialog {
@@ -10,8 +13,8 @@ class GoogleAccountDialog {
     Key? key,
   });
 
-  Future<String?> showDialogDismissible(BuildContext context) {
-    return showDialog<String>(
+  Future<String?> showDialogDismissible(BuildContext context) async {
+    return await showDialog<String>(
       context: context,
       useSafeArea: true,
       barrierDismissible: true, // click outside to dismiss
@@ -27,7 +30,7 @@ class GoogleAccountDialog {
             left: kDefaultPadding,
             right: kDefaultPadding,
             bottom: MediaQuery.of(context).orientation == Orientation.portrait
-                ? 90
+                ? 99
                 : 0),
         title: buildGoogleHeader(context),
         // TODO: scroll is not working
@@ -84,7 +87,6 @@ class GoogleAccountDialog {
                       icon: Icons.person_add,
                       onPress: () => Navigator.pop(context)),
                   kDivider,
-                  // TODO: add link
                   BuildGoogleListButton(
                     label: 'Settings',
                     icon: Icons.settings_rounded,
@@ -98,7 +100,12 @@ class GoogleAccountDialog {
                   BuildGoogleListButton(
                       label: 'Help',
                       icon: Icons.help_outline_sharp,
-                      onPress: () => Navigator.pop(context)),
+                      onPress: () => Https.launchURL(
+                          url:
+                              Provider.of<ThemeProvider>(context, listen: false)
+                                      .isDarkMode
+                                  ? 'https://support.google.com/pay/?dark=1'
+                                  : 'https://support.google.com/pay/')),
                 ],
               ),
               kDivider

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
-import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
 
