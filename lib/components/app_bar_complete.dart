@@ -33,6 +33,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final dbProvider = Provider.of<DBSyncProvider>(context);
 
     return AppBar(
       centerTitle: true,
@@ -51,21 +52,65 @@ class _AppBarCompleteState extends State<AppBarComplete> {
               ),
               onPressed: () => Navigator.maybePop(context, 'Back'),
             ),
+          // if (widget.hasNotifications)
+          //   IconButton(
+          //     padding: const EdgeInsets.only(left: kDefaultPadding),
+          //     icon: const Icon(
+          //       Icons.notifications_active_outlined,
+          //     ),
+          //     onPressed: () => Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (BuildContext context) =>
+          //             const ActivityInsightsScreen(),
+          //         maintainState: true,
+          //       ),
+          //     ),
+          //   ),
           if (widget.hasNotifications)
-            IconButton(
-              padding: const EdgeInsets.only(left: kDefaultPadding),
-              icon: const Icon(
-                Icons.notifications_active_outlined,
-              ),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      const ActivityInsightsScreen(),
-                  maintainState: true,
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                IconButton(
+                  padding: const EdgeInsets.only(left: kDefaultPadding),
+                  icon: const Icon(
+                    Icons.notifications_active_outlined,
+                  ),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          const ActivityInsightsScreen(),
+                      maintainState: true,
+                    ),
+                  ),
                 ),
-              ),
+                if (dbProvider != null && dbProvider.newNotifications > 0)
+                  Positioned(
+                    top: 2,
+                    right: -6, // positioned made it work
+                    child: Container(
+                      width: kSmallIconSize02 * 1.1,
+                      height: kSmallIconSize02 * 1.1,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).colorScheme.primary,
+                        // border: Border.all(
+                        //     width: 1.0, color: Theme.of(context).primaryColor),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${dbProvider.newNotifications}',
+                          style: AppTextStyles.kSmallWhiteSubtitle(context)
+                              .copyWith(
+                                  fontSize: 12, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  )
+              ],
             ),
+          //
           if (widget.hasSearchField)
             IconButton(
               icon: const Icon(

@@ -47,3 +47,20 @@ class SettingsProvider extends ChangeNotifier {
     }
   }
 }
+
+class DBSyncProvider extends ChangeNotifier {
+  int _newNotifications = 5;
+
+  int get newNotifications => _newNotifications;
+
+  void markNotificationsAsRead() {
+    _newNotifications = 0; // reset
+    notifyListeners();
+  }
+
+  void incrementCounterDebug() {
+    _newNotifications++;
+    notifyListeners();
+    print('notification number is $_newNotifications');
+  }
+}

@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
         ChangeNotifierProvider<SettingsProvider>(
             create: (_) => SettingsProvider()),
+        ChangeNotifierProvider<DBSyncProvider>(
+          create: (_) => DBSyncProvider(),
+        ),
       ],
       child: Builder(builder: (context) {
         return MaterialApp(

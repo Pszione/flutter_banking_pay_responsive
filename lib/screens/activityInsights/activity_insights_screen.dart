@@ -4,8 +4,10 @@ import 'package:flutter_banking_pay_responsive/components/app_floating_button_wi
 import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../data_providers.dart';
 
 class ActivityInsightsScreen extends StatefulWidget {
   const ActivityInsightsScreen({Key? key}) : super(key: key);
@@ -27,9 +29,10 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
   @override
   Widget build(BuildContext context) {
-    // super.build(context);
+    final dbProvider = Provider.of<DBSyncProvider>(context);
+    // TODO: wait for user interaction with the notifications
+    dbProvider.markNotificationsAsRead();
 
-    print(myTransactions.length);
     return Scaffold(
       appBar: const AppBarComplete(
         title: 'Activity Insights',
