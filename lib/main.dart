@@ -33,9 +33,52 @@ class MyApp extends StatelessWidget {
           themeMode: Provider.of<ThemeProvider>(context).themeMode,
           theme: AppThemes.lightThemeData,
           darkTheme: AppThemes.darkThemeData,
-          home: SetupScreen(),
+          //home: const SetupScreen(),
+          home: buildFuture(),
         );
       }),
+    );
+  }
+
+  Future<String?> _fetchNetworkData(int milliseconds) {
+    final myFuture =
+        Future<String?>.delayed(Duration(milliseconds: milliseconds), () {
+      print('future finished');
+      return 'Success: Future.delayed for $milliseconds';
+    });
+    // .then((value) => print('Whaaaaat? 2'));
+    return myFuture;
+  }
+
+  buildFuture() {
+    return Material(
+      type: MaterialType.canvas,
+      child: FutureBuilder<String?>(
+        // it's an async build method
+        future: _fetchNetworkData(2500),
+        builder: (context, httpSnapshot) {
+          print(httpSnapshot.data.runtimeType);
+          print(httpSnapshot.data.toString());
+          // Checking future result
+          if (httpSnapshot.hasError) {
+            print(httpSnapshot.error);
+            return Center(child: Text(httpSnapshot.error.toString()));
+          }
+          // Success
+          else if (httpSnapshot.hasData) {
+            print(httpSnapshot.data);
+            return const SetupScreen();
+          }
+          //
+          return Center(
+              child: CircularProgressIndicator(
+                  strokeWidth: 6,
+                  color: Theme.of(context).colorScheme.primary));
+          // return const Center(
+          //     child: Text('Loading...',
+          //         style: TextStyle(decoration: TextDecoration.none)));
+        },
+      ),
     );
   }
 }
