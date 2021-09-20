@@ -12,7 +12,7 @@ class AppSlidingBottomSheet {
     this.headerColor = kGrayColor,
   });
   final BuildContext context;
-  final Widget bodyWidget;
+  final Widget? bodyWidget;
 
   final double? initialSnap;
   final List<double> snappings;
@@ -20,7 +20,7 @@ class AppSlidingBottomSheet {
 
   Future<Widget> showStyledSheet() async => await showSlidingBottomSheet(
         context,
-        builder: (context) => SlidingSheetDialog(
+        builder: (_) => SlidingSheetDialog(
           avoidStatusBar: true,
           duration: kDefaultDuration,
           cornerRadius: kDefaultBorderRadiusAsDouble,
@@ -29,7 +29,7 @@ class AppSlidingBottomSheet {
             initialSnap: initialSnap,
             snappings: snappings, // 50%
           ),
-          headerBuilder: (context, state) => Material(
+          headerBuilder: (_, state) => Material(
             child: Container(
               color: headerColor,
               child: Column(
@@ -43,14 +43,14 @@ class AppSlidingBottomSheet {
                       height: 8,
                       decoration: BoxDecoration(
                           borderRadius: kDefaultBorderRadius,
-                          color: kWhiteColor),
+                          color: Theme.of(context).primaryColorDark),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          builder: (context, state) => bodyWidget,
+          builder: (_, state) => bodyWidget ?? const SizedBox(height: 0),
         ),
       );
 
@@ -67,6 +67,7 @@ class AppSlidingBottomSheet {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    shadowColor: Theme.of(context).colorScheme.error,
                     shape: const StadiumBorder(),
                     padding: const EdgeInsets.symmetric(
                         horizontal: kDefaultPadding * 2),

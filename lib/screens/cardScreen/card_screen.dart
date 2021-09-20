@@ -3,6 +3,7 @@ import 'package:flutter_banking_pay_responsive/components/app_alert_dialog.dart'
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
+import 'package:flutter_banking_pay_responsive/components/card_add_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_overview_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
@@ -26,10 +27,11 @@ class CardScreen extends StatelessWidget {
         label: 'Add Card',
         tooltip: 'Add Card',
         icon: Icons.add,
-        onPressed: () => const AppAlertDialog(
-          title: 'Add Card',
-          contentText: null,
-        ).showAlertDialogDismissible(context),
+        onPressed: () => CardAddSlidingSheet().showOptionsSlidingSheet(context),
+        // onPressed: () => const AppAlertDialog(
+        //   title: 'Add Card',
+        //   contentText: null,
+        // ).showAlertDialogDismissible(context),
         // AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
       ),
       floatingActionButtonLocation: kFloatingButtonLocationAdaptive(context),
