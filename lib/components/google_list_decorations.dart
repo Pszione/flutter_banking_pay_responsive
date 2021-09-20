@@ -93,9 +93,8 @@ class BuildGoogleListSettingButton extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // InkWell will act as switch
-          if (overrideSwitchButton == null) {
-            onPress.call(!switchValue);
-          } // hehehe
+          //if (overrideSwitchButton == null)
+          onPress.call(!switchValue);
         },
         splashColor: Theme.of(context).colorScheme.secondary,
         child: Padding(
@@ -125,7 +124,8 @@ class BuildGoogleListSettingButton extends StatelessWidget {
                     if (description != null)
                       Text(
                         description!,
-                        maxLines: 2,
+                        maxLines: 3,
+                        textAlign: TextAlign.justify,
                         style: AppTextStyles.kSmallText(),
                       ),
                   ],

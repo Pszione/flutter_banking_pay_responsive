@@ -69,10 +69,36 @@ class SettingsScreen extends StatelessWidget {
               icon: SettingsTexts.optionEditAccountInfo().icon,
               switchValue: settingsProvider
                   .options[SettingsTexts.optionEditAccountInfo().saveIndex!],
-              onPress: (bool value) => settingsProvider.invertOptionValue(
-                  SettingsTexts.optionEditAccountInfo().saveIndex!),
+              onPress: (bool value) {
+                Https.launchURL(
+                    url: 'https://myaccount.google.com/', forceWebView: false);
+              },
               //
               overrideSwitchButton: buildOptionEditAccountInfo(context),
+            ),
+            const SizedBox(height: kDefaultPadding),
+            kDivider,
+            const SizedBox(height: kDefaultPadding),
+            BuildGoogleListSettingButton(
+              label: SettingsTexts.optionShareUserLocation().label,
+              description: SettingsTexts.optionShareUserLocation().description,
+              icon: SettingsTexts.optionShareUserLocation().icon,
+              switchValue: settingsProvider
+                  .options[SettingsTexts.optionShareUserLocation().saveIndex!],
+              onPress: (bool value) => settingsProvider.invertOptionValue(
+                SettingsTexts.optionShareUserLocation().saveIndex!,
+              ),
+            ),
+            const SizedBox(height: kDefaultPadding),
+            BuildGoogleListSettingButton(
+              label: SettingsTexts.optionTravelNotice().label,
+              description: SettingsTexts.optionTravelNotice().description,
+              icon: SettingsTexts.optionTravelNotice().icon,
+              switchValue: settingsProvider
+                  .options[SettingsTexts.optionTravelNotice().saveIndex!],
+              onPress: (bool value) => settingsProvider.invertOptionValue(
+                SettingsTexts.optionTravelNotice().saveIndex!,
+              ),
             ),
           ],
         ),

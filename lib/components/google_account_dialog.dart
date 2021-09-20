@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -9,17 +10,23 @@ import '../utils.dart';
 import 'google_list_decorations.dart';
 
 class GoogleAccountDialog {
-  const GoogleAccountDialog({
+  GoogleAccountDialog({
     Key? key,
   });
 
+  late AccountModel currentUser;
+
   Future<String?> showDialogDismissible(BuildContext context) async {
+    // TODO: use provider reference
+    currentUser = Provider.of<DBSyncProvider>(context, listen: false).user;
+    print(currentUser.fullname);
+
     return await showDialog<String>(
       context: context,
       useSafeArea: true,
       barrierDismissible: true, // click outside to dismiss
       barrierColor: Colors.black.withOpacity(0.70),
-      builder: (BuildContext context) => AlertDialog(
+      builder: (_) => AlertDialog(
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.background,
         shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
@@ -33,7 +40,6 @@ class GoogleAccountDialog {
                 ? 99
                 : 0),
         title: buildGoogleHeader(context),
-        // TODO: scroll is not working
         content: SizedBox(
           width: 400, // MediaQuery.of(context).size.width * 0.9,
           height: 420,
@@ -42,41 +48,38 @@ class GoogleAccountDialog {
             children: [
               buildAccountItem(
                 context,
-                'Pedro Santos',
-                'pedrinho554@gmail.com',
-                'assets/images/35244548_pedro_santos.png',
+                currentUser.fullname!,
+                currentUser.email!,
+                currentUser.avatarThumbnail,
                 kSmallIconSize,
                 () => Navigator.pop(context),
               ),
               if (MediaQuery.of(context).orientation == Orientation.portrait)
-                buildManageAccountButton(context),
+                buildManageAccountButton(
+                    context: context,
+                    onPress: () => Https.launchURL(
+                        url: 'https://myaccount.google.com/',
+                        forceWebView: false)),
               const SizedBox(height: kHalfPadding),
               kDivider,
               SizedBox(
                 height: 165,
-                child: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      buildAccountItem(
-                        context,
-                        'Oused Games',
-                        'oused.games@gmail.com',
-                        'assets/icons/logo_master_card.png',
-                        kSmallIconSize02,
-                        () {},
-                      ),
-                      buildAccountItem(
-                        context,
-                        'Eu Acredito Na Humanidade',
-                        'euacreditoblog@gmail.com',
-                        'assets/images/_earth_TEST07B.jpg',
-                        kSmallIconSize02,
-                        () {},
-                      ),
-                    ],
-                  ),
-                ),
+                child: ListView.builder(
+                    physics: const ClampingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: myAccounts.length,
+                    itemBuilder: (_, int index) {
+                      if (currentUser.ID == myAccounts[index].ID) {
+                        return const SizedBox(height: 0); // null
+                      }
+                      return buildAccountItem(
+                          _,
+                          myAccounts[index].fullname!,
+                          myAccounts[index].email!,
+                          myAccounts[index].avatar,
+                          kSmallIconSize02,
+                          () {});
+                    }),
               ),
               const Spacer(),
               Column(
@@ -148,6 +151,7 @@ class GoogleAccountDialog {
       width: double.infinity,
       height: 60,
       child: InkWell(
+        onTap: onPressed,
         splashColor: Theme.of(context).colorScheme.secondary,
         child: BorderDefaultPadding(
           child: Column(
@@ -178,15 +182,17 @@ class GoogleAccountDialog {
             ],
           ),
         ),
-        onTap: onPressed,
       ),
     );
   }
 
-  TextButton buildManageAccountButton(BuildContext context) {
+  TextButton buildManageAccountButton(
+      {required BuildContext context,
+      String label = 'Manage your Google Account',
+      required VoidCallback onPress}) {
     return TextButton(
       child: Text(
-        'Manage your Google Account',
+        label,
         style: AppTextStyles.kSmallBoldText()
             .copyWith(color: Theme.of(context).primaryColorDark),
         maxLines: 1,
@@ -200,14 +206,15 @@ class GoogleAccountDialog {
         padding: const EdgeInsets.symmetric(
             horizontal: kDefaultPadding, vertical: kHalfPadding * 0.9),
       ),
-      onPressed: () {},
+      onPressed: onPress,
     );
   }
 
   List<Widget> buildPolicyAndTermsButtons(BuildContext context) {
     return <Widget>[
       TextButton(
-        onPressed: () => {},
+        onPressed: () =>
+            Https.launchURL(url: 'https://policies.google.com/privacy'),
         child: Text(
           'Privacy Policy',
           maxLines: 1,
@@ -217,7 +224,8 @@ class GoogleAccountDialog {
       ),
       const Text('•'),
       TextButton(
-        onPressed: () => {},
+        onPressed: () =>
+            Https.launchURL(url: 'https://policies.google.com/terms'),
         child: Text(
           'Terms of Service',
           maxLines: 1,

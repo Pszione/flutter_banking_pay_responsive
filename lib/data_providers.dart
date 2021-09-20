@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'models/account.dart';
+
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system; // default mode
 
@@ -24,7 +26,7 @@ class ThemeProvider extends ChangeNotifier {
 }
 
 class SettingsProvider extends ChangeNotifier {
-  List<bool> options = [true, false, false, true];
+  List<bool> options = [true, false, false, true, true, true];
 
   bool isValidIndex(int index) => index >= 0 && index <= options.length;
 
@@ -49,9 +51,11 @@ class SettingsProvider extends ChangeNotifier {
 }
 
 class DBSyncProvider extends ChangeNotifier {
+  final AccountModel _user = myAccounts[0];
   int _newNotifications = 5;
 
   int get newNotifications => _newNotifications;
+  AccountModel get user => _user;
 
   void markNotificationsAsRead() {
     _newNotifications = 0; // reset

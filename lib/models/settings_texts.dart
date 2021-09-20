@@ -6,7 +6,7 @@ class SettingsOptionText {
 
   String? label, description;
   IconData? icon;
-  int? saveIndex;
+  int? saveIndex; // at SettingsProvider
 }
 
 class SettingsTexts {
@@ -31,7 +31,21 @@ class SettingsTexts {
 
   static SettingsOptionText optionEditAccountInfo() => SettingsOptionText(
       label: 'Edit account info',
-      description: 'Update your name, address, or other account info',
+      description: 'Update your name, address, and any other account info',
       icon: Icons.account_circle_sharp,
       saveIndex: 3);
+
+  static SettingsOptionText optionShareUserLocation() => SettingsOptionText(
+      label: 'Share your location',
+      description:
+          'For your safety and fraud investigations. Baking Pay would like to access your location when you do a purchase',
+      icon: Icons.not_listed_location_outlined,
+      saveIndex: 4);
+
+  static SettingsOptionText optionTravelNotice() => SettingsOptionText(
+      label: 'Are you travelling?',
+      description:
+          'Enjoy your trip! But first let us know so that all your purchases goes pass our security monitoring',
+      icon: Icons.airplanemode_on_rounded,
+      saveIndex: 5);
 }
