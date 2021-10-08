@@ -18,7 +18,7 @@ class AccountModel {
 List<AccountModel> myAccounts = [
   AccountModel(
     ID: '027846599',
-    email: 'pedrinho554@gmail.com',
+    email: 'contato.pedrosantos2020@gmail.com',
     fullname: 'Pedro Santos',
     avatar: 'assets/images/35244548_pedro_santos.png',
     avatarThumbnail: 'assets/images/35244548_pedro_santos.png',

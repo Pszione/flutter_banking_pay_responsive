@@ -48,4 +48,17 @@ class SettingsTexts {
           'Enjoy your trip! But first let us know so that all your purchases goes pass our security monitoring',
       icon: Icons.airplanemode_on_rounded,
       saveIndex: 5);
+
+  static SettingsOptionText optionAppSystemSettings() => SettingsOptionText(
+      label: '(System) App settings',
+      description: "Options to change app's permission, notifications and more",
+      icon: Icons.add_box_outlined,
+      saveIndex: 6);
+
+  static SettingsOptionText optionAppSystemNFCSettings() => SettingsOptionText(
+      label: '(System) Contactless/NFC',
+      description:
+          "Options to setup phone's NFC, your contactless payment uses it ",
+      icon: Icons.add_box_outlined,
+      saveIndex: 7);
 }

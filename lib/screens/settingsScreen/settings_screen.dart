@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
@@ -31,7 +32,8 @@ class SettingsScreen extends StatelessWidget {
               description: SettingsTexts.optionEmailUpdates().description,
               icon: SettingsTexts.optionEmailUpdates().icon,
               switchValue: settingsProvider
-                  .options[SettingsTexts.optionEmailUpdates().saveIndex!],
+                      .options[SettingsTexts.optionEmailUpdates().saveIndex!] ??
+                  false,
               onPress: (bool value) =>
                   // switch automagically inverts !value
                   settingsProvider.changeOption(
@@ -45,7 +47,8 @@ class SettingsScreen extends StatelessWidget {
                   SettingsTexts.optionPurchaseNotifications().description,
               icon: SettingsTexts.optionPurchaseNotifications().icon,
               switchValue: settingsProvider.options[
-                  SettingsTexts.optionPurchaseNotifications().saveIndex!],
+                      SettingsTexts.optionPurchaseNotifications().saveIndex!] ??
+                  false,
               onPress: (bool value) => settingsProvider.invertOptionValue(
                 SettingsTexts.optionPurchaseNotifications().saveIndex!,
               ),
@@ -54,21 +57,21 @@ class SettingsScreen extends StatelessWidget {
               label: SettingsTexts.optionTicketsUpdates().label,
               description: SettingsTexts.optionTicketsUpdates().description,
               icon: SettingsTexts.optionTicketsUpdates().icon,
-              switchValue: settingsProvider
-                  .options[SettingsTexts.optionTicketsUpdates().saveIndex!],
+              switchValue: settingsProvider.options[
+                      SettingsTexts.optionTicketsUpdates().saveIndex!] ??
+                  false,
               onPress: (bool value) => settingsProvider.invertOptionValue(
                 SettingsTexts.optionTicketsUpdates().saveIndex!,
               ),
             ),
-            const SizedBox(height: kDefaultPadding),
-            kDivider,
-            const SizedBox(height: kDefaultPadding),
+            buildDividerWithPadding(),
             BuildGoogleListSettingButton(
               label: SettingsTexts.optionEditAccountInfo().label,
               description: SettingsTexts.optionEditAccountInfo().description,
               icon: SettingsTexts.optionEditAccountInfo().icon,
-              switchValue: settingsProvider
-                  .options[SettingsTexts.optionEditAccountInfo().saveIndex!],
+              switchValue: settingsProvider.options[
+                      SettingsTexts.optionEditAccountInfo().saveIndex!] ??
+                  false,
               onPress: (bool value) {
                 Https.launchURL(
                     url: 'https://myaccount.google.com/', forceWebView: false);
@@ -76,15 +79,14 @@ class SettingsScreen extends StatelessWidget {
               //
               overrideSwitchButton: buildOptionEditAccountInfo(context),
             ),
-            const SizedBox(height: kDefaultPadding),
-            kDivider,
-            const SizedBox(height: kDefaultPadding),
+            buildDividerWithPadding(),
             BuildGoogleListSettingButton(
               label: SettingsTexts.optionShareUserLocation().label,
               description: SettingsTexts.optionShareUserLocation().description,
               icon: SettingsTexts.optionShareUserLocation().icon,
-              switchValue: settingsProvider
-                  .options[SettingsTexts.optionShareUserLocation().saveIndex!],
+              switchValue: settingsProvider.options[
+                      SettingsTexts.optionShareUserLocation().saveIndex!] ??
+                  false,
               onPress: (bool value) => settingsProvider.invertOptionValue(
                 SettingsTexts.optionShareUserLocation().saveIndex!,
               ),
@@ -95,10 +97,37 @@ class SettingsScreen extends StatelessWidget {
               description: SettingsTexts.optionTravelNotice().description,
               icon: SettingsTexts.optionTravelNotice().icon,
               switchValue: settingsProvider
-                  .options[SettingsTexts.optionTravelNotice().saveIndex!],
+                      .options[SettingsTexts.optionTravelNotice().saveIndex!] ??
+                  false,
               onPress: (bool value) => settingsProvider.invertOptionValue(
                 SettingsTexts.optionTravelNotice().saveIndex!,
               ),
+            ),
+            buildDividerWithPadding(),
+            //
+            const BuildGoogleListTitle(label: 'Advanced'),
+            BuildGoogleListSettingButton(
+              label: SettingsTexts.optionAppSystemSettings().label,
+              description: SettingsTexts.optionAppSystemSettings().description,
+              icon: SettingsTexts.optionAppSystemSettings().icon,
+              switchValue: settingsProvider.options[
+                      SettingsTexts.optionAppSystemSettings().saveIndex!] ??
+                  false,
+              onPress: (bool value) => AppSettings.openAppSettings(),
+              //
+              overrideSwitchButton: const SizedBox(),
+            ),
+            BuildGoogleListSettingButton(
+              label: SettingsTexts.optionAppSystemNFCSettings().label,
+              description:
+                  SettingsTexts.optionAppSystemNFCSettings().description,
+              icon: SettingsTexts.optionAppSystemNFCSettings().icon,
+              switchValue: settingsProvider.options[
+                      SettingsTexts.optionAppSystemNFCSettings().saveIndex!] ??
+                  false,
+              onPress: (bool value) => AppSettings.openNFCSettings(),
+              //
+              overrideSwitchButton: const SizedBox(),
             ),
           ],
         ),
@@ -106,6 +135,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  // TODO: is this right? Duplicate for other options?
   Padding buildOptionEditAccountInfo(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: kHalfPadding / 2),
@@ -120,4 +150,12 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildDividerWithPadding() => Column(
+        children: [
+          const SizedBox(height: kDefaultPadding),
+          kDivider,
+          const SizedBox(height: kDefaultPadding),
+        ],
+      );
 }

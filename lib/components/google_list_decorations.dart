@@ -147,3 +147,33 @@ class BuildGoogleListSettingButton extends StatelessWidget {
     );
   }
 }
+
+class BuildGoogleListTitle extends StatelessWidget {
+  const BuildGoogleListTitle({
+    Key? key,
+    this.horizontalPadding = kDefaultPadding,
+    required this.label,
+  }) : super(key: key);
+
+  final double horizontalPadding;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: horizontalPadding, right: horizontalPadding / 2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(width: kSmallPadding / 1.2),
+          Text(
+            label,
+            textAlign: TextAlign.left,
+            style: AppTextStyles.kSmallBoldText(),
+          ),
+        ],
+      ),
+    );
+  }
+}

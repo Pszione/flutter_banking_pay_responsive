@@ -26,7 +26,8 @@ class ThemeProvider extends ChangeNotifier {
 }
 
 class SettingsProvider extends ChangeNotifier {
-  List<bool> options = [true, false, false, true, true, true];
+  List<bool?> options = [true, false, null, true, true, true, null, null];
+  // TODO: we are not using last two booleans
 
   bool isValidIndex(int index) => index >= 0 && index <= options.length;
 
@@ -43,7 +44,7 @@ class SettingsProvider extends ChangeNotifier {
 
   void invertOptionValue(int index) {
     if (isValidIndex(index)) {
-      changeOption(index, !options[index]); // opposite
+      changeOption(index, options[index] ?? false); // opposite
     } else {
       print('error: index $index is out of bounds');
     }
