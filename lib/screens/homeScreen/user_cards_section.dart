@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
+import 'package:flutter_banking_pay_responsive/components/card_add_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_overview_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
@@ -26,7 +27,10 @@ class UserCardsSection extends StatelessWidget {
         itemBuilder: (_, index) {
           // checking if the index item is the last item of the list or not
           if (index == myCards.length) {
-            return CardOutlineWidget(width: 320, onPress: () {});
+            return CardOutlineWidget(
+                width: 320,
+                onPress: () =>
+                    CardAddSlidingSheet().showOptionsSlidingSheet(context));
           }
           return CardWidget(
             card: myCards[index],

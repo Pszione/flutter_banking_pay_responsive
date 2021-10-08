@@ -25,7 +25,7 @@ class GoogleAccountDialog {
       context: context,
       useSafeArea: true,
       barrierDismissible: true, // click outside to dismiss
-      barrierColor: Colors.black.withOpacity(0.70),
+      barrierColor: Colors.black.withOpacity(kAlertOverlayOpacity),
       builder: (_) => AlertDialog(
         elevation: 0,
         backgroundColor: Theme.of(context).colorScheme.background,

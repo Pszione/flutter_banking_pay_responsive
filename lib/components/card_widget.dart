@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
@@ -217,9 +218,18 @@ class CardOutlineWidget extends StatelessWidget {
                   color: backgroundColor ?? Theme.of(context).primaryColorDark,
                   size: kHugeIconSize * 1.2,
                 ),
-                Text('Add payment method',
-                    style: AppTextStyles.getBodyText(context)
-                        .copyWith(color: color)),
+                AnimatedTextKit(
+                  repeatForever: true,
+                  animatedTexts: [
+                    TyperAnimatedText('Add payment method',
+                        speed: const Duration(milliseconds: 45),
+                        textStyle: AppTextStyles.getBodyText(context)
+                            .copyWith(color: color)),
+                  ],
+                ),
+                // Text('Add payment method',
+                //     style: AppTextStyles.getBodyText(context)
+                //         .copyWith(color: color)),
               ],
             ),
           ),
@@ -236,36 +246,8 @@ class CardOutlineWidget extends StatelessWidget {
               highlightColor: Colors.transparent,
               borderRadius: kHugeBorderRadius,
               radius: kInkWellMediumRadius,
-              // TODO
-              onTap: () => AppSlidingBottomSheet.demoSheet(context),
-              // onTap: () => // onPressed
-              //     AppSlidingBottomSheet(
-              //   context: context,
-              //   snappings: [0.3, 0.5],
-              //   headerColor: Theme.of(context).colorScheme.secondary,
-              //   bodyWidget: Container(
-              //     child: Center(
-              //       child: Column(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         children: [
-              //           ElevatedButton(
-              //             style: ElevatedButton.styleFrom(
-              //               shape: const StadiumBorder(),
-              //               padding: const EdgeInsets.symmetric(
-              //                   horizontal: kDefaultPadding * 2),
-              //             ),
-              //             child: const Text('Close'),
-              //             onPressed: () => Navigator.of(context).pop(),
-              //           ),
-              //           Container(
-              //             height: 290,
-              //             color: kWhiteColor,
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ).showStyledSheet(),
+              onTap: onPress,
+              //onTap: () => AppSlidingBottomSheet.demoSheet(context),
             ),
           ),
       ],

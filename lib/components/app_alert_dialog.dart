@@ -20,7 +20,7 @@ class AppAlertDialog {
       context: context,
       barrierDismissible: true, // click outside to dismiss
       useSafeArea: true,
-      barrierColor: Colors.black.withOpacity(0.70),
+      barrierColor: Colors.black.withOpacity(kAlertOverlayOpacity),
       builder: (BuildContext context) => AlertDialog(
         title: Text(title ?? 'Alert'),
         elevation: 20,

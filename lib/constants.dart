@@ -12,6 +12,7 @@ const kDarkColor = Color(0xFF191923);
 const kGrayColor = Color(0xFFD8D8D8);
 Color kLightGrayColor = Colors.grey[300]!;
 const kErrorColor = Color(0xffffa329);
+const kAlertOverlayOpacity = 0.70; // 70%
 
 const kTextBodyColor = kComplementaryColor;
 const kTextWhiteColor = Colors.white;
@@ -34,6 +35,9 @@ FloatingActionButtonLocation kFloatingButtonLocationAdaptive(
     Responsive.isTablet(context)
         ? FloatingActionButtonLocation.endFloat
         : FloatingActionButtonLocation.centerFloat;
+FloatingActionButtonLocation kFloatingButtonLocationFixed(
+        BuildContext context) =>
+    FloatingActionButtonLocation.endFloat;
 
 const kMaxWebsiteWidth = 1440.0; // max width of our web
 const kHugeIconSize = 33.0;
