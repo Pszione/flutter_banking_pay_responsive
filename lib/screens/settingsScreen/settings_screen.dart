@@ -113,7 +113,8 @@ class SettingsScreen extends StatelessWidget {
               switchValue: settingsProvider.options[
                       SettingsTexts.optionAppSystemSettings().saveIndex!] ??
                   false,
-              onPress: (bool value) => AppSettings.openAppSettings(),
+              onPress: (bool value) async =>
+                  await AppSettings.openAppSettings(),
               //
               overrideSwitchButton: const SizedBox(),
             ),
@@ -125,7 +126,8 @@ class SettingsScreen extends StatelessWidget {
               switchValue: settingsProvider.options[
                       SettingsTexts.optionAppSystemNFCSettings().saveIndex!] ??
                   false,
-              onPress: (bool value) => AppSettings.openNFCSettings(),
+              onPress: (bool value) async =>
+                  await AppSettings.openNFCSettings(),
               //
               overrideSwitchButton: const SizedBox(),
             ),
