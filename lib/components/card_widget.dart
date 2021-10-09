@@ -179,10 +179,12 @@ class CardOutlineWidget extends StatelessWidget {
     this.backgroundColor,
     this.isClickable = true,
     required this.onPress,
+    this.label = 'Add',
   }) : super(key: key);
 
   final double width, height;
   final Color? backgroundColor;
+  final String? label;
   final bool isClickable;
   final GestureTapCallback onPress;
 
@@ -198,7 +200,7 @@ class CardOutlineWidget extends StatelessWidget {
           height: height,
           decoration: ShapeDecoration(
             // color: Colors.transparent,
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
             shadows: [kBoxDownShadowSubtle],
             shape: RoundedRectangleBorder(
               borderRadius: kDefaultBorderRadius,
@@ -215,18 +217,19 @@ class CardOutlineWidget extends StatelessWidget {
               children: [
                 Icon(
                   Icons.add,
-                  color: backgroundColor ?? Theme.of(context).primaryColorDark,
+                  color: Theme.of(context).primaryColorDark,
                   size: kHugeIconSize * 1.2,
                 ),
-                AnimatedTextKit(
-                  repeatForever: true,
-                  animatedTexts: [
-                    TyperAnimatedText('Add payment method',
-                        speed: const Duration(milliseconds: 45),
-                        textStyle: AppTextStyles.getBodyText(context)
-                            .copyWith(color: color)),
-                  ],
-                ),
+                if (label != null)
+                  AnimatedTextKit(
+                    repeatForever: true,
+                    animatedTexts: [
+                      TyperAnimatedText(label!,
+                          speed: const Duration(milliseconds: 45),
+                          textStyle: AppTextStyles.getBodyText(context)
+                              .copyWith(color: color)),
+                    ],
+                  ),
                 // Text('Add payment method',
                 //     style: AppTextStyles.getBodyText(context)
                 //         .copyWith(color: color)),

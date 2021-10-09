@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/components/app_alert_dialog.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
@@ -22,6 +21,7 @@ class CardScreen extends StatelessWidget {
       appBar: const AppBarComplete(
         title: 'My Cards',
         hasNotifications: true,
+        hasDarkThemeToggle: true,
       ),
       floatingActionButton: AppFloatingButtonIconAndText(
         label: 'Add Card',

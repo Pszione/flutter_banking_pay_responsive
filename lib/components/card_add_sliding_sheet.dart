@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_screen.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
@@ -22,16 +23,27 @@ class CardAddSlidingSheet {
             children: [
               const SizedBox(height: kDefaultPadding),
               buildListButton(context, 'Debit or credit card',
-                  Icons.credit_card_outlined, () {}),
-              buildListButton(context, 'Gift card', Icons.style, () {}),
-              buildListButton(context, 'Loyalty', Icons.stars_rounded, () {}),
-              buildListButton(
-                  context, 'Transit', Icons.directions_bus_rounded, () {}),
+                  Icons.credit_card_outlined, () => openScanScreen(context)),
+              buildListButton(context, 'Gift card', Icons.style,
+                  () => openScanScreen(context)),
+              buildListButton(context, 'Loyalty', Icons.stars_rounded,
+                  () => openScanScreen(context)),
+              buildListButton(context, 'Transit', Icons.directions_bus_rounded,
+                  () => openScanScreen(context)),
             ],
           ),
         ),
       ),
     ).showStyledSheet();
+  }
+
+  Future<Widget?> openScanScreen(BuildContext context) {
+    // button will also dismiss/pop this sliding sheet
+    Navigator.pop(context);
+    return Navigator.push(
+      context,
+      MaterialPageRoute<Widget>(builder: (context) => const ScanCardScreen()),
+    );
   }
 
   SizedBox buildListButton(BuildContext context, String? label, IconData? icon,

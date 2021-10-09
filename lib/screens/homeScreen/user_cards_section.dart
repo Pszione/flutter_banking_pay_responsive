@@ -29,6 +29,7 @@ class UserCardsSection extends StatelessWidget {
           if (index == myCards.length) {
             return CardOutlineWidget(
                 width: 320,
+                label: 'Add payment method',
                 onPress: () =>
                     CardAddSlidingSheet().showOptionsSlidingSheet(context));
           }
