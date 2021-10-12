@@ -8,6 +8,7 @@ class CategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: make categories dynamic and toggle each on or off
     // final List<Map<String, String>> categories = [
     //   <String, String>{
     //     'icon': FontAwesomeIcons.fileInvoice,
