@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants.dart';
@@ -37,32 +38,37 @@ class CategoriesSection extends StatelessWidget {
             label: 'Transactions',
             icon: Icons.read_more_rounded,
             size: kMediumIconSize * 1.25,
-            onPress: () => {},
+            onPress: () =>
+                AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           spacing,
           CategoryCard(
             label: 'Bills Resume',
             icon: FontAwesomeIcons.fileInvoice,
-            onPress: () => {},
+            onPress: () =>
+                AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           spacing,
           CategoryCard(
             label: 'Sales Store',
             icon: FontAwesomeIcons.shoppingBag,
-            onPress: () => {},
+            onPress: () =>
+                AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
 
           spacing,
           CategoryCard(
             label: 'Support Chat',
             icon: FontAwesomeIcons.solidCommentDots,
-            onPress: () => {},
+            onPress: () =>
+                AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           spacing,
           CategoryCard(
             label: 'more',
             icon: Icons.more_horiz,
-            onPress: () => {},
+            onPress: () =>
+                AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           //
           // ...List<CategoryCard>.generate(

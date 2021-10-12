@@ -4,6 +4,7 @@ class AppSnackBarErrors {
   static void showSnackBarFeatureUnavailable(BuildContext context) =>
       ScaffoldMessenger.of(context)
         ..hideCurrentMaterialBanner()
+        ..removeCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
             backgroundColor: Theme.of(context).colorScheme.error,
@@ -20,6 +21,7 @@ class AppSnackBarErrors {
   static void showSnackBar(BuildContext context, String text) =>
       ScaffoldMessenger.of(context)
         ..hideCurrentMaterialBanner()
+        ..removeCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
             backgroundColor: Theme.of(context).colorScheme.error,
