@@ -91,27 +91,29 @@ class TransactionCard extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      Row(
-                        children: [
-                          transaction.changePercentageIndicator == "up"
-                              ? const Icon(
-                                  FontAwesomeIcons.levelUpAlt,
-                                  size: 10,
-                                  color: Colors.green,
-                                )
-                              : const Icon(
-                                  FontAwesomeIcons.levelDownAlt,
-                                  size: 10,
-                                  color: Colors.red,
-                                ),
-                          const SizedBox(width: kHalfPadding),
-                          Text(
-                            '${transaction.changePercentage}',
-                            style: AppTextStyles.kListTileSubtitle,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                      ExcludeSemantics(
+                        child: Row(
+                          children: [
+                            transaction.changePercentageIndicator == "up"
+                                ? const Icon(
+                                    FontAwesomeIcons.levelUpAlt,
+                                    size: 10,
+                                    color: Colors.green,
+                                  )
+                                : const Icon(
+                                    FontAwesomeIcons.levelDownAlt,
+                                    size: 10,
+                                    color: Colors.red,
+                                  ),
+                            const SizedBox(width: kHalfPadding),
+                            Text(
+                              '${transaction.changePercentage}',
+                              style: AppTextStyles.kListTileSubtitle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

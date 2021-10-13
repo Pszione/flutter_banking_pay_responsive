@@ -212,28 +212,33 @@ class CardOutlineWidget extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.add,
-                  color: Theme.of(context).primaryColorDark,
-                  size: kHugeIconSize * 1.2,
-                ),
-                if (label != null)
-                  AnimatedTextKit(
-                    repeatForever: true,
-                    animatedTexts: [
-                      TyperAnimatedText(label!,
-                          speed: const Duration(milliseconds: 45),
-                          textStyle: AppTextStyles.getBodyText(context)
-                              .copyWith(color: color)),
-                    ],
+            child: Semantics(
+              label: label!,
+              button: true,
+              excludeSemantics: true,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.add,
+                    color: Theme.of(context).primaryColorDark,
+                    size: kHugeIconSize * 1.2,
                   ),
-                // Text('Add payment method',
-                //     style: AppTextStyles.getBodyText(context)
-                //         .copyWith(color: color)),
-              ],
+                  if (label != null)
+                    AnimatedTextKit(
+                      repeatForever: true,
+                      animatedTexts: [
+                        TyperAnimatedText(label!,
+                            speed: const Duration(milliseconds: 45),
+                            textStyle: AppTextStyles.getBodyText(context)
+                                .copyWith(color: color)),
+                      ],
+                    ),
+                  // Text('Add payment method',
+                  //     style: AppTextStyles.getBodyText(context)
+                  //         .copyWith(color: color)),
+                ],
+              ),
             ),
           ),
         ),
