@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:provider/provider.dart';
@@ -26,99 +27,109 @@ class GoogleAccountDialog {
       useSafeArea: true,
       barrierDismissible: true, // click outside to dismiss
       barrierColor: Colors.black.withOpacity(kAlertOverlayOpacity),
-      builder: (_) => AlertDialog(
-        elevation: 0,
-        backgroundColor: Theme.of(context).colorScheme.background,
-        shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
-        titlePadding: const EdgeInsets.fromLTRB(
-            kDefaultPadding, kHalfPadding, kDefaultPadding, 0),
-        contentPadding: EdgeInsets.zero,
-        insetPadding: EdgeInsets.only(
-            left: kDefaultPadding,
-            right: kDefaultPadding,
-            bottom: MediaQuery.of(context).orientation == Orientation.portrait
-                ? 99
-                : 0),
-        title: buildGoogleHeader(context),
-        content: SizedBox(
-          width: 400, // MediaQuery.of(context).size.width * 0.9,
-          height: 420,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              buildAccountItem(
-                context,
-                currentUser.fullname!,
-                currentUser.email!,
-                currentUser.avatarThumbnail,
-                kSmallIconSize,
-                () => Navigator.pop(context),
-              ),
-              if (MediaQuery.of(context).orientation == Orientation.portrait)
-                buildManageAccountButton(
-                    context: context,
-                    onPress: () => Https.launchURL(
-                        url: 'https://myaccount.google.com/',
-                        forceWebView: false)),
-              const SizedBox(height: kHalfPadding),
-              kDivider,
-              SizedBox(
-                height: 165,
-                child: ListView.builder(
-                    physics: const ClampingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: myAccounts.length,
-                    itemBuilder: (_, int index) {
-                      if (currentUser.ID == myAccounts[index].ID) {
-                        return const SizedBox(height: 0); // null
-                      }
-                      return buildAccountItem(
+      builder: (_) => Semantics(
+        label: 'Google account and other settings',
+        sortKey: const OrdinalSortKey(0),
+        child: AlertDialog(
+          elevation: 0,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
+          titlePadding: const EdgeInsets.fromLTRB(
+              kDefaultPadding, kHalfPadding, kDefaultPadding, 0),
+          contentPadding: EdgeInsets.zero,
+          insetPadding: EdgeInsets.only(
+              left: kDefaultPadding,
+              right: kDefaultPadding,
+              bottom: MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 99
+                  : 0),
+          title: buildGoogleHeader(context),
+          content: SizedBox(
+            width: 400, // MediaQuery.of(context).size.width * 0.9,
+            height: 420,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Semantics(
+                  label: 'Signed in as',
+                  child: buildAccountItem(
+                    context,
+                    currentUser.fullname!,
+                    currentUser.email!,
+                    currentUser.avatarThumbnail,
+                    kSmallIconSize,
+                    () => Navigator.pop(context),
+                    true,
+                  ),
+                ),
+                if (MediaQuery.of(context).orientation == Orientation.portrait)
+                  buildManageAccountButton(
+                      context: context,
+                      onPress: () => Https.launchURL(
+                          url: 'https://myaccount.google.com/',
+                          forceWebView: false)),
+                const SizedBox(height: kHalfPadding),
+                kDivider,
+                SizedBox(
+                  height: 165,
+                  child: ListView.builder(
+                      physics: const ClampingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: myAccounts.length,
+                      itemBuilder: (_, int index) {
+                        if (currentUser.ID == myAccounts[index].ID) {
+                          return const SizedBox(height: 0); // null
+                        }
+                        return buildAccountItem(
                           _,
                           myAccounts[index].fullname!,
                           myAccounts[index].email!,
                           myAccounts[index].avatar,
                           kSmallIconSize02,
-                          () {});
-                    }),
-              ),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  BuildGoogleListButton(
-                      label: 'Add another account',
-                      icon: Icons.person_add,
-                      onPress: () => Navigator.pop(context)),
-                  kDivider,
-                  BuildGoogleListButton(
-                    label: 'Settings',
-                    icon: Icons.settings_rounded,
-                    onPress: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const SettingsScreen())),
-                  ),
-                  // TODO: add FAQ link
-                  BuildGoogleListButton(
-                      label: 'Help',
-                      icon: Icons.help_outline_sharp,
-                      onPress: () => Https.launchURL(
-                          url:
-                              Provider.of<ThemeProvider>(context, listen: false)
-                                      .isDarkMode
-                                  ? 'https://support.google.com/pay/?dark=1'
-                                  : 'https://support.google.com/pay/')),
-                ],
-              ),
-              kDivider
-            ],
+                          () {},
+                          false,
+                        );
+                      }),
+                ),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    BuildGoogleListButton(
+                        label: 'Add another account',
+                        icon: Icons.person_add,
+                        onPress: () => Navigator.pop(context)),
+                    kDivider,
+                    BuildGoogleListButton(
+                      label: 'Settings',
+                      icon: Icons.settings_rounded,
+                      onPress: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const SettingsScreen())),
+                    ),
+                    // TODO: add FAQ link
+                    BuildGoogleListButton(
+                        label: 'Help',
+                        icon: Icons.help_outline_sharp,
+                        onPress: () => Https.launchURL(
+                            url: Provider.of<ThemeProvider>(context,
+                                        listen: false)
+                                    .isDarkMode
+                                ? 'https://support.google.com/pay/?dark=1'
+                                : 'https://support.google.com/pay/')),
+                  ],
+                ),
+                kDivider
+              ],
+            ),
           ),
+          actionsPadding: EdgeInsets.zero,
+          actionsAlignment: MainAxisAlignment.center,
+          actions: buildPolicyAndTermsButtons(context),
+          buttonPadding: EdgeInsets.zero,
         ),
-        actionsPadding: EdgeInsets.zero,
-        actionsAlignment: MainAxisAlignment.center,
-        actions: buildPolicyAndTermsButtons(context),
-        buttonPadding: EdgeInsets.zero,
       ),
     );
   }
@@ -126,18 +137,28 @@ class GoogleAccountDialog {
   Stack buildGoogleHeader(BuildContext context) {
     return Stack(
       children: [
-        IconButton(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          alignment: Alignment.topLeft,
-          icon: const Icon(Icons.close_rounded),
-          onPressed: () => Navigator.pop(context, 'X'),
+        Semantics(
+          sortKey: const OrdinalSortKey(1),
+          label: '',
+          child: IconButton(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            alignment: Alignment.topLeft,
+            icon: const Icon(Icons.close_rounded),
+            onPressed: () => Navigator.pop(context, 'X'),
+            tooltip: 'Close',
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: kHalfPadding / 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Google', style: AppTextStyles.getBodyText(context))
+              ExcludeSemantics(
+                child: Text(
+                  'Google',
+                  style: AppTextStyles.getBodyText(context),
+                ),
+              )
             ],
           ),
         )
@@ -145,8 +166,14 @@ class GoogleAccountDialog {
     );
   }
 
-  SizedBox buildAccountItem(BuildContext context, String label, String email,
-      String? imagePath, double imageSize, GestureTapCallback onPressed) {
+  Widget buildAccountItem(
+      BuildContext context,
+      String label,
+      String email,
+      String? imagePath,
+      double imageSize,
+      GestureTapCallback onPressed,
+      bool includeFullSemantics) {
     return SizedBox(
       width: double.infinity,
       height: 60,
@@ -169,13 +196,19 @@ class GoogleAccountDialog {
                     radius: imageSize, // kSmall
                   ),
                   const SizedBox(width: 14),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(label, style: AppTextStyles.kSmallBoldText()),
-                      Text(email, style: AppTextStyles.kSmallText()),
-                    ],
+                  Semantics(
+                    hint: 'Account',
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(label, style: AppTextStyles.kSmallBoldText()),
+                        Semantics(
+                          child: Text(email, style: AppTextStyles.kSmallText()),
+                          excludeSemantics: !includeFullSemantics,
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -215,22 +248,30 @@ class GoogleAccountDialog {
       TextButton(
         onPressed: () =>
             Https.launchURL(url: 'https://policies.google.com/privacy'),
-        child: Text(
-          'Privacy Policy',
-          maxLines: 1,
-          style: TextStyle(
-              fontSize: 12, color: Theme.of(context).colorScheme.onBackground),
+        child: Semantics(
+          label: 'Read',
+          child: Text(
+            'Privacy Policy',
+            maxLines: 1,
+            style: TextStyle(
+                fontSize: 12,
+                color: Theme.of(context).colorScheme.onBackground),
+          ),
         ),
       ),
-      const Text('•'),
+      const ExcludeSemantics(child: Text('•')),
       TextButton(
         onPressed: () =>
             Https.launchURL(url: 'https://policies.google.com/terms'),
-        child: Text(
-          'Terms of Service',
-          maxLines: 1,
-          style: TextStyle(
-              fontSize: 12, color: Theme.of(context).colorScheme.onBackground),
+        child: Semantics(
+          label: 'Read',
+          child: Text(
+            'Terms of Service',
+            maxLines: 1,
+            style: TextStyle(
+                fontSize: 12,
+                color: Theme.of(context).colorScheme.onBackground),
+          ),
         ),
       )
     ];

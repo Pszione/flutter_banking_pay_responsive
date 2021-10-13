@@ -131,7 +131,7 @@ class CategoryCard extends StatelessWidget {
             const SizedBox(height: 5),
             Text(
               label,
-              maxLines: 2,
+              maxLines: 3, // for phones with increased font size
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(

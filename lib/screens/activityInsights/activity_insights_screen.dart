@@ -36,7 +36,7 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     return Scaffold(
       appBar: const AppBarComplete(
         title: 'Activity Insights',
-        hasNotifications: false,
+        hasNotificationsButton: false,
       ),
       floatingActionButton: AppFloatingButtonIconAndText(
         icon: Icons.arrow_downward_rounded,

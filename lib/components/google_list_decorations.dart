@@ -51,9 +51,12 @@ class BuildGoogleListButton extends StatelessWidget {
                   width: kDefaultRowSpacing,
                   child: Icon(icon, size: kSmallIconSize)),
               const SizedBox(width: 14),
-              Text(
-                label,
-                style: AppTextStyles.kSmallBoldText(),
+              Semantics(
+                button: true,
+                child: Text(
+                  label,
+                  style: AppTextStyles.kSmallBoldText(),
+                ),
               )
             ],
           ),

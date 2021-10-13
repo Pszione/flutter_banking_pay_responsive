@@ -20,7 +20,7 @@ class CardScreen extends StatelessWidget {
     return Scaffold(
       appBar: const AppBarComplete(
         title: 'My Cards',
-        hasNotifications: true,
+        hasNotificationsButton: true,
         hasDarkThemeToggle: true,
       ),
       floatingActionButton: AppFloatingButtonIconAndText(

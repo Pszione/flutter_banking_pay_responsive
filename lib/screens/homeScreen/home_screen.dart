@@ -38,14 +38,17 @@ class HomeScreen extends StatelessWidget {
           child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             behavior: HitTestBehavior.translucent,
+            excludeFromSemantics: true,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const UserCardsSection(),
+                Semantics(
+                  child: const UserCardsSection(),
+                ),
                 const SizedBox(height: kDefaultPadding),
-                const CategoriesSection(),
+                Semantics(child: const CategoriesSection()),
                 const SizedBox(height: kDefaultPadding),
-                const RecentTransactionsSection(),
+                Semantics(child: const RecentTransactionsSection()),
                 const SizedBox(height: kDefaultPadding),
                 const SizedBox(height: 160),
               ],

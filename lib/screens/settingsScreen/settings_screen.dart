@@ -19,7 +19,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: const AppBarComplete(
         title: 'Settings',
-        hasNotifications: false,
+        hasNotificationsButton: false,
         hasDarkThemeToggle: true,
       ),
       body: SingleChildScrollView(
