@@ -41,25 +41,82 @@ class _SetupScreenState extends State<SetupScreen> {
         body: Center(
           child: _menuOptions.elementAt(_selectedIndex),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Theme.of(context).colorScheme.primary,
-          //selectedItemColor: kComplementaryColor,
-          //unselectedItemColor: kTextGrayColor,
-          iconSize:
-              kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.solidCreditCard), label: 'Cards'),
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: (int index) => changeSelectedMenu(index),
-        ),
+        bottomNavigationBar: buildMaterialYouNavigationBar(context),
       ),
+    );
+  }
+
+  Widget buildMaterialYouNavigationBar(BuildContext context) {
+    return NavigationBarTheme(
+      data: NavigationBarThemeData(
+        height: AppBar().preferredSize.height * 1.6,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        labelTextStyle:
+            //MaterialStateProperty.all(const TextStyle(fontSize: 14))
+            MaterialStateProperty.resolveWith<TextStyle>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.selected)) {
+              return const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.4);
+            } else {
+              return const TextStyle(fontSize: 14);
+            }
+          },
+        ),
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+        iconTheme: MaterialStateProperty.resolveWith<IconThemeData>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.selected)) {
+              return const IconThemeData(size: kSmallIconSize * 1.3);
+            } else {
+              return const IconThemeData(size: kSmallIconSize);
+            }
+          },
+        ),
+        indicatorColor: kSecondaryColor.withOpacity(0.8),
+      ),
+      child: NavigationBar(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: (int index) => changeSelectedMenu(index),
+        animationDuration: const Duration(seconds: 1, milliseconds: 100),
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(FontAwesomeIcons.dollarSign),
+            label: 'Pay',
+          ),
+          NavigationDestination(
+            icon: Icon(FontAwesomeIcons.solidCreditCard),
+            label: 'Cards',
+            selectedIcon: Icon(FontAwesomeIcons.creditCard),
+          ),
+          NavigationDestination(
+            icon: Icon(FontAwesomeIcons.chartLine),
+            label: 'Insights',
+          ),
+        ],
+      ),
+    );
+  }
+
+  BottomNavigationBar buildOldNavigationBar(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      currentIndex: _selectedIndex,
+      onTap: (int index) => changeSelectedMenu(index),
+      selectedItemColor: Theme.of(context).colorScheme.primary,
+      //selectedItemColor: kComplementaryColor,
+      //unselectedItemColor: kTextGrayColor,
+      iconSize: kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
+      items: const [
+        BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
+        BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.solidCreditCard), label: 'Cards'),
+        BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
+      ],
     );
   }
 
