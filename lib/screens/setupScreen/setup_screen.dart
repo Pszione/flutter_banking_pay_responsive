@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
@@ -49,19 +50,16 @@ class _SetupScreenState extends State<SetupScreen> {
   Widget buildMaterialYouNavigationBar(BuildContext context) {
     return NavigationBarTheme(
       data: NavigationBarThemeData(
-        height: AppBar().preferredSize.height * 1.6,
+        height: kBottomNavigationHeight,
         backgroundColor: Theme.of(context).colorScheme.background,
         labelTextStyle:
             //MaterialStateProperty.all(const TextStyle(fontSize: 14))
             MaterialStateProperty.resolveWith<TextStyle>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.selected)) {
-              return const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.4);
+              return AppTextStyles.kNavigationBarSelectedText;
             } else {
-              return const TextStyle(fontSize: 14);
+              return AppTextStyles.kNavigationBarText;
             }
           },
         ),
@@ -80,7 +78,7 @@ class _SetupScreenState extends State<SetupScreen> {
       child: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: (int index) => changeSelectedMenu(index),
-        animationDuration: const Duration(seconds: 1, milliseconds: 100),
+        animationDuration: const Duration(seconds: 1, milliseconds: 700),
         destinations: const [
           NavigationDestination(
             icon: Icon(FontAwesomeIcons.dollarSign),
@@ -100,23 +98,34 @@ class _SetupScreenState extends State<SetupScreen> {
     );
   }
 
-  BottomNavigationBar buildOldNavigationBar(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      currentIndex: _selectedIndex,
-      onTap: (int index) => changeSelectedMenu(index),
-      selectedItemColor: Theme.of(context).colorScheme.primary,
-      //selectedItemColor: kComplementaryColor,
-      //unselectedItemColor: kTextGrayColor,
-      iconSize: kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
-      items: const [
-        BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
-        BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.solidCreditCard), label: 'Cards'),
-        BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
-      ],
+  Widget buildOldNavigationBar(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: kBottomNavigationHeight,
+      child: BottomNavigationBarTheme(
+        data: BottomNavigationBarThemeData(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          selectedLabelStyle: AppTextStyles.kNavigationBarSelectedText,
+          enableFeedback: true,
+          elevation: 0,
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: (int index) => changeSelectedMenu(index),
+          iconSize:
+              kMediumIconSize, // MenuState.pay == _selectedMenu ? 28 : 22,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.solidCreditCard), label: 'Cards'),
+            BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
+          ],
+        ),
+      ),
     );
   }
 

@@ -3,8 +3,11 @@ import 'constants.dart';
 
 class AppTextStyles {
   const AppTextStyles();
-  //AppTextStyle({required SizeConfig sizes});
-  //SizeConfig _sizes;
+
+  static TextStyle kNavigationBarText = const TextStyle(fontSize: 14);
+
+  static TextStyle kNavigationBarSelectedText = const TextStyle(
+      fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.4);
 
   static TextStyle kFloatingButtonText() => const TextStyle(
         fontSize: 16,
@@ -12,6 +15,7 @@ class AppTextStyles {
         letterSpacing: 0.3,
       );
 
+  //
   static TextStyle getBodyText(BuildContext context) =>
       Theme.of(context).textTheme.headline5!.copyWith(
             // color: kTextBodyColor,
@@ -37,7 +41,7 @@ class AppTextStyles {
     //fontSize: SizeConfig().getProportionateScreenWidth(16),
   );
 
-  static TextStyle kCardSubtitle = TextStyle(
+  static TextStyle kCardSubtitle = const TextStyle(
     // TODO: depeding on card color not able to read it
     // color: kWhiteColor,
     fontWeight: FontWeight.w700,
@@ -45,14 +49,14 @@ class AppTextStyles {
     //fontSize: SizeConfig().getProportionateScreenWidth(18),
   );
 
-  static TextStyle kListTileTitle = TextStyle(
+  static TextStyle kListTileTitle = const TextStyle(
     // color: kTextBodyColor,
     fontSize: 19,
     fontWeight: FontWeight.w600,
     //fontSize: SizeConfig().getProportionateScreenWidth(20),
   );
 
-  static TextStyle kListTileSubtitle = TextStyle(
+  static TextStyle kListTileSubtitle = const TextStyle(
     // color: kTextBodyColor,
     fontSize: 15,
     //fontSize: SizeConfig().getProportionateScreenWidth(15),

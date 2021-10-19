@@ -40,6 +40,7 @@ FloatingActionButtonLocation kFloatingButtonLocationFixed(
     FloatingActionButtonLocation.endFloat;
 
 const kMaxWebsiteWidth = 1440.0; // max width of our web
+double get kBottomNavigationHeight => AppBar().preferredSize.height * 1.6;
 const kHugeIconSize = 33.0;
 const kMediumIconSize = 27.0;
 const kSmallIconSize = 22.0;
