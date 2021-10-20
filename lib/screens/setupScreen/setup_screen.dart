@@ -26,7 +26,7 @@ class _SetupScreenState extends State<SetupScreen> {
 
   //late SizeConfig _sizes;
   int _selectedIndex = 0;
-  MenuState _selectedMenu = 0 as MenuState;
+  MenuState _selectedMenu = MenuState.pay;
 
   @override
   Widget build(BuildContext context) {

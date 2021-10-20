@@ -167,7 +167,9 @@ class _AppBarCompleteState extends State<AppBarComplete> {
             icon: CircleAvatar(
               // backgroundImage:
               //     NetworkImage('https://placeimg.com/640/480/people'),
-              backgroundImage: AssetImage(signedInAccount.avatarThumbnail!),
+              backgroundImage: signedInAccount != null
+                  ? AssetImage(signedInAccount.avatarThumbnail!)
+                  : null,
               backgroundColor: kComplementaryColor,
             ),
             iconSize: kHugeIconSize,

@@ -53,18 +53,14 @@ class GoogleAccountDialog {
               children: [
                 Semantics(
                   label: 'Signed in as',
-                  child: signedInAccount != null
-                      ? buildAccountItem(
-                          context,
-                          signedInAccount,
-                          kSmallIconSize,
-                          () => Navigator.pop(context),
-                          true,
-                        )
-                      : const SizedBox(
-                          width: double.infinity,
-                          height: kAccountRowHeight,
-                        ),
+                  excludeSemantics: signedInAccount == null,
+                  child: buildAccountItem(
+                    context,
+                    signedInAccount,
+                    kSmallIconSize,
+                    () => Navigator.pop(context),
+                    true,
+                  ),
                 ),
                 if (MediaQuery.of(context).orientation == Orientation.portrait)
                   buildManageAccountButton(
