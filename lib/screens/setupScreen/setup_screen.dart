@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 
 import '../../constants.dart';
 
+// ignore_for_file: unused_local_variable, unused_field_variable
 class SetupScreen extends StatefulWidget {
   const SetupScreen({Key? key}) : super(key: key);
 
@@ -25,7 +26,7 @@ class _SetupScreenState extends State<SetupScreen> {
 
   //late SizeConfig _sizes;
   int _selectedIndex = 0;
-  MenuState _selectedMenu = MenuState.pay;
+  MenuState _selectedMenu = 0 as MenuState;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +62,7 @@ class _SetupScreenState extends State<SetupScreen> {
               return AppTextStyles.kNavigationBarSelectedText;
             } else {
               return AppTextStyles.kNavigationBarText;
+              // return null; // Use the component's default.
             }
           },
         ),
@@ -71,6 +73,7 @@ class _SetupScreenState extends State<SetupScreen> {
               return const IconThemeData(size: kSmallIconSize * 1.3);
             } else {
               return const IconThemeData(size: kSmallIconSize);
+              // return null; // Use the component's default.
             }
           },
         ),
