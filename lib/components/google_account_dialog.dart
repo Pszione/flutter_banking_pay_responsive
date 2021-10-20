@@ -19,10 +19,8 @@ class GoogleAccountDialog {
   //late AccountModel currentUser;
   static const double kAccountRowHeight = 60;
 
-  Future<String?> showDialogDismissible(BuildContext context) async {
-    // TODO: use provider reference
-    currentUser = Provider.of<DBSyncProvider>(context, listen: false).user;
-    print(currentUser.fullname);
+  Future<String?> showDialogDismissible(BuildContext context,
+      AccountModel? signedInAccount, List<AccountModel>? otherAccounts) async {
     HapticFeedback.heavyImpact();
 
     return await showDialog<String>(
@@ -55,15 +53,18 @@ class GoogleAccountDialog {
               children: [
                 Semantics(
                   label: 'Signed in as',
-                  child: buildAccountItem(
-                    context,
-                    currentUser.fullname!,
-                    currentUser.email!,
-                    currentUser.avatarThumbnail,
-                    kSmallIconSize,
-                    () => Navigator.pop(context),
-                    true,
-                  ),
+                  child: signedInAccount != null
+                      ? buildAccountItem(
+                          context,
+                          signedInAccount,
+                          kSmallIconSize,
+                          () => Navigator.pop(context),
+                          true,
+                        )
+                      : const SizedBox(
+                          width: double.infinity,
+                          height: kAccountRowHeight,
+                        ),
                 ),
                 if (MediaQuery.of(context).orientation == Orientation.portrait)
                   buildManageAccountButton(
@@ -78,16 +79,14 @@ class GoogleAccountDialog {
                   child: ListView.builder(
                       physics: const ClampingScrollPhysics(),
                       scrollDirection: Axis.vertical,
-                      itemCount: myAccounts.length,
+                      itemCount: otherAccounts!.length,
                       itemBuilder: (_, int index) {
-                        if (currentUser.ID == myAccounts[index].ID) {
+                        if (signedInAccount?.ID == otherAccounts[index].ID) {
                           return const SizedBox(height: 0); // null
                         }
                         return buildAccountItem(
                           _,
-                          myAccounts[index].fullname!,
-                          myAccounts[index].email!,
-                          myAccounts[index].avatar,
+                          otherAccounts[index],
                           kSmallIconSize02,
                           () {},
                           false,
@@ -171,9 +170,7 @@ class GoogleAccountDialog {
 
   Widget buildAccountItem(
       BuildContext context,
-      String label,
-      String email,
-      String? imagePath,
+      AccountModel? accountInfo,
       double imageSize,
       GestureTapCallback onPressed,
       bool includeFullSemantics) {
@@ -193,8 +190,9 @@ class GoogleAccountDialog {
                 children: [
                   // SizedBox?
                   CircleAvatar(
-                    backgroundImage:
-                        imagePath != null ? AssetImage(imagePath) : null,
+                    backgroundImage: accountInfo?.avatarThumbnail != null
+                        ? AssetImage(accountInfo!.avatarThumbnail!)
+                        : null,
                     backgroundColor: kComplementaryColor,
                     radius: imageSize, // kSmall
                   ),
@@ -205,9 +203,12 @@ class GoogleAccountDialog {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(label, style: AppTextStyles.kSmallBoldText()),
+                        Text(accountInfo?.fullname ?? 'User Name',
+                            style: AppTextStyles.kSmallBoldText()),
                         Semantics(
-                          child: Text(email, style: AppTextStyles.kSmallText()),
+                          child: Text(
+                              accountInfo?.email ?? 'username@email.com',
+                              style: AppTextStyles.kSmallText()),
                           excludeSemantics: !includeFullSemantics,
                         ),
                       ],

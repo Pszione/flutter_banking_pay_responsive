@@ -171,8 +171,8 @@ class _AppBarCompleteState extends State<AppBarComplete> {
               backgroundColor: kComplementaryColor,
             ),
             iconSize: kHugeIconSize,
-            onPressed: () =>
-                GoogleAccountDialog().showDialogDismissible(context),
+            onPressed: () => GoogleAccountDialog()
+                .showDialogDismissible(context, signedInAccount, myAccounts),
             tooltip: 'Google account and Settings',
           ),
         ],
