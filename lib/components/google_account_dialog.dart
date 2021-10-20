@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
@@ -21,6 +22,7 @@ class GoogleAccountDialog {
     // TODO: use provider reference
     currentUser = Provider.of<DBSyncProvider>(context, listen: false).user;
     print(currentUser.fullname);
+    HapticFeedback.heavyImpact();
 
     return await showDialog<String>(
       context: context,

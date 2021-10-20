@@ -5,6 +5,7 @@ import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity
 import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/services.dart';
 
 import '../../constants.dart';
 
@@ -139,6 +140,7 @@ class _SetupScreenState extends State<SetupScreen> {
       // this will work as Navigator.push route
       // because our Scaffold body will update its state
       // unfortunately wwe can not maintain widget state
+      HapticFeedback.selectionClick();
     });
   }
 

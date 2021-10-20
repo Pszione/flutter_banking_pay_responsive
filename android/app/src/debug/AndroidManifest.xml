@@ -11,6 +11,7 @@
             <!-- <data android:scheme="https" /> -->
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 </manifest>
