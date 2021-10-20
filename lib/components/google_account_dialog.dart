@@ -16,7 +16,8 @@ class GoogleAccountDialog {
     Key? key,
   });
 
-  late AccountModel currentUser;
+  //late AccountModel currentUser;
+  static const double kAccountRowHeight = 60;
 
   Future<String?> showDialogDismissible(BuildContext context) async {
     // TODO: use provider reference
@@ -178,7 +179,7 @@ class GoogleAccountDialog {
       bool includeFullSemantics) {
     return SizedBox(
       width: double.infinity,
-      height: 60,
+      height: kAccountRowHeight,
       child: InkWell(
         onTap: onPressed,
         splashColor: Theme.of(context).colorScheme.secondary,

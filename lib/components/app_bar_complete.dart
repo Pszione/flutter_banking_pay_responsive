@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,8 @@ class _AppBarCompleteState extends State<AppBarComplete> {
     final dbProvider = Provider.of<DBSyncProvider>(context);
     bool anyNewNotificationsToDisplay =
         dbProvider != null && dbProvider.newNotifications > 0;
+    AccountModel? signedInAccount =
+        Provider.of<DBSyncProvider>(context, listen: false).user;
 
     return Semantics(
       namesRoute: true,
@@ -161,11 +164,10 @@ class _AppBarCompleteState extends State<AppBarComplete> {
             ),
           IconButton(
             padding: const EdgeInsets.only(right: kDefaultPadding),
-            icon: const CircleAvatar(
+            icon: CircleAvatar(
               // backgroundImage:
               //     NetworkImage('https://placeimg.com/640/480/people'),
-              backgroundImage:
-                  AssetImage('assets/images/35244548_pedro_santos.png'),
+              backgroundImage: AssetImage(signedInAccount.avatarThumbnail!),
               backgroundColor: kComplementaryColor,
             ),
             iconSize: kHugeIconSize,
