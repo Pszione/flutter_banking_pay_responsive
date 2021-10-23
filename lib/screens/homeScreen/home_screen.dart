@@ -30,13 +30,19 @@ class _HomeScreenState extends State<HomeScreen> {
       // Cards
       floatingActionButton: _isFloatingButtonVisible
           ? AppFloatingButtonIconAndText(
-              label: null,
-              tooltip: 'Options',
+              label: 'Transactions',
+              tooltip: 'Transaction Options',
               icon: Icons.read_more_rounded,
               onPressed: () =>
                   AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
             )
-          : null,
+          : AppFloatingButtonIconAndText(
+              label: null,
+              tooltip: 'Transaction Options',
+              icon: Icons.read_more_rounded,
+              onPressed: () =>
+                  AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+            ),
       floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
       body: NotificationListener<UserScrollNotification>(
         onNotification: (notification) {
