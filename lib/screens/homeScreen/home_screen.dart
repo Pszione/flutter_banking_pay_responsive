@@ -3,9 +3,7 @@ import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart'
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../constant_text_styles.dart';
 import '../../constants.dart';
 import '../../snackbar_errors.dart';
 import 'categories_cards.dart';
