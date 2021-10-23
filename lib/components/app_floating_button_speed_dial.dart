@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../constant_text_styles.dart';
 import '../constants.dart';
 import '../snackbar_errors.dart';
+
+double _floatingElevation = 9;
 
 class AppFloatingButtonSpeedDial extends StatelessWidget {
   const AppFloatingButtonSpeedDial({
@@ -36,36 +39,37 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
         style: AppTextStyles.kFloatingButtonText(),
       ),
       tooltip: tooltip,
-      elevation: 8,
+      elevation: _floatingElevation,
       animationSpeed: 400,
       spacing: 15, // initial child
 
       children: [
         SpeedDialChild(
-          child: Icon(Icons.send_rounded),
+          child: const Icon(Icons.send_rounded),
           label: 'Send',
-          elevation: 8,
+          elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
         ),
         SpeedDialChild(
-          child: Icon(Icons.arrow_circle_down_rounded),
+          child: const Icon(Icons.arrow_circle_down_rounded),
           label: 'Receive',
-          elevation: 8,
+          elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
         ),
         SpeedDialChild(
-          child: Icon(Icons.qr_code_rounded),
+          child: const Icon(Icons.qr_code_rounded),
           label: 'QR code',
-          elevation: 8,
-          onTap: () =>
-              AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+          elevation: _floatingElevation,
+          onTap: () async => await ImagePicker().pickImage(
+            source: ImageSource.camera,
+          ),
         ),
         SpeedDialChild(
-          child: Icon(Icons.vpn_key_outlined),
+          child: const Icon(Icons.vpn_key_outlined),
           label: 'PIX',
-          elevation: 8,
+          elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
         ),
