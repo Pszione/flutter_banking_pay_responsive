@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
@@ -25,8 +26,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
   Widget build(BuildContext context) {
     return SpeedDial(
       openCloseDial: openCloseState,
-      icon: icon,
-      // animatedIcon: AnimatedIcons.menu_close,
+      icon: icon, // animatedIcon: AnimatedIcons.menu_close,
       iconTheme: const IconThemeData(
         color: kDarkColor,
         size: kMediumIconSize,
@@ -34,10 +34,18 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
       buttonSize: kHugeIconSize * 1.7,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
-      label: Text(
-        label ?? '',
-        style: AppTextStyles.kFloatingButtonText(),
-      ),
+
+      label: label != null
+          ? AutoSizeText(
+              label!,
+              style:
+                  AppTextStyles.kFloatingButtonText().copyWith(fontSize: null),
+              maxLines: 1,
+              maxFontSize: 17,
+              minFontSize: 12,
+              stepGranularity: 0.5,
+            )
+          : null,
       tooltip: tooltip,
       elevation: _floatingElevation,
       animationSpeed: 400,

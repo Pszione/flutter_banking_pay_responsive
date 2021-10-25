@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
@@ -65,14 +66,18 @@ class _ScanCardScreenState extends State<ScanCardScreen> {
                         onPressed: () =>
                             AppSnackBarErrors.showSnackBarFeatureUnavailable(
                                 context),
-                        child: const Text(
+                        child: const AutoSizeText(
                           'Enter card details manually',
                           style: TextStyle(fontWeight: FontWeight.bold),
+                          maxFontSize: 13,
                         )),
                     const Spacer(flex: 4),
-                    const Text(
+                    const AutoSizeText(
                       'Make sure cardholder name and other info\nis exactly as it appears on card',
                       textAlign: TextAlign.center,
+                      maxFontSize: 10,
+                      minFontSize: 8,
+                      maxLines: 3,
                     ),
                   ],
                 ),

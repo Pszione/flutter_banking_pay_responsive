@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
@@ -108,11 +109,11 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                   ),
                   if (anyNewNotificationsToDisplay)
                     Positioned(
-                      top: 2,
-                      right: -6, // positioned made it work
+                      top: -1,
+                      right: -8, // positioned made it work
                       child: Container(
-                        width: kSmallIconSize02 * 1.1,
-                        height: kSmallIconSize02 * 1.1,
+                        width: kSmallIconSize02 * 1.15,
+                        height: kSmallIconSize02 * 1.5,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Theme.of(context).colorScheme.primary,
@@ -121,12 +122,16 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                         ),
                         child: Center(
                           child: ExcludeSemantics(
-                            child: Text(
+                            child: AutoSizeText(
                               '${dbProvider.newNotifications}',
+                              textAlign: TextAlign.center,
                               style: AppTextStyles.kSmallWhiteSubtitle(context)
                                   .copyWith(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600),
+                              maxLines: 1,
+                              maxFontSize: 15,
+                              minFontSize: 10,
                             ),
                           ),
                         ),

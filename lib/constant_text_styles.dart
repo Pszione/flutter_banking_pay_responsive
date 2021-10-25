@@ -10,7 +10,7 @@ class AppTextStyles {
       fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.4);
 
   static TextStyle kFloatingButtonText() => const TextStyle(
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.3,
       );
@@ -42,7 +42,7 @@ class AppTextStyles {
   );
 
   static TextStyle kCardSubtitle = const TextStyle(
-    // TODO: depeding on card color not able to read it
+    // TODO: depending on card color not able to read it
     // color: kWhiteColor,
     fontWeight: FontWeight.w700,
     fontSize: 18,
@@ -70,11 +70,12 @@ class AppTextStyles {
   static TextStyle kSmallBoldText() => const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
+        height: kTextSmallHeightSpacing,
         letterSpacing: 0.3,
       );
 
   static TextStyle kSmallText() => const TextStyle(
-        fontSize: 12,
+        fontSize: 12, height: kTextSmallHeightSpacing,
         //color: Theme.of(context).colorScheme.onBackground,
       );
 }

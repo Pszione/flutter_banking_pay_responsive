@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -106,38 +107,45 @@ class CategoryCard extends StatelessWidget {
       //focusColor: Colors.transparent,
       //highlightColor: Colors.transparent,
       borderRadius: kHugeBorderRadius,
-      radius: kInkWellMediumRadius / 1.5,
+      radius: kInkWellMediumRadius,
       onTap: onPress,
       child: SizedBox(
-        width: 55,
+        width: 60,
         child: Column(
           children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                padding: const EdgeInsets.all(kHalfPadding),
-                decoration: BoxDecoration(
-                    color: kGrayColor,
-                    borderRadius:
-                        BorderRadius.circular(kDefaultBorderRadiusAsDouble),
-                    boxShadow: [kBoxDownShadowSubtle]),
-                child: Icon(
-                  icon,
-                  color: Colors.black,
-                  size: size,
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: kSmallPadding / 2),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                  padding: const EdgeInsets.all(kHalfPadding),
+                  decoration: BoxDecoration(
+                      color: kGrayColor,
+                      borderRadius:
+                          BorderRadius.circular(kDefaultBorderRadiusAsDouble),
+                      boxShadow: [kBoxDownShadowSubtle]),
+                  child: Icon(
+                    icon,
+                    color: Colors.black,
+                    size: size,
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 5),
-            Text(
+            AutoSizeText(
               label,
-              maxLines: 3, // for phones with increased font size
+              maxLines: 2, // for phones with increased font size
+              maxFontSize: 12,
+              minFontSize: 10,
+              stepGranularity: 0.5,
+              wrapWords: false,
               textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
+              overflow: TextOverflow.visible,
               style: const TextStyle(
-                  fontSize: 12,
                   fontWeight: FontWeight.w400,
-                  height: kTextMediumHeightSpacing * 0.9),
+                  height: kTextMediumHeightSpacing * 0.8),
             )
           ],
         ),

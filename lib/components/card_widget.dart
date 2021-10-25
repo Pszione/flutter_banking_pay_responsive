@@ -217,6 +217,7 @@ class CardOutlineWidget extends StatelessWidget {
               button: true,
               excludeSemantics: true,
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
@@ -225,14 +226,18 @@ class CardOutlineWidget extends StatelessWidget {
                     size: kHugeIconSize * 1.2,
                   ),
                   if (label != null)
-                    AnimatedTextKit(
-                      repeatForever: true,
-                      animatedTexts: [
-                        TyperAnimatedText(label!,
-                            speed: const Duration(milliseconds: 45),
-                            textStyle: AppTextStyles.getBodyText(context)
-                                .copyWith(color: color)),
-                      ],
+                    SizedBox(
+                      height:
+                          AppTextStyles.getBodyText(context).fontSize! * 1.7,
+                      child: AnimatedTextKit(
+                        repeatForever: true,
+                        animatedTexts: [
+                          TyperAnimatedText(label!,
+                              speed: const Duration(milliseconds: 45),
+                              textStyle: AppTextStyles.getBodyText(context)
+                                  .copyWith(color: color, fontSize: 17)),
+                        ],
+                      ),
                     ),
                   // Text('Add payment method',
                   //     style: AppTextStyles.getBodyText(context)
@@ -244,8 +249,8 @@ class CardOutlineWidget extends StatelessWidget {
         ),
         // Clickable
         if (isClickable)
-          Container(
-            padding: const EdgeInsets.all(kDefaultPadding * 2.3),
+          SizedBox(
+            //padding: const EdgeInsets.all(kDefaultPadding * 2.3),
             width: width,
             height: height,
             child: InkWell(

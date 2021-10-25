@@ -24,7 +24,11 @@ class AppFloatingButtonIconAndText extends StatelessWidget {
       foregroundColor: Theme.of(context).primaryColorDark,
       icon: Icon(icon, size: kHugeIconSize),
       isExtended: label != null,
-      label: Text(label ?? '', style: AppTextStyles.kFloatingButtonText()),
+      label: Text(
+        label ?? '',
+        style: AppTextStyles.kFloatingButtonText().copyWith(fontSize: null),
+        maxLines: 1,
+      ),
     );
   }
 }
