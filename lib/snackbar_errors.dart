@@ -10,7 +10,7 @@ class AppSnackBarErrors {
             backgroundColor: Theme.of(context).colorScheme.error,
             content: const Text(
               "Feature unavailable at the moment. We'll fix it right away!",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
             ),
             dismissDirection: DismissDirection.down,
             // contentTextStyle:

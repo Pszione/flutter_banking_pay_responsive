@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
@@ -17,7 +18,7 @@ class GoogleAccountDialog {
   });
 
   //late AccountModel currentUser;
-  static const double kAccountRowHeight = 60;
+  static const double kAccountRowHeight = 66;
 
   Future<String?> showDialogDismissible(BuildContext context,
       AccountModel? signedInAccount, List<AccountModel>? otherAccounts) async {
@@ -47,9 +48,10 @@ class GoogleAccountDialog {
           title: buildGoogleHeader(context),
           content: SizedBox(
             width: 400, // MediaQuery.of(context).size.width * 0.9,
-            height: 420,
+            height: 450,
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Semantics(
                   label: 'Signed in as',
@@ -138,12 +140,15 @@ class GoogleAccountDialog {
         Semantics(
           sortKey: const OrdinalSortKey(1),
           label: '',
-          child: IconButton(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            alignment: Alignment.topLeft,
-            icon: const Icon(Icons.close_rounded),
-            onPressed: () => Navigator.pop(context, 'X'),
-            tooltip: 'Close',
+          child: Padding(
+            padding: const EdgeInsets.only(top: kHalfPadding / 2),
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              alignment: Alignment.topLeft,
+              icon: const Icon(Icons.close_rounded),
+              onPressed: () => Navigator.pop(context),
+              tooltip: 'Close',
+            ),
           ),
         ),
         Padding(
@@ -170,76 +175,115 @@ class GoogleAccountDialog {
       double imageSize,
       GestureTapCallback onPressed,
       bool includeFullSemantics) {
-    return SizedBox(
-      width: double.infinity,
-      height: kAccountRowHeight,
-      child: InkWell(
-        onTap: onPressed,
-        splashColor: Theme.of(context).colorScheme.secondary,
-        child: BorderDefaultPadding(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // SizedBox?
-                  CircleAvatar(
-                    backgroundImage: accountInfo?.avatarThumbnail != null
-                        ? AssetImage(accountInfo!.avatarThumbnail!)
-                        : null,
-                    backgroundColor: kComplementaryColor,
-                    radius: imageSize, // kSmall
-                  ),
-                  const SizedBox(width: 14),
-                  Semantics(
-                    hint: 'Account',
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(accountInfo?.fullname ?? 'User Name',
-                            style: AppTextStyles.kSmallBoldText()),
-                        Semantics(
-                          child: Text(
-                              accountInfo?.email ?? 'username@email.com',
-                              style: AppTextStyles.kSmallText()),
-                          excludeSemantics: !includeFullSemantics,
-                        ),
-                      ],
+    return Flexible(
+      child: SizedBox(
+        width: double.infinity,
+        height: kAccountRowHeight,
+        child: InkWell(
+          onTap: onPressed,
+          splashColor: Theme.of(context).colorScheme.secondary,
+          child: BorderDefaultPadding(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // SizedBox?
+                    CircleAvatar(
+                      backgroundImage: accountInfo?.avatarThumbnail != null
+                          ? AssetImage(accountInfo!.avatarThumbnail!)
+                          : null,
+                      backgroundColor: kComplementaryColor,
+                      radius: imageSize, // kSmall
                     ),
-                  )
-                ],
-              ),
-            ],
+                    const SizedBox(width: 14),
+                    Semantics(
+                      hint: 'Account',
+                      child: Flexible(
+                        child: SizedBox(
+                          width: 254, // TODO
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AutoSizeText(
+                                accountInfo?.fullname ?? 'User Name',
+                                style: AppTextStyles.kSmallBoldText(),
+                                maxLines: 2,
+                                stepGranularity: 0.5,
+                                softWrap: true,
+                                wrapWords: false, // important!
+                              ),
+                              Semantics(
+                                child: AutoSizeText(
+                                  // TODO: fuck
+                                  accountInfo?.email ?? 'username@email.com',
+                                  style: AppTextStyles.kSmallText(),
+                                  maxLines: 2,
+                                  maxFontSize: 12,
+                                  minFontSize: 6,
+                                  stepGranularity: 0.5,
+                                  overflow: TextOverflow.clip,
+                                  softWrap: false,
+                                  wrapWords: false, // important!
+                                ),
+                                excludeSemantics: !includeFullSemantics,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  TextButton buildManageAccountButton(
+  Widget buildManageAccountButton(
       {required BuildContext context,
       String label = 'Manage your Google Account',
       required VoidCallback onPress}) {
-    return TextButton(
-      child: Text(
-        label,
-        style: AppTextStyles.kSmallBoldText()
-            .copyWith(color: Theme.of(context).primaryColorDark),
-        maxLines: 1,
-        overflow: TextOverflow.visible,
+    return Center(
+      child: Row(
+        children: [
+          // TODO: is this the right way to sync spacing (with photo above) ?
+          const SizedBox(width: 78),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.65,
+            child: TextButton(
+              child: AutoSizeText(
+                label,
+                style: AppTextStyles.kSmallBoldText()
+                    .copyWith(color: Theme.of(context).primaryColorDark),
+                maxLines: 1,
+                maxFontSize: 20,
+                minFontSize: 11,
+                wrapWords: true,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible,
+              ),
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                shape: StadiumBorder(
+                    side: BorderSide(color: kLightGrayColor, width: 2)),
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: kDefaultPadding, vertical: kHalfPadding * 0.9),
+              ),
+              onPressed: onPress,
+            ),
+          ),
+        ],
       ),
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shape:
-            StadiumBorder(side: BorderSide(color: kLightGrayColor, width: 2)),
-        elevation: 0,
-        padding: const EdgeInsets.symmetric(
-            horizontal: kDefaultPadding, vertical: kHalfPadding * 0.9),
-      ),
-      onPressed: onPress,
     );
   }
 

@@ -24,6 +24,8 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const Color dialIconsColor = kSecondaryColor;
+
     return SpeedDial(
       openCloseDial: openCloseState,
       icon: icon, // animatedIcon: AnimatedIcons.menu_close,
@@ -31,7 +33,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
         color: kDarkColor,
         size: kMediumIconSize,
       ),
-      buttonSize: kHugeIconSize * 1.7,
+      buttonSize: kHugeIconSize * 1.6,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
 
@@ -53,21 +55,22 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
 
       children: [
         SpeedDialChild(
-          child: const Icon(Icons.send_rounded),
+          child: const Icon(Icons.send_rounded, color: dialIconsColor),
           label: 'Send',
           elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
         ),
         SpeedDialChild(
-          child: const Icon(Icons.arrow_circle_down_rounded),
+          child: const Icon(Icons.arrow_circle_down_rounded,
+              color: dialIconsColor),
           label: 'Receive',
           elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
         ),
         SpeedDialChild(
-          child: const Icon(Icons.qr_code_rounded),
+          child: const Icon(Icons.qr_code_rounded, color: dialIconsColor),
           label: 'QR code',
           elevation: _floatingElevation,
           onTap: () async => await ImagePicker().pickImage(
@@ -75,7 +78,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
           ),
         ),
         SpeedDialChild(
-          child: const Icon(Icons.vpn_key_outlined),
+          child: const Icon(Icons.vpn_key_outlined, color: dialIconsColor),
           label: 'PIX',
           elevation: _floatingElevation,
           onTap: () =>
