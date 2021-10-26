@@ -34,6 +34,7 @@ dependencies:
   app_settings: ^4.1.1
   auto_size_text: ^3.0.0-nullsafety.0
   cupertino_icons: ^1.0.3
+  intl: ^0.17.0
   flutter_speed_dial: ^4.5.0
   flutter_svg: ^0.23.0
   font_awesome_flutter: ^9.1.0
@@ -43,6 +44,7 @@ dependencies:
   # scrollable_positioned_list: ^0.2.0-nullsafety.0
   sliding_sheet: ^0.5.2
   url_launcher: ^6.0.0
+
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +56,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  generate: true
   uses-material-design: true
+
+#l10n and i18n
+flutter_intl:
+  enabled: true
+  main_locale: en_US
 
   # To add assets to your application, add an assets section, like this:
   assets:
@@ -67,6 +75,7 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
+
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
