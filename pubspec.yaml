@@ -44,6 +44,9 @@ dependencies:
   # scrollable_positioned_list: ^0.2.0-nullsafety.0
   sliding_sheet: ^0.5.2
   url_launcher: ^6.0.0
+  flutter_localizations:
+    sdk: flutter
+
 
 
 dev_dependencies:

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import 'l10n.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,16 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Banking Pay',
           debugShowCheckedModeBanner: false,
-          supportedLocales: L10n.all,
+          localizationsDelegates: const [
+            // 1
+            S.delegate,
+            // 2
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          //
           // themeMode: ThemeMode.system,
           themeMode: Provider.of<ThemeProvider>(context).themeMode,
           theme: AppThemes.lightThemeData,
