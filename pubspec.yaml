@@ -47,8 +47,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,11 +60,6 @@ flutter:
   generate: true
   uses-material-design: true
 
-#l10n and i18n
-flutter_intl:
-  enabled: true
-  main_locale: en_US
-
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/
@@ -79,6 +72,10 @@ flutter_intl:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
+#l10n and i18n
+flutter_intl:
+  enabled: true
+  main_locale: en_US
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
