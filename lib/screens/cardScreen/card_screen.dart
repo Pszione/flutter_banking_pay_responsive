@@ -5,6 +5,7 @@ import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_she
 import 'package:flutter_banking_pay_responsive/components/card_add_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_overview_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
@@ -18,13 +19,13 @@ class CardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarComplete(
-        title: 'My Cards',
+      appBar: AppBarComplete(
+        title: S.of(context).homeScreen_second_tabBarTitle,
         hasNotificationsButton: true,
         hasDarkThemeToggle: true,
       ),
       floatingActionButton: AppFloatingButtonIconAndText(
-        label: 'Add Card',
+        label: S.of(context).cardScreen_fab_title,
         tooltip: 'Add Card',
         icon: Icons.add,
         onPressed: () => CardAddSlidingSheet().showOptionsSlidingSheet(context),

@@ -1,3 +1,11 @@
 {
-  "@@locale": "pt_BR"
+  "@@locale": "pt_BR",
+  "homeScreen_first_tabBarTitle": "Meu Banco",
+  "homeScreen_second_tabBarTitle": "Cartões",
+  "homeScreen_third_tabBarTitle": "Histórico",
+  "homeScreen_fab_title": "Transferências",
+  "navigationBar_first_title": "Pagar",
+  "navigationBar_second_title": "Cartões",
+  "navigationBar_third_title": "Recentes",
+  "cardScreen_fab_title": "Adicionar"
 }

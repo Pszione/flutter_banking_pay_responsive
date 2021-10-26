@@ -1,3 +1,11 @@
 {
-  "@@locale": "en_US"
+  "@@locale": "en_US",
+  "homeScreen_first_tabBarTitle": "My Bank",
+  "homeScreen_second_tabBarTitle": "My cards",
+  "homeScreen_third_tabBarTitle": "Activity Insights",
+  "homeScreen_fab_title": "Transactions",
+  "navigationBar_first_title": "Pay",
+  "navigationBar_second_title": "Cards",
+  "navigationBar_third_title": "Insights",
+  "cardScreen_fab_title": "Add Card"
 }

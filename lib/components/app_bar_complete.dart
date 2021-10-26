@@ -190,8 +190,13 @@ class _AppBarCompleteState extends State<AppBarComplete> {
   Widget? showTitleOrNull(BuildContext context) {
     return ExcludeSemantics(
       child: widget.title != null
-          ? Text(
+          ? AutoSizeText(
               '${widget.title}',
+              wrapWords: false,
+              maxFontSize: 20,
+              stepGranularity: 0.5,
+              // TODO: not auto sizing
+              overflow: TextOverflow.clip,
               style: AppTextStyles.getBodyText(context),
             )
           : null,

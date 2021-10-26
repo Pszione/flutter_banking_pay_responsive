@@ -18,12 +18,12 @@ class CardOverviewSlidingSheet extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 450,
+            height: 670,
             color: CardModel.getCardColorNullSafety(card: card, opacity: 0.85),
           ),
           Container(
             width: double.infinity,
-            height: 430,
+            height: 650,
             margin: const EdgeInsets.only(
                 left: kDefaultPadding,
                 right: kDefaultPadding,

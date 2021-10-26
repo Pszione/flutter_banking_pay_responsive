@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_speed_dial.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
 
@@ -32,15 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
         return false;
       },
       child: Scaffold(
-        appBar: const AppBarComplete(
-          title: 'My Bank',
+        appBar: AppBarComplete(
+          title: S.of(context).homeScreen_first_tabBarTitle,
           hasSearchField: true,
           hasDarkThemeToggle: true,
         ),
         // Cards
         floatingActionButton: _isFloatingButtonVisible
             ? AppFloatingButtonSpeedDial(
-                label: 'Transactions',
+                label: S.of(context).homeScreen_fab_title,
                 icon: Icons.read_more_rounded,
                 tooltip: 'Transaction Options',
                 openCloseState: openCloseState,

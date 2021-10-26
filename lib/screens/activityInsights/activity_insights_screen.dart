@@ -4,6 +4,7 @@ import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart'
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:provider/provider.dart';
 
@@ -37,8 +38,8 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     dbProvider.markNotificationsAsRead();
 
     return Scaffold(
-      appBar: const AppBarComplete(
-        title: 'Activity Insights',
+      appBar: AppBarComplete(
+        title: S.of(context).homeScreen_third_tabBarTitle,
         hasNotificationsButton: false,
       ),
       floatingActionButton: _isFloatingButtonVisible

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
@@ -83,19 +84,19 @@ class _SetupScreenState extends State<SetupScreen> {
         selectedIndex: _selectedIndex,
         onDestinationSelected: (int index) => changeSelectedMenu(index),
         animationDuration: const Duration(seconds: 1, milliseconds: 700),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(FontAwesomeIcons.dollarSign),
-            label: 'Pay',
+            icon: const Icon(FontAwesomeIcons.dollarSign),
+            label: S.of(context).navigationBar_first_title,
           ),
           NavigationDestination(
-            icon: Icon(FontAwesomeIcons.solidCreditCard),
-            label: 'Cards',
-            selectedIcon: Icon(FontAwesomeIcons.creditCard),
+            icon: const Icon(FontAwesomeIcons.solidCreditCard),
+            label: S.of(context).navigationBar_second_title,
+            selectedIcon: const Icon(FontAwesomeIcons.creditCard),
           ),
           NavigationDestination(
-            icon: Icon(FontAwesomeIcons.chartLine),
-            label: 'Insights',
+            icon: const Icon(FontAwesomeIcons.chartLine),
+            label: S.of(context).navigationBar_third_title,
           ),
         ],
       ),

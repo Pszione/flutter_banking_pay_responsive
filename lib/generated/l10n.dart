@@ -49,6 +49,86 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `My Bank`
+  String get homeScreen_first_tabBarTitle {
+    return Intl.message(
+      'My Bank',
+      name: 'homeScreen_first_tabBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My cards`
+  String get homeScreen_second_tabBarTitle {
+    return Intl.message(
+      'My cards',
+      name: 'homeScreen_second_tabBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activity Insights`
+  String get homeScreen_third_tabBarTitle {
+    return Intl.message(
+      'Activity Insights',
+      name: 'homeScreen_third_tabBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transactions`
+  String get homeScreen_fab_title {
+    return Intl.message(
+      'Transactions',
+      name: 'homeScreen_fab_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay`
+  String get navigationBar_first_title {
+    return Intl.message(
+      'Pay',
+      name: 'navigationBar_first_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cards`
+  String get navigationBar_second_title {
+    return Intl.message(
+      'Cards',
+      name: 'navigationBar_second_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insights`
+  String get navigationBar_third_title {
+    return Intl.message(
+      'Insights',
+      name: 'navigationBar_third_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Card`
+  String get cardScreen_fab_title {
+    return Intl.message(
+      'Add Card',
+      name: 'cardScreen_fab_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

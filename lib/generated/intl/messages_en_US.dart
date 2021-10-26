@@ -20,5 +20,22 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en_US';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "cardScreen_fab_title":
+            MessageLookupByLibrary.simpleMessage("Add Card"),
+        "homeScreen_fab_title":
+            MessageLookupByLibrary.simpleMessage("Transactions"),
+        "homeScreen_first_tabBarTitle":
+            MessageLookupByLibrary.simpleMessage("My Bank"),
+        "homeScreen_second_tabBarTitle":
+            MessageLookupByLibrary.simpleMessage("My cards"),
+        "homeScreen_third_tabBarTitle":
+            MessageLookupByLibrary.simpleMessage("Activity Insights"),
+        "navigationBar_first_title":
+            MessageLookupByLibrary.simpleMessage("Pay"),
+        "navigationBar_second_title":
+            MessageLookupByLibrary.simpleMessage("Cards"),
+        "navigationBar_third_title":
+            MessageLookupByLibrary.simpleMessage("Insights")
+      };
 }
