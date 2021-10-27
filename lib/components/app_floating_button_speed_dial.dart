@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -28,15 +29,15 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
 
     return SpeedDial(
       openCloseDial: openCloseState,
+      foregroundColor: Theme.of(context).primaryColorDark,
       icon: icon, // animatedIcon: AnimatedIcons.menu_close,
-      iconTheme: const IconThemeData(
-        color: kDarkColor,
+      iconTheme: IconThemeData(
+        color: Theme.of(context).primaryColorDark,
         size: kMediumIconSize,
       ),
       buttonSize: kHugeIconSize * 1.6,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
-
       label: label != null
           ? AutoSizeText(
               label!,
@@ -52,11 +53,10 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
       elevation: _floatingElevation,
       animationSpeed: 400,
       spacing: 15, // initial child
-
       children: [
         SpeedDialChild(
           child: const Icon(Icons.send_rounded, color: dialIconsColor),
-          label: 'Send',
+          label: S.of(context).homeScreen_first_fab_optionsDescription,
           elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
@@ -64,14 +64,14 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
         SpeedDialChild(
           child: const Icon(Icons.arrow_circle_down_rounded,
               color: dialIconsColor),
-          label: 'Receive',
+          label: S.of(context).homeScreen_second_fab_optionsDescription,
           elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
         ),
         SpeedDialChild(
           child: const Icon(Icons.qr_code_rounded, color: dialIconsColor),
-          label: 'QR code',
+          label: S.of(context).homeScreen_third_fab_optionsDescription,
           elevation: _floatingElevation,
           onTap: () async => await ImagePicker().pickImage(
             source: ImageSource.camera,
@@ -79,7 +79,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
         ),
         SpeedDialChild(
           child: const Icon(Icons.vpn_key_outlined, color: dialIconsColor),
-          label: 'PIX',
+          label: S.of(context).homeScreen_fourth_fab_optionsDescription,
           elevation: _floatingElevation,
           onTap: () =>
               AppSnackBarErrors.showSnackBarFeatureUnavailable(context),

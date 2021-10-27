@@ -90,6 +90,56 @@ class S {
     );
   }
 
+  /// `Transaction options like, send money, read QR code, PIX and more`
+  String get homeScreen_TOOLTIP_fab_options {
+    return Intl.message(
+      'Transaction options like, send money, read QR code, PIX and more',
+      name: 'homeScreen_TOOLTIP_fab_options',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get homeScreen_first_fab_optionsDescription {
+    return Intl.message(
+      'Send',
+      name: 'homeScreen_first_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive`
+  String get homeScreen_second_fab_optionsDescription {
+    return Intl.message(
+      'Receive',
+      name: 'homeScreen_second_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR code`
+  String get homeScreen_third_fab_optionsDescription {
+    return Intl.message(
+      'QR code',
+      name: 'homeScreen_third_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PIX`
+  String get homeScreen_fourth_fab_optionsDescription {
+    return Intl.message(
+      'PIX',
+      name: 'homeScreen_fourth_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Transactions`
   String get homeScreen_transactions_categoryTitle {
     return Intl.message(
@@ -220,6 +270,56 @@ class S {
     );
   }
 
+  /// `Add credit or debit cards, Gift cards, Transit and more`
+  String get cardScreen_TOOLTIP_fab_options {
+    return Intl.message(
+      'Add credit or debit cards, Gift cards, Transit and more',
+      name: 'cardScreen_TOOLTIP_fab_options',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit or credit card`
+  String get cardScreen_first_fab_optionsDescription {
+    return Intl.message(
+      'Debit or credit card',
+      name: 'cardScreen_first_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gift card`
+  String get cardScreen_second_fab_optionsDescription {
+    return Intl.message(
+      'Gift card',
+      name: 'cardScreen_second_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loyalty`
+  String get cardScreen_third_fab_optionsDescription {
+    return Intl.message(
+      'Loyalty',
+      name: 'cardScreen_third_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transit`
+  String get cardScreen_fourth_fab_optionsDescription {
+    return Intl.message(
+      'Transit',
+      name: 'cardScreen_fourth_fab_optionsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Card`
   String get cardWidget_singularCard_title {
     return Intl.message(
@@ -325,6 +425,96 @@ class S {
     return Intl.message(
       '',
       name: '__2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jump down!`
+  String get activityScreen_TOOLTIP_fabDownward_description {
+    return Intl.message(
+      'Jump down!',
+      name: 'activityScreen_TOOLTIP_fabDownward_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jump up!`
+  String get activityScreen_TOOLTIP_fabUpward_description {
+    return Intl.message(
+      'Jump up!',
+      name: 'activityScreen_TOOLTIP_fabUpward_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get __3 {
+    return Intl.message(
+      '',
+      name: '__3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a card`
+  String get scanCardScreen_tabBarTitle {
+    return Intl.message(
+      'Add a card',
+      name: 'scanCardScreen_tabBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Line it up with the frame\nso we can read the details`
+  String get scanCardScreen_tabBarDescription {
+    return Intl.message(
+      'Line it up with the frame\nso we can read the details',
+      name: 'scanCardScreen_tabBarDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to scan`
+  String get scanCardScreen_clickToScan_title {
+    return Intl.message(
+      'Click to scan',
+      name: 'scanCardScreen_clickToScan_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get scanCardScreen_or_text {
+    return Intl.message(
+      'or',
+      name: 'scanCardScreen_or_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter card details manually`
+  String get scanCardScreen_enterCardManually_title {
+    return Intl.message(
+      'Enter card details manually',
+      name: 'scanCardScreen_enterCardManually_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure cardholder name and other info\nis exactly as it appears on card`
+  String get scanCardScreen_makeSureCardHolderNameAnd_bottomNote {
+    return Intl.message(
+      'Make sure cardholder name and other info\nis exactly as it appears on card',
+      name: 'scanCardScreen_makeSureCardHolderNameAnd_bottomNote',
       desc: '',
       args: [],
     );

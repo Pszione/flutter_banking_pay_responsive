@@ -78,7 +78,7 @@ class _SetupScreenState extends State<SetupScreen> {
             }
           },
         ),
-        indicatorColor: kSecondaryColor.withOpacity(0.8),
+        indicatorColor: kSecondaryColor,
       ),
       child: NavigationBar(
         selectedIndex: _selectedIndex,

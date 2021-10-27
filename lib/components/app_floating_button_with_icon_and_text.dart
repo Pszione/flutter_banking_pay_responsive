@@ -26,7 +26,7 @@ class AppFloatingButtonIconAndText extends StatelessWidget {
       isExtended: label != null,
       label: Text(
         label ?? '',
-        style: AppTextStyles.kFloatingButtonText().copyWith(fontSize: null),
+        style: AppTextStyles.kFloatingButtonText(),
         maxLines: 1,
       ),
     );

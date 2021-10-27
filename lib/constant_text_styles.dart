@@ -11,8 +11,8 @@ class AppTextStyles {
 
   static TextStyle kFloatingButtonText() => const TextStyle(
         fontSize: 15,
-        fontWeight: FontWeight.w600,
-        letterSpacing: 0.3,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 0.5,
       );
 
   //

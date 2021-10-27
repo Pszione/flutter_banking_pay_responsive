@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../constant_text_styles.dart';
@@ -40,13 +41,13 @@ class _ScanCardScreenState extends State<ScanCardScreen> {
                     Text('Google', style: AppTextStyles.getBodyText(context)),
                     const SizedBox(height: kDefaultPadding),
                     Text(
-                      'Add a card',
+                      S.of(context).scanCardScreen_tabBarTitle,
                       style: AppTextStyles.kMenuTitle(context),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: kSmallPadding),
-                    const Text(
-                      'Line it up with the frame\nso we can read the card details',
+                    Text(
+                      S.of(context).scanCardScreen_tabBarDescription,
                       textAlign: TextAlign.center,
                     ),
                     const Spacer(),
@@ -54,29 +55,31 @@ class _ScanCardScreenState extends State<ScanCardScreen> {
                       width: 280,
                       height: 150,
                       backgroundColor: Theme.of(context).primaryColor,
-                      label: 'Click to scan',
+                      label: S.of(context).scanCardScreen_clickToScan_title,
                       onPress: () async => await ImagePicker().pickVideo(
                         source: ImageSource.camera,
                         maxDuration: const Duration(seconds: 1),
                       ),
                     ),
                     const SizedBox(height: kDefaultPadding),
-                    const Text('or'),
+                    Text(S.of(context).scanCardScreen_or_text),
                     TextButton(
                         onPressed: () =>
                             AppSnackBarErrors.showSnackBarFeatureUnavailable(
                                 context),
-                        child: const AutoSizeText(
-                          'Enter card details manually',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          maxFontSize: 13,
+                        child: AutoSizeText(
+                          S.of(context).scanCardScreen_enterCardManually_title,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          maxFontSize: 14,
                         )),
                     const Spacer(flex: 4),
-                    const AutoSizeText(
-                      'Make sure cardholder name and other info\nis exactly as it appears on card',
+                    AutoSizeText(
+                      S
+                          .of(context)
+                          .scanCardScreen_makeSureCardHolderNameAnd_bottomNote,
                       textAlign: TextAlign.center,
-                      maxFontSize: 10,
-                      minFontSize: 8,
+                      maxFontSize: 13,
+                      minFontSize: 10,
                       maxLines: 3,
                     ),
                   ],

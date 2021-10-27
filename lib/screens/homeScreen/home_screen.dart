@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_speed_dial.dart';
-import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
@@ -43,13 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ? AppFloatingButtonSpeedDial(
                 label: S.of(context).homeScreen_fab_title,
                 icon: Icons.read_more_rounded,
-                tooltip: 'Transaction Options',
+                tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
                 openCloseState: openCloseState,
               )
             : AppFloatingButtonSpeedDial(
                 label: null,
                 icon: Icons.read_more_rounded,
-                tooltip: 'Transaction Options',
+                tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
                 openCloseState: openCloseState,
               ),
         // floatingActionButton: _isFloatingButtonVisible

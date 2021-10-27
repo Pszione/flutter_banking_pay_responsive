@@ -46,14 +46,16 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
           ? AppFloatingButtonIconAndText(
               icon: Icons.arrow_downward_rounded,
               label: null,
-              tooltip: 'Jump, Jump',
+              tooltip:
+                  S.of(context).activityScreen_TOOLTIP_fabDownward_description,
               // TODO
               onPressed: () {},
             )
           : AppFloatingButtonIconAndText(
               icon: Icons.arrow_upward_rounded,
               label: null,
-              tooltip: 'Up, up',
+              tooltip:
+                  S.of(context).activityScreen_TOOLTIP_fabUpward_description,
               // TODO
               onPressed: () {},
             ),

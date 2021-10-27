@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_screen.dart';
 
 import '../constant_text_styles.dart';
@@ -22,13 +23,25 @@ class CardAddSlidingSheet {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: kDefaultPadding),
-              buildListButton(context, 'Debit or credit card',
-                  Icons.credit_card_outlined, () => openScanScreen(context)),
-              buildListButton(context, 'Gift card', Icons.style,
+              buildListButton(
+                  context,
+                  S.of(context).cardScreen_first_fab_optionsDescription,
+                  Icons.credit_card_outlined,
                   () => openScanScreen(context)),
-              buildListButton(context, 'Loyalty', Icons.stars_rounded,
+              buildListButton(
+                  context,
+                  S.of(context).cardScreen_second_fab_optionsDescription,
+                  Icons.style,
                   () => openScanScreen(context)),
-              buildListButton(context, 'Transit', Icons.directions_bus_rounded,
+              buildListButton(
+                  context,
+                  S.of(context).cardScreen_third_fab_optionsDescription,
+                  Icons.stars_rounded,
+                  () => openScanScreen(context)),
+              buildListButton(
+                  context,
+                  S.of(context).cardScreen_fourth_fab_optionsDescription,
+                  Icons.directions_bus_rounded,
                   () => openScanScreen(context)),
             ],
           ),

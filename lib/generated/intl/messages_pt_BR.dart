@@ -24,8 +24,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "__0": MessageLookupByLibrary.simpleMessage(""),
         "__1": MessageLookupByLibrary.simpleMessage(""),
         "__2": MessageLookupByLibrary.simpleMessage(""),
+        "__3": MessageLookupByLibrary.simpleMessage(""),
+        "activityScreen_TOOLTIP_fabDownward_description":
+            MessageLookupByLibrary.simpleMessage("Descer!"),
+        "activityScreen_TOOLTIP_fabUpward_description":
+            MessageLookupByLibrary.simpleMessage("Subir!"),
+        "cardScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
+            "Adicionar cartão de crédito ou débito, vale presentes e mais"),
         "cardScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Adicionar"),
+        "cardScreen_first_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Cartão crédito ou débito"),
+        "cardScreen_fourth_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Vale transportes"),
+        "cardScreen_second_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Vale presentes"),
+        "cardScreen_third_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Vale fidelidades"),
         "cardWidgetOutlined_addPaymentMethod_title":
             MessageLookupByLibrary.simpleMessage(
                 "Adicionar método de pagamento"),
@@ -47,22 +62,32 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("VALIDADE"),
         "cardWidget_singularCard_title":
             MessageLookupByLibrary.simpleMessage("Cartão"),
+        "homeScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
+            "Transferências como, enviar dinheiro, ler QR code, PIX e mais"),
         "homeScreen_billsResume_categoryTitle":
             MessageLookupByLibrary.simpleMessage("Resumo Faturas"),
         "homeScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Transferências"),
+        "homeScreen_first_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Enviar"),
         "homeScreen_first_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Meu Banco"),
+        "homeScreen_fourth_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("PIX"),
         "homeScreen_more_categoryTitle":
             MessageLookupByLibrary.simpleMessage("mais"),
         "homeScreen_recentTransactions_pageSubtitle":
             MessageLookupByLibrary.simpleMessage("Transferências Recentes"),
         "homeScreen_salesStore_categoryTitle":
             MessageLookupByLibrary.simpleMessage("Loja e Ofertas"),
+        "homeScreen_second_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Receber"),
         "homeScreen_second_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Cartões"),
         "homeScreen_supportChat_categoryTitle":
             MessageLookupByLibrary.simpleMessage("Suporte e Ajuda"),
+        "homeScreen_third_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("QR code"),
         "homeScreen_third_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Recentes"),
         "homeScreen_transactions_categoryTitle":
@@ -74,6 +99,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "navigationBar_second_title":
             MessageLookupByLibrary.simpleMessage("Cartões"),
         "navigationBar_third_title":
-            MessageLookupByLibrary.simpleMessage("Recentes")
+            MessageLookupByLibrary.simpleMessage("Recentes"),
+        "scanCardScreen_clickToScan_title":
+            MessageLookupByLibrary.simpleMessage("Clique para escanear"),
+        "scanCardScreen_enterCardManually_title":
+            MessageLookupByLibrary.simpleMessage("Informar dados manualmente"),
+        "scanCardScreen_makeSureCardHolderNameAnd_bottomNote":
+            MessageLookupByLibrary.simpleMessage(
+                "Tenha certeza que o nome do titular\nseja igualzinho aparece no cartão"),
+        "scanCardScreen_or_text": MessageLookupByLibrary.simpleMessage("ou"),
+        "scanCardScreen_tabBarDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "Alinhe-o certinho para conseguirmos ler\nos detalhes"),
+        "scanCardScreen_tabBarTitle":
+            MessageLookupByLibrary.simpleMessage("Adicionar um cartão")
       };
 }

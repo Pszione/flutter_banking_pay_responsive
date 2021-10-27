@@ -6,11 +6,9 @@ import 'package:flutter_banking_pay_responsive/components/card_add_sliding_sheet
 import 'package:flutter_banking_pay_responsive/components/card_overview_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 
-import '../../constant_text_styles.dart';
 import '../../constants.dart';
 
 class CardScreen extends StatelessWidget {
@@ -26,7 +24,7 @@ class CardScreen extends StatelessWidget {
       ),
       floatingActionButton: AppFloatingButtonIconAndText(
         label: S.of(context).cardScreen_fab_title,
-        tooltip: 'Add Card',
+        tooltip: S.of(context).cardScreen_TOOLTIP_fab_options,
         icon: Icons.add,
         onPressed: () => CardAddSlidingSheet().showOptionsSlidingSheet(context),
         // onPressed: () => const AppAlertDialog(
@@ -76,35 +74,6 @@ class CardScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  IconButton buildAddCardButton(BuildContext context) {
-    return IconButton(
-      iconSize: 170,
-      onPressed: () {
-        //AppScaffoldBannerErrors.showBannerUnavailable(context);
-        AppSnackBarErrors.showSnackBarFeatureUnavailable(context);
-      },
-      icon: Column(
-        children: [
-          const SizedBox(height: kHalfPadding),
-          CircleAvatar(
-            radius: kMediumIconSize,
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            child: Icon(
-              Icons.add,
-              size: kHugeIconSize * 1.2,
-              color: Theme.of(context).primaryColorDark,
-            ),
-          ),
-          const SizedBox(height: kHalfPadding),
-          Text(
-            'Add Card'.toUpperCase(),
-            style: AppTextStyles.kListTileTitle,
-          ),
-        ],
       ),
     );
   }

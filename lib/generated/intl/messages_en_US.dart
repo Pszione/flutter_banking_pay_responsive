@@ -24,8 +24,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "__0": MessageLookupByLibrary.simpleMessage(""),
         "__1": MessageLookupByLibrary.simpleMessage(""),
         "__2": MessageLookupByLibrary.simpleMessage(""),
+        "__3": MessageLookupByLibrary.simpleMessage(""),
+        "activityScreen_TOOLTIP_fabDownward_description":
+            MessageLookupByLibrary.simpleMessage("Jump down!"),
+        "activityScreen_TOOLTIP_fabUpward_description":
+            MessageLookupByLibrary.simpleMessage("Jump up!"),
+        "cardScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
+            "Add credit or debit cards, Gift cards, Transit and more"),
         "cardScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Add Card"),
+        "cardScreen_first_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Debit or credit card"),
+        "cardScreen_fourth_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Transit"),
+        "cardScreen_second_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Gift card"),
+        "cardScreen_third_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Loyalty"),
         "cardWidgetOutlined_addPaymentMethod_title":
             MessageLookupByLibrary.simpleMessage("Add payment method"),
         "cardWidget_TOOLTIP_cardOnTapHint":
@@ -46,22 +61,32 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("EXP DATE"),
         "cardWidget_singularCard_title":
             MessageLookupByLibrary.simpleMessage("Card"),
+        "homeScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
+            "Transaction options like, send money, read QR code, PIX and more"),
         "homeScreen_billsResume_categoryTitle":
             MessageLookupByLibrary.simpleMessage("Bills Resume"),
         "homeScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Transactions"),
+        "homeScreen_first_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Send"),
         "homeScreen_first_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("My Bank"),
+        "homeScreen_fourth_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("PIX"),
         "homeScreen_more_categoryTitle":
             MessageLookupByLibrary.simpleMessage("more"),
         "homeScreen_recentTransactions_pageSubtitle":
             MessageLookupByLibrary.simpleMessage("Recent Transactions"),
         "homeScreen_salesStore_categoryTitle":
             MessageLookupByLibrary.simpleMessage("Sales Store"),
+        "homeScreen_second_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("Receive"),
         "homeScreen_second_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("My cards"),
         "homeScreen_supportChat_categoryTitle":
             MessageLookupByLibrary.simpleMessage("Support Chat"),
+        "homeScreen_third_fab_optionsDescription":
+            MessageLookupByLibrary.simpleMessage("QR code"),
         "homeScreen_third_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Activity Insights"),
         "homeScreen_transactions_categoryTitle":
@@ -73,6 +98,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "navigationBar_second_title":
             MessageLookupByLibrary.simpleMessage("Cards"),
         "navigationBar_third_title":
-            MessageLookupByLibrary.simpleMessage("Insights")
+            MessageLookupByLibrary.simpleMessage("Insights"),
+        "scanCardScreen_clickToScan_title":
+            MessageLookupByLibrary.simpleMessage("Click to scan"),
+        "scanCardScreen_enterCardManually_title":
+            MessageLookupByLibrary.simpleMessage("Enter card details manually"),
+        "scanCardScreen_makeSureCardHolderNameAnd_bottomNote":
+            MessageLookupByLibrary.simpleMessage(
+                "Make sure cardholder name and other info\nis exactly as it appears on card"),
+        "scanCardScreen_or_text": MessageLookupByLibrary.simpleMessage("or"),
+        "scanCardScreen_tabBarDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "Line it up with the frame\nso we can read the details"),
+        "scanCardScreen_tabBarTitle":
+            MessageLookupByLibrary.simpleMessage("Add a card")
       };
 }
