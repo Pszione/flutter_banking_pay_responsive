@@ -70,6 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
         body: NotificationListener<UserScrollNotification>(
           onNotification: (notification) {
+            // Get screen page scroll and block children widget listviews scroll notifications
+            if (notification.metrics.axis != Axis.vertical) {
+              return true;
+            }
             if (notification.direction == ScrollDirection.forward) {
               if (!_isFloatingButtonVisible)
                 setState(() => _isFloatingButtonVisible = true);
@@ -80,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return true;
           },
           child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             physics: const ClampingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(kDefaultPadding),
