@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/components/example_card_with_buttons.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 
@@ -17,9 +17,12 @@ class RecentTransactionsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Recent Transactions',
-          style: AppTextStyles.kMenuTitle(context),
+        Semantics(
+          child: Text(
+            S.of(context).homeScreen_recentTransactions_pageSubtitle,
+            style: AppTextStyles.kMenuTitle(context),
+          ),
+          header: true,
         ),
         const SizedBox(height: kHalfPadding),
         ListView.builder(

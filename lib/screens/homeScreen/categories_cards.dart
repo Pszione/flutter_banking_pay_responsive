@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -36,7 +37,7 @@ class CategoriesSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CategoryCard(
-            label: 'Transactions',
+            label: S.of(context).homeScreen_transactions_categoryTitle,
             icon: Icons.read_more_rounded,
             size: kMediumIconSize * 1.25,
             onPress: () =>
@@ -44,14 +45,14 @@ class CategoriesSection extends StatelessWidget {
           ),
           spacing,
           CategoryCard(
-            label: 'Bills Resume',
+            label: S.of(context).homeScreen_billsResume_categoryTitle,
             icon: FontAwesomeIcons.fileInvoice,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           spacing,
           CategoryCard(
-            label: 'Sales Store',
+            label: S.of(context).homeScreen_salesStore_categoryTitle,
             icon: FontAwesomeIcons.shoppingBag,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
@@ -59,14 +60,14 @@ class CategoriesSection extends StatelessWidget {
 
           spacing,
           CategoryCard(
-            label: 'Support Chat',
+            label: S.of(context).homeScreen_supportChat_categoryTitle,
             icon: FontAwesomeIcons.solidCommentDots,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           spacing,
           CategoryCard(
-            label: 'more',
+            label: S.of(context).homeScreen_more_categoryTitle,
             icon: Icons.more_horiz,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
@@ -110,7 +111,7 @@ class CategoryCard extends StatelessWidget {
       radius: kInkWellMediumRadius,
       onTap: onPress,
       child: SizedBox(
-        width: 60,
+        width: 61,
         child: Column(
           children: [
             Padding(
@@ -134,18 +135,21 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5),
-            AutoSizeText(
-              label,
-              maxLines: 2, // for phones with increased font size
-              maxFontSize: 12,
-              minFontSize: 10,
-              stepGranularity: 0.5,
-              wrapWords: false,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.visible,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  height: kTextMediumHeightSpacing * 0.8),
+            Semantics(
+              child: AutoSizeText(
+                label,
+                maxLines: 2, // for phones with increased font size
+                maxFontSize: 12,
+                minFontSize: 10,
+                stepGranularity: 0.2,
+                // wrapWords: false,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.visible,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    height: kTextMediumHeightSpacing * 0.8),
+              ),
+              button: true,
             )
           ],
         ),

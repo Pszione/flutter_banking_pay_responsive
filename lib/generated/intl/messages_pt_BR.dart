@@ -26,10 +26,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "__2": MessageLookupByLibrary.simpleMessage(""),
         "cardScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Adicionar"),
+        "cardWidgetOutlined_addPaymentMethod_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Adicionar método de pagamento"),
         "cardWidget_TOOLTIP_cardOnTapHint":
             MessageLookupByLibrary.simpleMessage("mais opções do cartão"),
         "cardWidget_TOOLTIP_cvvNumber_hint":
             MessageLookupByLibrary.simpleMessage("Secreto"),
+        "cardWidget_cardName_title":
+            MessageLookupByLibrary.simpleMessage("NOME TITULAR"),
         "cardWidget_cvvNumber_description":
             MessageLookupByLibrary.simpleMessage("CÓDIGO CVV"),
         "cardWidget_cvvNumber_title":

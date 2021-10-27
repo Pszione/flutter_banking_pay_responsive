@@ -26,10 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "__2": MessageLookupByLibrary.simpleMessage(""),
         "cardScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Add Card"),
+        "cardWidgetOutlined_addPaymentMethod_title":
+            MessageLookupByLibrary.simpleMessage("Add payment method"),
         "cardWidget_TOOLTIP_cardOnTapHint":
             MessageLookupByLibrary.simpleMessage("more card options"),
         "cardWidget_TOOLTIP_cvvNumber_hint":
             MessageLookupByLibrary.simpleMessage("Secret"),
+        "cardWidget_cardName_title":
+            MessageLookupByLibrary.simpleMessage("CARD NAME"),
         "cardWidget_cvvNumber_description":
             MessageLookupByLibrary.simpleMessage("CVV NUMBER"),
         "cardWidget_cvvNumber_title":

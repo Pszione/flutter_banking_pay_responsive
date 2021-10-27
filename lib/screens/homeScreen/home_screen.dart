@@ -98,6 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: <Widget>[
                     Semantics(
                       child: const UserCardsSection(),
+                      label:
+                          S.of(context).homeScreen_userCardSection_pageSubtitle,
+                      slider: true,
                     ),
                     const SizedBox(height: kDefaultPadding),
                     Semantics(child: const CategoriesSection()),

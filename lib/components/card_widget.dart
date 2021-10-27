@@ -31,6 +31,8 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
   @override
   late GestureTapCallback onPress;
 
+  static const EdgeInsets _borderPadding = EdgeInsets.all(kDefaultPadding);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -40,7 +42,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
           label: S.of(context).cardWidget_singularCard_title,
           onTapHint: S.of(context).cardWidget_TOOLTIP_cardOnTapHint,
           child: Container(
-            padding: const EdgeInsets.all(kDefaultPadding),
+            padding: _borderPadding,
             width: width,
             height: height,
             decoration: BoxDecoration(
@@ -62,7 +64,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                       children: [
                         ExcludeSemantics(
                           child: Text(
-                            "CARD NAME",
+                            S.of(context).cardWidget_cardName_title,
                             style: AppTextStyles.kCardTitle,
                           ),
                         ),
@@ -257,18 +259,17 @@ class CardOutlineWidget extends StatelessWidget {
                     size: kHugeIconSize * 1.2,
                   ),
                   if (label != null)
-                    SizedBox(
-                      height:
-                          AppTextStyles.getBodyText(context).fontSize! * 1.7,
-                      child: AnimatedTextKit(
-                        repeatForever: true,
-                        animatedTexts: [
-                          TyperAnimatedText(label!,
-                              speed: const Duration(milliseconds: 45),
-                              textStyle: AppTextStyles.getBodyText(context)
-                                  .copyWith(color: color, fontSize: 17)),
-                        ],
-                      ),
+                    AnimatedTextKit(
+                      repeatForever: true,
+                      animatedTexts: [
+                        TyperAnimatedText(
+                          label!,
+                          textAlign: TextAlign.center,
+                          speed: const Duration(milliseconds: 45),
+                          textStyle: AppTextStyles.getBodyText(context)
+                              .copyWith(color: color, fontSize: 17),
+                        ),
+                      ],
                     ),
                   // Text('Add payment method',
                   //     style: AppTextStyles.getBodyText(context)

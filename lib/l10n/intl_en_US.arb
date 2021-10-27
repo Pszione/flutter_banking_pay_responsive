@@ -19,11 +19,13 @@
   "cardScreen_fab_title": "Add Card",
   "cardWidget_singularCard_title": "Card",
   "cardWidget_TOOLTIP_cardOnTapHint": "more card options",
+  "cardWidget_cardName_title": "CARD NAME",
   "cardWidget_expDate_title": "EXP DATE",
   "cardWidget_expDate_description": "Card Expiration date",
   "cardWidget_expDateExpired_title": "EXPIRED",
   "cardWidget_cvvNumber_title": "CVV NUMBER",
   "cardWidget_cvvNumber_description": "CVV NUMBER",
   "cardWidget_TOOLTIP_cvvNumber_hint": "Secret",
+  "cardWidgetOutlined_addPaymentMethod_title": "Add payment method",
   "__2": ""
 }

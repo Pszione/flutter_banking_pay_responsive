@@ -240,6 +240,16 @@ class S {
     );
   }
 
+  /// `CARD NAME`
+  String get cardWidget_cardName_title {
+    return Intl.message(
+      'CARD NAME',
+      name: 'cardWidget_cardName_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `EXP DATE`
   String get cardWidget_expDate_title {
     return Intl.message(
@@ -295,6 +305,16 @@ class S {
     return Intl.message(
       'Secret',
       name: 'cardWidget_TOOLTIP_cvvNumber_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add payment method`
+  String get cardWidgetOutlined_addPaymentMethod_title {
+    return Intl.message(
+      'Add payment method',
+      name: 'cardWidgetOutlined_addPaymentMethod_title',
       desc: '',
       args: [],
     );

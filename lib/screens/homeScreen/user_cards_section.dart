@@ -3,6 +3,7 @@ import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_she
 import 'package:flutter_banking_pay_responsive/components/card_add_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_overview_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 
 import '../../constants.dart';
@@ -29,7 +30,7 @@ class UserCardsSection extends StatelessWidget {
           if (index == myCards.length) {
             return CardOutlineWidget(
                 width: 320,
-                label: 'Add payment method',
+                label: S.of(context).cardWidgetOutlined_addPaymentMethod_title,
                 onPress: () =>
                     CardAddSlidingSheet().showOptionsSlidingSheet(context));
           }
