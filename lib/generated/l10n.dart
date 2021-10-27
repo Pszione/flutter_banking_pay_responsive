@@ -90,6 +90,86 @@ class S {
     );
   }
 
+  /// `Transactions`
+  String get homeScreen_transactions_categoryTitle {
+    return Intl.message(
+      'Transactions',
+      name: 'homeScreen_transactions_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills Resume`
+  String get homeScreen_billsResume_categoryTitle {
+    return Intl.message(
+      'Bills Resume',
+      name: 'homeScreen_billsResume_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sales Store`
+  String get homeScreen_salesStore_categoryTitle {
+    return Intl.message(
+      'Sales Store',
+      name: 'homeScreen_salesStore_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support Chat`
+  String get homeScreen_supportChat_categoryTitle {
+    return Intl.message(
+      'Support Chat',
+      name: 'homeScreen_supportChat_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `more`
+  String get homeScreen_more_categoryTitle {
+    return Intl.message(
+      'more',
+      name: 'homeScreen_more_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Cards Section`
+  String get homeScreen_userCardSection_pageSubtitle {
+    return Intl.message(
+      'User Cards Section',
+      name: 'homeScreen_userCardSection_pageSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Transactions`
+  String get homeScreen_recentTransactions_pageSubtitle {
+    return Intl.message(
+      'Recent Transactions',
+      name: 'homeScreen_recentTransactions_pageSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get __0 {
+    return Intl.message(
+      '',
+      name: '__0',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Pay`
   String get navigationBar_first_title {
     return Intl.message(
@@ -120,11 +200,111 @@ class S {
     );
   }
 
+  /// ``
+  String get __1 {
+    return Intl.message(
+      '',
+      name: '__1',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add Card`
   String get cardScreen_fab_title {
     return Intl.message(
       'Add Card',
       name: 'cardScreen_fab_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card`
+  String get cardWidget_singularCard_title {
+    return Intl.message(
+      'Card',
+      name: 'cardWidget_singularCard_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `more card options`
+  String get cardWidget_TOOLTIP_cardOnTapHint {
+    return Intl.message(
+      'more card options',
+      name: 'cardWidget_TOOLTIP_cardOnTapHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXP DATE`
+  String get cardWidget_expDate_title {
+    return Intl.message(
+      'EXP DATE',
+      name: 'cardWidget_expDate_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Expiration date`
+  String get cardWidget_expDate_description {
+    return Intl.message(
+      'Card Expiration date',
+      name: 'cardWidget_expDate_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPIRED`
+  String get cardWidget_expDateExpired_title {
+    return Intl.message(
+      'EXPIRED',
+      name: 'cardWidget_expDateExpired_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CVV NUMBER`
+  String get cardWidget_cvvNumber_title {
+    return Intl.message(
+      'CVV NUMBER',
+      name: 'cardWidget_cvvNumber_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CVV NUMBER`
+  String get cardWidget_cvvNumber_description {
+    return Intl.message(
+      'CVV NUMBER',
+      name: 'cardWidget_cvvNumber_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Secret`
+  String get cardWidget_TOOLTIP_cvvNumber_hint {
+    return Intl.message(
+      'Secret',
+      name: 'cardWidget_TOOLTIP_cvvNumber_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get __2 {
+    return Intl.message(
+      '',
+      name: '__2',
       desc: '',
       args: [],
     );

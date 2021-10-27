@@ -21,16 +21,49 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "__0": MessageLookupByLibrary.simpleMessage(""),
+        "__1": MessageLookupByLibrary.simpleMessage(""),
+        "__2": MessageLookupByLibrary.simpleMessage(""),
         "cardScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Adicionar"),
+        "cardWidget_TOOLTIP_cardOnTapHint":
+            MessageLookupByLibrary.simpleMessage("mais opções do cartão"),
+        "cardWidget_TOOLTIP_cvvNumber_hint":
+            MessageLookupByLibrary.simpleMessage("Secreto"),
+        "cardWidget_cvvNumber_description":
+            MessageLookupByLibrary.simpleMessage("CÓDIGO CVV"),
+        "cardWidget_cvvNumber_title":
+            MessageLookupByLibrary.simpleMessage("CÓDIGO CVV"),
+        "cardWidget_expDateExpired_title":
+            MessageLookupByLibrary.simpleMessage("EXPIRADO"),
+        "cardWidget_expDate_description":
+            MessageLookupByLibrary.simpleMessage("Data de Validade do Cartão"),
+        "cardWidget_expDate_title":
+            MessageLookupByLibrary.simpleMessage("VALIDADE"),
+        "cardWidget_singularCard_title":
+            MessageLookupByLibrary.simpleMessage("Cartão"),
+        "homeScreen_billsResume_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Resumo Faturas"),
         "homeScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Transferências"),
         "homeScreen_first_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Meu Banco"),
+        "homeScreen_more_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("mais"),
+        "homeScreen_recentTransactions_pageSubtitle":
+            MessageLookupByLibrary.simpleMessage("Transferências Recentes"),
+        "homeScreen_salesStore_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Loja e Ofertas"),
         "homeScreen_second_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Cartões"),
+        "homeScreen_supportChat_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Suporte e Ajuda"),
         "homeScreen_third_tabBarTitle":
-            MessageLookupByLibrary.simpleMessage("Histórico"),
+            MessageLookupByLibrary.simpleMessage("Recentes"),
+        "homeScreen_transactions_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Transferências"),
+        "homeScreen_userCardSection_pageSubtitle":
+            MessageLookupByLibrary.simpleMessage("Sessão dos cartões"),
         "navigationBar_first_title":
             MessageLookupByLibrary.simpleMessage("Pagar"),
         "navigationBar_second_title":

@@ -54,6 +54,19 @@ class CardModel {
     }
     return false;
   }
+
+  static DateTime? parseExpDateStringToDateTime(String? expDate) {
+    if (expDate == null || expDate.isEmpty) {
+      return null;
+    } else if (expDate.contains('/')) {
+      var expMonth = expDate.split('/').first;
+      var expYear = expDate.split('/').last;
+
+      return expYear.length <= 2
+          ? DateTime(2000 + int.parse(expYear), int.parse(expMonth))
+          : DateTime(int.parse(expYear), int.parse(expMonth));
+    }
+  }
 }
 
 List<CardModel> myCards = [
