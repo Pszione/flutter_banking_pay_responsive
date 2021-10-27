@@ -175,73 +175,71 @@ class GoogleAccountDialog {
       double imageSize,
       GestureTapCallback onPressed,
       bool includeFullSemantics) {
-    return Flexible(
-      child: SizedBox(
-        width: double.infinity,
-        height: kAccountRowHeight,
-        child: InkWell(
-          onTap: onPressed,
-          splashColor: Theme.of(context).colorScheme.secondary,
-          child: BorderDefaultPadding(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // SizedBox?
-                    CircleAvatar(
-                      backgroundImage: accountInfo?.avatarThumbnail != null
-                          ? AssetImage(accountInfo!.avatarThumbnail!)
-                          : null,
-                      backgroundColor: kComplementaryColor,
-                      radius: imageSize, // kSmall
-                    ),
-                    const SizedBox(width: 14),
-                    Semantics(
+    return SizedBox(
+      width: double.infinity,
+      height: kAccountRowHeight,
+      child: InkWell(
+        onTap: onPressed,
+        splashColor: Theme.of(context).colorScheme.secondary,
+        child: BorderDefaultPadding(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // SizedBox?
+                  CircleAvatar(
+                    backgroundImage: accountInfo?.avatarThumbnail != null
+                        ? AssetImage(accountInfo!.avatarThumbnail!)
+                        : null,
+                    backgroundColor: kComplementaryColor,
+                    radius: imageSize, // kSmall
+                  ),
+                  const SizedBox(width: 14),
+                  Flexible(
+                    child: Semantics(
                       hint: 'Account',
-                      child: Flexible(
-                        child: SizedBox(
-                          width: 254, // TODO
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AutoSizeText(
-                                accountInfo?.fullname ?? 'User Name',
-                                style: AppTextStyles.kSmallBoldText(),
+                      child: SizedBox(
+                        width: 254, // TODO
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              accountInfo?.fullname ?? 'User Name',
+                              style: AppTextStyles.kSmallBoldText(),
+                              maxLines: 2,
+                              stepGranularity: 0.5,
+                              softWrap: true,
+                              wrapWords: false, // important!
+                            ),
+                            Semantics(
+                              child: AutoSizeText(
+                                // TODO: fuck
+                                accountInfo?.email ?? 'username@email.com',
+                                style: AppTextStyles.kSmallText(),
                                 maxLines: 2,
+                                maxFontSize: 12,
+                                minFontSize: 6,
                                 stepGranularity: 0.5,
-                                softWrap: true,
+                                overflow: TextOverflow.clip,
+                                softWrap: false,
                                 wrapWords: false, // important!
                               ),
-                              Semantics(
-                                child: AutoSizeText(
-                                  // TODO: fuck
-                                  accountInfo?.email ?? 'username@email.com',
-                                  style: AppTextStyles.kSmallText(),
-                                  maxLines: 2,
-                                  maxFontSize: 12,
-                                  minFontSize: 6,
-                                  stepGranularity: 0.5,
-                                  overflow: TextOverflow.clip,
-                                  softWrap: false,
-                                  wrapWords: false, // important!
-                                ),
-                                excludeSemantics: !includeFullSemantics,
-                              ),
-                            ],
-                          ),
+                              excludeSemantics: !includeFullSemantics,
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                  ],
-                ),
-              ],
-            ),
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
         ),
       ),
