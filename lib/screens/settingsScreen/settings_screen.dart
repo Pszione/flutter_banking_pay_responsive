@@ -32,14 +32,11 @@ class SettingsScreen extends StatelessWidget {
               description: SettingsTexts.optionEmailUpdates().description,
               icon: SettingsTexts.optionEmailUpdates().icon,
               switchValue: settingsProvider
-                      .options[SettingsTexts.optionEmailUpdates().saveIndex!] ??
-                  false,
+                  .options[SettingsTexts.optionEmailUpdates().saveIndex!]!,
               onPress: (bool value) =>
                   // switch automagically inverts !value
                   settingsProvider.changeOption(
-                SettingsTexts.optionEmailUpdates().saveIndex!,
-                value,
-              ),
+                      SettingsTexts.optionEmailUpdates().saveIndex!, value),
             ),
             BuildGoogleListSettingButton(
               label: SettingsTexts.optionPurchaseNotifications().label,
@@ -47,31 +44,26 @@ class SettingsScreen extends StatelessWidget {
                   SettingsTexts.optionPurchaseNotifications().description,
               icon: SettingsTexts.optionPurchaseNotifications().icon,
               switchValue: settingsProvider.options[
-                      SettingsTexts.optionPurchaseNotifications().saveIndex!] ??
-                  false,
-              onPress: (bool value) => settingsProvider.invertOptionValue(
-                SettingsTexts.optionPurchaseNotifications().saveIndex!,
-              ),
+                  SettingsTexts.optionPurchaseNotifications().saveIndex!]!,
+              onPress: (bool value) => settingsProvider.changeOption(
+                  SettingsTexts.optionPurchaseNotifications().saveIndex!,
+                  value),
             ),
             BuildGoogleListSettingButton(
               label: SettingsTexts.optionTicketsUpdates().label,
               description: SettingsTexts.optionTicketsUpdates().description,
               icon: SettingsTexts.optionTicketsUpdates().icon,
-              switchValue: settingsProvider.options[
-                      SettingsTexts.optionTicketsUpdates().saveIndex!] ??
-                  false,
-              onPress: (bool value) => settingsProvider.invertOptionValue(
-                SettingsTexts.optionTicketsUpdates().saveIndex!,
-              ),
+              switchValue: settingsProvider
+                  .options[SettingsTexts.optionTicketsUpdates().saveIndex!]!,
+              onPress: (bool value) => settingsProvider.changeOption(
+                  SettingsTexts.optionTicketsUpdates().saveIndex!, value),
             ),
             buildDividerWithPadding(),
             BuildGoogleListSettingButton(
               label: SettingsTexts.optionEditAccountInfo().label,
               description: SettingsTexts.optionEditAccountInfo().description,
               icon: SettingsTexts.optionEditAccountInfo().icon,
-              switchValue: settingsProvider.options[
-                      SettingsTexts.optionEditAccountInfo().saveIndex!] ??
-                  false,
+              switchValue: false,
               onPress: (bool value) {
                 Https.launchURL(
                     url: 'https://myaccount.google.com/', forceWebView: false);
@@ -84,12 +76,10 @@ class SettingsScreen extends StatelessWidget {
               label: SettingsTexts.optionShareUserLocation().label,
               description: SettingsTexts.optionShareUserLocation().description,
               icon: SettingsTexts.optionShareUserLocation().icon,
-              switchValue: settingsProvider.options[
-                      SettingsTexts.optionShareUserLocation().saveIndex!] ??
-                  false,
-              onPress: (bool value) => settingsProvider.invertOptionValue(
-                SettingsTexts.optionShareUserLocation().saveIndex!,
-              ),
+              switchValue: settingsProvider
+                  .options[SettingsTexts.optionShareUserLocation().saveIndex!]!,
+              onPress: (bool value) => settingsProvider.changeOption(
+                  SettingsTexts.optionShareUserLocation().saveIndex!, value),
             ),
             const SizedBox(height: kDefaultPadding),
             BuildGoogleListSettingButton(
@@ -97,11 +87,9 @@ class SettingsScreen extends StatelessWidget {
               description: SettingsTexts.optionTravelNotice().description,
               icon: SettingsTexts.optionTravelNotice().icon,
               switchValue: settingsProvider
-                      .options[SettingsTexts.optionTravelNotice().saveIndex!] ??
-                  false,
-              onPress: (bool value) => settingsProvider.invertOptionValue(
-                SettingsTexts.optionTravelNotice().saveIndex!,
-              ),
+                  .options[SettingsTexts.optionTravelNotice().saveIndex!]!,
+              onPress: (bool value) => settingsProvider.changeOption(
+                  SettingsTexts.optionTravelNotice().saveIndex!, value),
             ),
             buildDividerWithPadding(),
             //
@@ -110,9 +98,7 @@ class SettingsScreen extends StatelessWidget {
               label: SettingsTexts.optionAppSystemSettings().label,
               description: SettingsTexts.optionAppSystemSettings().description,
               icon: SettingsTexts.optionAppSystemSettings().icon,
-              switchValue: settingsProvider.options[
-                      SettingsTexts.optionAppSystemSettings().saveIndex!] ??
-                  false,
+              switchValue: false,
               onPress: (bool value) async =>
                   await AppSettings.openAppSettings(),
               //
@@ -123,9 +109,7 @@ class SettingsScreen extends StatelessWidget {
               description:
                   SettingsTexts.optionAppSystemNFCSettings().description,
               icon: SettingsTexts.optionAppSystemNFCSettings().icon,
-              switchValue: settingsProvider.options[
-                      SettingsTexts.optionAppSystemNFCSettings().saveIndex!] ??
-                  false,
+              switchValue: false,
               onPress: (bool value) async =>
                   await AppSettings.openNFCSettings(),
               //
@@ -155,7 +139,7 @@ class SettingsScreen extends StatelessWidget {
 
   Widget buildDividerWithPadding() => Column(
         children: [
-          const SizedBox(height: kDefaultPadding),
+          const SizedBox(height: kHalfPadding),
           kDivider,
           const SizedBox(height: kDefaultPadding),
         ],

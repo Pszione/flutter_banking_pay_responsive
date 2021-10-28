@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../constant_text_styles.dart';
@@ -92,7 +93,7 @@ class BuildGoogleListSettingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 75,
+      height: 84,
       child: InkWell(
         onTap: () {
           // InkWell will act as switch
@@ -110,39 +111,53 @@ class BuildGoogleListSettingButton extends StatelessWidget {
               SizedBox(
                   width: kDefaultRowSpacing,
                   child: Icon(icon, size: kMediumIconSize)),
-              const SizedBox(width: 14), // 14
-              Container(
-                //color: Colors.green,
-                width: 255,
-                child: Column(
-                  // mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      label ?? '',
-                      maxLines: 1,
-                      style: AppTextStyles.kSmallBoldText(),
-                    ),
-                    if (description != null)
+              const SizedBox(width: kHalfPadding), // 14
+              Expanded(
+                flex: 16,
+                //width: 255,
+                child: Semantics(
+                  // is overriding
+                  toggled: overrideSwitchButton != null ? null : switchValue,
+                  button: overrideSwitchButton != null ? true : null,
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        description!,
-                        maxLines: 3,
-                        textAlign: TextAlign.justify,
-                        style: AppTextStyles.kSmallText(),
+                        label ?? '',
+                        maxLines: 1,
+                        overflow: TextOverflow.visible,
+                        style: AppTextStyles.kSmallBoldText(),
                       ),
-                  ],
+                      if (description != null)
+                        AutoSizeText(
+                          description!,
+                          textAlign: TextAlign.justify,
+                          wrapWords: false,
+                          maxLines: 4,
+                          maxFontSize: 12,
+                          minFontSize: 6,
+                          stepGranularity: 0.2,
+                          style: AppTextStyles.kSmallText()
+                              .copyWith(fontSize: null),
+                        ),
+                    ],
+                  ),
                 ),
               ),
               const Spacer(),
               if (overrideSwitchButton == null)
-                Switch.adaptive(
-                  value: switchValue,
-                  onChanged: onPress,
-                  activeColor: kSecondaryColor,
+                ExcludeSemantics(
+                  child: Switch.adaptive(
+                    value: switchValue,
+                    onChanged: onPress,
+                    activeColor: kSecondaryColor,
+                  ),
                 ),
               // build another widget instead
-              if (overrideSwitchButton != null) overrideSwitchButton!,
+              if (overrideSwitchButton != null)
+                ExcludeSemantics(child: overrideSwitchButton!),
             ],
           ),
         ),
@@ -165,15 +180,21 @@ class BuildGoogleListTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          left: horizontalPadding, right: horizontalPadding / 2),
+        top: kHalfPadding / 1.5,
+        left: horizontalPadding,
+        right: horizontalPadding / 2,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(width: kSmallPadding / 1.2),
-          Text(
-            label,
-            textAlign: TextAlign.left,
-            style: AppTextStyles.kSmallBoldText(),
+          Semantics(
+            child: Text(
+              label,
+              textAlign: TextAlign.left,
+              style: AppTextStyles.kSmallBoldText(),
+            ),
+            header: true,
           ),
         ],
       ),

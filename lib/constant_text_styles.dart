@@ -75,7 +75,7 @@ class AppTextStyles {
       );
 
   static TextStyle kSmallText() => const TextStyle(
-        fontSize: 12, height: kTextSmallHeightSpacing,
+        fontSize: 12, height: kTextSmallHeightSpacing * 0.95,
         //color: Theme.of(context).colorScheme.onBackground,
       );
 }

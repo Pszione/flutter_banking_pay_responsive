@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class SettingsOptionText {
   SettingsOptionText(
-      {required this.label, this.description, this.icon, this.saveIndex});
+      {required this.label,
+      this.description,
+      this.icon,
+      required this.saveIndex});
 
   String? label, description;
   IconData? icon;
@@ -45,7 +48,7 @@ class SettingsTexts {
   static SettingsOptionText optionTravelNotice() => SettingsOptionText(
       label: 'Are you travelling?',
       description:
-          'Enjoy your trip! But first let us know so that all your purchases goes pass our security monitoring',
+          'Enjoy your trip! But please let us know, we monitor all purchases against possible frauds',
       icon: Icons.airplanemode_on_rounded,
       saveIndex: 5);
 
