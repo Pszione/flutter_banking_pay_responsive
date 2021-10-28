@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:provider/provider.dart';
@@ -67,7 +68,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                     Icons.arrow_back_ios,
                   ),
                   onPressed: () => Navigator.maybePop(context, 'Back'),
-                  tooltip: 'Back',
+                  tooltip: S.of(context).appBar_TOOLTIP_backButton_hint,
                 ),
               ),
             // if (widget.hasNotifications)
@@ -103,9 +104,12 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                           maintainState: true,
                         ),
                       ),
-                      tooltip: 'Notifications',
+                      tooltip: S
+                          .of(context)
+                          .appBar_notificationsButton_newNotificationsMessage(
+                              dbProvider.newNotifications),
                     ),
-                    hint: '${dbProvider.newNotifications} new notifications',
+                    button: true,
                   ),
                   if (anyNewNotificationsToDisplay)
                     Positioned(
@@ -150,7 +154,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                     isSearching = !isSearching;
                   })
                 },
-                tooltip: 'Search whole app',
+                tooltip: S.of(context).appBar_TOOLTIP_searchInput_hint,
               ),
           ],
         ),
@@ -165,7 +169,8 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                 },
                 activeColor: kSecondaryColor,
               ),
-              label: 'Dark theme',
+              label: S.of(context).appBar_switchDarkTheme_title,
+              button: true,
             ),
           IconButton(
             padding: const EdgeInsets.only(right: kDefaultPadding),
@@ -180,7 +185,9 @@ class _AppBarCompleteState extends State<AppBarComplete> {
             iconSize: kHugeIconSize,
             onPressed: () => GoogleAccountDialog()
                 .showDialogDismissible(context, signedInAccount, myAccounts),
-            tooltip: 'Google account and Settings',
+            tooltip: S
+                .of(context)
+                .googleAccountDialog_TOOLTIP_googleAccountDialog_description,
           ),
         ],
       ),
@@ -233,7 +240,7 @@ class SearchBarField extends StatelessWidget {
         decoration: InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
-          hintText: 'Search',
+          hintText: S.of(context).appBar_searchInput_title,
           hintStyle: AppTextStyles.kSmallWhiteSubtitle(context),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 12, vertical: 9),

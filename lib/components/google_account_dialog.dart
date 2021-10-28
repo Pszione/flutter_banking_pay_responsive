@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:provider/provider.dart';
@@ -30,10 +31,13 @@ class GoogleAccountDialog {
       barrierDismissible: true, // click outside to dismiss
       barrierColor: Colors.black.withOpacity(kAlertOverlayOpacity),
       builder: (_) => Semantics(
-        label: 'Google account and other settings',
+        label: S
+            .of(context)
+            .googleAccountDialog_TOOLTIP_googleAccountDialog_description,
         sortKey: const OrdinalSortKey(0),
         child: AlertDialog(
           elevation: 0,
+          semanticLabel: "",
           backgroundColor: Theme.of(context).colorScheme.background,
           shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
           titlePadding: const EdgeInsets.fromLTRB(
@@ -53,16 +57,17 @@ class GoogleAccountDialog {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Semantics(
-                  label: 'Signed in as',
-                  excludeSemantics: signedInAccount == null,
-                  child: buildAccountItem(
-                    context,
-                    signedInAccount,
-                    kSmallIconSize,
-                    () => Navigator.pop(context),
-                    true,
-                  ),
+                buildAccountItem(
+                  context,
+                  signedInAccount,
+                  kSmallIconSize,
+                  () => Navigator.pop(context),
+                  signedInAccount == null
+                      ? null
+                      : S
+                          .of(context)
+                          .googleAccountDialog_TOOLTIP_signedInAsAccount_description,
+                  true,
                 ),
                 if (MediaQuery.of(context).orientation == Orientation.portrait)
                   buildManageAccountButton(
@@ -87,6 +92,9 @@ class GoogleAccountDialog {
                           otherAccounts[index],
                           kSmallIconSize02,
                           () {},
+                          S
+                              .of(context)
+                              .googleAccountDialog_TOOLTIP_account_hint,
                           false,
                         );
                       }),
@@ -96,12 +104,16 @@ class GoogleAccountDialog {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     BuildGoogleListButton(
-                        label: 'Add another account',
+                        label: S
+                            .of(context)
+                            .googleAccountDialog_addAnotherAccount_button_title,
                         icon: Icons.person_add,
                         onPress: () => Navigator.pop(context)),
                     kDivider,
                     BuildGoogleListButton(
-                      label: 'Settings',
+                      label: S
+                          .of(context)
+                          .googleAccountDialog_settings_button_title,
                       icon: Icons.settings_rounded,
                       onPress: () => Navigator.push(
                           context,
@@ -111,7 +123,8 @@ class GoogleAccountDialog {
                     ),
                     // TODO: add FAQ link
                     BuildGoogleListButton(
-                        label: 'Help',
+                        label:
+                            S.of(context).googleAccountDialog_help_button_title,
                         icon: Icons.help_outline_sharp,
                         onPress: () => Https.launchURL(
                             url: Provider.of<ThemeProvider>(context,
@@ -147,7 +160,7 @@ class GoogleAccountDialog {
               alignment: Alignment.topLeft,
               icon: const Icon(Icons.close_rounded),
               onPressed: () => Navigator.pop(context),
-              tooltip: 'Close',
+              tooltip: S.of(context).other_TOOLTIP_closeButton,
             ),
           ),
         ),
@@ -174,35 +187,36 @@ class GoogleAccountDialog {
       AccountModel? accountInfo,
       double imageSize,
       GestureTapCallback onPressed,
+      String? prefixSemantics,
       bool includeFullSemantics) {
     return SizedBox(
       width: double.infinity,
       height: kAccountRowHeight,
-      child: InkWell(
-        onTap: onPressed,
-        splashColor: Theme.of(context).colorScheme.secondary,
-        child: BorderDefaultPadding(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // SizedBox?
-                  CircleAvatar(
-                    backgroundImage: accountInfo?.avatarThumbnail != null
-                        ? AssetImage(accountInfo!.avatarThumbnail!)
-                        : null,
-                    backgroundColor: kComplementaryColor,
-                    radius: imageSize, // kSmall
-                  ),
-                  const SizedBox(width: 14),
-                  Flexible(
-                    child: Semantics(
-                      hint: 'Account',
+      child: Semantics(
+        label: prefixSemantics,
+        child: InkWell(
+          onTap: onPressed,
+          splashColor: Theme.of(context).colorScheme.secondary,
+          child: BorderDefaultPadding(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // SizedBox?
+                    CircleAvatar(
+                      backgroundImage: accountInfo?.avatarThumbnail != null
+                          ? AssetImage(accountInfo!.avatarThumbnail!)
+                          : null,
+                      backgroundColor: kComplementaryColor,
+                      radius: imageSize, // kSmall
+                    ),
+                    const SizedBox(width: 14),
+                    Flexible(
                       child: SizedBox(
                         width: 254, // TODO
                         child: Column(
@@ -210,7 +224,10 @@ class GoogleAccountDialog {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AutoSizeText(
-                              accountInfo?.fullname ?? 'User Name',
+                              accountInfo?.fullname ??
+                                  S
+                                      .of(context)
+                                      .googleAccountDialog_EXAMPLE_fullName,
                               style: AppTextStyles.kSmallBoldText(),
                               maxLines: 2,
                               stepGranularity: 0.5,
@@ -220,7 +237,10 @@ class GoogleAccountDialog {
                             Semantics(
                               child: AutoSizeText(
                                 // TODO: fuck
-                                accountInfo?.email ?? 'username@email.com',
+                                accountInfo?.email ??
+                                    S
+                                        .of(context)
+                                        .googleAccountDialog_EXAMPLE_email,
                                 style: AppTextStyles.kSmallText(),
                                 maxLines: 2,
                                 maxFontSize: 12,
@@ -235,11 +255,11 @@ class GoogleAccountDialog {
                           ],
                         ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -248,7 +268,7 @@ class GoogleAccountDialog {
 
   Widget buildManageAccountButton(
       {required BuildContext context,
-      String label = 'Manage your Google Account',
+      String? label,
       required VoidCallback onPress}) {
     return Center(
       child: Row(
@@ -259,7 +279,8 @@ class GoogleAccountDialog {
             width: MediaQuery.of(context).size.width * 0.65,
             child: TextButton(
               child: AutoSizeText(
-                label,
+                label ??
+                    S.of(context).googleAccountDialog_manageGoogleAccount_title,
                 style: AppTextStyles.kSmallBoldText()
                     .copyWith(color: Theme.of(context).primaryColorDark),
                 maxLines: 1,
@@ -286,33 +307,56 @@ class GoogleAccountDialog {
   }
 
   List<Widget> buildPolicyAndTermsButtons(BuildContext context) {
+    var _autoSizeGroup = AutoSizeGroup();
+    double width = 160;
+    double height = 40;
     return <Widget>[
-      TextButton(
-        onPressed: () =>
-            Https.launchURL(url: 'https://policies.google.com/privacy'),
-        child: Semantics(
-          label: 'Read',
-          child: Text(
-            'Privacy Policy',
-            maxLines: 1,
-            style: TextStyle(
-                fontSize: 12,
-                color: Theme.of(context).colorScheme.onBackground),
+      SizedBox(
+        width: width,
+        height: height,
+        child: InkWell(
+          splashColor: kSecondaryColor,
+          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble),
+          onTap: () =>
+              Https.launchURL(url: 'https://policies.google.com/privacy'),
+          child: Center(
+            child: Semantics(
+              label: S.of(context).googleAccountDialog_TOOLTIP_readTerms_hint,
+              child: AutoSizeText(
+                S.of(context).googleAccountDialog_privacyPolicy_button_title,
+                maxLines: 1,
+                maxFontSize: 12,
+                minFontSize: 8,
+                group: _autoSizeGroup,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+            ),
           ),
         ),
       ),
-      const ExcludeSemantics(child: Text('•')),
-      TextButton(
-        onPressed: () =>
-            Https.launchURL(url: 'https://policies.google.com/terms'),
-        child: Semantics(
-          label: 'Read',
-          child: Text(
-            'Terms of Service',
-            maxLines: 1,
-            style: TextStyle(
-                fontSize: 12,
-                color: Theme.of(context).colorScheme.onBackground),
+      const Flexible(child: ExcludeSemantics(child: Text('•'))),
+      SizedBox(
+        width: width * 0.85,
+        height: height,
+        child: InkWell(
+          splashColor: kSecondaryColor,
+          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble),
+          onTap: () =>
+              Https.launchURL(url: 'https://policies.google.com/terms'),
+          child: Center(
+            child: Semantics(
+              label: S.of(context).googleAccountDialog_TOOLTIP_readTerms_hint,
+              child: AutoSizeText(
+                S.of(context).googleAccountDialog_termsOfService_button_title,
+                maxLines: 1,
+                maxFontSize: 12,
+                minFontSize: 8,
+                group: _autoSizeGroup,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+            ),
           ),
         ),
       )

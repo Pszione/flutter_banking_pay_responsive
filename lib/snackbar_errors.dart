@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 
 class AppSnackBarErrors {
   static void showSnackBarFeatureUnavailable(BuildContext context) =>
@@ -8,9 +9,9 @@ class AppSnackBarErrors {
         ..showSnackBar(
           SnackBar(
             backgroundColor: Theme.of(context).colorScheme.error,
-            content: const Text(
-              "Feature unavailable at the moment. We'll fix it right away!",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+            content: Text(
+              S.of(context).snackBar_featureUnavailableButBeingFixed_text,
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
             ),
             dismissDirection: DismissDirection.down,
             // contentTextStyle:

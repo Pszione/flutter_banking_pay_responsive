@@ -19,16 +19,31 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pt_BR';
 
+  static String m0(quantity) => "${quantity} novas notificações";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "__0": MessageLookupByLibrary.simpleMessage(""),
         "__1": MessageLookupByLibrary.simpleMessage(""),
         "__2": MessageLookupByLibrary.simpleMessage(""),
         "__3": MessageLookupByLibrary.simpleMessage(""),
+        "__4": MessageLookupByLibrary.simpleMessage(""),
+        "___": MessageLookupByLibrary.simpleMessage(""),
         "activityScreen_TOOLTIP_fabDownward_description":
             MessageLookupByLibrary.simpleMessage("Descer!"),
         "activityScreen_TOOLTIP_fabUpward_description":
             MessageLookupByLibrary.simpleMessage("Subir!"),
+        "appBar_TOOLTIP_backButton_hint":
+            MessageLookupByLibrary.simpleMessage("Voltar"),
+        "appBar_TOOLTIP_notificationsButton_hint":
+            MessageLookupByLibrary.simpleMessage("Notificações"),
+        "appBar_TOOLTIP_searchInput_hint":
+            MessageLookupByLibrary.simpleMessage("Pesquisar por todo o app"),
+        "appBar_notificationsButton_newNotificationsMessage": m0,
+        "appBar_searchInput_title":
+            MessageLookupByLibrary.simpleMessage("Pesquisar"),
+        "appBar_switchDarkTheme_title":
+            MessageLookupByLibrary.simpleMessage("Tema escuro"),
         "cardScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
             "Adicionar cartão de crédito ou débito, vale presentes e mais"),
         "cardScreen_fab_title":
@@ -62,6 +77,31 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("VALIDADE"),
         "cardWidget_singularCard_title":
             MessageLookupByLibrary.simpleMessage("Cartão"),
+        "googleAccountDialog_EXAMPLE_email":
+            MessageLookupByLibrary.simpleMessage("usuario@email.com"),
+        "googleAccountDialog_EXAMPLE_fullName":
+            MessageLookupByLibrary.simpleMessage("Seu Nome"),
+        "googleAccountDialog_TOOLTIP_account_hint":
+            MessageLookupByLibrary.simpleMessage("Conta"),
+        "googleAccountDialog_TOOLTIP_googleAccountDialog_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Conta Google e mais outras configurações"),
+        "googleAccountDialog_TOOLTIP_readTerms_hint":
+            MessageLookupByLibrary.simpleMessage("Ler"),
+        "googleAccountDialog_TOOLTIP_signedInAsAccount_description":
+            MessageLookupByLibrary.simpleMessage("Conectado como"),
+        "googleAccountDialog_addAnotherAccount_button_title":
+            MessageLookupByLibrary.simpleMessage("Adicionar outra conta"),
+        "googleAccountDialog_help_button_title":
+            MessageLookupByLibrary.simpleMessage("Ajuda"),
+        "googleAccountDialog_manageGoogleAccount_title":
+            MessageLookupByLibrary.simpleMessage("Gerenciar conta Google"),
+        "googleAccountDialog_privacyPolicy_button_title":
+            MessageLookupByLibrary.simpleMessage("Termos de Privacidade"),
+        "googleAccountDialog_settings_button_title":
+            MessageLookupByLibrary.simpleMessage("Configurações"),
+        "googleAccountDialog_termsOfService_button_title":
+            MessageLookupByLibrary.simpleMessage("Termos de Serviço"),
         "homeScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
             "Transferências como, enviar dinheiro, ler QR code, PIX e mais"),
         "homeScreen_billsResume_categoryTitle":
@@ -100,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cartões"),
         "navigationBar_third_title":
             MessageLookupByLibrary.simpleMessage("Recentes"),
+        "other_TOOLTIP_closeButton":
+            MessageLookupByLibrary.simpleMessage("Fechar"),
         "scanCardScreen_clickToScan_title":
             MessageLookupByLibrary.simpleMessage("Clique para escanear"),
         "scanCardScreen_enterCardManually_title":
@@ -112,6 +154,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Alinhe-o certinho para conseguirmos ler\nos detalhes"),
         "scanCardScreen_tabBarTitle":
-            MessageLookupByLibrary.simpleMessage("Adicionar um cartão")
+            MessageLookupByLibrary.simpleMessage("Adicionar um cartão"),
+        "snackBar_featureUnavailableButBeingFixed_text":
+            MessageLookupByLibrary.simpleMessage(
+                "Funcionalidade indisponível no momento. Mas já estamos corrigindo-a!")
       };
 }

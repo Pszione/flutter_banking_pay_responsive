@@ -250,6 +250,66 @@ class S {
     );
   }
 
+  /// `Search`
+  String get appBar_searchInput_title {
+    return Intl.message(
+      'Search',
+      name: 'appBar_searchInput_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search whole app`
+  String get appBar_TOOLTIP_searchInput_hint {
+    return Intl.message(
+      'Search whole app',
+      name: 'appBar_TOOLTIP_searchInput_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark theme`
+  String get appBar_switchDarkTheme_title {
+    return Intl.message(
+      'Dark theme',
+      name: 'appBar_switchDarkTheme_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get appBar_TOOLTIP_backButton_hint {
+    return Intl.message(
+      'Back',
+      name: 'appBar_TOOLTIP_backButton_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{quantity} new notifications`
+  String appBar_notificationsButton_newNotificationsMessage(Object quantity) {
+    return Intl.message(
+      '$quantity new notifications',
+      name: 'appBar_notificationsButton_newNotificationsMessage',
+      desc: '',
+      args: [quantity],
+    );
+  }
+
+  /// `Notifications`
+  String get appBar_TOOLTIP_notificationsButton_hint {
+    return Intl.message(
+      'Notifications',
+      name: 'appBar_TOOLTIP_notificationsButton_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get __1 {
     return Intl.message(
@@ -515,6 +575,166 @@ class S {
     return Intl.message(
       'Make sure cardholder name and other info\nis exactly as it appears on card',
       name: 'scanCardScreen_makeSureCardHolderNameAnd_bottomNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get __4 {
+    return Intl.message(
+      '',
+      name: '__4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google account and more other settings`
+  String get googleAccountDialog_TOOLTIP_googleAccountDialog_description {
+    return Intl.message(
+      'Google account and more other settings',
+      name: 'googleAccountDialog_TOOLTIP_googleAccountDialog_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage your Google Account`
+  String get googleAccountDialog_manageGoogleAccount_title {
+    return Intl.message(
+      'Manage your Google Account',
+      name: 'googleAccountDialog_manageGoogleAccount_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `username@email.com`
+  String get googleAccountDialog_EXAMPLE_email {
+    return Intl.message(
+      'username@email.com',
+      name: 'googleAccountDialog_EXAMPLE_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Name`
+  String get googleAccountDialog_EXAMPLE_fullName {
+    return Intl.message(
+      'Your Name',
+      name: 'googleAccountDialog_EXAMPLE_fullName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account`
+  String get googleAccountDialog_TOOLTIP_account_hint {
+    return Intl.message(
+      'Account',
+      name: 'googleAccountDialog_TOOLTIP_account_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signed in as`
+  String get googleAccountDialog_TOOLTIP_signedInAsAccount_description {
+    return Intl.message(
+      'Signed in as',
+      name: 'googleAccountDialog_TOOLTIP_signedInAsAccount_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add another account`
+  String get googleAccountDialog_addAnotherAccount_button_title {
+    return Intl.message(
+      'Add another account',
+      name: 'googleAccountDialog_addAnotherAccount_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get googleAccountDialog_settings_button_title {
+    return Intl.message(
+      'Settings',
+      name: 'googleAccountDialog_settings_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help`
+  String get googleAccountDialog_help_button_title {
+    return Intl.message(
+      'Help',
+      name: 'googleAccountDialog_help_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get googleAccountDialog_privacyPolicy_button_title {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'googleAccountDialog_privacyPolicy_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Service`
+  String get googleAccountDialog_termsOfService_button_title {
+    return Intl.message(
+      'Terms of Service',
+      name: 'googleAccountDialog_termsOfService_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Read`
+  String get googleAccountDialog_TOOLTIP_readTerms_hint {
+    return Intl.message(
+      'Read',
+      name: 'googleAccountDialog_TOOLTIP_readTerms_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get ___ {
+    return Intl.message(
+      '',
+      name: '___',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Feature unavailable at the moment. We'll fix it right away!`
+  String get snackBar_featureUnavailableButBeingFixed_text {
+    return Intl.message(
+      'Feature unavailable at the moment. We\'ll fix it right away!',
+      name: 'snackBar_featureUnavailableButBeingFixed_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get other_TOOLTIP_closeButton {
+    return Intl.message(
+      'Close',
+      name: 'other_TOOLTIP_closeButton',
       desc: '',
       args: [],
     );
