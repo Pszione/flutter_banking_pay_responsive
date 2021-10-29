@@ -56,15 +56,17 @@ class CardScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: myCards.length,
                 itemBuilder: (_, index) {
-                  return CardWidget(
-                    card: myCards[index],
-                    onPress: () => AppSlidingBottomSheet(
-                      context: context,
-                      headerColor: CardModel.getCardColorNullSafety(
-                          card: myCards[index], opacity: 0.85),
-                      bodyWidget:
-                          CardOverviewSlidingSheet(card: myCards[index]),
-                    ).showStyledSheet(),
+                  return Center(
+                    child: CardWidget(
+                      card: myCards[index],
+                      onPress: () => AppSlidingBottomSheet(
+                        context: context,
+                        headerColor: CardModel.getCardColorNullSafety(
+                            card: myCards[index], opacity: 0.85),
+                        bodyWidget:
+                            CardOverviewSlidingSheet(card: myCards[index]),
+                      ).showStyledSheet(),
+                    ),
                   );
                 },
                 padding: const EdgeInsets.only(bottom: kDefaultPadding),

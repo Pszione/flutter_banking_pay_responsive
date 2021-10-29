@@ -161,13 +161,17 @@ class _AppBarCompleteState extends State<AppBarComplete> {
         actions: [
           if (widget.hasDarkThemeToggle)
             Semantics(
-              child: Switch.adaptive(
-                value: themeProvider.isDarkMode,
-                onChanged: (bool value) {
-                  //final provider = Provider.of<ThemeProvider>(context);
-                  themeProvider.toggleTheme(value);
-                },
-                activeColor: kSecondaryColor,
+              child: Tooltip(
+                child: Switch.adaptive(
+                  value: themeProvider.isDarkMode,
+                  onChanged: (bool value) {
+                    //final provider = Provider.of<ThemeProvider>(context);
+                    themeProvider.toggleTheme(value);
+                  },
+                  activeColor: kSecondaryColor,
+                ),
+                message: S.of(context).appBar_switchDarkTheme_title,
+                excludeFromSemantics: true,
               ),
               label: S.of(context).appBar_switchDarkTheme_title,
               button: true,
@@ -241,7 +245,8 @@ class SearchBarField extends StatelessWidget {
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
           hintText: S.of(context).appBar_searchInput_title,
-          hintStyle: AppTextStyles.kSmallWhiteSubtitle(context),
+          hintStyle: AppTextStyles.kSmallWhiteSubtitle(context)
+              .copyWith(color: kTextWhiteColor),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
         ),
