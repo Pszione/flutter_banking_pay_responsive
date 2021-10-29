@@ -50,92 +50,99 @@ class GoogleAccountDialog {
                   ? 99
                   : 0),
           title: buildGoogleHeader(context),
-          content: SizedBox(
-            width: 400, // MediaQuery.of(context).size.width * 0.9,
-            height: 450,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                buildAccountItem(
-                  context,
-                  signedInAccount,
-                  kSmallIconSize,
-                  () => Navigator.pop(context),
-                  signedInAccount == null
-                      ? null
-                      : S
-                          .of(context)
-                          .googleAccountDialog_TOOLTIP_signedInAsAccount_description,
-                  true,
-                ),
-                if (MediaQuery.of(context).orientation == Orientation.portrait)
-                  buildManageAccountButton(
-                      context: context,
-                      onPress: () => Https.launchURL(
-                          url: 'https://myaccount.google.com/',
-                          forceWebView: false)),
-                const SizedBox(height: kHalfPadding),
-                kDivider,
-                SizedBox(
-                  height: 165,
-                  child: ListView.builder(
-                      physics: const ClampingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemCount: otherAccounts!.length,
-                      itemBuilder: (_, int index) {
-                        if (signedInAccount?.ID == otherAccounts[index].ID) {
-                          return const SizedBox(height: 0); // null
-                        }
-                        return buildAccountItem(
-                          _,
-                          otherAccounts[index],
-                          kSmallIconSize02,
-                          () {},
-                          S
+          // width: 400, // MediaQuery.of(context).size.width * 0.9,
+          // height: 450,
+          content: Container(
+            width: 400,
+            height: MediaQuery.of(context).size.height * 0.525,
+            alignment: Alignment.center,
+            child: Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min, // important
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  buildAccountItem(
+                    context,
+                    signedInAccount,
+                    kSmallIconSize,
+                    () => Navigator.pop(context),
+                    signedInAccount == null
+                        ? null
+                        : S
+                            .of(context)
+                            .googleAccountDialog_TOOLTIP_signedInAsAccount_description,
+                    true,
+                  ),
+                  if (MediaQuery.of(context).orientation ==
+                      Orientation.portrait)
+                    buildManageAccountButton(
+                        context: context,
+                        onPress: () => Https.launchURL(
+                            url: 'https://myaccount.google.com/',
+                            forceWebView: false)),
+                  const SizedBox(height: kHalfPadding),
+                  kDivider,
+                  SizedBox(
+                    height: 165,
+                    child: ListView.builder(
+                        physics: const ClampingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: otherAccounts!.length,
+                        itemBuilder: (_, int index) {
+                          if (signedInAccount?.ID == otherAccounts[index].ID) {
+                            return const SizedBox(height: 0); // null
+                          }
+                          return buildAccountItem(
+                            _,
+                            otherAccounts[index],
+                            kSmallIconSize02,
+                            () {},
+                            S
+                                .of(context)
+                                .googleAccountDialog_TOOLTIP_account_hint,
+                            false,
+                          );
+                        }),
+                  ),
+                  const Spacer(flex: 5), // TODO
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      BuildGoogleListButton(
+                          label: S
                               .of(context)
-                              .googleAccountDialog_TOOLTIP_account_hint,
-                          false,
-                        );
-                      }),
-                ),
-                const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    BuildGoogleListButton(
+                              .googleAccountDialog_addAnotherAccount_button_title,
+                          icon: Icons.person_add,
+                          onPress: () => Navigator.pop(context)),
+                      kDivider,
+                      BuildGoogleListButton(
                         label: S
                             .of(context)
-                            .googleAccountDialog_addAnotherAccount_button_title,
-                        icon: Icons.person_add,
-                        onPress: () => Navigator.pop(context)),
-                    kDivider,
-                    BuildGoogleListButton(
-                      label: S
-                          .of(context)
-                          .googleAccountDialog_settings_button_title,
-                      icon: Icons.settings_rounded,
-                      onPress: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const SettingsScreen())),
-                    ),
-                    // TODO: add FAQ link
-                    BuildGoogleListButton(
-                        label:
-                            S.of(context).googleAccountDialog_help_button_title,
-                        icon: Icons.help_outline_sharp,
-                        onPress: () => Https.launchURL(
-                            url: Provider.of<ThemeProvider>(context,
-                                        listen: false)
-                                    .isDarkMode
-                                ? 'https://support.google.com/pay/?dark=1'
-                                : 'https://support.google.com/pay/')),
-                  ],
-                ),
-                kDivider
-              ],
+                            .googleAccountDialog_settings_button_title,
+                        icon: Icons.settings_rounded,
+                        onPress: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const SettingsScreen())),
+                      ),
+                      // TODO: add FAQ link
+                      BuildGoogleListButton(
+                          label: S
+                              .of(context)
+                              .googleAccountDialog_help_button_title,
+                          icon: Icons.help_outline_sharp,
+                          onPress: () => Https.launchURL(
+                              url: Provider.of<ThemeProvider>(context,
+                                          listen: false)
+                                      .isDarkMode
+                                  ? 'https://support.google.com/pay/?dark=1'
+                                  : 'https://support.google.com/pay/')),
+                    ],
+                  ),
+                  kDivider
+                ],
+              ),
             ),
           ),
           actionsPadding: EdgeInsets.zero,
@@ -275,8 +282,9 @@ class GoogleAccountDialog {
         children: [
           // TODO: is this the right way to sync spacing (with photo above) ?
           const SizedBox(width: 78),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.65,
+          // width: MediaQuery.of(context).size.width * 0.65,
+          Expanded(
+            flex: 5,
             child: TextButton(
               child: AutoSizeText(
                 label ??
@@ -301,6 +309,7 @@ class GoogleAccountDialog {
               onPressed: onPress,
             ),
           ),
+          const SizedBox(width: kDefaultPadding),
         ],
       ),
     );
