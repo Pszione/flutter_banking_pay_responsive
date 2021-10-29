@@ -61,10 +61,11 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
             ),
       body: NotificationListener<UserScrollNotification>(
         onNotification: (notification) {
-          if (notification.direction == ScrollDirection.forward) {
+          // opposite
+          if (notification.direction == ScrollDirection.reverse) {
             if (!_isFloatingButtonVisible)
               setState(() => _isFloatingButtonVisible = true);
-          } else if (notification.direction == ScrollDirection.reverse) {
+          } else if (notification.direction == ScrollDirection.forward) {
             if (_isFloatingButtonVisible)
               setState(() => _isFloatingButtonVisible = false);
           }
