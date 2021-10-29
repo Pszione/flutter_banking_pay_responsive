@@ -77,6 +77,7 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
             padding: const EdgeInsets.symmetric(
                 horizontal: kDefaultPadding, vertical: kHalfPadding),
             child: ListView.separated(
+              key: const PageStorageKey<String>('activityScreenKey'),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.vertical,
               separatorBuilder: (context, index) {

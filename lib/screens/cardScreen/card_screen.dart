@@ -45,6 +45,8 @@ class CardScreen extends StatelessWidget {
                   ? 5
                   : 50,
               child: ListView.separated(
+                // TODO or same key as homeScreen?
+                key: const PageStorageKey<String>('cardScreenUserCardsKey'),
                 physics: const ClampingScrollPhysics(),
                 scrollDirection: Responsive.isMobileLarge(context)
                     ? Axis.vertical

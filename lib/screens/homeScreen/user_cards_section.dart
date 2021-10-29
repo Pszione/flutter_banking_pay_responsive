@@ -18,6 +18,7 @@ class UserCardsSection extends StatelessWidget {
     return SizedBox(
       height: 200 * 1.07,
       child: ListView.separated(
+        key: const PageStorageKey<String>('homeScreenUserCardsKey'),
         physics: const ClampingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         separatorBuilder: (context, index) {
