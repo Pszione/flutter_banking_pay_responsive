@@ -34,45 +34,44 @@ class CardScreen extends StatelessWidget {
         // AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
       ),
       floatingActionButtonLocation: kFloatingButtonLocationAdaptive(context),
-      body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: Responsive.isMobileLarge(context) ? 522 : 200 * 1.07,
-                child: ListView.separated(
-                  physics: const ClampingScrollPhysics(),
-                  scrollDirection: Responsive.isMobileLarge(context)
-                      ? Axis.vertical
-                      : Axis.horizontal,
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                        width: kHalfPadding, height: kDefaultPadding);
-                  },
-                  shrinkWrap: true,
-                  itemCount: myCards.length,
-                  itemBuilder: (_, index) {
-                    return CardWidget(
-                      card: myCards[index],
-                      onPress: () => AppSlidingBottomSheet(
-                        context: context,
-                        headerColor: CardModel.getCardColorNullSafety(
-                            card: myCards[index], opacity: 0.85),
-                        bodyWidget:
-                            CardOverviewSlidingSheet(card: myCards[index]),
-                      ).showStyledSheet(),
-                    );
-                  },
-                  padding: const EdgeInsets.only(bottom: kDefaultPadding),
-                ),
+      body: Padding(
+        padding: const EdgeInsets.all(kDefaultPadding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 5,
+              child: ListView.separated(
+                physics: const ClampingScrollPhysics(),
+                scrollDirection: Responsive.isMobileLarge(context)
+                    ? Axis.vertical
+                    : Axis.horizontal,
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                      width: kHalfPadding, height: kDefaultPadding);
+                },
+                shrinkWrap: true,
+                itemCount: myCards.length,
+                itemBuilder: (_, index) {
+                  return CardWidget(
+                    card: myCards[index],
+                    onPress: () => AppSlidingBottomSheet(
+                      context: context,
+                      headerColor: CardModel.getCardColorNullSafety(
+                          card: myCards[index], opacity: 0.85),
+                      bodyWidget:
+                          CardOverviewSlidingSheet(card: myCards[index]),
+                    ).showStyledSheet(),
+                  );
+                },
+                padding: const EdgeInsets.only(bottom: kDefaultPadding),
               ),
-              // Legacy
-              // buildAddCardButton(context),
-            ],
-          ),
+            ),
+            const SizedBox(
+              width: double.infinity,
+              height: kHugePadding * 4,
+            ),
+          ],
         ),
       ),
     );
