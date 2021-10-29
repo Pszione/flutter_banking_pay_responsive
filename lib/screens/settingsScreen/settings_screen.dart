@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
@@ -5,8 +7,11 @@ import 'package:flutter_banking_pay_responsive/components/google_list_decoration
 import 'package:flutter_banking_pay_responsive/models/settings_texts.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import '../../constants.dart';
 import '../../data_providers.dart';
+import '../../snackbar_errors.dart';
 import '../../utils.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -81,7 +86,6 @@ class SettingsScreen extends StatelessWidget {
               onPress: (bool value) => settingsProvider.changeOption(
                   SettingsTexts.optionShareUserLocation().saveIndex!, value),
             ),
-            const SizedBox(height: kDefaultPadding),
             BuildGoogleListSettingButton(
               label: SettingsTexts.optionTravelNotice().label,
               description: SettingsTexts.optionTravelNotice().description,
@@ -99,8 +103,9 @@ class SettingsScreen extends StatelessWidget {
               description: SettingsTexts.optionAppSystemSettings().description,
               icon: SettingsTexts.optionAppSystemSettings().icon,
               switchValue: false,
-              onPress: (bool value) async =>
-                  await AppSettings.openAppSettings(),
+              onPress: (bool value) async => !kIsWeb
+                  ? await AppSettings.openAppSettings()
+                  : AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
               //
               overrideSwitchButton: const SizedBox(),
             ),
@@ -110,8 +115,9 @@ class SettingsScreen extends StatelessWidget {
                   SettingsTexts.optionAppSystemNFCSettings().description,
               icon: SettingsTexts.optionAppSystemNFCSettings().icon,
               switchValue: false,
-              onPress: (bool value) async =>
-                  await AppSettings.openNFCSettings(),
+              onPress: (bool value) async => !kIsWeb
+                  ? await AppSettings.openNFCSettings()
+                  : AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
               //
               overrideSwitchButton: const SizedBox(),
             ),
