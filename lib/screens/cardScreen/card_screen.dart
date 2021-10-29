@@ -35,12 +35,15 @@ class CardScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: kFloatingButtonLocationAdaptive(context),
       body: Padding(
-        padding: const EdgeInsets.all(kDefaultPadding),
+        padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding, vertical: kHalfPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              flex: 5,
+              flex: MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 5
+                  : 50,
               child: ListView.separated(
                 physics: const ClampingScrollPhysics(),
                 scrollDirection: Responsive.isMobileLarge(context)
@@ -67,9 +70,12 @@ class CardScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: kDefaultPadding),
               ),
             ),
-            const SizedBox(
-              width: double.infinity,
-              height: kHugePadding * 4,
+            const Flexible(
+              flex: 1,
+              child: SizedBox(
+                width: double.infinity,
+                height: kHugePadding * 4,
+              ),
             ),
           ],
         ),

@@ -22,6 +22,7 @@ class TransactionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: kDefaultBorderRadius,
         //border: Border.all(width: 2, color: Colors.grey[300]!),

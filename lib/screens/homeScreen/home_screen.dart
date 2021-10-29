@@ -86,7 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
             scrollDirection: Axis.vertical,
             physics: const ClampingScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.all(kDefaultPadding),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding, vertical: kHalfPadding),
               // Un focus keyboard/textfield
               child: GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

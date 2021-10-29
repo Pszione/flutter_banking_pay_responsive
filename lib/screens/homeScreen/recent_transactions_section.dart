@@ -25,12 +25,15 @@ class RecentTransactionsSection extends StatelessWidget {
           header: true,
         ),
         const SizedBox(height: kHalfPadding),
-        ListView.builder(
+        ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           // separatorBuilder: (context, index) {
           //   return const SizedBox(height: kHalfPadding);
           // },
           shrinkWrap: true,
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: kHalfPadding);
+          },
           itemCount: myTransactions.length <= ksMaxRecentTransactionsCount
               ? myTransactions.length
               : ksMaxRecentTransactionsCount,
@@ -45,6 +48,7 @@ class RecentTransactionsSection extends StatelessWidget {
                   )),
             );
           },
+          padding: const EdgeInsets.only(bottom: kHalfPadding),
         ),
         // Example
         // const ExampleCardWithButtons(),

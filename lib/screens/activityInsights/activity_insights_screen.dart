@@ -73,7 +73,8 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
-            padding: const EdgeInsets.all(kDefaultPadding),
+            padding: const EdgeInsets.symmetric(
+                horizontal: kDefaultPadding, vertical: kHalfPadding),
             child: SizedBox(
               width: double.infinity,
               height: 1200,
@@ -81,7 +82,7 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
                 physics: const ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 separatorBuilder: (context, index) {
-                  return const SizedBox(width: kHalfPadding);
+                  return const SizedBox(height: kHalfPadding);
                 },
                 //shrinkWrap: true,
                 itemCount: myTransactions.length,
