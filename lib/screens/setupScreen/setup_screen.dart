@@ -53,7 +53,7 @@ class _SetupScreenState extends State<SetupScreen> {
   Widget buildMaterialYouNavigationBar(BuildContext context) {
     return NavigationBarTheme(
       data: NavigationBarThemeData(
-        height: kBottomNavigationHeight,
+        height: kBottomNavigationHeight(context),
         backgroundColor: Theme.of(context).colorScheme.background,
         labelTextStyle:
             //MaterialStateProperty.all(const TextStyle(fontSize: 14))
@@ -106,7 +106,7 @@ class _SetupScreenState extends State<SetupScreen> {
   Widget buildOldNavigationBar(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: kBottomNavigationHeight,
+      height: kBottomNavigationHeight(context),
       child: BottomNavigationBarTheme(
         data: BottomNavigationBarThemeData(
           type: BottomNavigationBarType.fixed,

@@ -51,21 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
                 openCloseState: openCloseState,
               ),
-        // floatingActionButton: _isFloatingButtonVisible
-        //     ? AppFloatingButtonIconAndText(
-        //         label: 'Transactions',
-        //         tooltip: 'Transaction Options',
-        //         icon: Icons.read_more_rounded,
-        //         onPressed: () =>
-        //             AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
-        //       )
-        //     : AppFloatingButtonIconAndText(
-        //         label: null,
-        //         tooltip: 'Transaction Options',
-        //         icon: Icons.read_more_rounded,
-        //         onPressed: () =>
-        //             AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
-        //       ),
         floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
         body: NotificationListener<UserScrollNotification>(
           onNotification: (notification) {

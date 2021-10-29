@@ -70,30 +70,27 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
           }
           return true;
         },
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
+        child: SizedBox(
+          width: double.infinity,
+          height: 1200,
           child: Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: kDefaultPadding, vertical: kHalfPadding),
-            child: SizedBox(
-              width: double.infinity,
-              height: 1200,
-              child: ListView.separated(
-                physics: const ClampingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: kHalfPadding);
-                },
-                //shrinkWrap: true,
-                itemCount: myTransactions.length,
-                itemBuilder: (_, int index) {
-                  return TransactionCard(
-                    transaction: myTransactions[index],
-                    onPress: () => AppSlidingBottomSheet.demoSheet(context),
-                  );
-                },
-                padding: const EdgeInsets.only(bottom: kHalfPadding),
-              ),
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: kHalfPadding);
+              },
+              //shrinkWrap: true,
+              itemCount: myTransactions.length,
+              itemBuilder: (_, int index) {
+                return TransactionCard(
+                  transaction: myTransactions[index],
+                  onPress: () => AppSlidingBottomSheet.demoSheet(context),
+                );
+              },
+              padding: const EdgeInsets.only(bottom: kHalfPadding),
             ),
           ),
         ),
