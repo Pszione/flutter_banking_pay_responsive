@@ -152,35 +152,42 @@ class GoogleAccountDialog {
     );
   }
 
-  Stack buildGoogleHeader(BuildContext context) {
+  Widget buildGoogleHeader(BuildContext context) {
     return Stack(
       children: [
         Semantics(
           sortKey: const OrdinalSortKey(1),
           label: '',
-          child: Padding(
-            padding: const EdgeInsets.only(top: kHalfPadding / 2),
-            child: IconButton(
-              padding: EdgeInsets.zero,
-              alignment: Alignment.topLeft,
-              icon: const Icon(Icons.close_rounded),
-              onPressed: () => Navigator.pop(context),
-              tooltip: S.of(context).other_TOOLTIP_closeButton,
+          // My IconButton widget
+          child: SizedBox(
+            width: Theme.of(context).iconTheme.size! * 1.5,
+            height: Theme.of(context).iconTheme.size! * 1.5,
+            child: Tooltip(
+              child: InkWell(
+                onTap: () => Navigator.pop(context),
+                borderRadius: kDefaultBorderRadius,
+                child: const Padding(
+                  padding: EdgeInsets.only(top: kHalfPadding / 1.8),
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Icon(Icons.close_rounded)),
+                ),
+              ),
+              message: S.of(context).other_TOOLTIP_closeButton,
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: kHalfPadding / 2),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ExcludeSemantics(
-                child: Text(
-                  'Google',
-                  style: AppTextStyles.getBodyText(context),
-                ),
-              )
-            ],
+        Align(
+          alignment: Alignment.center,
+          child: ExcludeSemantics(
+            child: Padding(
+              padding: const EdgeInsets.only(top: kHalfPadding / 2.5),
+              child: Text(
+                K_GOOGLE_TEXT,
+                style: AppTextStyles.getBodyText(context),
+                maxLines: 1,
+              ),
+            ),
           ),
         )
       ],

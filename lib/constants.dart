@@ -70,6 +70,7 @@ var kTextBoxShadowSubtle = BoxShadow(
 );
 
 var kDivider = const Divider(thickness: 2, height: 0);
+const K_GOOGLE_TEXT = 'Google';
 
 const kDefaultDuration = Duration(milliseconds: 700);
 
