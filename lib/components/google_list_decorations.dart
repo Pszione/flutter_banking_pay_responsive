@@ -15,7 +15,8 @@ class BorderDefaultPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+      padding:
+          const EdgeInsets.only(left: kDefaultPadding, right: kHalfPadding),
       child: child,
     );
   }
