@@ -11,7 +11,10 @@ import '../../constants.dart';
 class UserCardsSection extends StatelessWidget {
   const UserCardsSection({
     Key? key,
+    required this.desiredPadding,
   }) : super(key: key);
+
+  final EdgeInsets desiredPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,10 @@ class UserCardsSection extends StatelessWidget {
             ).showStyledSheet(),
           );
         },
-        padding: const EdgeInsets.only(right: kHalfPadding),
+        padding: EdgeInsets.only(
+            left: desiredPadding.left,
+            right: desiredPadding.right,
+            top: desiredPadding.top),
       ),
     );
   }

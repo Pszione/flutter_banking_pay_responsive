@@ -12,6 +12,9 @@ import 'categories_cards.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  static EdgeInsets desiredPadding = const EdgeInsets.only(
+      left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
