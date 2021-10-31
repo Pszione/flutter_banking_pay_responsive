@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../data_providers.dart';
 
+PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
+
 class ActivityInsightsScreen extends StatefulWidget {
   const ActivityInsightsScreen({Key? key}) : super(key: key);
 
@@ -77,22 +79,25 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
           child: Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: kDefaultPadding, vertical: kHalfPadding),
-            child: ListView.separated(
-              key: const PageStorageKey<String>('activityScreenKey'),
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              separatorBuilder: (context, index) {
-                return const SizedBox(height: kHalfPadding);
-              },
-              //shrinkWrap: true,
-              itemCount: myTransactions.length,
-              itemBuilder: (_, int index) {
-                return TransactionCard(
-                  transaction: myTransactions[index],
-                  onPress: () => AppSlidingBottomSheet.demoSheet(context),
-                );
-              },
-              padding: const EdgeInsets.only(bottom: kHalfPadding),
+            child: PageStorage(
+              bucket: bucketStorageForActivityScreen,
+              child: ListView.separated(
+                key: const PageStorageKey<String>('activityScreenKey'),
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                separatorBuilder: (context, index) {
+                  return const SizedBox(height: kHalfPadding);
+                },
+                //shrinkWrap: true,
+                itemCount: myTransactions.length,
+                itemBuilder: (_, int index) {
+                  return TransactionCard(
+                    transaction: myTransactions[index],
+                    onPress: () => AppSlidingBottomSheet.demoSheet(context),
+                  );
+                },
+                padding: const EdgeInsets.only(bottom: kHalfPadding),
+              ),
             ),
           ),
         ),
