@@ -67,35 +67,32 @@ class _HomeScreenState extends State<HomeScreen> {
             }
             return true;
           },
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            physics: const ClampingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: kDefaultPadding, vertical: kHalfPadding),
-              // Un focus keyboard/textfield
-              child: GestureDetector(
-                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                behavior: HitTestBehavior.translucent,
-                excludeFromSemantics: true,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Semantics(
-                      child: const UserCardsSection(),
-                      label:
-                          S.of(context).homeScreen_userCardSection_pageSubtitle,
-                      slider: true,
-                    ),
-                    const SizedBox(height: kDefaultPadding),
-                    Semantics(child: const CategoriesSection()),
-                    const SizedBox(height: kDefaultPadding),
-                    Semantics(child: const RecentTransactionsSection()),
-                    const SizedBox(height: kDefaultPadding),
-                    const SizedBox(height: 160),
-                  ],
+          // Un focus keyboard/textfield
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.translucent,
+            excludeFromSemantics: true,
+            child: ListView(
+              physics: const ClampingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              // padding: const EdgeInsets.symmetric
+              children: [
+                Semantics(
+                  child: UserCardsSection(),
+                  label: S.of(context).homeScreen_userCardSection_pageSubtitle,
+                  slider: true,
                 ),
-              ),
+                const SizedBox(height: kDefaultPadding),
+                Padding(
+                    padding: HomeScreen.desiredPadding,
+                    child: Semantics(child: const CategoriesSection())),
+                const SizedBox(height: kDefaultPadding),
+                Padding(
+                    padding: HomeScreen.desiredPadding,
+                    child: Semantics(child: const RecentTransactionsSection())),
+                const SizedBox(height: kDefaultPadding),
+                const SizedBox(height: 160),
+              ],
             ),
           ),
         ),
