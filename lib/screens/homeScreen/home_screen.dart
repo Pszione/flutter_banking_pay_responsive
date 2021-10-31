@@ -81,7 +81,8 @@ class _HomeScreenState extends State<HomeScreen> {
               // padding: const EdgeInsets.symmetric
               children: [
                 Semantics(
-                  child: UserCardsSection(),
+                  child: UserCardsSection(
+                      desiredPadding: HomeScreen.desiredPadding),
                   label: S.of(context).homeScreen_userCardSection_pageSubtitle,
                   slider: true,
                 ),
