@@ -136,6 +136,12 @@ class AppThemes {
       elevation: 8,
       //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        primary: kPrimaryColor, // text color?
+      ),
+    ),
     cardTheme: CardTheme(
       elevation: 0,
       //clipBehavior: Clip.antiAlias,
@@ -143,6 +149,11 @@ class AppThemes {
         borderRadius: kDefaultBorderRadius,
       ),
       color: Colors.transparent,
+    ),
+    dialogTheme: DialogTheme(
+      // elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
+      // backgroundColor: Theme.of(context).colorScheme.background, // TODO
     ),
     colorScheme: AppThemes.appColorScheme,
     primaryColor: kWhiteColor,
@@ -173,6 +184,13 @@ class AppThemes {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
       elevation: 8,
+      //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        primary: kSecondaryColor, // text color?
+      ),
     ),
     cardTheme: CardTheme(
       elevation: 0,
@@ -180,6 +198,11 @@ class AppThemes {
         borderRadius: kDefaultBorderRadius,
       ),
       color: Colors.transparent,
+    ),
+    dialogTheme: DialogTheme(
+      // elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
+      // backgroundColor: Theme.of(context).colorScheme.background, // TODO
     ),
     colorScheme: AppThemes.appDarkColorScheme,
     primaryColor: kDarkBackgroundColor,

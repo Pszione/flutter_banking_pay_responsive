@@ -81,8 +81,37 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
           child: const Icon(Icons.vpn_key_outlined, color: dialIconsColor),
           label: S.of(context).homeScreen_fourth_fab_optionsDescription,
           elevation: _floatingElevation,
-          onTap: () =>
-              AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+          // showDatePicker
+          onTap: () async => await showDialog<DateTime?>(
+            context: context,
+            barrierColor: Colors.black.withOpacity(kAlertOverlayOpacity),
+            barrierDismissible: true,
+            builder: (_) => Theme(
+              data: Theme.of(context).copyWith(
+                dialogBackgroundColor: Theme.of(context).colorScheme.background,
+                colorScheme: Theme.of(context)
+                    .colorScheme
+                    .copyWith(primary: kSecondaryColor),
+                textButtonTheme: TextButtonThemeData(
+                  style: TextButton.styleFrom(
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    primary: kPrimaryColor, // text color?
+                  ),
+                ),
+              ),
+              child: DatePickerDialog(
+                restorationId: 'PIX',
+                initialDate: DateTime.now(),
+                firstDate: DateTime.now(),
+                lastDate: DateTime.now().add(const Duration(days: 365)),
+                confirmText:
+                    S.of(context).googleDateTimePicker_okay_button_title,
+                helpText: S
+                    .of(context)
+                    .googleDateTimePicker_dateOfTransfer_description,
+              ),
+            ),
+          ),
         ),
       ],
     );
