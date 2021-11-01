@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "__2": MessageLookupByLibrary.simpleMessage(""),
         "__3": MessageLookupByLibrary.simpleMessage(""),
         "__4": MessageLookupByLibrary.simpleMessage(""),
+        "__5": MessageLookupByLibrary.simpleMessage(""),
         "___": MessageLookupByLibrary.simpleMessage(""),
         "activityScreen_TOOLTIP_fabDownward_description":
             MessageLookupByLibrary.simpleMessage("Descer!"),
@@ -102,6 +103,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Configurações"),
         "googleAccountDialog_termsOfService_button_title":
             MessageLookupByLibrary.simpleMessage("Termos de Serviço"),
+        "googleDateTimePicker_cancel_button_title":
+            MessageLookupByLibrary.simpleMessage("CANCELAR"),
+        "googleDateTimePicker_dateOfTransfer_description":
+            MessageLookupByLibrary.simpleMessage(
+                "SELECIONE O DIA DE SUA TRANSFERÊNCIA"),
+        "googleDateTimePicker_okay_button_title":
+            MessageLookupByLibrary.simpleMessage("OK"),
         "homeScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
             "Transferências como, enviar dinheiro, ler QR code, PIX e mais"),
         "homeScreen_billsResume_categoryTitle":

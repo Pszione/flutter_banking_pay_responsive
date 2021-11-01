@@ -66,6 +66,10 @@
   "googleAccountDialog_privacyPolicy_button_title": "Privacy Policy",
   "googleAccountDialog_termsOfService_button_title":"Terms of Service",
   "googleAccountDialog_TOOLTIP_readTerms_hint": "Read",
+  "__5": "",
+  "googleDateTimePicker_dateOfTransfer_description": "SELECT THE DAY FOR YOUR TRANSFER",
+  "googleDateTimePicker_cancel_button_title": "CANCEL",
+  "googleDateTimePicker_okay_button_title": "OK",
   "___": "",
   "snackBar_featureUnavailableButBeingFixed_text": "Feature unavailable at the moment. We'll fix it right away!",
   "other_TOOLTIP_closeButton": "Close"

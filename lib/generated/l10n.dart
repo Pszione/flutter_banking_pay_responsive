@@ -711,6 +711,46 @@ class S {
   }
 
   /// ``
+  String get __5 {
+    return Intl.message(
+      '',
+      name: '__5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SELECT THE DAY FOR YOUR TRANSFER`
+  String get googleDateTimePicker_dateOfTransfer_description {
+    return Intl.message(
+      'SELECT THE DAY FOR YOUR TRANSFER',
+      name: 'googleDateTimePicker_dateOfTransfer_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CANCEL`
+  String get googleDateTimePicker_cancel_button_title {
+    return Intl.message(
+      'CANCEL',
+      name: 'googleDateTimePicker_cancel_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get googleDateTimePicker_okay_button_title {
+    return Intl.message(
+      'OK',
+      name: 'googleDateTimePicker_okay_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
   String get ___ {
     return Intl.message(
       '',
