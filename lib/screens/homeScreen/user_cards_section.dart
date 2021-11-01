@@ -50,9 +50,11 @@ class UserCardsSection extends StatelessWidget {
           );
         },
         padding: EdgeInsets.only(
-            left: desiredPadding.left,
-            right: desiredPadding.right,
-            top: desiredPadding.top),
+          left: desiredPadding.left,
+          right: desiredPadding.right,
+          top: desiredPadding.top,
+          bottom: desiredPadding.top,
+        ),
       ),
     );
   }

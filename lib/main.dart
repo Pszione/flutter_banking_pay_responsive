@@ -119,6 +119,7 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       backgroundColor: kWhiteColor,
       centerTitle: true,
+      titleSpacing: kSmallPadding,
       elevation: 0,
       iconTheme: IconThemeData(
         color: kDarkColor,
@@ -168,8 +169,8 @@ class AppThemes {
     appBarTheme: const AppBarTheme(
       backgroundColor: kDarkBackgroundColor,
       centerTitle: true,
+      titleSpacing: kSmallPadding,
       elevation: 0,
-      //clipBehavior: Clip.antiAlias,
       iconTheme: IconThemeData(
         color: kWhiteColor,
         size: kMediumIconSize,

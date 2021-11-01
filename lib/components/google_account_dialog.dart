@@ -36,7 +36,7 @@ class GoogleAccountDialog {
             .googleAccountDialog_TOOLTIP_googleAccountDialog_description,
         sortKey: const OrdinalSortKey(0),
         child: AlertDialog(
-          elevation: 0,
+          // elevation: 0,
           semanticLabel: "",
           backgroundColor: Theme.of(context).colorScheme.background,
           shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
