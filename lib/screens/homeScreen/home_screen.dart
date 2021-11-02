@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   label: S.of(context).homeScreen_userCardSection_pageSubtitle,
                   slider: true,
                 ),
-                const SizedBox(height: kDefaultPadding),
+                const SizedBox(height: kHalfPadding),
                 Padding(
                     padding: HomeScreen.desiredPadding,
                     child: Semantics(child: const CategoriesSection())),

@@ -27,8 +27,8 @@ class CategoriesSection extends StatelessWidget {
     //   },
     //   <String, String>{'icon': Icons.more_horiz, 'text': 'More'},
     // ];
+    const spacing = SizedBox(width: kHalfPadding * 1.1, height: kHalfPadding);
 
-    const spacing = SizedBox(width: kHalfPadding * 1.2, height: kHalfPadding);
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

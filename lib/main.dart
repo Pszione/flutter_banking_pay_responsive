@@ -79,7 +79,8 @@ class MyApp extends StatelessWidget {
           // Success
           else if (httpSnapshot.hasData) {
             print(httpSnapshot.data);
-            return const SetupScreen();
+            // Screen
+            return SetupScreen();
           }
           //
           return Center(

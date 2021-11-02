@@ -19,7 +19,7 @@ class UserCardsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200 * 1.07,
+      height: 220,
       child: ListView.separated(
         key: const PageStorageKey<String>('homeScreenUserCardsKey'),
         physics: const ClampingScrollPhysics(),
