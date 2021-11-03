@@ -79,7 +79,8 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                     ),
                     Semantics(
                       child: Text(
-                        '${card.cardNumber}',
+                        CardModel.obscureCardInfo(card.cardNumber!, 4),
+                        // '${card.cardNumber}',
                         style: AppTextStyles.kCardSubtitle,
                         semanticsLabel:
                             "Número do Cartão com final 4984", // TODO: implement parameter string
@@ -125,8 +126,12 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                             ),
                             ExcludeSemantics(
                               child: Text(
-                                '${card.cvv}',
-                                style: AppTextStyles.kCardSubtitle,
+                                CardModel.obscureCardInfo(card.cvv ?? '', 1),
+                                style: CardModel.hasCardExpired(card.expDate) ==
+                                        false
+                                    ? AppTextStyles.kCardSubtitle
+                                    : AppTextStyles.kCardSubtitle
+                                        .copyWith(color: kTextRedColor),
                               ),
                             ),
                           ],
@@ -135,27 +140,32 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                     )
                   ],
                 ),
-                ExcludeSemantics(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: buildCardLogo(card),
-                      ),
-                      if (CardModel.hasCardExpired(card.expDate))
-                        Text(
-                          S.of(context).cardWidget_expDateExpired_title,
-                          style: AppTextStyles.kCardTitle
-                              .copyWith(color: kTextRedColor),
-                          textAlign: TextAlign.end,
-                          overflow: TextOverflow.clip,
-                        ),
-                    ],
-                  ),
+              ],
+            ),
+          ),
+        ),
+        // Extra info aligned to the right
+        Container(
+          padding: _borderPadding,
+          width: width,
+          height: height,
+          child: ExcludeSemantics(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: buildCardLogo(card),
                 ),
+                if (CardModel.hasCardExpired(card.expDate))
+                  Text(
+                    S.of(context).cardWidget_expDateExpired_title,
+                    style:
+                        AppTextStyles.kCardTitle.copyWith(color: kTextRedColor),
+                    overflow: TextOverflow.clip,
+                  ),
               ],
             ),
           ),
