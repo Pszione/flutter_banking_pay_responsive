@@ -69,7 +69,8 @@ class _ScanCardScreenState extends State<ScanCardScreen> {
                                 context),
                         child: AutoSizeText(
                           S.of(context).scanCardScreen_enterCardManually_title,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, letterSpacing: 0.4),
                           maxFontSize: 14,
                         )),
                     const Spacer(flex: 4),

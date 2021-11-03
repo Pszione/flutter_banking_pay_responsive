@@ -44,8 +44,9 @@ class CardScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            flex: MediaQuery.of(context).orientation == Orientation.portrait
-                ? 5
+            flex: MediaQuery.of(context).orientation == Orientation.portrait ||
+                    Responsive.isDesktop(context)
+                ? 6
                 : 500, // no flex
             // TODO: almost a copy of [UserCardsSection] widget in HomeScreen
             child: ListView.separated(
@@ -64,8 +65,7 @@ class CardScreen extends StatelessWidget {
                     return CardWidget.defaultDimension;
                   else {
                     // because of +1 in length I have to return something
-                    return CardWidget.defaultDimension;
-                    // return const SizedBox.shrink();
+                    return const SizedBox.shrink();
                   }
                 }
                 return Center(
