@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
+import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -49,13 +50,15 @@ class GoogleAccountDialog {
                   ? 80
                   : 0),
           title: buildGoogleHeader(context),
-          // width: 400, // MediaQuery.of(context).size.width * 0.9,
-          // height: 450,
           content: Container(
-            width: 400,
-            height: MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.height * 0.525
-                : MediaQuery.of(context).size.height * 0.85,
+            width: MediaQuery.of(context).orientation == Orientation.portrait
+                ? 400
+                : 460,
+            height:
+                MediaQuery.of(context).orientation == Orientation.portrait ||
+                        Responsive.isDesktop(context)
+                    ? MediaQuery.of(context).size.height * 0.525
+                    : MediaQuery.of(context).size.height * 0.85,
             alignment: Alignment.center,
             child: ListView(
               scrollDirection: Axis.vertical,
