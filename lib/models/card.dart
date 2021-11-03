@@ -67,40 +67,102 @@ class CardModel {
           : DateTime(int.parse(expYear), int.parse(expMonth));
     }
   }
+
+  /// Obscure given string character with ** (secret)
+  static String obscureCardInfo(String info, int? visibleCharactersLength) {
+    const secret = '*';
+    var regex = RegExp('[0-9]');
+    var newObscuredString = <String>[];
+
+    /// Obscure all string characters
+    if (visibleCharactersLength == null ||
+        visibleCharactersLength >= info.length) {
+      for (var i = 0; i < info.length; i++) {
+        newObscuredString.add(secret);
+      }
+      return newObscuredString.join();
+    }
+    for (var i = 0; i < info.length; i++) {
+      if (i < info.length - visibleCharactersLength &&
+          regex.hasMatch(info[i])) {
+        newObscuredString.add(secret);
+      } else {
+        newObscuredString.add(info[i]);
+      }
+    }
+    return newObscuredString.join();
+    //email.replaceAll(RegExp(r'(?<=.{1}).(?=.*@)'), '*') // j******@email.com
+    //return info.replaceAll(RegExp('r[0-9]'), info.length - visibleCharactersLength, secret);
+  }
 }
 
 List<CardModel> myCards = [
   CardModel(
-    cardHolderName: "Mr Pedro",
-    cardNumber: "****  ****  ****  1234",
-    cvv: "**5",
+    cardHolderName: "Pedro A B C",
+    cardNumber: "1234 1234 1234 1234",
+    cvv: "501",
     expDate: "12/21",
     cardColor: kComplementaryColor,
     cardBrand: CardBrand.mastercard,
   ),
   CardModel(
-    cardHolderName: "Mr Pedro",
-    cardNumber: "****  ****  ****  5678",
-    cvv: "**9",
+    cardHolderName: "Pedro A B C",
+    cardNumber: "5678 5678 5678 5678",
+    cvv: "009",
     expDate: "01/22",
     cardBrand: CardBrand.visaPlatinum,
     cardColor: kSecondaryColor,
     nickname: 'C6 Pink',
   ),
   CardModel(
-    cardHolderName: "Mr Pedro",
-    cardNumber: "****  ****  ****  1170",
-    cvv: "**0",
+    cardHolderName: "Pedro A B C",
+    cardNumber: "1122 1122 1122 1122",
+    cvv: "121",
     expDate: "12/20",
     cardBrand: CardBrand.americanExpress,
     // cardColor: kSecondaryColor,
     nickname: 'Black Unlimited',
   ),
   CardModel(
-    cardHolderName: "Mr Pedro",
-    cardNumber: "****  ****  ****  2552",
-    cvv: "**5",
-    expDate: "20/20",
+    cardHolderName: "Pedro A B C",
+    cardNumber: "2552 2552 2552 2552",
+    cvv: "343",
+    expDate: "03/20",
+    cardBrand: CardBrand.mastercard,
+    cardColor: Colors.white,
+  ),
+  //
+  CardModel(
+    cardHolderName: "Pedro A B C",
+    cardNumber: "1234 1234 1234 1234",
+    cvv: "501",
+    expDate: "12/21",
+    cardColor: kComplementaryColor,
+    cardBrand: CardBrand.mastercard,
+  ),
+  CardModel(
+    cardHolderName: "Pedro A B C",
+    cardNumber: "5678 5678 5678 5678",
+    cvv: "009",
+    expDate: "01/22",
+    cardBrand: CardBrand.visaPlatinum,
+    cardColor: kSecondaryColor,
+    nickname: 'C6 Pink',
+  ),
+  CardModel(
+    cardHolderName: "Pedro A B C",
+    cardNumber: "1122 1122 1122 1122",
+    cvv: "121",
+    expDate: "12/20",
+    cardBrand: CardBrand.americanExpress,
+    // cardColor: kSecondaryColor,
+    nickname: 'Black Unlimited',
+  ),
+  CardModel(
+    cardHolderName: "Pedro A B C",
+    cardNumber: "2552 2552 2552 2552",
+    cvv: "343",
+    expDate: "03/20",
     cardBrand: CardBrand.mastercard,
     cardColor: Colors.white,
   ),
