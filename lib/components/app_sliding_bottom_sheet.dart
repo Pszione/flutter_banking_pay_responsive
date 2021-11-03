@@ -8,7 +8,7 @@ class AppSlidingBottomSheet {
     required this.context,
     required this.bodyWidget,
     this.initialSnap = 0.88,
-    this.snappings = const [0.5, 0.88],
+    this.snappings = const [0.5, 0.88, 1.0],
     this.headerColor = kGrayColor,
   });
   final BuildContext context;

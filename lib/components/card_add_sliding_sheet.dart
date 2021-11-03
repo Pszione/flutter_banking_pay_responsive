@@ -8,10 +8,13 @@ import 'app_sliding_bottom_sheet.dart';
 
 class CardAddSlidingSheet {
   Future<Widget> showOptionsSlidingSheet(BuildContext context) async {
+    final _isScreenVertical =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+
     return await AppSlidingBottomSheet(
       context: context,
-      snappings: [0.4],
-      initialSnap: 0.4,
+      snappings: _isScreenVertical ? [0.4] : [0.7],
+      initialSnap: _isScreenVertical ? 0.4 : 0.7,
       headerColor: Theme.of(context).colorScheme.background,
       bodyWidget: Container(
         width: double.infinity,
