@@ -18,7 +18,6 @@ class GoogleAccountDialog {
     Key? key,
   });
 
-  //late AccountModel currentUser;
   static const double kAccountRowHeight = 66;
 
   Future<String?> showDialogDismissible(BuildContext context,
@@ -123,11 +122,16 @@ class GoogleAccountDialog {
                           .of(context)
                           .googleAccountDialog_settings_button_title,
                       icon: Icons.settings_rounded,
-                      onPress: () => Navigator.push(
+                      onPress: () {
+                        // button will also dismiss/pop this sliding sheet
+                        Navigator.pop(context);
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  const SettingsScreen())),
+                                  const SettingsScreen()),
+                        );
+                      },
                     ),
                     // TODO: add FAQ link
                     BuildGoogleListButton(
