@@ -20,9 +20,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       // initialize instances
       providers: [
-        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider<ThemeProvider>(
+          create: (_) => ThemeProvider(),
+        ),
         ChangeNotifierProvider<SettingsProvider>(
-            create: (_) => SettingsProvider()),
+          create: (_) => SettingsProvider(),
+        ),
         ChangeNotifierProvider<DBSyncProvider>(
           create: (_) => DBSyncProvider(),
         ),
