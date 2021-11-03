@@ -82,7 +82,10 @@ class GoogleAccountDialog {
                 const SizedBox(height: kHalfPadding),
                 kDivider,
                 SizedBox(
-                  height: 145,
+                  height:
+                      MediaQuery.of(context).orientation == Orientation.portrait
+                          ? 165
+                          : 140,
                   child: ListView.builder(
                       physics: const ClampingScrollPhysics(),
                       scrollDirection: Axis.vertical,
