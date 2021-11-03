@@ -17,8 +17,9 @@ class CardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _currentScrollAxis =
-        Responsive.isMobileLarge(context) ? Axis.vertical : Axis.horizontal;
+    final _currentScrollAxis = Responsive.isMobileLarge(context)
+        ? Axis.vertical
+        : Axis.vertical; // TODO Axis.horizontal;
     final _isAxisVertical = _currentScrollAxis == Axis.vertical;
 
     return Scaffold(
@@ -63,7 +64,8 @@ class CardScreen extends StatelessWidget {
                     return CardWidget.defaultDimension;
                   else {
                     // because of +1 in length I have to return something
-                    return const SizedBox.shrink();
+                    return CardWidget.defaultDimension;
+                    // return const SizedBox.shrink();
                   }
                 }
                 return Center(

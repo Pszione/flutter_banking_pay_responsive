@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setEnabledSystemUIOverlays([]);
     return MultiProvider(
       // initialize instances
       providers: [
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Banking Pay',
           debugShowCheckedModeBanner: false,
+          scrollBehavior: AppCustomScrollBehavior(),
           localizationsDelegates: const [
             // 1
             S.delegate,
@@ -97,6 +100,15 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+class AppCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }
 
 class AppThemes {
