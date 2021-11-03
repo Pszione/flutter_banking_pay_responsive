@@ -44,6 +44,8 @@ double kBottomNavigationHeight(BuildContext context) =>
     MediaQuery.of(context).orientation == Orientation.portrait
         ? AppBar().preferredSize.height * 1.6
         : AppBar().preferredSize.height * 1.2;
+
+const kFabIconSize = kHugeIconSize * 1.5;
 const kHugeIconSize = 33.0;
 const kMediumIconSize = 27.0;
 const kSmallIconSize = 22.0;

@@ -33,9 +33,9 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
       icon: icon, // animatedIcon: AnimatedIcons.menu_close,
       iconTheme: IconThemeData(
         color: Theme.of(context).primaryColorDark,
-        size: kMediumIconSize,
+        size: kHugeIconSize,
       ),
-      buttonSize: kHugeIconSize * 1.6,
+      buttonSize: kFabIconSize,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
       label: label != null
@@ -52,7 +52,8 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
       tooltip: tooltip,
       elevation: _floatingElevation,
       animationSpeed: 400,
-      spacing: 15, // initial child
+      spacing: kSmallPadding, // initial child
+      spaceBetweenChildren: 0,
       children: [
         SpeedDialChild(
           child: const Icon(Icons.send_rounded, color: dialIconsColor),
