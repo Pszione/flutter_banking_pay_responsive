@@ -14,16 +14,18 @@ class CardOverviewSlidingSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Stack(
-        //alignment: AlignmentDirectional.topCenter,
+        alignment: Alignment.topCenter,
+        // fit: StackFit.loose,
+        clipBehavior: Clip.antiAlias,
         children: [
           Container(
             width: double.infinity,
-            height: 670,
+            height: MediaQuery.of(context).size.height * 0.97, // 780,
             color: CardModel.getCardColorNullSafety(card: card, opacity: 0.85),
           ),
           Container(
             width: double.infinity,
-            height: 650,
+            height: MediaQuery.of(context).size.height * 0.77,
             margin: const EdgeInsets.only(
                 left: kDefaultPadding,
                 right: kDefaultPadding,
@@ -34,7 +36,7 @@ class CardOverviewSlidingSheet extends StatelessWidget {
                 top: kDefaultPadding),
             decoration: BoxDecoration(
               color: kWhiteColor,
-              borderRadius: kHugeBorderRadius,
+              borderRadius: kDefaultBorderRadius,
             ),
           ),
           Column(
