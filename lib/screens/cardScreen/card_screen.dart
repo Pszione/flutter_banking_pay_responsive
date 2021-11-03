@@ -8,6 +8,7 @@ import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
+import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 
 import '../../constants.dart';
 
@@ -16,6 +17,10 @@ class CardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _currentScrollAxis =
+        Responsive.isMobileLarge(context) ? Axis.vertical : Axis.horizontal;
+    final _isAxisVertical = _currentScrollAxis == Axis.vertical;
+
     return Scaffold(
       appBar: AppBarComplete(
         title: S.of(context).homeScreen_second_tabBarTitle,
@@ -34,55 +39,63 @@ class CardScreen extends StatelessWidget {
         // AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
       ),
       floatingActionButtonLocation: kFloatingButtonLocationAdaptive(context),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kDefaultPadding, vertical: kHalfPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 5
-                  : 50,
-              child: ListView.separated(
-                // TODO or same key as homeScreen?
-                key: const PageStorageKey<String>('cardScreenUserCardsKey'),
-                physics: const ClampingScrollPhysics(),
-                scrollDirection: Responsive.isMobileLarge(context)
-                    ? Axis.vertical
-                    : Axis.horizontal,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(
-                      width: kHalfPadding, height: kDefaultPadding);
-                },
-                shrinkWrap: true,
-                itemCount: myCards.length,
-                itemBuilder: (_, index) {
-                  return Center(
-                    child: CardWidget(
-                      card: myCards[index],
-                      onPress: () => AppSlidingBottomSheet(
-                        context: context,
-                        headerColor: CardModel.getCardColorNullSafety(
-                            card: myCards[index], opacity: 0.85),
-                        bodyWidget:
-                            CardOverviewSlidingSheet(card: myCards[index]),
-                      ).showStyledSheet(),
-                    ),
-                  );
-                },
-                padding: const EdgeInsets.only(bottom: kDefaultPadding),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: MediaQuery.of(context).orientation == Orientation.portrait
+                ? 5
+                : 500, // no flex
+            // TODO: almost a copy of [UserCardsSection] widget in HomeScreen
+            child: ListView.separated(
+              key: const PageStorageKey<String>('cardScreenUserCardsKey'),
+              physics: const ClampingScrollPhysics(),
+              scrollDirection: _currentScrollAxis,
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                    width: kHalfPadding, height: kDefaultPadding);
+              },
+              shrinkWrap: true,
+              itemCount: myCards.length + 1,
+              itemBuilder: (_, index) {
+                if (index == myCards.length) {
+                  if (!_isAxisVertical)
+                    return CardWidget.defaultDimension;
+                  else {
+                    // because of +1 in length I have to return something
+                    return const SizedBox.shrink();
+                  }
+                }
+                return Center(
+                  child: CardWidget(
+                    card: myCards[index],
+                    onPress: () => AppSlidingBottomSheet(
+                      context: context,
+                      initialSnap: _isAxisVertical ? 0.5 : 1.0,
+                      headerColor: CardModel.getCardColorNullSafety(
+                          card: myCards[index], opacity: 0.85),
+                      bodyWidget:
+                          CardOverviewSlidingSheet(card: myCards[index]),
+                    ).showStyledSheet(),
+                  ),
+                );
+              },
+              padding: EdgeInsets.only(
+                left: HomeScreen.desiredPadding.left,
+                right: HomeScreen.desiredPadding.right,
+                top: HomeScreen.desiredPadding.top,
+                bottom: HomeScreen.desiredPadding.top,
               ),
             ),
-            const Flexible(
-              flex: 1,
-              child: SizedBox(
-                width: double.infinity,
-                height: kHugePadding * 4,
-              ),
+          ),
+          const Flexible(
+            flex: 1,
+            child: SizedBox(
+              width: double.infinity,
+              height: kHugePadding * 4,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -22,6 +22,9 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
       required this.onPress})
       : super(key: key);
 
+  static SizedBox defaultDimension =
+      const SizedBox(width: 350 / 2, height: 200);
+
   @override
   late CardModel card;
   @override
