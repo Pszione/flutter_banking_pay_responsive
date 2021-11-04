@@ -8,6 +8,7 @@ import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -131,14 +132,8 @@ class MyApp extends StatelessWidget {
             // Screen
             return SetupScreen();
           }
-          //
-          return Center(
-              child: CircularProgressIndicator(
-                  strokeWidth: 6,
-                  color: Theme.of(context).colorScheme.primary));
-          // return const Center(
-          //     child: Text('Loading...',
-          //         style: TextStyle(decoration: TextDecoration.none)));
+          // Loading
+          return const ShimmerHomeScreen();
         },
       ),
     );
@@ -152,6 +147,45 @@ class AppCustomScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
       };
+}
+
+class ShimmerProgressIndicator extends StatelessWidget {
+  const ShimmerProgressIndicator({
+    Key? key,
+    required this.child,
+    this.baseColor,
+    this.highlightColor,
+  }) : super(key: key);
+
+  final Widget child;
+  final Color? baseColor, highlightColor;
+
+  // final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
+  static isDarkMode(BuildContext context) =>
+      MediaQuery.of(context).platformBrightness == Brightness.dark
+          ? true // ThemeMode.dark
+          : false; // ThemeMode.light;
+
+  static themeDependentBaseColor(BuildContext context) =>
+      MediaQuery.of(context).platformBrightness == Brightness.dark
+          ? kDarkShimmerColor
+          : kLightShimmerColor;
+
+  @override
+  Widget build(BuildContext context) {
+    if (baseColor != null && highlightColor != null) {
+      return Shimmer.fromColors(
+        baseColor: baseColor!,
+        highlightColor: highlightColor!,
+        child: child,
+      );
+    }
+    return Shimmer.fromColors(
+      baseColor: themeDependentBaseColor(context),
+      highlightColor: Theme.of(context).scaffoldBackgroundColor,
+      child: child,
+    );
+  }
 }
 
 class AppThemes {

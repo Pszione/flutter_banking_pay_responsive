@@ -104,3 +104,118 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+class ShimmerHomeScreen extends StatelessWidget {
+  const ShimmerHomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // floatingActionButton: ShimmerProgressIndicator(
+      //   child: FloatingActionButton.extended(
+      //     clipBehavior: Clip.antiAlias,
+      //     onPressed: () {},
+      //     label: const Text('hahahahaha'),
+      //     icon: const Icon(Icons.send),
+      //     backgroundColor:
+      //         ShimmerProgressIndicator.themeDependentBaseColor(context),
+      //     shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
+      //   ),
+      // ),
+      bottomNavigationBar: Container(
+        width: double.infinity,
+        height: kBottomNavigationHeight(context),
+        color: Colors.transparent,
+      ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            ListView(
+              physics: const NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              children: [
+                // AppBar
+                ShimmerProgressIndicator(
+                  child: Container(
+                    width: double.infinity,
+                    height: const AppBarComplete().preferredSize.height,
+                    color: Colors.black,
+                  ),
+                ),
+                // CardWidget List
+                Padding(
+                  padding: HomeScreen.desiredPadding.copyWith(right: 0),
+                  child: SizedBox(
+                    height: 220,
+                    child: ListView.separated(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      scrollDirection: Axis.horizontal,
+                      physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (_, index) {
+                        return const SizedBox(width: kHalfPadding);
+                      },
+                      itemCount: 5,
+                      itemBuilder: (_, index) => ShimmerProgressIndicator(
+                          child: CardWidget.defaultDimensionColored),
+                    ),
+                  ),
+                ),
+                // Categories List
+                Padding(
+                  padding: HomeScreen.desiredPadding
+                      .copyWith(top: kHugePadding, bottom: kHugePadding),
+                  child: SizedBox(
+                    height: 70,
+                    child: ListView.separated(
+                      clipBehavior: Clip.antiAlias,
+                      scrollDirection: Axis.horizontal,
+                      physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (_, index) => const SizedBox(
+                          width: kHalfPadding * 1.1, height: kHalfPadding),
+                      itemCount: 5,
+                      itemBuilder: (_, index) => ShimmerProgressIndicator(
+                        child: CategoryCard.defaultDimensionColored,
+                      ),
+                    ),
+                  ),
+                ),
+                // Transactions List
+                Padding(
+                  padding: HomeScreen.desiredPadding.copyWith(right: 170),
+                  child: ShimmerProgressIndicator(
+                    child: Container(
+                      height: kHalfPadding * 1.2,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: HomeScreen.desiredPadding,
+                  child: SizedBox(
+                    height: 800,
+                    child: ListView.separated(
+                      clipBehavior: Clip.antiAlias,
+                      scrollDirection: Axis.vertical,
+                      physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (_, index) {
+                        return const SizedBox(height: kHalfPadding);
+                      },
+                      itemCount: ksMaxRecentTransactionsCount,
+                      itemBuilder: (_, index) => ShimmerProgressIndicator(
+                        child: TransactionCard.defaultDimensionColored,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Center(
+              child: CircularProgressIndicator(
+                  strokeWidth: 6, color: Theme.of(context).colorScheme.primary),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
