@@ -71,6 +71,7 @@ class CardScreen extends StatelessWidget {
                 return Center(
                   child: CardWidget(
                     card: myCards[index],
+                    index: index,
                     onPress: () => AppSlidingBottomSheet(
                       context: context,
                       initialSnap: _isAxisVertical ? 0.5 : 1.0,

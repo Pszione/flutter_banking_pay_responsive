@@ -13,20 +13,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'app_sliding_bottom_sheet.dart';
 
 class CardWidget extends StatelessWidget implements ICardImplementation {
-  CardWidget(
-      {Key? key,
-      required this.card,
-      this.width = 350,
-      this.height = 200,
-      this.isClickable = true,
-      required this.onPress})
-      : super(key: key);
+  CardWidget({
+    Key? key,
+    required this.card,
+    required this.index,
+    this.width = 350,
+    this.height = 200,
+    this.isClickable = true,
+    required this.onPress,
+  }) : super(key: key);
 
   static SizedBox defaultDimension =
       const SizedBox(width: 350 / 2, height: 200);
 
   @override
   late CardModel card;
+  final int index;
   @override
   late double width, height;
   @override
@@ -41,11 +43,9 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
     return Stack(
       children: [
         Semantics(
-          // TODO: card 1 out of 5 - add index in parent?
           label: S.of(context).cardWidget_singularCard_title +
-              S
-                  .of(context)
-                  .navigation_TOOTIP_listCount_description(1, myCards.length),
+              S.of(context).navigation_TOOTIP_listCount_description(
+                  index + 1, myCards.length), // TODO
           onTapHint: S.of(context).cardWidget_TOOLTIP_cardOnTapHint,
           child: Container(
             padding: _borderPadding,
@@ -217,6 +217,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
           expDate: '10/29',
           cardColor: const Color(0xff1f8ea3),
         ),
+        index: 1,
         isClickable: true,
         onPress: () => print('Hey! CardWidget was clicked'),
       );

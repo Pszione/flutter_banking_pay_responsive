@@ -40,6 +40,7 @@ class UserCardsSection extends StatelessWidget {
           }
           return CardWidget(
             card: myCards[index],
+            index: index,
             width: 320,
             onPress: () => AppSlidingBottomSheet(
               context: context,
