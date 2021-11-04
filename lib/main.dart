@@ -87,6 +87,20 @@ class MyApp extends StatelessWidget {
     // });
   }
 
+  static Future<void> handleSystemUIColor(
+      BuildContext context, Color? newColor) async {
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: newColor ?? Theme.of(context).colorScheme.background,
+      systemNavigationBarColor:
+          newColor ?? Theme.of(context).colorScheme.background,
+      systemNavigationBarDividerColor: Theme.of(context).colorScheme.background,
+      systemStatusBarContrastEnforced: true,
+      systemNavigationBarContrastEnforced: true,
+    ));
+  }
+
   Future<String?> _fetchNetworkData(int milliseconds) {
     final myFuture =
         Future<String?>.delayed(Duration(milliseconds: milliseconds), () {
