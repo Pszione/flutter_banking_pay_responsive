@@ -3,11 +3,13 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_speed_dial.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
+import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
+import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 
 import '../../constants.dart';
 import 'categories_cards.dart';
@@ -98,7 +100,38 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: HomeScreen.desiredPadding,
                     child: Semantics(child: const RecentTransactionsSection())),
                 const SizedBox(height: kDefaultPadding),
-                const SizedBox(height: 160),
+                const SizedBox(height: kDefaultPadding),
+                Card(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: kHugePadding * 2.5),
+                  color: Theme.of(context).primaryColorLight,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: kDefaultBorderRadius,
+                    side: BorderSide(width: 2, color: kLightGrayColor),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: kHalfPadding, horizontal: 3),
+                    child: BuildGoogleListButton(
+                      icon: Icons.settings_rounded,
+                      label: S
+                          .of(context)
+                          .googleAccountDialog_settings_button_title,
+                      alignment: MainAxisAlignment.center,
+                      onPress: () {
+                        // button will also dismiss/pop this sliding sheet
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const SettingsScreen()),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 80),
               ],
             ),
           ),

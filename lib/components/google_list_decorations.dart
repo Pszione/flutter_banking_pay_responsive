@@ -29,11 +29,13 @@ class BuildGoogleListButton extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.onPress,
+    this.alignment = MainAxisAlignment.start,
   }) : super(key: key);
 
   final double horizontalPadding;
   final String label;
   final IconData icon;
+  final MainAxisAlignment alignment;
   final GestureTapCallback onPress;
 
   @override
@@ -48,6 +50,7 @@ class BuildGoogleListButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: alignment,
             children: [
               SizedBox(
                   width: kDefaultRowSpacing,
