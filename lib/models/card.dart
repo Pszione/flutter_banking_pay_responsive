@@ -94,6 +94,16 @@ class CardModel {
     //email.replaceAll(RegExp(r'(?<=.{1}).(?=.*@)'), '*') // j******@email.com
     //return info.replaceAll(RegExp('r[0-9]'), info.length - visibleCharactersLength, secret);
   }
+
+  static String substringCardInfo(String info, int? remainingCharactersLength) {
+    /// Display all string characters
+    if (remainingCharactersLength == null ||
+        remainingCharactersLength >= info.length) {
+      return info;
+    }
+
+    return info.substring(info.length - remainingCharactersLength);
+  }
 }
 
 List<CardModel> myCards = [

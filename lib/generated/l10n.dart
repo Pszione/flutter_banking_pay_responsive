@@ -310,6 +310,17 @@ class S {
     );
   }
 
+  /// ` {current} out of {length}`
+  String navigation_TOOTIP_listCount_description(
+      Object current, Object length) {
+    return Intl.message(
+      ' $current out of $length',
+      name: 'navigation_TOOTIP_listCount_description',
+      desc: '',
+      args: [current, length],
+    );
+  }
+
   /// ``
   String get __1 {
     return Intl.message(
@@ -407,6 +418,16 @@ class S {
       name: 'cardWidget_cardName_title',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Card number last digits: {lastDigits}`
+  String cardWidget_TOOLTIP_cardNumber_title(Object lastDigits) {
+    return Intl.message(
+      'Card number last digits: $lastDigits',
+      name: 'cardWidget_TOOLTIP_cardNumber_title',
+      desc: '',
+      args: [lastDigits],
     );
   }
 

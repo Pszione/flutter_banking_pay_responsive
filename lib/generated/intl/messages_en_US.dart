@@ -21,6 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(quantity) => "${quantity} new notifications";
 
+  static String m1(lastDigits) => "Card number last digits: ${lastDigits}";
+
+  static String m2(current, length) => " ${current} out of ${length}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "__0": MessageLookupByLibrary.simpleMessage(""),
@@ -59,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Loyalty"),
         "cardWidgetOutlined_addPaymentMethod_title":
             MessageLookupByLibrary.simpleMessage("Add payment method"),
+        "cardWidget_TOOLTIP_cardNumber_title": m1,
         "cardWidget_TOOLTIP_cardOnTapHint":
             MessageLookupByLibrary.simpleMessage("more card options"),
         "cardWidget_TOOLTIP_cvvNumber_hint":
@@ -147,6 +152,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cards"),
         "navigationBar_third_title":
             MessageLookupByLibrary.simpleMessage("Insights"),
+        "navigation_TOOTIP_listCount_description": m2,
         "other_TOOLTIP_closeButton":
             MessageLookupByLibrary.simpleMessage("Close"),
         "scanCardScreen_clickToScan_title":

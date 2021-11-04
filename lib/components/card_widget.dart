@@ -42,7 +42,10 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
       children: [
         Semantics(
           // TODO: card 1 out of 5 - add index in parent?
-          label: S.of(context).cardWidget_singularCard_title,
+          label: S.of(context).cardWidget_singularCard_title +
+              S
+                  .of(context)
+                  .navigation_TOOTIP_listCount_description(1, myCards.length),
           onTapHint: S.of(context).cardWidget_TOOLTIP_cardOnTapHint,
           child: Container(
             padding: _borderPadding,
@@ -80,10 +83,12 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                     Semantics(
                       child: Text(
                         CardModel.obscureCardInfo(card.cardNumber!, 4),
-                        // '${card.cardNumber}',
                         style: AppTextStyles.kCardSubtitle,
-                        semanticsLabel:
-                            "Número do Cartão com final 4984", // TODO: implement parameter string
+                        semanticsLabel: S
+                            .of(context)
+                            .cardWidget_TOOLTIP_cardNumber_title(
+                                CardModel.substringCardInfo(
+                                    card.cardNumber!, 4)),
                       ),
                     ),
                     Row(
