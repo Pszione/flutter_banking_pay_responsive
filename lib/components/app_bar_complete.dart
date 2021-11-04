@@ -166,7 +166,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                   value: themeProvider.isDarkMode,
                   onChanged: (bool value) {
                     //final provider = Provider.of<ThemeProvider>(context);
-                    themeProvider.toggleTheme(value);
+                    themeProvider.toggleTheme(value, context);
                   },
                   activeColor: kSecondaryColor,
                 ),

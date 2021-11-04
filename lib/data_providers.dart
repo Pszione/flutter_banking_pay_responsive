@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/main.dart';
 
 import 'models/account.dart';
 
@@ -7,10 +8,12 @@ class ThemeProvider extends ChangeNotifier {
 
   bool get isDarkMode => themeMode == ThemeMode.dark;
 
-  void toggleTheme(bool isDark) {
+  void toggleTheme(bool isDark, BuildContext context) {
     themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
     notifyListeners(); // this them update our UI
     //print(themeMode.toString());
+
+    MyApp.handleFullscreenSystemUIMode(context);
   }
 
   // how to use it's state

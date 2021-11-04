@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
@@ -18,7 +19,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setEnabledSystemUIOverlays([]);
     return MultiProvider(
       // initialize instances
       providers: [
@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       child: Builder(builder: (context) {
         return MaterialApp(
           title: 'Banking Pay',
+          restorationScopeId: 'app',
           debugShowCheckedModeBanner: false,
           scrollBehavior: AppCustomScrollBehavior(),
           localizationsDelegates: const [
@@ -46,16 +47,44 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
+          // onGenerateTitle: (context) => S.of(context).appTitle,
           //
           // themeMode: ThemeMode.system,
           themeMode: Provider.of<ThemeProvider>(context).themeMode,
           theme: AppThemes.lightThemeData,
           darkTheme: AppThemes.darkThemeData,
           //home: const SetupScreen(),
-          home: buildFuture(),
+          home: Builder(
+            builder: (_) {
+              handleFullscreenSystemUIMode(_);
+              return buildFuture();
+            },
+          ),
         );
       }),
     );
+  }
+
+  static Future<void> handleFullscreenSystemUIMode(BuildContext context) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //     overlays: [SystemUiOverlay.bottom]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Theme.of(context).colorScheme.background,
+      systemNavigationBarColor: Theme.of(context).colorScheme.background,
+      systemNavigationBarDividerColor: Theme.of(context).colorScheme.background,
+      systemStatusBarContrastEnforced: true,
+      systemNavigationBarContrastEnforced: true,
+    ));
+
+    // SystemChrome.setSystemUIChangeCallback((isUiVisible) async {
+    //   if (isUiVisible) {
+    //     return;
+    //   }
+    //   await Future.delayed(const Duration(milliseconds: 3000));
+    //   SystemChrome.restoreSystemUIOverlays();
+    // });
   }
 
   Future<String?> _fetchNetworkData(int milliseconds) {
@@ -68,7 +97,7 @@ class MyApp extends StatelessWidget {
     return myFuture;
   }
 
-  buildFuture() {
+  Widget buildFuture() {
     return Material(
       type: MaterialType.canvas,
       child: FutureBuilder<String?>(
