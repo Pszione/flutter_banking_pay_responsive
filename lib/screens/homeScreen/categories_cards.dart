@@ -101,6 +101,42 @@ class CategoryCard extends StatelessWidget {
   final double size;
   final GestureTapCallback onPress;
 
+  static Widget defaultDimensionColored = SizedBox(
+    width: 60, // 350
+    height: 60,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          width: 53,
+          height: 53,
+          decoration: ShapeDecoration(
+            color: const Color(0xFF000000),
+            shape: RoundedRectangleBorder(
+              borderRadius: kDefaultBorderRadius,
+              side: const BorderSide(
+                width: 3,
+              ),
+            ),
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          height: 10,
+          decoration: ShapeDecoration(
+            color: const Color(0xFF000000),
+            shape: RoundedRectangleBorder(
+              borderRadius: kDefaultBorderRadius,
+              side: const BorderSide(
+                width: 3,
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return InkWell(

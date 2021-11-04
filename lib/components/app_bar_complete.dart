@@ -14,7 +14,7 @@ import 'google_account_dialog.dart';
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
   const AppBarComplete(
       {Key? key,
-      required this.title,
+      this.title,
       this.hasSearchField = false,
       this.hasNotificationsButton = true,
       this.hasDarkThemeToggle = false,
@@ -47,7 +47,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
 
     return Semantics(
       namesRoute: true,
-      label: '${widget.title}',
+      label: widget.title,
       focusable: false,
       readOnly: true,
       child: AppBar(

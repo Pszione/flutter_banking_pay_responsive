@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/extensions.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
-import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constant_text_styles.dart';
@@ -18,6 +17,18 @@ class TransactionCard extends StatelessWidget {
       this.isClickable = true,
       required this.onPress})
       : super(key: key);
+
+  static Widget defaultDimensionColored = Container(
+    width: double.infinity,
+    height: 60 + kDefaultPadding,
+    decoration: ShapeDecoration(
+      color: const Color(0xFF000000),
+      shape: RoundedRectangleBorder(
+        borderRadius: kDefaultBorderRadius,
+        side: const BorderSide(width: 3),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +51,8 @@ class TransactionCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    height: 60,
                     width: 60,
+                    height: 60,
                     padding: const EdgeInsets.all(kHalfPadding),
                     decoration: BoxDecoration(
                       borderRadius: kDefaultBorderRadius,

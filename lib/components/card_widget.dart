@@ -23,8 +23,21 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
     required this.onPress,
   }) : super(key: key);
 
-  static SizedBox defaultDimension =
-      const SizedBox(width: 350 / 2, height: 200);
+  static Widget defaultDimension = const SizedBox(width: 350 / 2, height: 200);
+
+  static Widget defaultDimensionColored = Container(
+    width: 320, // 350
+    height: 170, // 200
+    decoration: ShapeDecoration(
+      color: const Color(0xFF000000),
+      shape: RoundedRectangleBorder(
+        borderRadius: kDefaultBorderRadius,
+        side: const BorderSide(
+          width: 3,
+        ),
+      ),
+    ),
+  );
 
   @override
   late CardModel card;
