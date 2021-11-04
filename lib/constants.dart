@@ -13,7 +13,7 @@ const kWhiteColor = Colors.white;
 const kDarkColor = Color(0xFF191923);
 const kGrayColor = Color(0xFFD8D8D8);
 Color kLightGrayColor = Colors.grey[300]!;
-const kErrorColor = Color(0xffffa329);
+const kErrorColor = Color(0xffffa856);
 const kAlertOverlayOpacity = 0.70; // 70%
 
 const kTextBodyColor = kComplementaryColor;
@@ -60,10 +60,10 @@ const kDefaultBorderRadiusAsDouble = 20.0;
 const kSmallBorderRadiusAsDouble = 16.0;
 
 var kBoxDownShadowSubtle = BoxShadow(
-  offset: const Offset(0.0, 6.0),
+  offset: const Offset(0.0, 5.5),
   color: kDarkColor.withOpacity(0.2),
   spreadRadius: 1,
-  blurRadius: 2,
+  blurRadius: 1.6,
 );
 
 var kTextBoxShadowSubtle = BoxShadow(

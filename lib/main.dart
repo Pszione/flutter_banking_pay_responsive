@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -252,6 +253,7 @@ class AppThemes {
     colorScheme: AppThemes.appColorScheme,
     primaryColor: kWhiteColor,
     primaryColorDark: kDarkColor,
+    primaryColorLight: kGrayColor,
     scaffoldBackgroundColor: kBackgroundColor,
     backgroundColor: kBackgroundColor,
     dialogBackgroundColor: kSecondaryColor,
@@ -283,7 +285,7 @@ class AppThemes {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         textStyle: const TextStyle(fontWeight: FontWeight.bold),
-        primary: kSecondaryColor, // text color?
+        primary: kPrimaryColor, // kSecondaryColor
       ),
     ),
     cardTheme: CardTheme(
@@ -301,6 +303,7 @@ class AppThemes {
     colorScheme: AppThemes.appDarkColorScheme,
     primaryColor: kDarkBackgroundColor,
     primaryColorDark: kWhiteColor,
+    primaryColorLight: kDarkShimmerColor,
     scaffoldBackgroundColor: kDarkBackgroundColor,
     backgroundColor: kDarkBackgroundColor,
     dialogBackgroundColor: kSecondaryColor,

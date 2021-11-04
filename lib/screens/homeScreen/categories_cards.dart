@@ -11,24 +11,21 @@ class CategoriesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: make categories dynamic and toggle each on or off
-    // final List<Map<String, String>> categories = [
-    //   <String, String>{
-    //     'icon': FontAwesomeIcons.fileInvoice,
-    //     'text': 'Bills Resume'
-    //   },
-    //   <String, String>{
-    //     'icon': FontAwesomeIcons.shoppingBag,
-    //     'text': 'Sales Store'
-    //   },
-    //   <String, String>{
-    //     'icon': FontAwesomeIcons.solidCommentDots,
-    //     'text': 'Support Chat'
-    //   },
-    //   <String, String>{'icon': Icons.more_horiz, 'text': 'More'},
-    // ];
     const spacing = SizedBox(width: kHalfPadding * 1.1, height: kHalfPadding);
 
+    // TODO: make categories dynamic and toggle each on or off
+    // final categories = <Widget>[];
+    //
+    // for (var i = 0; i < CategoryModel.categoryNames.length; i++) {
+    //   categories.add(
+    //     CategoryCard(
+    //       label: CategoryModel.categoryNames[i],
+    //       icon: CategoryModel.categoryIcons[i],
+    //       onPress: () =>
+    //         AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+    //     ),
+    //   );
+    // }
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -39,21 +36,20 @@ class CategoriesSection extends StatelessWidget {
           CategoryCard(
             label: S.of(context).homeScreen_transactions_categoryTitle,
             icon: Icons.read_more_rounded,
-            size: kMediumIconSize * 1.25,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           spacing,
           CategoryCard(
             label: S.of(context).homeScreen_billsResume_categoryTitle,
-            icon: FontAwesomeIcons.fileInvoice,
+            icon: Icons.view_list_outlined,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
           spacing,
           CategoryCard(
             label: S.of(context).homeScreen_salesStore_categoryTitle,
-            icon: FontAwesomeIcons.shoppingBag,
+            icon: Icons.shopping_bag_outlined,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
@@ -61,7 +57,7 @@ class CategoriesSection extends StatelessWidget {
           spacing,
           CategoryCard(
             label: S.of(context).homeScreen_supportChat_categoryTitle,
-            icon: FontAwesomeIcons.solidCommentDots,
+            icon: Icons.chat_outlined,
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
@@ -158,13 +154,14 @@ class CategoryCard extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(kHalfPadding),
                   decoration: BoxDecoration(
-                      color: kGrayColor,
+                      // color: kGrayColor,
+                      color: Theme.of(context).primaryColorLight,
                       borderRadius:
                           BorderRadius.circular(kDefaultBorderRadiusAsDouble),
                       boxShadow: [kBoxDownShadowSubtle]),
                   child: Icon(
                     icon,
-                    color: Colors.black,
+                    color: Theme.of(context).primaryColorDark,
                     size: size,
                   ),
                 ),
