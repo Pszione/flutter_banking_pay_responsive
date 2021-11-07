@@ -12,14 +12,16 @@ import '../../constants.dart';
 
 // ignore_for_file: unused_local_variable, unused_field_variable
 class SetupScreen extends StatefulWidget {
-  const SetupScreen({Key? key}) : super(key: key);
+  SetupScreen({Key? key}) : super(key: key);
+
+  final keySetupScreen = GlobalKey<SetupScreenState>();
 
   @override
-  State<SetupScreen> createState() => _SetupScreenState();
+  State<SetupScreen> createState() => SetupScreenState();
 }
 
-class _SetupScreenState extends State<SetupScreen> {
-  static const List<Widget> _menuOptions = <Widget>[
+class SetupScreenState extends State<SetupScreen> {
+  static const List<Widget> menuWidgets = <Widget>[
     HomeScreen(),
     CardScreen(),
     ActivityInsightsScreen(),
@@ -43,7 +45,7 @@ class _SetupScreenState extends State<SetupScreen> {
       },
       child: Scaffold(
         body: Center(
-          child: _menuOptions.elementAt(_selectedIndex),
+          child: menuWidgets.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: buildMaterialYouNavigationBar(context),
       ),
@@ -134,6 +136,7 @@ class _SetupScreenState extends State<SetupScreen> {
     );
   }
 
+  // TODO: create GlobalKey to access this state methods
   void changeSelectedMenu(int index) {
     setState(() {
       if (index < 0 || index >= MenuState.values.length) {
