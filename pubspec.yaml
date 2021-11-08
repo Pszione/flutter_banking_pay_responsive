@@ -35,7 +35,6 @@ dependencies:
   auto_size_text: ^3.0.0
   cupertino_icons: ^1.0.4
   intl: ^0.17.0
-  flutter_launcher_icons: ^0.9.2
   flutter_speed_dial: ^4.6.0
   flutter_svg: ^0.23.0
   font_awesome_flutter: ^9.1.0
