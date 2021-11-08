@@ -119,8 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           .googleAccountDialog_settings_button_title,
                       alignment: MainAxisAlignment.center,
                       onPress: () {
-                        // button will also dismiss/pop this sliding sheet
-                        Navigator.pop(context);
+                        // do not .pop
                         Navigator.push(
                           context,
                           MaterialPageRoute(
