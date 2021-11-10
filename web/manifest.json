@@ -1,6 +1,6 @@
 {
-    "name": "flutter_banking_pay_responsive",
-    "short_name": "flutter_banking_pay_responsive",
+    "name": "Flutter Banking Pay",
+    "short_name": "Flutter Banking Pay",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
@@ -10,26 +10,14 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "icons/Icon-192.png",
+            "src": "icons/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icons/Icon-512.png",
+            "src": "icons/icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
-        },
-        {
-            "src": "icons/Icon-maskable-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-        },
-        {
-            "src": "icons/Icon-maskable-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
         }
     ]
 }

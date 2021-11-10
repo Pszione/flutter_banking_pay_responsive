@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'models/account.dart';
+
+class WebProvider {
+  static get isWebPlatform => kIsWeb;
+}
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system; // default mode
