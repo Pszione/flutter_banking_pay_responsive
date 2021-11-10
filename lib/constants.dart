@@ -41,7 +41,8 @@ FloatingActionButtonLocation kFloatingButtonLocationFixed(
         BuildContext context) =>
     FloatingActionButtonLocation.endFloat;
 
-const kMaxWebsiteWidth = 1440.0; // max width of our web
+const kMaxDesktopWidth = 1440.0; // max width of our web
+const kMaxButtonConstraintWidth = 630.0;
 double kBottomNavigationHeight(BuildContext context) =>
     MediaQuery.of(context).orientation == Orientation.portrait
         ? AppBar().preferredSize.height * 1.6
