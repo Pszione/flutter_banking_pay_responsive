@@ -51,8 +51,8 @@ class TransactionCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: 60,
-                    height: 60,
+                    width: 57,
+                    height: 57,
                     padding: const EdgeInsets.all(kHalfPadding),
                     decoration: BoxDecoration(
                       borderRadius: kDefaultBorderRadius,

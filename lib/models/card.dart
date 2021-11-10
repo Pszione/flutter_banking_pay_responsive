@@ -112,7 +112,7 @@ List<CardModel> myCards = [
     cardNumber: "1234 1234 1234 1234",
     cvv: "501",
     expDate: "12/21",
-    cardColor: kComplementaryColor,
+    cardColor: const Color(0xf63d96db),
     cardBrand: CardBrand.mastercard,
   ),
   CardModel(
@@ -156,7 +156,7 @@ List<CardModel> myCards = [
     cvv: "1100",
     expDate: "10/28",
     cardBrand: CardBrand.mastercard,
-    cardColor: const Color(0xf63d96db),
+    cardColor: kComplementaryColor,
     nickname: 'paypal',
   ),
 ];

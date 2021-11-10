@@ -54,109 +54,106 @@ class _AppBarCompleteState extends State<AppBarComplete> {
         centerTitle: true,
         title: isSearching ? SearchBarField() : showTitleOrNull(context),
         automaticallyImplyLeading: true,
-        leadingWidth: 99,
-        leading: Row(
-          // mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (!widget.hasNotificationsButton) // false
-              Semantics(
-                sortKey: const OrdinalSortKey(0),
-                child: IconButton(
-                  padding: const EdgeInsets.only(left: kDefaultPadding),
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                  ),
-                  onPressed: () => Navigator.maybePop(context, 'Back'),
-                  tooltip: S.of(context).appBar_TOOLTIP_backButton_hint,
-                ),
-              ),
-            // if (widget.hasNotifications)
-            //   IconButton(
-            //     padding: const EdgeInsets.only(left: kDefaultPadding),
-            //     icon: const Icon(
-            //       Icons.notifications_active_outlined,
-            //     ),
-            //     onPressed: () => Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (BuildContext context) =>
-            //             const ActivityInsightsScreen(),
-            //         maintainState: true,
-            //       ),
-            //     ),
-            //   ),
-            if (widget.hasNotificationsButton)
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Semantics(
-                    child: IconButton(
-                      padding: const EdgeInsets.only(left: kDefaultPadding),
-                      icon: const Icon(
-                        Icons.notifications_active_outlined,
-                      ),
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const ActivityInsightsScreen(),
-                          maintainState: true,
-                        ),
-                      ),
-                      tooltip: S
-                          .of(context)
-                          .appBar_notificationsButton_newNotificationsMessage(
-                              dbProvider.newNotifications),
+        leadingWidth: 120,
+        leading: Padding(
+          padding: EdgeInsets.only(
+              left: !WebProvider.isWebPlatform ? kHalfPadding : kHugePadding),
+          child: Row(
+            // mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (!widget.hasNotificationsButton) // false
+                Semantics(
+                  sortKey: const OrdinalSortKey(0),
+                  child: IconButton(
+                    // padding: EdgeInsets.zero,
+                    padding: const EdgeInsets.only(left: 7),
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
                     ),
-                    button: true,
+                    onPressed: () => Navigator.maybePop(context, 'Back'),
+                    tooltip: S.of(context).appBar_TOOLTIP_backButton_hint,
                   ),
-                  if (anyNewNotificationsToDisplay)
-                    Positioned(
-                      top: -1,
-                      right: -8, // positioned made it work
-                      child: Container(
-                        width: kSmallIconSize02 * 1.15,
-                        height: kSmallIconSize02 * 1.5,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).colorScheme.primary,
-                          // border: Border.all(
-                          //     width: 1.0, color: Theme.of(context).primaryColor),
+                ),
+              if (widget.hasNotificationsButton)
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Semantics(
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(
+                          Icons.notifications_active_outlined,
+                          size: kMediumIconSize,
                         ),
-                        child: Center(
-                          child: ExcludeSemantics(
-                            child: AutoSizeText(
-                              '${dbProvider.newNotifications}',
-                              textAlign: TextAlign.center,
-                              style: AppTextStyles.kSmallWhiteSubtitle(context)
-                                  .copyWith(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
-                              maxLines: 1,
-                              maxFontSize: 15,
-                              minFontSize: 10,
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              Provider.of<DBSyncProvider>(context)
+                                  .markNotificationsAsRead();
+                              return const ActivityInsightsScreen();
+                            },
+                            maintainState: true,
+                          ),
+                        ),
+                        tooltip: S
+                            .of(context)
+                            .appBar_notificationsButton_newNotificationsMessage(
+                                dbProvider.newNotifications),
+                      ),
+                      button: true,
+                    ),
+                    if (anyNewNotificationsToDisplay)
+                      Positioned(
+                        top: -1.3,
+                        right: -5, // positioned made it work
+                        child: Container(
+                          width: kSmallIconSize02 * 1.15,
+                          height: kSmallIconSize02 * 1.5,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.primary,
+                            // border: Border.all(
+                            //     width: 1.0, color: Theme.of(context).primaryColor),
+                          ),
+                          child: Center(
+                            child: ExcludeSemantics(
+                              child: AutoSizeText(
+                                '${dbProvider.newNotifications}',
+                                textAlign: TextAlign.center,
+                                style:
+                                    AppTextStyles.kSmallWhiteSubtitle(context)
+                                        .copyWith(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600),
+                                maxLines: 1,
+                                maxFontSize: 15,
+                                minFontSize: 10,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                ],
-              ),
-            //
-            if (widget.hasSearchField)
-              IconButton(
-                icon: const Icon(
-                  Icons.search_rounded,
+                      )
+                  ],
                 ),
-                onPressed: () => {
-                  setState(() {
-                    isSearching = !isSearching;
-                  })
-                },
-                tooltip: S.of(context).appBar_TOOLTIP_searchInput_hint,
-              ),
-          ],
+              //
+              if (widget.hasSearchField)
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: const Icon(
+                    Icons.search_rounded,
+                    size: kMediumIconSize,
+                  ),
+                  onPressed: () => {
+                    setState(() {
+                      isSearching = !isSearching;
+                    })
+                  },
+                  tooltip: S.of(context).appBar_TOOLTIP_searchInput_hint,
+                ),
+            ],
+          ),
         ),
         actions: [
           if (widget.hasDarkThemeToggle)
@@ -176,22 +173,28 @@ class _AppBarCompleteState extends State<AppBarComplete> {
               label: S.of(context).appBar_switchDarkTheme_title,
               button: true,
             ),
-          IconButton(
-            padding: const EdgeInsets.only(right: kDefaultPadding),
-            icon: CircleAvatar(
-              // backgroundImage:
-              //     NetworkImage('https://placeimg.com/640/480/people'),
-              backgroundImage: signedInAccount != null
-                  ? AssetImage(signedInAccount.avatarThumbnail!)
-                  : null,
-              backgroundColor: kComplementaryColor,
+          Padding(
+            padding: EdgeInsets.only(
+                right:
+                    !WebProvider.isWebPlatform ? kHalfPadding : kHugePadding),
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              icon: CircleAvatar(
+                // backgroundImage:
+                //     NetworkImage('https://placeimg.com/640/480/people'),
+                backgroundImage: signedInAccount != null
+                    ? AssetImage(signedInAccount.avatarThumbnail!)
+                    : null,
+                backgroundColor: kComplementaryColor,
+                radius: kHugeIconSize * 1.5,
+              ),
+              iconSize: kMediumIconSize,
+              onPressed: () => GoogleAccountDialog()
+                  .showDialogDismissible(context, signedInAccount, myAccounts),
+              tooltip: S
+                  .of(context)
+                  .googleAccountDialog_TOOLTIP_googleAccountDialog_description,
             ),
-            iconSize: kHugeIconSize,
-            onPressed: () => GoogleAccountDialog()
-                .showDialogDismissible(context, signedInAccount, myAccounts),
-            tooltip: S
-                .of(context)
-                .googleAccountDialog_TOOLTIP_googleAccountDialog_description,
           ),
         ],
       ),
@@ -224,31 +227,34 @@ class SearchBarField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.57,
-      height: kMediumIconSize * 1.2, // widget.preferredSize.height / 1.6,
-      decoration: BoxDecoration(
-        borderRadius: kDefaultBorderRadius,
-        color: kTextBodyColor.withOpacity(0.85),
-      ),
-      child: TextField(
-        onChanged: (String value) {
-          // search by string
-        },
-        maxLines: 1,
-        keyboardType: TextInputType.name,
-        style: AppTextStyles.kSmallWhiteSubtitle(context),
-        textAlign: TextAlign.start,
-        textAlignVertical: TextAlignVertical.center,
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          hintText: S.of(context).appBar_searchInput_title,
-          hintStyle: AppTextStyles.kSmallWhiteSubtitle(context)
-              .copyWith(color: kTextWhiteColor),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: kMaxButtonConstraintWidth),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.57,
+        height: kMediumIconSize * 1.2, // widget.preferredSize.height / 1.6,
+        decoration: BoxDecoration(
+          borderRadius: kDefaultBorderRadius,
+          color: kTextBodyColor.withOpacity(0.85),
+        ),
+        child: TextField(
+          onChanged: (String value) {
+            // search by string
+          },
+          maxLines: 1,
+          keyboardType: TextInputType.name,
+          style: AppTextStyles.kSmallWhiteSubtitle(context),
+          textAlign: TextAlign.start,
+          textAlignVertical: TextAlignVertical.center,
+          textCapitalization: TextCapitalization.sentences,
+          decoration: InputDecoration(
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            hintText: S.of(context).appBar_searchInput_title,
+            hintStyle: AppTextStyles.kSmallWhiteSubtitle(context)
+                .copyWith(color: kTextWhiteColor),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+          ),
         ),
       ),
     );
