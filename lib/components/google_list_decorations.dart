@@ -58,9 +58,11 @@ class BuildGoogleListButton extends StatelessWidget {
               const SizedBox(width: 14),
               Semantics(
                 button: true,
-                child: Text(
-                  label,
-                  style: AppTextStyles.kSmallBoldText(),
+                child: SizedBox(
+                  child: Text(
+                    label,
+                    style: AppTextStyles.kSmallBoldText(),
+                  ),
                 ),
               )
             ],
