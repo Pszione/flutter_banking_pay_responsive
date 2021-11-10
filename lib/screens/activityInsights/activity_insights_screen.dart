@@ -6,10 +6,11 @@ import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_she
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_banking_pay_responsive/responsive.dart';
 
 import '../../constants.dart';
 import '../../data_providers.dart';
+import '../../main.dart';
 
 PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 
@@ -35,9 +36,8 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
   @override
   Widget build(BuildContext context) {
-    final dbProvider = Provider.of<DBSyncProvider>(context);
-    // TODO: wait for user interaction with the notifications
-    dbProvider.markNotificationsAsRead();
+    MyApp.changeWebAppTabName(
+        label: S.of(context).homeScreen_third_tabBarTitle);
 
     return Scaffold(
       appBar: AppBarComplete(
@@ -73,30 +73,42 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
           }
           return true;
         },
-        child: SizedBox(
-          width: double.infinity,
-          height: 1200,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kDefaultPadding, vertical: kHalfPadding),
-            child: PageStorage(
-              bucket: bucketStorageForActivityScreen,
-              child: ListView.separated(
-                key: const PageStorageKey<String>('activityScreenKey'),
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: kHalfPadding);
-                },
-                //shrinkWrap: true,
-                itemCount: myTransactions.length,
-                itemBuilder: (_, int index) {
-                  return TransactionCard(
-                    transaction: myTransactions[index],
-                    onPress: () => AppSlidingBottomSheet.demoSheet(context),
-                  );
-                },
-                padding: const EdgeInsets.only(bottom: kHalfPadding),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: kHalfPadding), // only
+          child: PageStorage(
+            bucket: bucketStorageForActivityScreen,
+            child: Scrollbar(
+              isAlwaysShown: WebProvider.isWebPlatform,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      key: const PageStorageKey<String>('activityScreenKey'),
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: kHalfPadding);
+                      },
+                      //shrinkWrap: true,
+                      itemCount: myTransactions.length,
+                      itemBuilder: (_, int index) {
+                        return ResponsiveWidthConstrained(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding),
+                            child: TransactionCard(
+                              transaction: myTransactions[index],
+                              onPress: () =>
+                                  AppSlidingBottomSheet.demoSheet(context),
+                            ),
+                          ),
+                        );
+                      },
+                      padding: const EdgeInsets.only(bottom: kHalfPadding),
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                ],
               ),
             ),
           ),

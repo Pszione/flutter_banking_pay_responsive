@@ -3,6 +3,7 @@ import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_she
 import 'package:flutter_banking_pay_responsive/components/card_add_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_overview_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
+import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 
@@ -51,8 +52,8 @@ class UserCardsSection extends StatelessWidget {
           );
         },
         padding: EdgeInsets.only(
-          left: desiredPadding.left,
-          right: desiredPadding.right,
+          left: !WebProvider.isWebPlatform ? desiredPadding.left : 0,
+          right: !WebProvider.isWebPlatform ? desiredPadding.right : 0,
           top: desiredPadding.top,
           bottom: desiredPadding.top,
         ),

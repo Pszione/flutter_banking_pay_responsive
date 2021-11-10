@@ -11,6 +11,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+const kAPP_TITLE = 'Flutter Banking Pay';
+const kAPP_TITLE_SHORT = 'Banking Pay';
+
 void main() {
   runApp(const MyApp());
 }
@@ -36,7 +39,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Builder(builder: (context) {
         return MaterialApp(
-          title: 'Banking Pay',
+          title: kAPP_TITLE,
           restorationScopeId: 'app',
           debugShowCheckedModeBanner: false,
           scrollBehavior: AppCustomScrollBehavior(),
@@ -64,6 +67,43 @@ class MyApp extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+
+  Future<String?> _fetchNetworkData(int milliseconds) {
+    final myFuture =
+        Future<String?>.delayed(Duration(milliseconds: milliseconds), () {
+      print('future finished');
+      return 'Success: Future.delayed for $milliseconds';
+    });
+    // .then((value) => print('Whaaaaat? 2'));
+    return myFuture;
+  }
+
+  Widget buildFuture() {
+    return Material(
+      type: MaterialType.canvas,
+      child: FutureBuilder<String?>(
+        // it's an async build method
+        future: _fetchNetworkData(2500),
+        builder: (context, httpSnapshot) {
+          print(httpSnapshot.data.runtimeType);
+          print(httpSnapshot.data.toString());
+          // Checking future result
+          if (httpSnapshot.hasError) {
+            print(httpSnapshot.error);
+            return Center(child: Text(httpSnapshot.error.toString()));
+          }
+          // Success
+          else if (httpSnapshot.hasData) {
+            print(httpSnapshot.data);
+            // Screen
+            return SetupScreen();
+          }
+          // Loading
+          return const ShimmerHomeScreen();
+        },
+      ),
     );
   }
 
@@ -103,44 +143,16 @@ class MyApp extends StatelessWidget {
     ));
   }
 
-  Future<String?> _fetchNetworkData(int milliseconds) {
-    final myFuture =
-        Future<String?>.delayed(Duration(milliseconds: milliseconds), () {
-      print('future finished');
-      return 'Success: Future.delayed for $milliseconds';
-    });
-    // .then((value) => print('Whaaaaat? 2'));
-    return myFuture;
-  }
-
-  Widget buildFuture() {
-    return Material(
-      type: MaterialType.canvas,
-      child: FutureBuilder<String?>(
-        // it's an async build method
-        future: _fetchNetworkData(2500),
-        builder: (context, httpSnapshot) {
-          print(httpSnapshot.data.runtimeType);
-          print(httpSnapshot.data.toString());
-          // Checking future result
-          if (httpSnapshot.hasError) {
-            print(httpSnapshot.error);
-            return Center(child: Text(httpSnapshot.error.toString()));
-          }
-          // Success
-          else if (httpSnapshot.hasData) {
-            print(httpSnapshot.data);
-            // Screen
-            return SetupScreen();
-          }
-          // Loading
-          return const ShimmerHomeScreen();
-        },
-      ),
-    );
+  static Future changeWebAppTabName(
+      {required String? label, String title = kAPP_TITLE}) async {
+    var _finalName = label != null ? '$label - $title' : kAPP_TITLE;
+    return await SystemChrome.setApplicationSwitcherDescription(
+        ApplicationSwitcherDescription(
+            label: _finalName, primaryColor: kSecondaryColor.value));
   }
 }
 
+//
 class AppCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override
