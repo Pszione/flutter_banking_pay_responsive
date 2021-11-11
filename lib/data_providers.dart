@@ -61,7 +61,7 @@ class DBSyncProvider extends ChangeNotifier {
 
   void markNotificationsAsRead() {
     _newNotifications = 0; // reset
-    notifyListeners();
+    // notifyListeners(); // TODO
   }
 
   void incrementCounterDebug() {
