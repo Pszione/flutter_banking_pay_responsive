@@ -55,13 +55,27 @@ class SettingsProvider extends ChangeNotifier {
 class DBSyncProvider extends ChangeNotifier {
   final AccountModel _user = myAccounts[0];
   int _newNotifications = 5;
+  int? _clickedTransaction;
 
   int get newNotifications => _newNotifications;
+  int? get clickedTransactionIndex => _clickedTransaction;
   AccountModel get user => _user;
 
   void markNotificationsAsRead() {
-    _newNotifications = 0; // reset
-    // notifyListeners(); // TODO
+    _newNotifications = 0;
+    notifyListeners(); // TODO
+  }
+
+  void setClickedTransactionIndex(int index) {
+    _clickedTransaction = index;
+
+    print('Provider: clickedTransaction $_clickedTransaction'); // TODO
+  }
+
+  void clearClickedTransactionIndex() {
+    _clickedTransaction = null;
+
+    print('Provider: clickedTransaction $_clickedTransaction'); // TODO
   }
 
   void incrementCounterDebug() {

@@ -86,12 +86,16 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                           Icons.notifications_active_outlined,
                           size: kMediumIconSize,
                         ),
+                        // onPressed: () {
+                        //   Provider.of<SetupScreen>(context, listen: false)
+                        //       .keySetupScreen
+                        //       .currentState!
+                        //       .changeSelectedMenu(2);
+                        // },
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) {
-                              Provider.of<DBSyncProvider>(context)
-                                  .markNotificationsAsRead();
                               return const ActivityInsightsScreen();
                             },
                             maintainState: true,

@@ -78,6 +78,7 @@ var kDivider = const Divider(thickness: 2, height: 0);
 const K_GOOGLE_TEXT = 'Google';
 
 const kDefaultDuration = Duration(milliseconds: 700);
+const kShorterDuration = Duration(milliseconds: 320);
 
 // You can get the status bar height with MediaQuery.of(context).padding.top,
 // the keyboard height with MediaQuery.of(context).viewInsets.bottom

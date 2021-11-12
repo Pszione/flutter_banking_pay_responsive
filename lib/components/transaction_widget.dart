@@ -8,15 +8,19 @@ import '../constant_text_styles.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;
+  final int? transactionIndex;
   final bool isClickable;
+  final bool withAvatarImage;
   final GestureTapCallback onPress;
 
-  const TransactionCard(
-      {Key? key,
-      required this.transaction,
-      this.isClickable = true,
-      required this.onPress})
-      : super(key: key);
+  const TransactionCard({
+    Key? key,
+    required this.transaction,
+    this.transactionIndex,
+    this.isClickable = true,
+    required this.onPress,
+    this.withAvatarImage = true,
+  }) : super(key: key);
 
   static Widget defaultDimensionColored = Container(
     width: double.infinity,
@@ -50,23 +54,24 @@ class TransactionCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Container(
-                    width: 57,
-                    height: 57,
-                    padding: const EdgeInsets.all(kHalfPadding),
-                    decoration: BoxDecoration(
-                      borderRadius: kDefaultBorderRadius,
-                      color: transaction.color,
+                  if (withAvatarImage)
+                    Container(
+                      width: 57,
+                      height: 57,
+                      padding: const EdgeInsets.all(kHalfPadding),
+                      decoration: BoxDecoration(
+                        borderRadius: kDefaultBorderRadius,
+                        color: transaction.color,
+                      ),
+                      child: transaction.avatar != null
+                          ? Image.asset(transaction.avatar!)
+                          : const Icon(
+                              // TODO: initial letters
+                              Icons.account_circle_rounded,
+                              size: kHugeIconSize,
+                              color: kTextGrayColor,
+                            ),
                     ),
-                    child: transaction.avatar != null
-                        ? Image.asset(transaction.avatar!)
-                        : const Icon(
-                            // TODO: initial letters
-                            Icons.account_circle_rounded,
-                            size: kHugeIconSize,
-                            color: kTextGrayColor,
-                          ),
-                  ),
                   const SizedBox(width: kHalfPadding),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
