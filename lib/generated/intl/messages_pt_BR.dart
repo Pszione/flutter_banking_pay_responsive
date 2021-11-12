@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "__3": MessageLookupByLibrary.simpleMessage(""),
         "__4": MessageLookupByLibrary.simpleMessage(""),
         "__5": MessageLookupByLibrary.simpleMessage(""),
+        "__6": MessageLookupByLibrary.simpleMessage(""),
         "___": MessageLookupByLibrary.simpleMessage(""),
         "activityScreen_TOOLTIP_fabDownward_description":
             MessageLookupByLibrary.simpleMessage("Descer!"),
@@ -169,6 +170,50 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Alinhe-o certinho para conseguirmos ler\nos detalhes"),
         "scanCardScreen_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Adicionar um cartão"),
+        "settingsScreen_optionAppSystemNFCSettings":
+            MessageLookupByLibrary.simpleMessage("(Sistema) Aproximação/NFC"),
+        "settingsScreen_optionAppSystemNFCSettings_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Options to setup phone\'s NFC, your contactless payment uses it"),
+        "settingsScreen_optionAppSystemSettings":
+            MessageLookupByLibrary.simpleMessage(
+                "(Sistema) Configurações do App"),
+        "settingsScreen_optionAppSystemSettings_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Options to change app\'s permission, notifications and more"),
+        "settingsScreen_optionEditAccountInfo":
+            MessageLookupByLibrary.simpleMessage("Editar sua conta"),
+        "settingsScreen_optionEditAccountInfo_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Altere seu nome, endereço e qualquer outra informação"),
+        "settingsScreen_optionEmailUpdates":
+            MessageLookupByLibrary.simpleMessage("Atualizações por Email"),
+        "settingsScreen_optionEmailUpdates_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Receba ofertas exclusivas, dicas e convites para eventos"),
+        "settingsScreen_optionPurchaseNotifications":
+            MessageLookupByLibrary.simpleMessage("Notificações de Compras"),
+        "settingsScreen_optionPurchaseNotifications_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Receba notificação detalhada após cada compra"),
+        "settingsScreen_optionShareUserLocation":
+            MessageLookupByLibrary.simpleMessage("Compartilhar localização"),
+        "settingsScreen_optionShareUserLocation_description":
+            MessageLookupByLibrary.simpleMessage(
+                "For your safety and fraud investigations. Baking Pay would like to access your location when you do a purchase"),
+        "settingsScreen_optionTicketsUpdates":
+            MessageLookupByLibrary.simpleMessage(
+                "Notificações sobre ingressos e voos"),
+        "settingsScreen_optionTicketsUpdates_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Fique por dentro dos seus ingressos, passagens aéreas, ofertas salvas e mais"),
+        "settingsScreen_optionTravelNotice":
+            MessageLookupByLibrary.simpleMessage("Está em viagem?"),
+        "settingsScreen_optionTravelNotice_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Enjoy your trip! But please let us know, we monitor all purchases against possible frauds"),
+        "settingsScreen_tabBarTitle":
+            MessageLookupByLibrary.simpleMessage("Configurações"),
         "snackBar_featureUnavailableButBeingFixed_text":
             MessageLookupByLibrary.simpleMessage(
                 "Funcionalidade indisponível no momento. Mas já estamos corrigindo-a!")

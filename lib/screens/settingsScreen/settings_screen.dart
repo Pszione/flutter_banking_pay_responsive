@@ -18,6 +18,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late SettingsTexts settingsData =
+        SettingsTexts(l10nInstance: S.of(context));
     final settingsProvider = Provider.of<SettingsProvider>(context);
     MyApp.changeWebAppTabName(
         label: S.of(context).googleAccountDialog_settings_button_title);
@@ -35,41 +37,41 @@ class SettingsScreen extends StatelessWidget {
             children: [
               const SizedBox(height: kHugePadding),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionEmailUpdates().label,
-                description: SettingsTexts.optionEmailUpdates().description,
-                icon: SettingsTexts.optionEmailUpdates().icon,
+                label: settingsData.optionEmailUpdates().label,
+                description: settingsData.optionEmailUpdates().description,
+                icon: settingsData.optionEmailUpdates().icon,
                 switchValue: settingsProvider
-                    .options[SettingsTexts.optionEmailUpdates().saveIndex!]!,
+                    .options[settingsData.optionEmailUpdates().saveIndex!]!,
                 onPress: (bool value) =>
                     // switch automagically inverts !value
                     settingsProvider.changeOption(
-                        SettingsTexts.optionEmailUpdates().saveIndex!, value),
+                        settingsData.optionEmailUpdates().saveIndex!, value),
               ),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionPurchaseNotifications().label,
+                label: settingsData.optionPurchaseNotifications().label,
                 description:
-                    SettingsTexts.optionPurchaseNotifications().description,
-                icon: SettingsTexts.optionPurchaseNotifications().icon,
+                    settingsData.optionPurchaseNotifications().description,
+                icon: settingsData.optionPurchaseNotifications().icon,
                 switchValue: settingsProvider.options[
-                    SettingsTexts.optionPurchaseNotifications().saveIndex!]!,
+                    settingsData.optionPurchaseNotifications().saveIndex!]!,
                 onPress: (bool value) => settingsProvider.changeOption(
-                    SettingsTexts.optionPurchaseNotifications().saveIndex!,
+                    settingsData.optionPurchaseNotifications().saveIndex!,
                     value),
               ),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionTicketsUpdates().label,
-                description: SettingsTexts.optionTicketsUpdates().description,
-                icon: SettingsTexts.optionTicketsUpdates().icon,
+                label: settingsData.optionTicketsUpdates().label,
+                description: settingsData.optionTicketsUpdates().description,
+                icon: settingsData.optionTicketsUpdates().icon,
                 switchValue: settingsProvider
-                    .options[SettingsTexts.optionTicketsUpdates().saveIndex!]!,
+                    .options[settingsData.optionTicketsUpdates().saveIndex!]!,
                 onPress: (bool value) => settingsProvider.changeOption(
-                    SettingsTexts.optionTicketsUpdates().saveIndex!, value),
+                    settingsData.optionTicketsUpdates().saveIndex!, value),
               ),
               buildDividerWithPadding(),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionEditAccountInfo().label,
-                description: SettingsTexts.optionEditAccountInfo().description,
-                icon: SettingsTexts.optionEditAccountInfo().icon,
+                label: settingsData.optionEditAccountInfo().label,
+                description: settingsData.optionEditAccountInfo().description,
+                icon: settingsData.optionEditAccountInfo().icon,
                 switchValue: false,
                 onPress: (bool value) {
                   Https.launchURL(
@@ -81,32 +83,30 @@ class SettingsScreen extends StatelessWidget {
               ),
               buildDividerWithPadding(),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionShareUserLocation().label,
-                description:
-                    SettingsTexts.optionShareUserLocation().description,
-                icon: SettingsTexts.optionShareUserLocation().icon,
+                label: settingsData.optionShareUserLocation().label,
+                description: settingsData.optionShareUserLocation().description,
+                icon: settingsData.optionShareUserLocation().icon,
                 switchValue: settingsProvider.options[
-                    SettingsTexts.optionShareUserLocation().saveIndex!]!,
+                    settingsData.optionShareUserLocation().saveIndex!]!,
                 onPress: (bool value) => settingsProvider.changeOption(
-                    SettingsTexts.optionShareUserLocation().saveIndex!, value),
+                    settingsData.optionShareUserLocation().saveIndex!, value),
               ),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionTravelNotice().label,
-                description: SettingsTexts.optionTravelNotice().description,
-                icon: SettingsTexts.optionTravelNotice().icon,
+                label: settingsData.optionTravelNotice().label,
+                description: settingsData.optionTravelNotice().description,
+                icon: settingsData.optionTravelNotice().icon,
                 switchValue: settingsProvider
-                    .options[SettingsTexts.optionTravelNotice().saveIndex!]!,
+                    .options[settingsData.optionTravelNotice().saveIndex!]!,
                 onPress: (bool value) => settingsProvider.changeOption(
-                    SettingsTexts.optionTravelNotice().saveIndex!, value),
+                    settingsData.optionTravelNotice().saveIndex!, value),
               ),
               buildDividerWithPadding(),
               //
               const BuildGoogleListTitle(label: 'Advanced'),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionAppSystemSettings().label,
-                description:
-                    SettingsTexts.optionAppSystemSettings().description,
-                icon: SettingsTexts.optionAppSystemSettings().icon,
+                label: settingsData.optionAppSystemSettings().label,
+                description: settingsData.optionAppSystemSettings().description,
+                icon: settingsData.optionAppSystemSettings().icon,
                 switchValue: false,
                 onPress: (bool value) async => !WebProvider.isWebPlatform
                     ? await AppSettings.openAppSettings()
@@ -115,10 +115,10 @@ class SettingsScreen extends StatelessWidget {
                 overrideSwitchButton: const SizedBox(),
               ),
               BuildGoogleListSettingButton(
-                label: SettingsTexts.optionAppSystemNFCSettings().label,
+                label: settingsData.optionAppSystemNFCSettings().label,
                 description:
-                    SettingsTexts.optionAppSystemNFCSettings().description,
-                icon: SettingsTexts.optionAppSystemNFCSettings().icon,
+                    settingsData.optionAppSystemNFCSettings().description,
+                icon: settingsData.optionAppSystemNFCSettings().icon,
                 switchValue: false,
                 onPress: (bool value) async => !WebProvider.isWebPlatform
                     ? await AppSettings.openNFCSettings()

@@ -772,6 +772,186 @@ class S {
   }
 
   /// ``
+  String get __6 {
+    return Intl.message(
+      '',
+      name: '__6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settingsScreen_tabBarTitle {
+    return Intl.message(
+      'Settings',
+      name: 'settingsScreen_tabBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email updates`
+  String get settingsScreen_optionEmailUpdates {
+    return Intl.message(
+      'Email updates',
+      name: 'settingsScreen_optionEmailUpdates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get exclusive offers, tips, and invites`
+  String get settingsScreen_optionEmailUpdates_description {
+    return Intl.message(
+      'Get exclusive offers, tips, and invites',
+      name: 'settingsScreen_optionEmailUpdates_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase notifications`
+  String get settingsScreen_optionPurchaseNotifications {
+    return Intl.message(
+      'Purchase notifications',
+      name: 'settingsScreen_optionPurchaseNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See transactions details after you make a purchase`
+  String get settingsScreen_optionPurchaseNotifications_description {
+    return Intl.message(
+      'See transactions details after you make a purchase',
+      name: 'settingsScreen_optionPurchaseNotifications_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Updates about your tickets`
+  String get settingsScreen_optionTicketsUpdates {
+    return Intl.message(
+      'Updates about your tickets',
+      name: 'settingsScreen_optionTicketsUpdates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stay up-to-date on your events, flights, saved offers and more`
+  String get settingsScreen_optionTicketsUpdates_description {
+    return Intl.message(
+      'Stay up-to-date on your events, flights, saved offers and more',
+      name: 'settingsScreen_optionTicketsUpdates_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit account info`
+  String get settingsScreen_optionEditAccountInfo {
+    return Intl.message(
+      'Edit account info',
+      name: 'settingsScreen_optionEditAccountInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update your name, address, and any other account info`
+  String get settingsScreen_optionEditAccountInfo_description {
+    return Intl.message(
+      'Update your name, address, and any other account info',
+      name: 'settingsScreen_optionEditAccountInfo_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share your location`
+  String get settingsScreen_optionShareUserLocation {
+    return Intl.message(
+      'Share your location',
+      name: 'settingsScreen_optionShareUserLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For your safety and fraud investigations. Baking Pay would like to access your location when you do a purchase`
+  String get settingsScreen_optionShareUserLocation_description {
+    return Intl.message(
+      'For your safety and fraud investigations. Baking Pay would like to access your location when you do a purchase',
+      name: 'settingsScreen_optionShareUserLocation_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you travelling?`
+  String get settingsScreen_optionTravelNotice {
+    return Intl.message(
+      'Are you travelling?',
+      name: 'settingsScreen_optionTravelNotice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy your trip! But please let us know, we monitor all purchases against possible frauds`
+  String get settingsScreen_optionTravelNotice_description {
+    return Intl.message(
+      'Enjoy your trip! But please let us know, we monitor all purchases against possible frauds',
+      name: 'settingsScreen_optionTravelNotice_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(System) App settings`
+  String get settingsScreen_optionAppSystemSettings {
+    return Intl.message(
+      '(System) App settings',
+      name: 'settingsScreen_optionAppSystemSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Options to change app's permission, notifications and more`
+  String get settingsScreen_optionAppSystemSettings_description {
+    return Intl.message(
+      'Options to change app\'s permission, notifications and more',
+      name: 'settingsScreen_optionAppSystemSettings_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(System) Contactless/NFC`
+  String get settingsScreen_optionAppSystemNFCSettings {
+    return Intl.message(
+      '(System) Contactless/NFC',
+      name: 'settingsScreen_optionAppSystemNFCSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Options to setup phone's NFC, your contactless payment uses it`
+  String get settingsScreen_optionAppSystemNFCSettings_description {
+    return Intl.message(
+      'Options to setup phone\'s NFC, your contactless payment uses it',
+      name: 'settingsScreen_optionAppSystemNFCSettings_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
   String get ___ {
     return Intl.message(
       '',
