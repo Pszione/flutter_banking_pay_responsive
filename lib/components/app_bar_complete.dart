@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../constant_text_styles.dart';
 import '../constants.dart';
 import '../data_providers.dart';
+import '../responsive.dart';
 import 'google_account_dialog.dart';
 
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
@@ -57,7 +58,9 @@ class _AppBarCompleteState extends State<AppBarComplete> {
         leadingWidth: 120,
         leading: Padding(
           padding: EdgeInsets.only(
-              left: !WebProvider.isWebPlatform ? kHalfPadding : kHugePadding),
+              left: WebProvider.isWebPlatform && Responsive.isDesktop(context)
+                  ? kHugePadding
+                  : kHalfPadding),
           child: Row(
             // mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -180,7 +183,9 @@ class _AppBarCompleteState extends State<AppBarComplete> {
           Padding(
             padding: EdgeInsets.only(
                 right:
-                    !WebProvider.isWebPlatform ? kHalfPadding : kHugePadding),
+                    WebProvider.isWebPlatform && Responsive.isDesktop(context)
+                        ? kHugePadding
+                        : kHalfPadding),
             child: IconButton(
               padding: EdgeInsets.zero,
               icon: CircleAvatar(

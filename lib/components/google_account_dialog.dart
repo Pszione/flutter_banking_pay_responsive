@@ -49,9 +49,11 @@ class GoogleAccountDialog {
           insetPadding: EdgeInsets.only(
               left: kDefaultPadding,
               right: kDefaultPadding,
-              bottom: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 80
-                  : 0),
+              bottom:
+                  MediaQuery.of(context).orientation == Orientation.portrait ||
+                          Responsive.isDesktop(context)
+                      ? 80
+                      : 0),
           title: buildGoogleHeader(context),
           content: Container(
             width: MediaQuery.of(context).orientation == Orientation.portrait
@@ -60,7 +62,7 @@ class GoogleAccountDialog {
             height:
                 MediaQuery.of(context).orientation == Orientation.portrait ||
                         Responsive.isDesktop(context)
-                    ? MediaQuery.of(context).size.height * 0.525
+                    ? MediaQuery.of(context).size.height * 0.545
                     : MediaQuery.of(context).size.height * 0.85,
             alignment: Alignment.center,
             child: ListView(
