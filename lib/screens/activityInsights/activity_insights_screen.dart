@@ -48,7 +48,6 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
   void initState() {
     super.initState();
     final providerDB = Provider.of<DBSyncProvider>(context, listen: false);
-    final providerSetup = Provider.of<SetupScreen>(context, listen: false);
 
     itemsListener.itemPositions.addListener(() {
       indicesVisible = itemsListener.itemPositions.value
@@ -69,15 +68,6 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
     SchedulerBinding.instance?.addPostFrameCallback((_) {
       // WidgetsBinding.instance?.addPostFrameCallback
-
-      providerSetup.quickActionsList.initialize((String type) {
-        // TODO: add other types
-        if (type == QuickActionState.activity.toString()) {
-          // provider.keySetupScreen.currentState?.changeSelectedMenu(2);
-          print("Should've changed to ActivityInsightsScreen");
-        }
-      });
-
       providerDB.markNotificationsAsRead();
 
       // scrollToItem(transactionList.length - 1);

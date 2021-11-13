@@ -12,10 +12,11 @@ import 'package:quick_actions/quick_actions.dart';
 import '../../constants.dart';
 
 // ignore_for_file: unused_local_variable, unused_field_variable
-class SetupScreen extends StatefulWidget {
+class SetupScreen extends StatefulWidget with ChangeNotifier {
   SetupScreen({Key? key}) : super(key: key);
 
   final keySetupScreen = GlobalKey<SetupScreenState>();
+
   final quickActionsList = const QuickActions();
 
   @override
@@ -24,7 +25,7 @@ class SetupScreen extends StatefulWidget {
 
 class SetupScreenState extends State<SetupScreen> {
   static List<Widget> menuWidgets = <Widget>[
-    const HomeScreen(),
+    HomeScreen(),
     const CardScreen(),
     const ActivityInsightsScreen(),
   ];
@@ -46,9 +47,16 @@ class SetupScreenState extends State<SetupScreen> {
           type: QuickActionState.activity.toString(),
           localizedTitle: 'Recent Activities'),
     ]);
-    // widget.quickActionsList.initialize((String type) {
-    //   if (type == QuickActionState.activity.toString()) {}
-    // });
+    widget.quickActionsList.initialize((String type) {
+      if (type == QuickActionState.transactionsOptions.toString()) {
+        widget.keySetupScreen.currentState!.changeSelectedMenu(0);
+        print("Should've open FAB");
+        // openFAB();
+      } else if (type == QuickActionState.activity.toString()) {
+        widget.keySetupScreen.currentState!.changeSelectedMenu(2);
+        print("Should've changed to ActivityInsightsScreen");
+      }
+    });
   }
 
   @override
@@ -64,6 +72,7 @@ class SetupScreenState extends State<SetupScreen> {
         return Future.value(popSelectedMenu());
       },
       child: Scaffold(
+        key: widget.keySetupScreen,
         body: Center(
           child: menuWidgets.elementAt(_selectedIndex),
         ),

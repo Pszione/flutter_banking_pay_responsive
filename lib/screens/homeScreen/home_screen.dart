@@ -21,10 +21,12 @@ import '../../constants.dart';
 import 'categories_cards.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
   static EdgeInsets desiredPadding = const EdgeInsets.only(
       left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
+
+  final keyScreen = GlobalKey<_HomeScreenState>();
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,18 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    final providerSetup = Provider.of<SetupScreen>(context, listen: false);
-
-    SchedulerBinding.instance?.addPostFrameCallback((duration) {
-      providerSetup.quickActionsList.initialize((String type) {
-        // TODO: add other types
-        if (type == QuickActionState.transactionsOptions.toString()) {
-          // providerSetup.keySetupScreen.currentState?.changeSelectedMenu(0);
-          print("Should've open FAB");
-          openFAB();
-        }
-      });
-    });
   }
 
   void openFAB() {
@@ -72,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return false;
       },
       child: Scaffold(
+        key: widget.keyScreen,
         appBar: AppBarComplete(
           // key: // TODO,
           title: S.of(context).homeScreen_first_tabBarTitle,
