@@ -6,8 +6,10 @@ import 'package:flutter_banking_pay_responsive/components/app_floating_button_wi
 import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
+import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -45,6 +47,8 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
   @override
   void initState() {
     super.initState();
+    final providerDB = Provider.of<DBSyncProvider>(context, listen: false);
+    final providerSetup = Provider.of<SetupScreen>(context, listen: false);
 
     itemsListener.itemPositions.addListener(() {
       indicesVisible = itemsListener.itemPositions.value
@@ -65,10 +69,17 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
     SchedulerBinding.instance?.addPostFrameCallback((_) {
       // WidgetsBinding.instance?.addPostFrameCallback
-      Provider.of<DBSyncProvider>(context, listen: false)
-          .markNotificationsAsRead();
 
-      print(transactionList.length);
+      providerSetup.quickActionsList.initialize((String type) {
+        // TODO: add other types
+        if (type == QuickActionState.activity.toString()) {
+          // provider.keySetupScreen.currentState?.changeSelectedMenu(2);
+          print("Should've changed to ActivityInsightsScreen");
+        }
+      });
+
+      providerDB.markNotificationsAsRead();
+
       // scrollToItem(transactionList.length - 1);
       // transactionList[transactionList.length - 1].onPress.call();
     });

@@ -7,6 +7,7 @@ import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.da
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:quick_actions/quick_actions.dart';
 
 import '../../constants.dart';
 
@@ -15,21 +16,40 @@ class SetupScreen extends StatefulWidget {
   SetupScreen({Key? key}) : super(key: key);
 
   final keySetupScreen = GlobalKey<SetupScreenState>();
+  final quickActionsList = const QuickActions();
 
   @override
   State<SetupScreen> createState() => SetupScreenState();
 }
 
 class SetupScreenState extends State<SetupScreen> {
-  static const List<Widget> menuWidgets = <Widget>[
-    HomeScreen(),
-    CardScreen(),
-    ActivityInsightsScreen(),
+  static List<Widget> menuWidgets = <Widget>[
+    const HomeScreen(),
+    const CardScreen(),
+    const ActivityInsightsScreen(),
   ];
 
   //late SizeConfig _sizes;
   int _selectedIndex = 0;
   MenuState _selectedMenu = MenuState.pay;
+  @override
+  void initState() {
+    super.initState();
+
+    widget.quickActionsList.setShortcutItems([
+      ShortcutItem(
+          type: QuickActionState.search.toString(), localizedTitle: 'Search'),
+      ShortcutItem(
+          type: QuickActionState.transactionsOptions.toString(),
+          localizedTitle: 'New Transaction'),
+      ShortcutItem(
+          type: QuickActionState.activity.toString(),
+          localizedTitle: 'Recent Activities'),
+    ]);
+    // widget.quickActionsList.initialize((String type) {
+    //   if (type == QuickActionState.activity.toString()) {}
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -30,6 +30,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ThemeProvider>(
           create: (_) => ThemeProvider(),
         ),
+        ChangeNotifierProvider<SetupScreen>(
+          create: (_) => SetupScreen(),
+        ),
         ChangeNotifierProvider<SettingsProvider>(
           create: (_) => SettingsProvider(),
         ),
@@ -98,7 +101,7 @@ class MyApp extends StatelessWidget {
           else if (httpSnapshot.hasData) {
             print(httpSnapshot.data);
             // Screen
-            return SetupScreen();
+            return Provider.of<SetupScreen>(context);
           }
           // Loading
           return const ShimmerHomeScreen();

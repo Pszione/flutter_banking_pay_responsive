@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../constant_text_styles.dart';
@@ -36,6 +37,18 @@ class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
 
 class _AppBarCompleteState extends State<AppBarComplete> {
   bool isSearching = false;
+
+  void toggleSearchingField() {
+    setState(() {
+      isSearching = !isSearching;
+    });
+  }
+
+  void startSearching() {
+    setState(() {
+      isSearching = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,11 +165,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                     Icons.search_rounded,
                     size: kMediumIconSize,
                   ),
-                  onPressed: () => {
-                    setState(() {
-                      isSearching = !isSearching;
-                    })
-                  },
+                  onPressed: () => toggleSearchingField(),
                   tooltip: S.of(context).appBar_TOOLTIP_searchInput_hint,
                 ),
             ],
@@ -228,14 +237,16 @@ class _AppBarCompleteState extends State<AppBarComplete> {
 }
 
 class SearchBarField extends StatelessWidget {
-  const SearchBarField({
+  SearchBarField({
     Key? key,
   }) : super(key: key);
 
-  //TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    controller.clear();
+
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: kMaxButtonConstraintWidth),
       child: Container(
@@ -251,6 +262,8 @@ class SearchBarField extends StatelessWidget {
           },
           maxLines: 1,
           keyboardType: TextInputType.name,
+          autofocus: true,
+          controller: controller,
           style: AppTextStyles.kSmallWhiteSubtitle(context),
           textAlign: TextAlign.start,
           textAlignVertical: TextAlignVertical.center,

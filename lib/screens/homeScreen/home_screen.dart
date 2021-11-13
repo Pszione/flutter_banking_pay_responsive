@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_speed_dial.dart';
 import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
@@ -8,10 +9,13 @@ import 'package:flutter_banking_pay_responsive/components/transaction_widget.dar
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
+import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import 'categories_cards.dart';
@@ -28,7 +32,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isFloatingButtonVisible = true;
-  ValueNotifier<bool> openCloseState = ValueNotifier(false);
+  final ValueNotifier<bool> openCloseState = ValueNotifier(false);
+
+  @override
+  void initState() {
+    super.initState();
+    final providerSetup = Provider.of<SetupScreen>(context, listen: false);
+
+    SchedulerBinding.instance?.addPostFrameCallback((duration) {
+      providerSetup.quickActionsList.initialize((String type) {
+        // TODO: add other types
+        if (type == QuickActionState.transactionsOptions.toString()) {
+          // providerSetup.keySetupScreen.currentState?.changeSelectedMenu(0);
+          print("Should've open FAB");
+          openFAB();
+        }
+      });
+    });
+  }
+
+  void openFAB() {
+    _isFloatingButtonVisible = true;
+    setState(() {
+      ValueNotifier(false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return WillPopScope(
       onWillPop: () async {
-        if (openCloseState.value) {
-          /// close speed dial FAB
-          openCloseState.value = false;
-          // TODO: this is not working
-        }
+        /// close speed dial FAB
+        // if (openCloseState.value == true) {
+        openCloseState.value = false;
+        // TODO: this is not working
+
         return false;
       },
       child: Scaffold(
         appBar: AppBarComplete(
+          // key: // TODO,
           title: S.of(context).homeScreen_first_tabBarTitle,
           hasSearchField: true,
           hasDarkThemeToggle: true,

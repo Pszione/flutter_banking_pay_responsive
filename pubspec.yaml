@@ -46,6 +46,7 @@ dependencies:
   sliding_sheet: ^0.5.2
   shimmer: ^2.0.0
   url_launcher: ^6.0.0
+  quick_actions: ^0.6.0+7
   flutter_localizations:
     sdk: flutter
 
