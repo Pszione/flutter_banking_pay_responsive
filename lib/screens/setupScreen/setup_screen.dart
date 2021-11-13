@@ -36,26 +36,29 @@ class SetupScreenState extends State<SetupScreen> {
   void initState() {
     super.initState();
 
-    widget.quickActionsList.setShortcutItems([
-      ShortcutItem(
-          type: QuickActionState.search.toString(), localizedTitle: 'Search'),
-      ShortcutItem(
-          type: QuickActionState.transactionsOptions.toString(),
-          localizedTitle: 'New Transaction'),
-      ShortcutItem(
-          type: QuickActionState.activity.toString(),
-          localizedTitle: 'Recent Activities'),
-    ]);
-    widget.quickActionsList.initialize((String type) {
-      if (type == QuickActionState.transactionsOptions.toString()) {
-        widget.keySetupScreen.currentState!.changeSelectedMenu(0);
-        print("Should've open FAB");
-        // openFAB();
-      } else if (type == QuickActionState.activity.toString()) {
-        widget.keySetupScreen.currentState!.changeSelectedMenu(2);
-        print("Should've changed to ActivityInsightsScreen");
-      }
-    });
+    /// Should run only on Android and iOS | macOS?
+    if (WebProvider.isWebPlatform == false) {
+      widget.quickActionsList.setShortcutItems([
+        ShortcutItem(
+            type: QuickActionState.search.toString(), localizedTitle: 'Search'),
+        ShortcutItem(
+            type: QuickActionState.transactionsOptions.toString(),
+            localizedTitle: 'New Transaction'),
+        ShortcutItem(
+            type: QuickActionState.activity.toString(),
+            localizedTitle: 'Recent Activities'),
+      ]);
+      widget.quickActionsList.initialize((String type) {
+        if (type == QuickActionState.transactionsOptions.toString()) {
+          widget.keySetupScreen.currentState!.changeSelectedMenu(0);
+          print("Should've open FAB");
+          // openFAB();
+        } else if (type == QuickActionState.activity.toString()) {
+          widget.keySetupScreen.currentState!.changeSelectedMenu(2);
+          print("Should've changed to ActivityInsightsScreen");
+        }
+      });
+    }
   }
 
   @override
