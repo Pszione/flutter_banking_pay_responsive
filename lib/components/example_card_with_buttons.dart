@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
 
 class ExampleCardWithButtons extends StatelessWidget {
   const ExampleCardWithButtons({Key? key}) : super(key: key);

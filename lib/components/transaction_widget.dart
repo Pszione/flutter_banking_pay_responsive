@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/extensions.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../constant_text_styles.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;

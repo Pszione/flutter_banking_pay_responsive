@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-
-import '../constants.dart';
 
 class AppSlidingBottomSheet {
   const AppSlidingBottomSheet({

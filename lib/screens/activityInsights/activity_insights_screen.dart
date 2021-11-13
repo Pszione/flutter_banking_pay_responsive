@@ -5,17 +5,14 @@ import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart'
 import 'package:flutter_banking_pay_responsive/components/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/components/app_sliding_bottom_sheet.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/models/enums.dart';
+import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
-import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
-import '../../constants.dart';
-import '../../data_providers.dart';
-import '../../main.dart';
 
 PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 

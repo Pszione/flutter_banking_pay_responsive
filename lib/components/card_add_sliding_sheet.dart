@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_screen.dart';
 
-import '../constant_text_styles.dart';
-import '../constants.dart';
 import 'app_sliding_bottom_sheet.dart';
 
 class CardAddSlidingSheet {

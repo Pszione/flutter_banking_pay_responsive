@@ -1,12 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../constant_text_styles.dart';
-import '../constants.dart';
-import '../snackbar_errors.dart';
 
 double _floatingElevation = 9;
 

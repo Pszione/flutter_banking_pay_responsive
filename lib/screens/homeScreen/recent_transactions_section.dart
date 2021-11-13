@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
+import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
-
-import '../../constant_text_styles.dart';
-import '../../constants.dart';
 
 class RecentTransactionsSection extends StatelessWidget {
   const RecentTransactionsSection({

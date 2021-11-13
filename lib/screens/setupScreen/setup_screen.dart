@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
@@ -8,8 +9,6 @@ import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.da
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
 import 'package:quick_actions/quick_actions.dart';
-
-import '../../constants.dart';
 
 // ignore_for_file: unused_local_variable, unused_field_variable
 class SetupScreen extends StatefulWidget with ChangeNotifier {

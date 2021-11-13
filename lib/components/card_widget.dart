@@ -10,8 +10,6 @@ import 'package:flutter_banking_pay_responsive/models/card_brand.dart';
 import 'package:flutter_banking_pay_responsive/models/i_card_implementation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'app_sliding_bottom_sheet.dart';
-
 class CardWidget extends StatelessWidget implements ICardImplementation {
   CardWidget({
     Key? key,

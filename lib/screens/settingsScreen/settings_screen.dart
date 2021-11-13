@@ -2,16 +2,15 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
+import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/settings_texts.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
+import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
+import 'package:flutter_banking_pay_responsive/utils.dart';
 import 'package:provider/provider.dart';
-
-import '../../constants.dart';
-import '../../data_providers.dart';
-import '../../main.dart';
-import '../../snackbar_errors.dart';
-import '../../utils.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
