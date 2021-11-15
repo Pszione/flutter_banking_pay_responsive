@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
@@ -37,16 +39,21 @@ class SetupScreenState extends State<SetupScreen> {
     super.initState();
 
     /// Should run only on Android and iOS | macOS?
-    if (WebProvider.isWebPlatform == false) {
+    if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
       widget.quickActionsList.setShortcutItems([
         ShortcutItem(
-            type: QuickActionState.search.toString(), localizedTitle: 'Search'),
+            type: QuickActionState.search.toString(),
+            localizedTitle: 'Search',
+            icon: 'quick_search'),
         ShortcutItem(
             type: QuickActionState.transactionsOptions.toString(),
-            localizedTitle: 'New Transaction'),
+            localizedTitle: 'New Transaction',
+            icon: 'quick_read_more'),
         ShortcutItem(
             type: QuickActionState.activity.toString(),
-            localizedTitle: 'Recent Activities'),
+            localizedTitle: 'Recent Activities',
+            icon: 'quick_chart_outline'),
+        // PS: iOS icons not setup in Runner/Xcode
       ]);
       widget.quickActionsList.initialize((String type) {
         if (type == QuickActionState.transactionsOptions.toString()) {
