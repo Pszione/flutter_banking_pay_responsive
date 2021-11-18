@@ -17,7 +17,10 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 
 class ActivityInsightsScreen extends StatefulWidget {
-  const ActivityInsightsScreen({Key? key}) : super(key: key);
+  ActivityInsightsScreen({Key? key}) : super(key: key);
+
+  final keyScreen = GlobalKey<_ActivityInsightsScreenState>();
+  late ValueKey<_ActivityInsightsScreenState> keyValueScreen;
 
   @override
   State<ActivityInsightsScreen> createState() => _ActivityInsightsScreenState();
@@ -102,6 +105,7 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
         return Future.value(true);
       },
       child: Scaffold(
+        key: widget.keyScreen,
         appBar: AppBarComplete(
           title: S.of(context).homeScreen_third_tabBarTitle,
           hasNotificationsButton: false,

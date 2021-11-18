@@ -1,8 +1,8 @@
-import 'dart:io' show Platform;
-
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
@@ -16,7 +16,8 @@ import 'package:quick_actions/quick_actions.dart';
 class SetupScreen extends StatefulWidget with ChangeNotifier {
   SetupScreen({Key? key}) : super(key: key);
 
-  final keySetupScreen = GlobalKey<SetupScreenState>();
+  final keyScreen = GlobalKey<SetupScreenState>();
+  late ValueKey<SetupScreenState> keyValueScreen;
 
   final quickActionsList = const QuickActions();
 
@@ -28,7 +29,7 @@ class SetupScreenState extends State<SetupScreen> {
   static List<Widget> menuWidgets = <Widget>[
     HomeScreen(),
     const CardScreen(),
-    const ActivityInsightsScreen(),
+    ActivityInsightsScreen(),
   ];
 
   //late SizeConfig _sizes;
@@ -37,6 +38,8 @@ class SetupScreenState extends State<SetupScreen> {
   @override
   void initState() {
     super.initState();
+
+    widget.keyValueScreen = ValueKey(this);
 
     /// Should run only on Android and iOS | macOS?
     if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {

@@ -23,6 +23,7 @@ class HomeScreen extends StatefulWidget {
       left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
 
   final keyScreen = GlobalKey<_HomeScreenState>();
+  late ValueKey<_HomeScreenState> keyValueScreen;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -35,6 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
+    widget.keyValueScreen = ValueKey(this);
+
+    // Provider.of<SetupScreen>(context, listen: false)
+    //     .keyValueScreen
+    //     .value
+    //     .changeSelectedMenu(1);
+  }
   }
 
   void openFAB() {

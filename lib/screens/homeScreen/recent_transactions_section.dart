@@ -42,8 +42,7 @@ class RecentTransactionsSection extends StatelessWidget {
               onPress: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const ActivityInsightsScreen(),
+                    builder: (BuildContext context) => ActivityInsightsScreen(),
                   )),
             );
           },

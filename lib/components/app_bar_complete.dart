@@ -111,7 +111,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) {
-                              return const ActivityInsightsScreen();
+                              return ActivityInsightsScreen();
                             },
                             maintainState: true,
                           ),
