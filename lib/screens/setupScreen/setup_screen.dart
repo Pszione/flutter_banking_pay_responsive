@@ -10,6 +10,7 @@ import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.da
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 // ignore_for_file: unused_local_variable, unused_field_variable
@@ -32,9 +33,11 @@ class SetupScreenState extends State<SetupScreen> {
     ActivityInsightsScreen(),
   ];
 
-  //late SizeConfig _sizes;
   int _selectedIndex = 0;
-  MenuState _selectedMenu = MenuState.pay;
+  MenuState get selectedMenuState => MenuState.values[_selectedIndex];
+  int get selectedIndex => _selectedIndex;
+  Type get selectedWidgetType => menuWidgets[_selectedIndex].runtimeType;
+
   @override
   void initState() {
     super.initState();
@@ -61,6 +64,12 @@ class SetupScreenState extends State<SetupScreen> {
       ]);
       widget.quickActionsList.initialize((String type) {
         if (type == QuickActionState.search.toString()) {
+          widget.keyValueScreen.value.changeSelectedMenu(0);
+          (menuWidgets[0] as HomeScreen)
+              .keyValueScreen
+              .value
+              .openCloseStateSearch
+              .value = true;
           print("Should've open search bar");
         } else if (type == QuickActionState.transactionsOptions.toString()) {
           widget.keyValueScreen.value.changeSelectedMenu(0);
@@ -191,7 +200,6 @@ class SetupScreenState extends State<SetupScreen> {
         index = 0;
       }
       _selectedIndex = index;
-      _selectedMenu = MenuState.values[index];
       // this will work as Navigator.push route
       // because our Scaffold body will update its state
       // unfortunately wwe can not maintain widget state
@@ -206,6 +214,10 @@ class SetupScreenState extends State<SetupScreen> {
         .value
         .openCloseStateFAB
         .value = false;
+    // TODO: HomeScreen appBar search close
+    // ActivityScreen
+    // Provider.of<DBSyncProvider>(context, listen: false)
+    //     .clearClickedTransactionIndex();
   }
 
   bool popSelectedMenu() {
