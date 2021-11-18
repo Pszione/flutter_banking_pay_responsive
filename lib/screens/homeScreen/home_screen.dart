@@ -31,18 +31,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isFloatingButtonVisible = true;
-  final ValueNotifier<bool> openCloseState = ValueNotifier(false);
+  final ValueNotifier<bool> openCloseStateFAB = ValueNotifier(false);
+  final ValueNotifier<bool> openCloseStateSearch = ValueNotifier(false);
 
   @override
   void initState() {
     super.initState();
 
     widget.keyValueScreen = ValueKey(this);
-
-    // Provider.of<SetupScreen>(context, listen: false)
-    //     .keyValueScreen
-    //     .value
-    //     .changeSelectedMenu(1);
   }
 
   @override
@@ -56,8 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
       _isFloatingButtonVisible = true;
     });
     await Future.delayed(const Duration(milliseconds: 200));
-    // toggle
-    openCloseState.value = true;
+    openCloseStateFAB.value = true; // toggle
+  }
+
+  Future<void> openFAB_quickAction() async {
+    await Future.delayed(const Duration(milliseconds: 900));
+    openCloseStateFAB.value = true; // toggle
   }
 
   @override
@@ -66,9 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return WillPopScope(
       onWillPop: () async {
-        /// close speed dial FAB
-        openCloseState.value = false;
-        // TODO: this is not working
+        /// closing speed dial FAB
+        /// is monitored and invoked from SetupScreen
 
         return Future.value(false);
       },
@@ -79,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: S.of(context).homeScreen_first_tabBarTitle,
           hasSearchField: true,
           hasDarkThemeToggle: true,
+          openCloseStateSearch: openCloseStateSearch,
         ),
         // Cards
         floatingActionButton: _isFloatingButtonVisible
@@ -86,13 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 label: S.of(context).homeScreen_fab_title,
                 icon: Icons.read_more_rounded,
                 tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
-                openCloseState: openCloseState,
+                openCloseState: openCloseStateFAB,
               )
             : AppFloatingButtonSpeedDial(
                 label: null,
                 icon: Icons.read_more_rounded,
                 tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
-                openCloseState: openCloseState,
+                openCloseState: openCloseStateFAB,
               ),
         floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
         body: NotificationListener<UserScrollNotification>(
@@ -233,7 +233,7 @@ class ShimmerHomeScreen extends StatelessWidget {
             ShimmerProgressIndicator(
               child: Container(
                 width: double.infinity,
-                height: const AppBarComplete().preferredSize.height,
+                height: AppBarComplete().preferredSize.height,
                 color: Colors.black,
               ),
             ),
@@ -250,8 +250,7 @@ class ShimmerHomeScreen extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   children: [
                     // AppBar safe area
-                    SizedBox(
-                        height: const AppBarComplete().preferredSize.height),
+                    SizedBox(height: AppBarComplete().preferredSize.height),
                     // CardWidget List
                     Padding(
                       padding: HomeScreen.desiredPadding.copyWith(right: 0),

@@ -64,7 +64,10 @@ class SetupScreenState extends State<SetupScreen> {
           print("Should've open search bar");
         } else if (type == QuickActionState.transactionsOptions.toString()) {
           widget.keyValueScreen.value.changeSelectedMenu(0);
-          // openFAB();
+          (menuWidgets[0] as HomeScreen)
+              .keyValueScreen
+              .value
+              .openFAB_quickAction();
           print("Should've open FAB");
         } else if (type == QuickActionState.activity.toString()) {
           widget.keyValueScreen.value.changeSelectedMenu(2);
@@ -83,6 +86,7 @@ class SetupScreenState extends State<SetupScreen> {
 
     return WillPopScope(
       onWillPop: () {
+        notifyPopDependencies();
         print('Press: back button on ${widget.keyScreen}');
         return Future.value(popSelectedMenu());
       },
@@ -193,6 +197,15 @@ class SetupScreenState extends State<SetupScreen> {
       // unfortunately wwe can not maintain widget state
       HapticFeedback.selectionClick();
     });
+  }
+
+  void notifyPopDependencies() {
+    // HomeScreen
+    (menuWidgets[0] as HomeScreen)
+        .keyValueScreen
+        .value
+        .openCloseStateFAB
+        .value = false;
   }
 
   bool popSelectedMenu() {
