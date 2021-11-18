@@ -8,6 +8,7 @@ import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'google_account_dialog.dart';
@@ -136,21 +137,12 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                           Icons.notifications_active_outlined,
                           size: kMediumIconSize,
                         ),
-                        // onPressed: () {
-                        //   Provider.of<SetupScreen>(context, listen: false)
-                        //       .keySetupScreen
-                        //       .currentState!
-                        //       .changeSelectedMenu(2);
-                        // },
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return ActivityInsightsScreen();
-                            },
-                            maintainState: true,
-                          ),
-                        ),
+                        onPressed: () {
+                          Provider.of<SetupScreen>(context, listen: false)
+                              .keyValueScreen
+                              .value
+                              .changeSelectedMenu(2);
+                        },
                         tooltip: S
                             .of(context)
                             .appBar_notificationsButton_newNotificationsMessage(

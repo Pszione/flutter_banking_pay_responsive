@@ -5,6 +5,8 @@ import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
+import 'package:provider/provider.dart';
 
 class RecentTransactionsSection extends StatelessWidget {
   const RecentTransactionsSection({
@@ -26,9 +28,6 @@ class RecentTransactionsSection extends StatelessWidget {
         const SizedBox(height: kHalfPadding),
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
-          // separatorBuilder: (context, index) {
-          //   return const SizedBox(height: kHalfPadding);
-          // },
           shrinkWrap: true,
           separatorBuilder: (context, index) {
             return const SizedBox(height: kHalfPadding);
@@ -39,11 +38,10 @@ class RecentTransactionsSection extends StatelessWidget {
           itemBuilder: (_, index) {
             return TransactionCard(
               transaction: myTransactions[index],
-              onPress: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => ActivityInsightsScreen(),
-                  )),
+              onPress: () => Provider.of<SetupScreen>(context, listen: false)
+                  .keyValueScreen
+                  .value
+                  .changeSelectedMenu(2),
             );
           },
           padding: const EdgeInsets.only(bottom: kHalfPadding),
