@@ -1,3 +1,3 @@
-enum MenuState { pay, cards, insights }
+enum MenuState { home, cards, insights }
 
 enum QuickActionState { search, transactionsOptions, activity }

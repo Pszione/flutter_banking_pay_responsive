@@ -6,6 +6,7 @@ import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
+import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
@@ -141,7 +142,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                           Provider.of<SetupScreen>(context, listen: false)
                               .keyValueScreen
                               .value
-                              .changeSelectedMenu(2);
+                              .changeSelectedMenuByState(MenuState.insights);
                         },
                         tooltip: S
                             .of(context)

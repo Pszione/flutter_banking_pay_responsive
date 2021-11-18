@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
@@ -65,7 +64,7 @@ class SetupScreenState extends State<SetupScreen> {
       ]);
       widget.quickActionsList.initialize((String type) {
         if (type == QuickActionState.search.toString()) {
-          widget.keyValueScreen.value.changeSelectedMenu(0);
+          changeSelectedMenuByState(MenuState.home);
           (menuWidgets[0] as HomeScreen)
               .keyValueScreen
               .value
@@ -73,14 +72,14 @@ class SetupScreenState extends State<SetupScreen> {
               .value = true;
           print("Should've open search bar");
         } else if (type == QuickActionState.transactionsOptions.toString()) {
-          widget.keyValueScreen.value.changeSelectedMenu(0);
+          changeSelectedMenuByState(MenuState.home);
           (menuWidgets[0] as HomeScreen)
               .keyValueScreen
               .value
               .openFAB_quickAction();
           print("Should've open FAB");
         } else if (type == QuickActionState.activity.toString()) {
-          widget.keyValueScreen.value.changeSelectedMenu(2);
+          changeSelectedMenuByState(MenuState.insights);
           print("Should've changed to ActivityInsightsScreen");
         }
       });
@@ -199,6 +198,11 @@ class SetupScreenState extends State<SetupScreen> {
         ),
       ),
     );
+  }
+
+  void changeSelectedMenuByState(MenuState menu) {
+    int index = MenuState.values.indexOf(menu);
+    changeSelectedMenu(index);
   }
 
   void changeSelectedMenu(int index) {
