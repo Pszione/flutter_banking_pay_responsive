@@ -64,138 +64,129 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     MyApp.changeWebAppTabName(label: null);
 
-    return WillPopScope(
-      onWillPop: () async {
-        /// closing speed dial FAB
-        /// is monitored and invoked from SetupScreen
-
-        return Future.value(false);
-      },
-      child: Scaffold(
-        key: widget.keyScreen,
-        appBar: AppBarComplete(
-          // key: // TODO,
-          title: S.of(context).homeScreen_first_tabBarTitle,
-          hasSearchField: true,
-          hasDarkThemeToggle: true,
-          openCloseStateSearch: openCloseStateSearch,
-        ),
-        // Cards
-        floatingActionButton: _isFloatingButtonVisible
-            ? AppFloatingButtonSpeedDial(
-                label: S.of(context).homeScreen_fab_title,
-                icon: Icons.read_more_rounded,
-                tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
-                openCloseState: openCloseStateFAB,
-              )
-            : AppFloatingButtonSpeedDial(
-                label: null,
-                icon: Icons.read_more_rounded,
-                tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
-                openCloseState: openCloseStateFAB,
-              ),
-        floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
-        body: NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            // Get screen page scroll and block children widget listviews scroll notifications
-            if (notification.metrics.axis != Axis.vertical) {
-              return true;
-            }
-            if (notification.direction == ScrollDirection.forward) {
-              if (!_isFloatingButtonVisible)
-                setState(() => _isFloatingButtonVisible = true);
-            } else if (notification.direction == ScrollDirection.reverse) {
-              if (_isFloatingButtonVisible)
-                setState(() => _isFloatingButtonVisible = false);
-            }
+    return Scaffold(
+      key: widget.keyScreen,
+      appBar: AppBarComplete(
+        // key: // TODO,
+        title: S.of(context).homeScreen_first_tabBarTitle,
+        hasSearchField: true,
+        hasDarkThemeToggle: true,
+        openCloseStateSearch: openCloseStateSearch,
+      ),
+      // Cards
+      floatingActionButton: _isFloatingButtonVisible
+          ? AppFloatingButtonSpeedDial(
+              label: S.of(context).homeScreen_fab_title,
+              icon: Icons.read_more_rounded,
+              tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
+              openCloseState: openCloseStateFAB,
+            )
+          : AppFloatingButtonSpeedDial(
+              label: null,
+              icon: Icons.read_more_rounded,
+              tooltip: S.of(context).homeScreen_TOOLTIP_fab_options,
+              openCloseState: openCloseStateFAB,
+            ),
+      floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
+      body: NotificationListener<UserScrollNotification>(
+        onNotification: (notification) {
+          // Get screen page scroll and block children widget listviews scroll notifications
+          if (notification.metrics.axis != Axis.vertical) {
             return true;
-          },
-          // Un focus keyboard/textfield
-          child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.translucent,
-            excludeFromSemantics: true,
-            child: Scrollbar(
-              isAlwaysShown: WebProvider.isWebPlatform,
-              // showTrackOnHover: WebProvider.isWebPlatform,
-              child: ListView(
-                physics: const ClampingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                // padding: const EdgeInsets.symmetric
-                children: [
-                  Padding(
-                    padding: !WebProvider.isWebPlatform
-                        ? EdgeInsets.zero
-                        : HomeScreen.desiredPadding.copyWith(top: 0, bottom: 0),
-                    child: ResponsiveWidthConstrained(
-                      child: Semantics(
-                        child: UserCardsSection(
-                            desiredPadding: HomeScreen.desiredPadding),
-                        label: S
-                            .of(context)
-                            .homeScreen_userCardSection_pageSubtitle,
-                        slider: true,
-                      ),
+          }
+          if (notification.direction == ScrollDirection.forward) {
+            if (!_isFloatingButtonVisible)
+              setState(() => _isFloatingButtonVisible = true);
+          } else if (notification.direction == ScrollDirection.reverse) {
+            if (_isFloatingButtonVisible)
+              setState(() => _isFloatingButtonVisible = false);
+          }
+          return true;
+        },
+        // Un focus keyboard/textfield
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          behavior: HitTestBehavior.translucent,
+          excludeFromSemantics: true,
+          child: Scrollbar(
+            isAlwaysShown: WebProvider.isWebPlatform,
+            // showTrackOnHover: WebProvider.isWebPlatform,
+            child: ListView(
+              physics: const ClampingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              // padding: const EdgeInsets.symmetric
+              children: [
+                Padding(
+                  padding: !WebProvider.isWebPlatform
+                      ? EdgeInsets.zero
+                      : HomeScreen.desiredPadding.copyWith(top: 0, bottom: 0),
+                  child: ResponsiveWidthConstrained(
+                    child: Semantics(
+                      child: UserCardsSection(
+                          desiredPadding: HomeScreen.desiredPadding),
+                      label:
+                          S.of(context).homeScreen_userCardSection_pageSubtitle,
+                      slider: true,
                     ),
                   ),
-                  const SizedBox(height: kHalfPadding),
-                  Padding(
+                ),
+                const SizedBox(height: kHalfPadding),
+                Padding(
+                  padding: HomeScreen.desiredPadding,
+                  child: ResponsiveWidthConstrained(
+                      child: Semantics(
+                          child: CategoriesSection(
+                    onPressList: [
+                      () => openFAB(),
+                    ],
+                  ))),
+                ),
+                const SizedBox(height: kHalfPadding),
+                Padding(
                     padding: HomeScreen.desiredPadding,
                     child: ResponsiveWidthConstrained(
-                        child: Semantics(
-                            child: CategoriesSection(
-                      onPressList: [
-                        () => openFAB(),
-                      ],
-                    ))),
-                  ),
-                  const SizedBox(height: kHalfPadding),
-                  Padding(
-                      padding: HomeScreen.desiredPadding,
-                      child: ResponsiveWidthConstrained(
-                        child:
-                            Semantics(child: const RecentTransactionsSection()),
-                      )),
-                  const SizedBox(height: kDefaultPadding),
-                  const SizedBox(height: kDefaultPadding),
-                  ResponsiveWidthConstrained(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                          maxWidth: kMaxButtonConstraintWidth),
-                      child: Card(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: kHugePadding * 2.5),
-                        color: Theme.of(context).primaryColorLight,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: kDefaultBorderRadius,
-                          side: BorderSide(width: 2, color: kLightGrayColor),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: kHalfPadding, horizontal: 3),
-                          child: BuildGoogleListButton(
-                            icon: Icons.settings_rounded,
-                            label: S
-                                .of(context)
-                                .googleAccountDialog_settings_button_title,
-                            alignment: MainAxisAlignment.center,
-                            onPress: () {
-                              // do not .pop
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const SettingsScreen()),
-                              );
-                            },
-                          ),
+                      child:
+                          Semantics(child: const RecentTransactionsSection()),
+                    )),
+                const SizedBox(height: kDefaultPadding),
+                const SizedBox(height: kDefaultPadding),
+                ResponsiveWidthConstrained(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                        maxWidth: kMaxButtonConstraintWidth),
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: kHugePadding * 2.5),
+                      color: Theme.of(context).primaryColorLight,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: kDefaultBorderRadius,
+                        side: BorderSide(width: 2, color: kLightGrayColor),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: kHalfPadding, horizontal: 3),
+                        child: BuildGoogleListButton(
+                          icon: Icons.settings_rounded,
+                          label: S
+                              .of(context)
+                              .googleAccountDialog_settings_button_title,
+                          alignment: MainAxisAlignment.center,
+                          onPress: () {
+                            // do not .pop
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const SettingsScreen()),
+                            );
+                          },
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 80),
-                ],
-              ),
+                ),
+                const SizedBox(height: 80),
+              ],
             ),
           ),
         ),

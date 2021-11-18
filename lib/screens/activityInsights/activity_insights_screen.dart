@@ -97,99 +97,90 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     MyApp.changeWebAppTabName(
         label: S.of(context).homeScreen_third_tabBarTitle);
 
-    return WillPopScope(
-      onWillPop: () {
-        // TODO: this is not being called - maybe SetupScreen routes decision?
-        Provider.of<DBSyncProvider>(context, listen: false)
-            .clearClickedTransactionIndex();
-        return Future.value(true);
-      },
-      child: Scaffold(
-        key: widget.keyScreen,
-        appBar: AppBarComplete(
-          title: S.of(context).homeScreen_third_tabBarTitle,
-          hasNotificationsButton: false,
-        ),
-        floatingActionButton: _isFloatingButtonVisible
-            ? AppFloatingButtonIconAndText(
-                icon: Icons.arrow_downward_rounded,
-                label: null,
-                tooltip: S
-                    .of(context)
-                    .activityScreen_TOOLTIP_fabDownward_description,
-                // TODO
-                onPressed: () =>
-                    scrollToItem((indicesVisible.last * 1.5).abs().round()),
-              )
-            : AppFloatingButtonIconAndText(
-                icon: Icons.arrow_upward_rounded,
-                label: null,
-                tooltip:
-                    S.of(context).activityScreen_TOOLTIP_fabUpward_description,
-                // TODO
-                onPressed: () =>
-                    scrollToItem((indicesVisible.first / 2.5).abs().ceil()),
-              ),
-        body: NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            // opposite
-            if (notification.direction == ScrollDirection.reverse) {
-              if (!_isFloatingButtonVisible)
-                setState(() => _isFloatingButtonVisible = true);
-            } else if (notification.direction == ScrollDirection.forward) {
-              if (_isFloatingButtonVisible)
-                setState(() => _isFloatingButtonVisible = false);
-            }
-            return true;
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: kHalfPadding), // only
-            child: PageStorage(
-              bucket: bucketStorageForActivityScreen,
-              child: Scrollbar(
-                isAlwaysShown: WebProvider.isWebPlatform,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ScrollablePositionedList.separated(
-                        itemScrollController: itemController,
-                        itemPositionsListener: itemsListener,
-                        key: const PageStorageKey<String>('activityScreenKey'),
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(height: kHalfPadding);
-                        },
-                        itemCount: myTransactions.length,
-                        itemBuilder: (_, int index) {
-                          var newItem = TransactionCard(
-                            transaction: myTransactions[index],
-                            transactionIndex: index,
-                            withAvatarImage: false,
-                            // TODO
-                            onPress: () =>
-                                AppSlidingBottomSheet.demoSheet(context),
-                          );
-                          transactionList.add(newItem);
+    return Scaffold(
+      key: widget.keyScreen,
+      appBar: AppBarComplete(
+        title: S.of(context).homeScreen_third_tabBarTitle,
+        hasNotificationsButton: false,
+      ),
+      floatingActionButton: _isFloatingButtonVisible
+          ? AppFloatingButtonIconAndText(
+              icon: Icons.arrow_downward_rounded,
+              label: null,
+              tooltip:
+                  S.of(context).activityScreen_TOOLTIP_fabDownward_description,
+              // TODO
+              onPressed: () =>
+                  scrollToItem((indicesVisible.last * 1.5).abs().round()),
+            )
+          : AppFloatingButtonIconAndText(
+              icon: Icons.arrow_upward_rounded,
+              label: null,
+              tooltip:
+                  S.of(context).activityScreen_TOOLTIP_fabUpward_description,
+              // TODO
+              onPressed: () =>
+                  scrollToItem((indicesVisible.first / 2.5).abs().ceil()),
+            ),
+      body: NotificationListener<UserScrollNotification>(
+        onNotification: (notification) {
+          // opposite
+          if (notification.direction == ScrollDirection.reverse) {
+            if (!_isFloatingButtonVisible)
+              setState(() => _isFloatingButtonVisible = true);
+          } else if (notification.direction == ScrollDirection.forward) {
+            if (_isFloatingButtonVisible)
+              setState(() => _isFloatingButtonVisible = false);
+          }
+          return true;
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: kHalfPadding), // only
+          child: PageStorage(
+            bucket: bucketStorageForActivityScreen,
+            child: Scrollbar(
+              isAlwaysShown: WebProvider.isWebPlatform,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ScrollablePositionedList.separated(
+                      itemScrollController: itemController,
+                      itemPositionsListener: itemsListener,
+                      key: const PageStorageKey<String>('activityScreenKey'),
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: kHalfPadding);
+                      },
+                      itemCount: myTransactions.length,
+                      itemBuilder: (_, int index) {
+                        var newItem = TransactionCard(
+                          transaction: myTransactions[index],
+                          transactionIndex: index,
+                          withAvatarImage: false,
+                          // TODO
+                          onPress: () =>
+                              AppSlidingBottomSheet.demoSheet(context),
+                        );
+                        transactionList.add(newItem);
 
-                          return ResponsiveWidthConstrained(
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: kDefaultPadding,
-                                  right: kDefaultPadding,
-                                  bottom: index == myTransactions.length - 1
-                                      ? _listScrollBottomSpacer
-                                      : 0),
-                              child: newItem,
-                            ),
-                          );
-                        },
-                        padding: const EdgeInsets.only(bottom: kHalfPadding),
-                      ),
+                        return ResponsiveWidthConstrained(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: kDefaultPadding,
+                                right: kDefaultPadding,
+                                bottom: index == myTransactions.length - 1
+                                    ? _listScrollBottomSpacer
+                                    : 0),
+                            child: newItem,
+                          ),
+                        );
+                      },
+                      padding: const EdgeInsets.only(bottom: kHalfPadding),
                     ),
-                    const SizedBox(height: 70),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 70),
+                ],
               ),
             ),
           ),
