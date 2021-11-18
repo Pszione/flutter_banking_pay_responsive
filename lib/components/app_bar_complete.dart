@@ -13,19 +13,22 @@ import 'package:provider/provider.dart';
 import 'google_account_dialog.dart';
 
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
-  const AppBarComplete(
+  AppBarComplete(
       {Key? key,
       this.title,
       this.hasSearchField = false,
       this.hasNotificationsButton = true,
       this.hasDarkThemeToggle = false,
-      this.excludeTitleFromSemantics = true})
+      this.excludeTitleFromSemantics = true,
+      this.openCloseStateSearch})
       : super(key: key);
   final String? title;
   final bool hasSearchField;
   final bool hasNotificationsButton;
   final bool hasDarkThemeToggle;
   final bool excludeTitleFromSemantics;
+
+  late ValueNotifier<bool>? openCloseStateSearch;
 
   @override
   State<AppBarComplete> createState() => _AppBarCompleteState();
@@ -37,16 +40,48 @@ class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
 class _AppBarCompleteState extends State<AppBarComplete> {
   bool isSearching = false;
 
+  @override
+  void initState() {
+    super.initState();
+
+    widget.openCloseStateSearch?.addListener(_onOpenCloseSearch);
+  }
+
+  @override
+  void dispose() {
+    widget.openCloseStateSearch?.removeListener(_onOpenCloseSearch);
+    //
+    super.dispose();
+  }
+
   void toggleSearchingField() {
     setState(() {
       isSearching = !isSearching;
+      if (widget.openCloseStateSearch != null)
+        widget.openCloseStateSearch!.value = isSearching;
     });
   }
 
   void startSearching() {
     setState(() {
       isSearching = true;
+      if (widget.openCloseStateSearch != null)
+        widget.openCloseStateSearch!.value = isSearching;
     });
+  }
+
+  void _onOpenCloseSearch() {
+    final show = widget.openCloseStateSearch?.value;
+    if (show == null) return;
+    if (!show) {
+      setState(() {
+        isSearching = false;
+      });
+    } else if (show) {
+      setState(() {
+        isSearching = true;
+      });
+    }
   }
 
   @override
