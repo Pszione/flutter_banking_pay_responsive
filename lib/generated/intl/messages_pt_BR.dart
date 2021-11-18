@@ -125,7 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeScreen_first_fab_optionsDescription":
             MessageLookupByLibrary.simpleMessage("Enviar"),
         "homeScreen_first_tabBarTitle":
-            MessageLookupByLibrary.simpleMessage("Meu Banco"),
+            MessageLookupByLibrary.simpleMessage("Banco"),
         "homeScreen_fourth_fab_optionsDescription":
             MessageLookupByLibrary.simpleMessage("PIX"),
         "homeScreen_more_categoryTitle":
