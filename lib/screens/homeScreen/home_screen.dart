@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> openFAB_quickAction() async {
-    await Future.delayed(const Duration(milliseconds: 900));
+    await Future.delayed(const Duration(milliseconds: 500));
     openCloseStateFAB.value = true; // toggle
   }
 
@@ -67,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: widget.keyScreen,
       appBar: AppBarComplete(
-        // key: // TODO,
         title: S.of(context).homeScreen_first_tabBarTitle,
         hasSearchField: true,
         hasDarkThemeToggle: true,
