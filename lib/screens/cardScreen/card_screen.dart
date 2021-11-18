@@ -13,8 +13,29 @@ import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 
-class CardScreen extends StatelessWidget {
-  const CardScreen({Key? key}) : super(key: key);
+class CardScreen extends StatefulWidget with ChangeNotifier {
+  CardScreen({Key? key}) : super(key: key);
+
+  final keyScreen = GlobalKey<_CardScreenState>();
+  late ValueKey<_CardScreenState> keyValueScreen;
+
+  @override
+  State<CardScreen> createState() => _CardScreenState();
+}
+
+class _CardScreenState extends State<CardScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    widget.keyValueScreen = ValueKey(this);
+  }
+
+  @override
+  void dispose() {
+    //
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

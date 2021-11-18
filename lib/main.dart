@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
@@ -30,14 +32,24 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ThemeProvider>(
           create: (_) => ThemeProvider(),
         ),
-        ChangeNotifierProvider<SetupScreen>(
-          create: (_) => SetupScreen(),
-        ),
         ChangeNotifierProvider<SettingsProvider>(
           create: (_) => SettingsProvider(),
         ),
         ChangeNotifierProvider<DBSyncProvider>(
           create: (_) => DBSyncProvider(),
+        ),
+        //
+        ChangeNotifierProvider<SetupScreen>(
+          create: (_) => SetupScreen(),
+        ),
+        ChangeNotifierProvider<HomeScreen>(
+          create: (_) => HomeScreen(),
+        ),
+        ChangeNotifierProvider<CardScreen>(
+          create: (_) => CardScreen(),
+        ),
+        ChangeNotifierProvider<ActivityInsightsScreen>(
+          create: (_) => ActivityInsightsScreen(),
         ),
       ],
       child: Builder(builder: (context) {

@@ -28,10 +28,11 @@ class SetupScreen extends StatefulWidget with ChangeNotifier {
 }
 
 class SetupScreenState extends State<SetupScreen> {
-  static List<Widget> menuWidgets = <Widget>[
-    HomeScreen(),
-    const CardScreen(),
-    ActivityInsightsScreen(),
+  List<Widget> menuWidgets = <Widget>[
+    // HomeScreen(), CardScreen(), ActivityInsightsScreen(),
+    Consumer<HomeScreen>(builder: (_, screen, __) => screen),
+    Consumer<CardScreen>(builder: (_, screen, __) => screen),
+    Consumer<ActivityInsightsScreen>(builder: (_, screen, __) => screen),
   ];
 
   int _selectedIndex = 0;
@@ -84,6 +85,12 @@ class SetupScreenState extends State<SetupScreen> {
         }
       });
     }
+  }
+
+  @override
+  void dispose() {
+    //
+    super.dispose();
   }
 
   @override
@@ -194,7 +201,6 @@ class SetupScreenState extends State<SetupScreen> {
     );
   }
 
-  // TODO: create GlobalKey to access this state methods
   void changeSelectedMenu(int index) {
     setState(() {
       if (index < 0 || index >= MenuState.values.length) {
@@ -210,15 +216,14 @@ class SetupScreenState extends State<SetupScreen> {
 
   void notifyPopDependencies() {
     // HomeScreen
-    (menuWidgets[0] as HomeScreen)
+    Provider.of<HomeScreen>(context, listen: false)
         .keyValueScreen
         .value
         .openCloseStateFAB
         .value = false;
-    // TODO: HomeScreen appBar search close
     // ActivityScreen
-    // Provider.of<DBSyncProvider>(context, listen: false)
-    //     .clearClickedTransactionIndex();
+    Provider.of<DBSyncProvider>(context, listen: false)
+        .clearClickedTransactionIndex();
   }
 
   bool popSelectedMenu() {

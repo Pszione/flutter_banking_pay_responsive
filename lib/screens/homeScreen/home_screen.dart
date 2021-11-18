@@ -16,7 +16,7 @@ import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_s
 
 import 'categories_cards.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget with ChangeNotifier {
   HomeScreen({Key? key}) : super(key: key);
 
   static EdgeInsets desiredPadding = const EdgeInsets.only(

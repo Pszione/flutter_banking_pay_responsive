@@ -16,7 +16,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 
-class ActivityInsightsScreen extends StatefulWidget {
+class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
   ActivityInsightsScreen({Key? key}) : super(key: key);
 
   final keyScreen = GlobalKey<_ActivityInsightsScreenState>();
@@ -37,16 +37,12 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
   final transactionList = <TransactionCard>[];
   late List<int> indicesVisible = <int>[];
 
-  // @override
-  // void updateKeepAlive() {
-  //   super.updateKeepAlive();
-  // }
-  // @override
-  // bool get wantKeepAlive => true;
-
   @override
   void initState() {
     super.initState();
+
+    widget.keyValueScreen = ValueKey(this);
+
     final providerDB = Provider.of<DBSyncProvider>(context, listen: false);
 
     itemsListener.itemPositions.addListener(() {
@@ -73,6 +69,12 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
       // scrollToItem(transactionList.length - 1);
       // transactionList[transactionList.length - 1].onPress.call();
     });
+  }
+
+  @override
+  void dispose() {
+    //
+    super.dispose();
   }
 
   Future scrollToItem(int index) async {
