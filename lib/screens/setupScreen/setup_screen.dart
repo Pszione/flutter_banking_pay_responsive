@@ -42,7 +42,8 @@ class SetupScreenState extends State<SetupScreen> {
     widget.keyValueScreen = ValueKey(this);
 
     /// Should run only on Android and iOS | macOS?
-    if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
+    // if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) { // dart.io
+    if (!WebProvider.isWebPlatform) {
       widget.quickActionsList.setShortcutItems([
         ShortcutItem(
             type: QuickActionState.search.toString(),
