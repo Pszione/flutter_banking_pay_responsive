@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appBar_switchDarkTheme_title":
             MessageLookupByLibrary.simpleMessage("Dunkles Thema"),
         "cardScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
-            "Add credit or debit cards, Gift cards, Transit and more"),
+            "Fügen Sie Kreditkarten oder Debitkarten, Geschenkkarten, Fahrausweis und mehr hinzu"),
         "cardScreen_fab_title":
             MessageLookupByLibrary.simpleMessage("Hinzufügen"),
         "cardScreen_first_fab_optionsDescription":
