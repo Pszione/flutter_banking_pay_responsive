@@ -154,7 +154,7 @@ List<CardModel> myCards = [
     cardHolderName: "Pedro A B C",
     cardNumber: "9988 9988 9988 9988",
     cvv: "1100",
-    expDate: "10/28",
+    expDate: "10/21",
     cardBrand: CardBrand.mastercard,
     cardColor: kComplementaryColor,
     nickname: 'paypal',

@@ -34,7 +34,7 @@ class CardOverviewSlidingSheet extends StatelessWidget {
                 right: kDefaultPadding,
                 top: kDefaultPadding),
             decoration: BoxDecoration(
-              color: kWhiteColor,
+              color: Theme.of(context).backgroundColor,
               borderRadius: kDefaultBorderRadius,
             ),
           ),

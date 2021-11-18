@@ -97,4 +97,13 @@ class AppSlidingBottomSheet {
           ),
         ),
       ).showStyledSheet();
+
+  Future<Widget> showAndroidStyledSheet() async => await showModalBottomSheet(
+        context: context,
+        backgroundColor: kWhiteColor,
+        shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
+        clipBehavior: Clip.antiAlias,
+        isDismissible: true,
+        builder: (_) => bodyWidget ?? const SizedBox(height: 0),
+      );
 }

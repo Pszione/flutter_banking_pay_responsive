@@ -117,7 +117,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                               '${card.expDate}',
                               style: !CardModel.hasCardExpired(card.expDate)
                                   ? AppTextStyles.kCardSubtitle
-                                  : AppTextStyles.kCardSubtitle
+                                  : AppTextStyles.kCardTitle
                                       .copyWith(color: kTextRedColor),
                               semanticsLabel:
                                   "${CardModel.parseExpDateStringToDateTime(card.expDate)?.month} ${CardModel.parseExpDateStringToDateTime(card.expDate)?.year} ${CardModel.hasCardExpired(card.expDate) ? S.of(context).cardWidget_expDateExpired_title : null}",
@@ -146,7 +146,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                                 style: CardModel.hasCardExpired(card.expDate) ==
                                         false
                                     ? AppTextStyles.kCardSubtitle
-                                    : AppTextStyles.kCardSubtitle
+                                    : AppTextStyles.kCardTitle
                                         .copyWith(color: kTextRedColor),
                               ),
                             ),
