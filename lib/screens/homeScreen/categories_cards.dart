@@ -5,7 +5,10 @@ import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 
 class CategoriesSection extends StatelessWidget {
-  const CategoriesSection({Key? key}) : super(key: key);
+  const CategoriesSection({Key? key, required this.onPressList})
+      : super(key: key);
+
+  final List<Function> onPressList;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +37,9 @@ class CategoriesSection extends StatelessWidget {
           CategoryCard(
             label: S.of(context).homeScreen_transactions_categoryTitle,
             icon: Icons.read_more_rounded,
-            onPress: () =>
-                AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+            // onPress: () =>
+            //     AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+            onPress: () => onPressList.isNotEmpty ? onPressList[0].call() : {},
           ),
           spacing,
           CategoryCard(

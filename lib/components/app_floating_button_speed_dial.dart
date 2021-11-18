@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 double _floatingElevation = 9;
 
 class AppFloatingButtonSpeedDial extends StatelessWidget {
-  const AppFloatingButtonSpeedDial({
+  AppFloatingButtonSpeedDial({
     Key? key,
     required this.label,
     required this.icon,
@@ -20,7 +20,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
 
   final String? label, tooltip;
   final IconData? icon;
-  final ValueNotifier<bool>? openCloseState;
+  late ValueNotifier<bool>? openCloseState;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
 
     return SpeedDial(
       openCloseDial: openCloseState,
+      closeDialOnPop: true,
       foregroundColor: Theme.of(context).primaryColorDark,
       icon: icon, // animatedIcon: AnimatedIcons.menu_close,
       iconTheme: IconThemeData(

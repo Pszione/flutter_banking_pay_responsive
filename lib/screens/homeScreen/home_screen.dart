@@ -44,13 +44,20 @@ class _HomeScreenState extends State<HomeScreen> {
     //     .value
     //     .changeSelectedMenu(1);
   }
+
+  @override
+  void dispose() {
+    //
+    super.dispose();
   }
 
-  void openFAB() {
-    _isFloatingButtonVisible = true;
+  Future<void> openFAB() async {
     setState(() {
-      ValueNotifier(false);
+      _isFloatingButtonVisible = true;
     });
+    await Future.delayed(const Duration(milliseconds: 200));
+    // toggle
+    openCloseState.value = true;
   }
 
   @override
@@ -60,11 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return WillPopScope(
       onWillPop: () async {
         /// close speed dial FAB
-        // if (openCloseState.value == true) {
         openCloseState.value = false;
         // TODO: this is not working
 
-        return false;
+        return Future.value(false);
       },
       child: Scaffold(
         key: widget.keyScreen,
@@ -134,9 +140,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: kHalfPadding),
                   Padding(
-                      padding: HomeScreen.desiredPadding,
-                      child: ResponsiveWidthConstrained(
-                          child: Semantics(child: const CategoriesSection()))),
+                    padding: HomeScreen.desiredPadding,
+                    child: ResponsiveWidthConstrained(
+                        child: Semantics(
+                            child: CategoriesSection(
+                      onPressList: [
+                        () => openFAB(),
+                      ],
+                    ))),
+                  ),
                   const SizedBox(height: kHalfPadding),
                   Padding(
                       padding: HomeScreen.desiredPadding,
