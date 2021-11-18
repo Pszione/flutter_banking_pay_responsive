@@ -60,12 +60,14 @@ class SetupScreenState extends State<SetupScreen> {
         // PS: iOS icons not setup in Runner/Xcode
       ]);
       widget.quickActionsList.initialize((String type) {
-        if (type == QuickActionState.transactionsOptions.toString()) {
-          widget.keySetupScreen.currentState!.changeSelectedMenu(0);
-          print("Should've open FAB");
+        if (type == QuickActionState.search.toString()) {
+          print("Should've open search bar");
+        } else if (type == QuickActionState.transactionsOptions.toString()) {
+          widget.keyValueScreen.value.changeSelectedMenu(0);
           // openFAB();
+          print("Should've open FAB");
         } else if (type == QuickActionState.activity.toString()) {
-          widget.keySetupScreen.currentState!.changeSelectedMenu(2);
+          widget.keyValueScreen.value.changeSelectedMenu(2);
           print("Should've changed to ActivityInsightsScreen");
         }
       });
@@ -81,11 +83,11 @@ class SetupScreenState extends State<SetupScreen> {
 
     return WillPopScope(
       onWillPop: () {
-        //return Future.value(false);
+        print('Press: back button on ${widget.keyScreen}');
         return Future.value(popSelectedMenu());
       },
       child: Scaffold(
-        key: widget.keySetupScreen,
+        key: widget.keyScreen,
         body: Center(
           child: menuWidgets.elementAt(_selectedIndex),
         ),
