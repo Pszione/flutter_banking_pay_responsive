@@ -43,36 +43,18 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
     widget.keyValueScreen = ValueKey(this);
 
-    final providerDB = Provider.of<DBSyncProvider>(context, listen: false);
-
-    itemsListener.itemPositions.addListener(() {
-      indicesVisible = itemsListener.itemPositions.value
-          .where((item) {
-            // if (item.index == 10) print(item.itemLeadingEdge);
-            // if (item.index == 10) print(item.itemTrailingEdge);
-            final _isTopVisible = item.itemLeadingEdge >= -0.045;
-            final _isBottomVisible = item.itemTrailingEdge <= 1.40 /*1.0*/ &&
-                item.itemTrailingEdge > 0.055;
-
-            return _isTopVisible && _isBottomVisible;
-          })
-          .map((item) => item.index)
-          .toList();
-
-      // print(indicesVisible);
-    });
+    itemsListener.itemPositions.addListener(trackOnScreenIndices);
 
     SchedulerBinding.instance?.addPostFrameCallback((_) {
       // WidgetsBinding.instance?.addPostFrameCallback
-      providerDB.markNotificationsAsRead();
-
-      // scrollToItem(transactionList.length - 1);
-      // transactionList[transactionList.length - 1].onPress.call();
+      Provider.of<DBSyncProvider>(context, listen: false)
+          .markNotificationsAsRead();
     });
   }
 
   @override
   void dispose() {
+    itemsListener.itemPositions.removeListener(trackOnScreenIndices);
     //
     super.dispose();
   }
@@ -94,10 +76,49 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
         duration: kShorterDuration);
   }
 
+  void openSelectedTransaction(int index) {
+    if (transactionList.isEmpty || index >= transactionList.length) {
+      print('Error: ${openSelectedTransaction.toString()}');
+      return;
+    }
+    scrollToItem(index);
+    transactionList[index].onPress.call();
+  }
+
+  void trackOnScreenIndices() {
+    indicesVisible = itemsListener.itemPositions.value
+        .where((item) {
+          // if (item.index == 10) print(item.itemLeadingEdge);
+          // if (item.index == 10) print(item.itemTrailingEdge);
+          final _isTopVisible = item.itemLeadingEdge >= -0.045;
+          final _isBottomVisible = item.itemTrailingEdge <= 1.40 /*1.0*/ &&
+              item.itemTrailingEdge > 0.055;
+
+          return _isTopVisible && _isBottomVisible;
+        })
+        .map((item) => item.index)
+        .toList();
+
+    // print(indicesVisible);
+  }
+
+  void handleObservableTransactionOpening() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    var provider = Provider.of<DBSyncProvider>(context, listen: false);
+
+    if (provider.clickedTransactionIndex != null) {
+      print('Transactions index is: ${provider.clickedTransactionIndex}');
+      openSelectedTransaction(provider.clickedTransactionIndex!);
+      provider.clearClickedTransactionIndex(); // important
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     MyApp.changeWebAppTabName(
         label: S.of(context).homeScreen_third_tabBarTitle);
+
+    handleObservableTransactionOpening();
 
     return Scaffold(
       key: widget.keyScreen,
