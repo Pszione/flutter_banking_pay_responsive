@@ -10,6 +10,7 @@ import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
+import 'package:flutter_banking_pay_responsive/screens/homeScreen/news_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
@@ -146,6 +147,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ResponsiveWidthConstrained(
                       child:
                           Semantics(child: const RecentTransactionsSection()),
+                    )),
+                const SizedBox(height: kHalfPadding),
+                Padding(
+                    padding: !WebProvider.isWebPlatform
+                        ? EdgeInsets.zero
+                        : HomeScreen.desiredPadding.copyWith(top: 0, bottom: 0),
+                    child: ResponsiveWidthConstrained(
+                      child: Semantics(
+                          child: NewsSection(
+                              desiredPadding: HomeScreen.desiredPadding)),
                     )),
                 const SizedBox(height: kDefaultPadding),
                 const SizedBox(height: kDefaultPadding),

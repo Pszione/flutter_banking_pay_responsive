@@ -284,6 +284,7 @@ class AppThemes {
     scaffoldBackgroundColor: kBackgroundColor,
     backgroundColor: kBackgroundColor,
     dialogBackgroundColor: kSecondaryColor,
+    // hoverColor: ,
     fontFamily: GoogleFonts.poppins().fontFamily,
   );
 
@@ -334,6 +335,7 @@ class AppThemes {
     scaffoldBackgroundColor: kDarkBackgroundColor,
     backgroundColor: kDarkBackgroundColor,
     dialogBackgroundColor: kSecondaryColor,
+    hoverColor: Colors.black26,
     fontFamily: GoogleFonts.poppins().fontFamily,
   );
 
