@@ -61,6 +61,7 @@ class SetupScreenState extends State<SetupScreen> {
             type: QuickActionState.activity.toString(),
             localizedTitle: 'Recent Activities',
             icon: 'quick_chart_outline'),
+        // TODO: localize reference using Consumer
         // PS: iOS icons not setup in Runner/Xcode
       ]);
       widget.quickActionsList.initialize((String type) {
