@@ -161,50 +161,46 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
           padding: const EdgeInsets.symmetric(vertical: kHalfPadding), // only
           child: PageStorage(
             bucket: bucketStorageForActivityScreen,
-            child: Scrollbar(
-              isAlwaysShown: WebProvider.isWebPlatform,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ScrollablePositionedList.separated(
-                      itemScrollController: itemController,
-                      itemPositionsListener: itemsListener,
-                      key: const PageStorageKey<String>('activityScreenKey'),
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(height: kHalfPadding);
-                      },
-                      itemCount: myTransactions.length,
-                      itemBuilder: (_, int index) {
-                        var newItem = TransactionCard(
-                          transaction: myTransactions[index],
-                          transactionIndex: index,
-                          withAvatarImage: false,
-                          // TODO
-                          onPress: () =>
-                              AppSlidingBottomSheet.demoSheet(context),
-                        );
-                        transactionList.add(newItem);
+            child: Column(
+              children: [
+                Expanded(
+                  child: ScrollablePositionedList.separated(
+                    itemScrollController: itemController,
+                    itemPositionsListener: itemsListener,
+                    key: const PageStorageKey<String>('activityScreenKey'),
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: kHalfPadding);
+                    },
+                    itemCount: myTransactions.length,
+                    itemBuilder: (_, int index) {
+                      var newItem = TransactionCard(
+                        transaction: myTransactions[index],
+                        transactionIndex: index,
+                        withAvatarImage: false,
+                        // TODO
+                        onPress: () => AppSlidingBottomSheet.demoSheet(context),
+                      );
+                      transactionList.add(newItem);
 
-                        return ResponsiveWidthConstrained(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: kDefaultPadding,
-                                right: kDefaultPadding,
-                                bottom: index == myTransactions.length - 1
-                                    ? _listScrollBottomSpacer
-                                    : 0),
-                            child: newItem,
-                          ),
-                        );
-                      },
-                      padding: const EdgeInsets.only(bottom: kHalfPadding),
-                    ),
+                      return ResponsiveWidthConstrained(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: kDefaultPadding,
+                              right: kDefaultPadding,
+                              bottom: index == myTransactions.length - 1
+                                  ? _listScrollBottomSpacer
+                                  : 0),
+                          child: newItem,
+                        ),
+                      );
+                    },
+                    padding: const EdgeInsets.only(bottom: kHalfPadding),
                   ),
-                  const SizedBox(height: 70),
-                ],
-              ),
+                ),
+                const SizedBox(height: 70),
+              ],
             ),
           ),
         ),
