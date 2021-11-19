@@ -125,6 +125,7 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
       appBar: AppBarComplete(
         title: S.of(context).homeScreen_third_tabBarTitle,
         hasNotificationsButton: false,
+        hasDarkThemeToggle: true,
       ),
       floatingActionButton: _isFloatingButtonVisible
           ? AppFloatingButtonIconAndText(
@@ -179,8 +180,10 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
                         transaction: myTransactions[index],
                         transactionIndex: index,
                         withAvatarImage: false,
+                        withClickableIndicator: true,
                         // TODO
-                        onPress: () => AppSlidingBottomSheet.demoSheet(context),
+                        onPress: () {},
+                        // onPress: () => AppSlidingBottomSheet.demoSheet(context),
                       );
                       transactionList.add(newItem);
 
@@ -199,7 +202,8 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
                     padding: const EdgeInsets.only(bottom: kHalfPadding),
                   ),
                 ),
-                const SizedBox(height: 70),
+                if (MediaQuery.of(context).orientation == Orientation.portrait)
+                  const SizedBox(height: 70),
               ],
             ),
           ),

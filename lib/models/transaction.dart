@@ -30,7 +30,7 @@ List<TransactionModel> myTransactions = [
     avatar: "assets/icons/avatars/avatar1.png",
     month: "01/21",
     price: 22.47,
-    paymentMethod: 'Google Pay',
+    paymentMethod: 'Credit Card',
     currentBalance: "\$5482",
     changePercentage: "0.41%",
     changePercentageIndicator: "up",

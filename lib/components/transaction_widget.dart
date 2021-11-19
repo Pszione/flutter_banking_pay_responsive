@@ -10,7 +10,7 @@ class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;
   final int? transactionIndex;
   final bool isClickable;
-  final bool withAvatarImage;
+  final bool withAvatarImage, withClickableIndicator;
   final GestureTapCallback onPress;
 
   const TransactionCard({
@@ -20,6 +20,7 @@ class TransactionCard extends StatelessWidget {
     this.isClickable = true,
     required this.onPress,
     this.withAvatarImage = true,
+    this.withClickableIndicator = false,
   }) : super(key: key);
 
   static Widget defaultDimensionColored = Container(
@@ -36,6 +37,8 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool fullTransactionView = !withAvatarImage || withClickableIndicator;
+
     return Card(
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
@@ -83,6 +86,14 @@ class TransactionCard extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.clip,
                       ),
+                      if (fullTransactionView)
+                        Text(
+                          '${transaction.paymentMethod}',
+                          style: AppTextStyles.kListTileTitle
+                              .copyWith(fontSize: 16),
+                          maxLines: 1,
+                          overflow: TextOverflow.clip,
+                        ),
                       Text(
                         CardModel.parseDateTimeMonthToString(
                                 transaction.month, context) ??
@@ -106,28 +117,36 @@ class TransactionCard extends StatelessWidget {
                         transaction.price!.hasFractional
                             ? '\$${transaction.price!}'
                             : '\$${transaction.price!.round()}',
-                        style: AppTextStyles.kListTileTitle,
+                        style: fullTransactionView
+                            ? AppTextStyles.kListTileTitle
+                                .copyWith(fontSize: 21)
+                            : AppTextStyles.kListTileTitle,
+                        textAlign: TextAlign.right,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       ExcludeSemantics(
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             transaction.changePercentageIndicator == "up"
-                                ? const Icon(
+                                ? Icon(
                                     FontAwesomeIcons.levelUpAlt,
-                                    size: 10,
+                                    size: fullTransactionView ? 14 : 10,
                                     color: Colors.green,
                                   )
-                                : const Icon(
+                                : Icon(
                                     FontAwesomeIcons.levelDownAlt,
-                                    size: 10,
+                                    size: fullTransactionView ? 14 : 10,
                                     color: Colors.red,
                                   ),
                             const SizedBox(width: kHalfPadding),
                             Text(
                               '${transaction.changePercentage}',
-                              style: AppTextStyles.kListTileSubtitle,
+                              style: fullTransactionView
+                                  ? AppTextStyles.kListTileSubtitle
+                                      .copyWith(fontSize: 18)
+                                  : AppTextStyles.kListTileSubtitle,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -136,6 +155,15 @@ class TransactionCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  if (isClickable && withClickableIndicator)
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: kSmallIconSize,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.6),
+                    ),
                 ],
               ),
             ],
