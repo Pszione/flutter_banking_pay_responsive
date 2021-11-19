@@ -28,7 +28,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Leroy Merlin",
     avatar: "assets/icons/avatars/avatar1.png",
-    month: "January",
+    month: "01/21",
     price: 22.47,
     paymentMethod: 'Google Pay',
     currentBalance: "\$5482",
@@ -39,7 +39,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Jane Santos",
     avatar: "assets/icons/avatars/avatar2.png",
-    month: "February",
+    month: "02/21",
     price: 1230.00,
     paymentMethod: 'Google Pay',
     currentBalance: "\$4252",
@@ -50,7 +50,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Alex Doe",
     avatar: "assets/icons/avatars/avatar3.png",
-    month: "March",
+    month: "03/21",
     price: 200.33,
     paymentMethod: 'Google Pay',
     currentBalance: "\$4052",
@@ -61,7 +61,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Alex Chacón",
     avatar: "assets/icons/avatars/avatar4.png",
-    month: "March",
+    month: "03/21",
     price: 1215.62,
     paymentMethod: 'Bank Deposit',
     currentBalance: "\$5267",
@@ -72,7 +72,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Supreme Leader",
     avatar: "assets/icons/avatars/avatar1.png",
-    month: "May",
+    month: "05/21",
     price: 215.00,
     paymentMethod: 'Google Pay',
     currentBalance: "\$5482",
@@ -83,7 +83,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Target Supermarket",
     //avatar: "assets/icons/avatars/avatar2.png",
-    month: "July",
+    month: "07/21",
     price: 1230.00,
     paymentMethod: 'Credit Card',
     currentBalance: "\$4252",
@@ -94,7 +94,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Steam Games",
     //avatar: "assets/icons/avatars/avatar2.png",
-    month: "August",
+    month: "08/21",
     price: 102.00,
     paymentMethod: 'Credit Card',
     currentBalance: "\$4150",
@@ -105,7 +105,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "The Plant",
     //avatar: "assets/icons/avatars/avatar2.png",
-    month: "September",
+    month: "09/21",
     price: 182.33,
     paymentMethod: 'Credit Card',
     currentBalance: "\$3967",
@@ -116,7 +116,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "Bia Moraes",
     //avatar: "assets/icons/avatars/avatar2.png",
-    month: "September",
+    month: "09/21",
     price: 1066.00,
     paymentMethod: 'Bank Deposit',
     currentBalance: "\$5033",
@@ -127,7 +127,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "JOB Paycheck",
     //avatar: "assets/icons/avatars/avatar2.png",
-    month: "September",
+    month: "09/21",
     price: 35000.00,
     paymentMethod: 'Bank Deposit',
     currentBalance: "\$40033",
@@ -138,7 +138,7 @@ List<TransactionModel> myTransactions = [
   TransactionModel(
     title: "New Subaru Car",
     //avatar: "assets/icons/avatars/avatar2.png",
-    month: "October",
+    month: "10/21",
     price: 23979.00,
     paymentMethod: 'Bank Deposit',
     currentBalance: "\$4150",

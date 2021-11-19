@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/extensions.dart';
+import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -83,7 +84,9 @@ class TransactionCard extends StatelessWidget {
                         overflow: TextOverflow.clip,
                       ),
                       Text(
-                        '${transaction.month}',
+                        CardModel.parseDateTimeMonthToString(
+                                transaction.month, context) ??
+                            '',
                         style: AppTextStyles.kListTileSubtitle,
                       ),
                     ],

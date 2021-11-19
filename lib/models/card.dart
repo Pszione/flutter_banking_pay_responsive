@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 
 import 'card_brand.dart';
 
@@ -65,6 +66,52 @@ class CardModel {
       return expYear.length <= 2
           ? DateTime(2000 + int.parse(expYear), int.parse(expMonth))
           : DateTime(int.parse(expYear), int.parse(expMonth));
+    }
+  }
+
+  static String? parseDateTimeMonthToString(
+      String? date, BuildContext? context) {
+    if (date == null || date.isEmpty) {
+      return null;
+    } else {
+      int? month = parseExpDateStringToDateTime(date)?.month;
+      if (month != null) {
+        switch (month) {
+          case 1:
+            return context != null ? S.of(context).dateTime_january : 'January';
+          case 2:
+            return context != null
+                ? S.of(context).dateTime_february
+                : 'February';
+          case 3:
+            return context != null ? S.of(context).dateTime_march : 'March';
+          case 4:
+            return context != null ? S.of(context).dateTime_april : 'April';
+          case 5:
+            return context != null ? S.of(context).dateTime_may : 'May';
+          case 6:
+            return context != null ? S.of(context).dateTime_june : 'June';
+          case 7:
+            return context != null ? S.of(context).dateTime_july : 'July';
+          case 8:
+            return context != null ? S.of(context).dateTime_august : 'August';
+          case 9:
+            return context != null
+                ? S.of(context).dateTime_september
+                : 'September';
+          case 10:
+            return context != null ? S.of(context).dateTime_october : 'October';
+          case 11:
+            return context != null
+                ? S.of(context).dateTime_november
+                : 'November';
+          case 12:
+            return context != null
+                ? S.of(context).dateTime_december
+                : 'December';
+        }
+      }
+      return date;
     }
   }
 
