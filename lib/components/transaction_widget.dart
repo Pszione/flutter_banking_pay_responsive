@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/extensions.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;
@@ -39,12 +41,20 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool fullTransactionView = !withAvatarImage || withClickableIndicator;
 
+    // TODO: terrible design
+    final listProvider = Provider.of<DBSyncProvider>(context, listen: false);
+
     return Card(
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: kDefaultBorderRadius,
         //border: Border.all(width: 2, color: Colors.grey[300]!),
-        side: BorderSide(width: 2, color: kLightGrayColor),
+        side: BorderSide(
+            width: 2,
+            color: listProvider.clickedTransactionIndex != null &&
+                    listProvider.clickedTransactionIndex == transactionIndex
+                ? kPrimaryColor
+                : kLightGrayColor),
       ),
       child: Padding(
         padding: const EdgeInsets.all(kHalfPadding),

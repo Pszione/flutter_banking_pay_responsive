@@ -109,6 +109,8 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     if (provider.clickedTransactionIndex != null) {
       print('Transactions index is: ${provider.clickedTransactionIndex}');
       openSelectedTransaction(provider.clickedTransactionIndex!);
+
+      await Future.delayed(const Duration(seconds: 3));
       provider.clearClickedTransactionIndex(); // important
     }
   }

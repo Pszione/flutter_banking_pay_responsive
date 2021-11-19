@@ -217,6 +217,7 @@ class SetupScreenState extends State<SetupScreen> {
       // because our Scaffold body will update its state
       // unfortunately wwe can not maintain widget state
       HapticFeedback.selectionClick();
+      notifyPopDependencies();
     });
   }
 
