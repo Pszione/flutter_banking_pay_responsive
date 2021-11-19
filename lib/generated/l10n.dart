@@ -210,6 +210,36 @@ class S {
     );
   }
 
+  /// `News`
+  String get homeScreen_news_pageSubtitle {
+    return Intl.message(
+      'News',
+      name: 'homeScreen_news_pageSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dismiss all`
+  String get homeScreen_news_dismissText {
+    return Intl.message(
+      'Dismiss all',
+      name: 'homeScreen_news_dismissText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See more`
+  String get homeScreen_seeMore_title {
+    return Intl.message(
+      'See more',
+      name: 'homeScreen_seeMore_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get __0 {
     return Intl.message(

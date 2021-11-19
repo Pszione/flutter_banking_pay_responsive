@@ -143,6 +143,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("PIX"),
         "homeScreen_more_categoryTitle":
             MessageLookupByLibrary.simpleMessage("mais"),
+        "homeScreen_news_dismissText":
+            MessageLookupByLibrary.simpleMessage("Marcar como lidas"),
+        "homeScreen_news_pageSubtitle":
+            MessageLookupByLibrary.simpleMessage("Novidades"),
         "homeScreen_recentTransactions_pageSubtitle":
             MessageLookupByLibrary.simpleMessage("Transferências Recentes"),
         "homeScreen_salesStore_categoryTitle":
@@ -151,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Receber"),
         "homeScreen_second_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Cartões"),
+        "homeScreen_seeMore_title":
+            MessageLookupByLibrary.simpleMessage("Ver mais"),
         "homeScreen_supportChat_categoryTitle":
             MessageLookupByLibrary.simpleMessage("Suporte e Ajuda"),
         "homeScreen_third_fab_optionsDescription":

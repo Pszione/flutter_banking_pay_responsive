@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import 'package:flutter_banking_pay_responsive/models/news.dart';
 
 class NewsSection extends StatelessWidget {
   const NewsSection({Key? key, required this.desiredPadding}) : super(key: key);
@@ -11,39 +13,67 @@ class NewsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).hoverColor,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Theme.of(context).hoverColor,
+          borderRadius:
+              !WebProvider.isWebPlatform ? null : kDefaultBorderRadius),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.only(
-                left: desiredPadding.left, top: desiredPadding.top / 2),
-            child: Semantics(
-              child: Text(
-                'News', // S.of(context).
-                style: AppTextStyles.kMenuTitle(context),
-              ),
-              header: true,
+                left: !WebProvider.isWebPlatform ? desiredPadding.left : 0,
+                top: desiredPadding.top / 2,
+                right: desiredPadding.left),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Semantics(
+                  child: Text(
+                    S
+                        .of(context)
+                        .homeScreen_news_pageSubtitle, // S.of(context).
+                    style: AppTextStyles.kMenuTitle(context),
+                  ),
+                  header: true,
+                ),
+                Text(
+                  S.of(context).homeScreen_news_dismissText,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.4,
+                  ),
+                ),
+              ],
             ),
           ),
-          SizedBox(
-            height: 230,
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, index) {
-                return const SizedBox(width: kHugePadding);
-              },
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return buildNewsCard(context);
-              },
-              padding: EdgeInsets.only(
-                left: !WebProvider.isWebPlatform ? desiredPadding.left : 0,
-                right: !WebProvider.isWebPlatform ? desiredPadding.right : 0,
-                top: desiredPadding.top / 2,
-                bottom: desiredPadding.top,
+          Center(
+            child: SizedBox(
+              height: 230,
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (context, index) {
+                  return const SizedBox(width: kHugePadding);
+                },
+                itemCount: myNews.length + 1,
+                itemBuilder: (context, index) {
+                  if (index == myNews.length) {
+                    return const SizedBox(width: kHugePadding);
+                  }
+
+                  return buildNewsCard(context, index);
+                },
+                padding: EdgeInsets.only(
+                  left: !WebProvider.isWebPlatform ? desiredPadding.left : 0,
+                  right: !WebProvider.isWebPlatform ? desiredPadding.right : 0,
+                  top: desiredPadding.top / 2,
+                  bottom: desiredPadding.top,
+                ),
               ),
             ),
           ),
@@ -53,10 +83,15 @@ class NewsSection extends StatelessWidget {
     );
   }
 
-  Widget buildNewsCard(BuildContext context) {
+  Widget buildNewsCard(BuildContext context, int index) {
+    print(Localizations.localeOf(context));
+    print(Locale('pt', 'BR'));
+
     return Container(
       // onPress: () {}
-      width: 250,
+      width: MediaQuery.of(context).orientation == Orientation.portrait
+          ? 250
+          : 300,
       margin: EdgeInsets.zero,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColorLight,
@@ -73,14 +108,17 @@ class NewsSection extends StatelessWidget {
           children: [
             // const SizedBox(height: kHalfPadding),
             Text(
-              'More credit limit available',
+              // myNews[index].title ?? 'Check it out!',
+              myNews[index].getLocalizedTitle(Localizations.localeOf(context)),
               style: AppTextStyles.kListTileTitle.copyWith(fontSize: 17),
               maxLines: 2,
               textAlign: TextAlign.start,
               overflow: TextOverflow.clip,
             ),
             Text(
-              'You bank just offered more pre-approved credit card limit.\nCome check it out and Enjoy!',
+              // myNews[index].description ?? '...',
+              myNews[index]
+                  .getLocalizedDescription(Localizations.localeOf(context)),
               style: AppTextStyles.kListTileSubtitle.copyWith(fontSize: 14),
               maxLines: 5,
               textAlign: TextAlign.justify,
@@ -92,7 +130,7 @@ class NewsSection extends StatelessWidget {
                 onPressed: () => {},
                 // AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
                 child: Text(
-                  'See more',
+                  S.of(context).homeScreen_seeMore_title,
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
