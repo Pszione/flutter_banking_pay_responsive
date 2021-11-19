@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 
 class TransactionModel {
   TransactionModel({
@@ -22,6 +23,31 @@ class TransactionModel {
   String? changePercentageIndicator;
   String? changePercentage;
   Color? color;
+
+  static String? parsePaymentMethodToLocalized(
+      String? method, BuildContext? context) {
+    if (method == null || method.isEmpty) {
+      return null;
+    } else {
+      switch (method) {
+        case 'Credit Card':
+          return context != null
+              ? S.of(context).paymentMethod_creditCard
+              : 'Credit Card';
+        case 'Debit Card':
+          return context != null
+              ? S.of(context).paymentMethod_debitCard
+              : 'Debit Card';
+        case 'Bank Deposit':
+          return context != null
+              ? S.of(context).paymentMethod_bankDeposit
+              : 'Bank Deposit';
+        case 'PIX':
+          return 'PIX';
+      }
+    }
+    return method;
+  }
 }
 
 List<TransactionModel> myTransactions = [
@@ -74,7 +100,7 @@ List<TransactionModel> myTransactions = [
     avatar: "assets/icons/avatars/avatar1.png",
     month: "05/21",
     price: 215.00,
-    paymentMethod: 'Google Pay',
+    paymentMethod: 'PIX',
     currentBalance: "\$5482",
     changePercentage: "4.1%",
     changePercentageIndicator: "up",
@@ -140,7 +166,7 @@ List<TransactionModel> myTransactions = [
     //avatar: "assets/icons/avatars/avatar2.png",
     month: "10/21",
     price: 23979.00,
-    paymentMethod: 'Bank Deposit',
+    paymentMethod: 'Debit Card',
     currentBalance: "\$4150",
     changePercentageIndicator: "down",
     changePercentage: "59.9%",

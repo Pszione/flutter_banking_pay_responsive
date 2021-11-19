@@ -103,6 +103,11 @@
   "dateTime_october": "October",
   "dateTime_november": "November",
   "dateTime_december": "December",
+  "paymentMethod_creditCard": "Kreditkarten",
+  "paymentMethod_debitCard": "Debitkarten",
+  "paymentMethod_googlePay": "Google Pay",
+  "paymentMethod_bankDeposit": "Bankdepot",
+  "paymentMethod_PIX": "PIX",
   "___": "",
   "snackBar_featureUnavailableButBeingFixed_text": "Funktion zur Zeit nicht verfügbar. Wir beheben es sofort!",
   "other_TOOLTIP_closeButton": "Schließen"

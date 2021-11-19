@@ -169,6 +169,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "navigation_TOOTIP_listCount_description": m2,
         "other_TOOLTIP_closeButton":
             MessageLookupByLibrary.simpleMessage("Close"),
+        "paymentMethod_PIX": MessageLookupByLibrary.simpleMessage("PIX"),
+        "paymentMethod_bankDeposit":
+            MessageLookupByLibrary.simpleMessage("Bank Deposit"),
+        "paymentMethod_creditCard":
+            MessageLookupByLibrary.simpleMessage("Credit Card"),
+        "paymentMethod_debitCard":
+            MessageLookupByLibrary.simpleMessage("Debit Card"),
+        "paymentMethod_googlePay":
+            MessageLookupByLibrary.simpleMessage("Google Pay"),
         "scanCardScreen_clickToScan_title":
             MessageLookupByLibrary.simpleMessage("Click to scan"),
         "scanCardScreen_enterCardManually_title":

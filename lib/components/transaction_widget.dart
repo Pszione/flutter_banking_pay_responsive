@@ -88,7 +88,9 @@ class TransactionCard extends StatelessWidget {
                       ),
                       if (fullTransactionView)
                         Text(
-                          '${transaction.paymentMethod}',
+                          TransactionModel.parsePaymentMethodToLocalized(
+                                  transaction.paymentMethod, context) ??
+                              '',
                           style: AppTextStyles.kListTileTitle
                               .copyWith(fontSize: 16),
                           maxLines: 1,

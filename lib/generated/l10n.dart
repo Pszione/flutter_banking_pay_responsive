@@ -1081,6 +1081,56 @@ class S {
     );
   }
 
+  /// `Credit Card`
+  String get paymentMethod_creditCard {
+    return Intl.message(
+      'Credit Card',
+      name: 'paymentMethod_creditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit Card`
+  String get paymentMethod_debitCard {
+    return Intl.message(
+      'Debit Card',
+      name: 'paymentMethod_debitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google Pay`
+  String get paymentMethod_googlePay {
+    return Intl.message(
+      'Google Pay',
+      name: 'paymentMethod_googlePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bank Deposit`
+  String get paymentMethod_bankDeposit {
+    return Intl.message(
+      'Bank Deposit',
+      name: 'paymentMethod_bankDeposit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PIX`
+  String get paymentMethod_PIX {
+    return Intl.message(
+      'PIX',
+      name: 'paymentMethod_PIX',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get ___ {
     return Intl.message(
