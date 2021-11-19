@@ -59,7 +59,7 @@ class AppSlidingBottomSheet {
         snappings: [0.3, 0.5],
         headerColor: Theme.of(context).colorScheme.secondary,
         bodyWidget: Container(
-          color: kWhiteColor,
+          color: Theme.of(context).backgroundColor,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +76,7 @@ class AppSlidingBottomSheet {
                 ),
                 Container(
                   height: 290,
-                  color: kWhiteColor,
+                  color: Theme.of(context).backgroundColor,
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
@@ -100,7 +100,7 @@ class AppSlidingBottomSheet {
 
   Future<Widget> showAndroidStyledSheet() async => await showModalBottomSheet(
         context: context,
-        backgroundColor: kWhiteColor,
+        backgroundColor: Theme.of(context).backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
         clipBehavior: Clip.antiAlias,
         isDismissible: true,
