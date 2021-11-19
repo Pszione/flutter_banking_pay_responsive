@@ -50,16 +50,17 @@ class SetupScreenState extends State<SetupScreen> {
     if (!WebProvider.isWebPlatform) {
       widget.quickActionsList.setShortcutItems([
         ShortcutItem(
-            type: QuickActionState.search.toString(), localizedTitle: 'Search'),
-        // icon: 'quick_search'),
+            type: QuickActionState.search.toString(),
+            localizedTitle: 'Search',
+            icon: 'quick_search'),
         ShortcutItem(
             type: QuickActionState.transactionsOptions.toString(),
-            localizedTitle: 'New Transaction'),
-        // icon: 'quick_read_more'),
+            localizedTitle: 'New Transaction',
+            icon: 'quick_read_more'),
         ShortcutItem(
             type: QuickActionState.activity.toString(),
-            localizedTitle: 'Recent Activities'),
-        // icon: 'quick_chart_outline'),
+            localizedTitle: 'Recent Activities',
+            icon: 'quick_chart_outline'),
         // PS: iOS icons not setup in Runner/Xcode
       ]);
       widget.quickActionsList.initialize((String type) {
