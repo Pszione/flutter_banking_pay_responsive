@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "__4": MessageLookupByLibrary.simpleMessage(""),
         "__5": MessageLookupByLibrary.simpleMessage(""),
         "__6": MessageLookupByLibrary.simpleMessage(""),
+        "__99": MessageLookupByLibrary.simpleMessage(""),
         "___": MessageLookupByLibrary.simpleMessage(""),
         "activityScreen_TOOLTIP_fabDownward_description":
             MessageLookupByLibrary.simpleMessage("Descer!"),
@@ -84,6 +85,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("VALIDADE"),
         "cardWidget_singularCard_title":
             MessageLookupByLibrary.simpleMessage("Cartão"),
+        "dateTime_april": MessageLookupByLibrary.simpleMessage("Abril"),
+        "dateTime_august": MessageLookupByLibrary.simpleMessage("Agosto"),
+        "dateTime_december": MessageLookupByLibrary.simpleMessage("Dezembro"),
+        "dateTime_february": MessageLookupByLibrary.simpleMessage("Fevereiro"),
+        "dateTime_january": MessageLookupByLibrary.simpleMessage("Janeiro"),
+        "dateTime_july": MessageLookupByLibrary.simpleMessage("Julho"),
+        "dateTime_june": MessageLookupByLibrary.simpleMessage("Junho"),
+        "dateTime_march": MessageLookupByLibrary.simpleMessage("Março"),
+        "dateTime_may": MessageLookupByLibrary.simpleMessage("Maio"),
+        "dateTime_november": MessageLookupByLibrary.simpleMessage("Novembro"),
+        "dateTime_october": MessageLookupByLibrary.simpleMessage("Outubro"),
+        "dateTime_september": MessageLookupByLibrary.simpleMessage("Setembro"),
         "googleAccountDialog_EXAMPLE_email":
             MessageLookupByLibrary.simpleMessage("usuario@email.com"),
         "googleAccountDialog_EXAMPLE_fullName":
