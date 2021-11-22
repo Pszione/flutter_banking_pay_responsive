@@ -7,16 +7,16 @@ class GoogleScreenBase extends StatefulWidget {
   const GoogleScreenBase({
     Key? key,
     this.showGoogleIcon = true,
-    this.showAppBar = false,
     required this.child,
+    this.appBar,
     this.title,
     this.description,
   }) : super(key: key);
 
   final bool showGoogleIcon;
-  final bool showAppBar;
   final String? title, description;
   final Widget child;
+  final PreferredSizeWidget? appBar;
 
   static bool hasEnoughSpacing(BuildContext context) =>
       MediaQuery.of(context).orientation == Orientation.portrait ||
@@ -32,6 +32,7 @@ class _GoogleScreenBaseState extends State<GoogleScreenBase> {
     final bool hasEnoughSpacing = GoogleScreenBase.hasEnoughSpacing(context);
 
     return Scaffold(
+      appBar: widget.appBar,
       body: SafeArea(
         child: Center(
           child: ListView(

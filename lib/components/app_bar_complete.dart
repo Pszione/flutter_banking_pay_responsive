@@ -20,12 +20,14 @@ class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
       this.hasSearchField = false,
       this.hasNotificationsButton = true,
       this.hasDarkThemeToggle = false,
+      this.hasGoogleAccountAvatar = true,
       this.excludeTitleFromSemantics = true,
       this.openCloseStateSearch})
       : super(key: key);
   final String? title;
   final bool hasSearchField;
   final bool hasNotificationsButton;
+  final bool hasGoogleAccountAvatar;
   final bool hasDarkThemeToggle;
   final bool excludeTitleFromSemantics;
 
@@ -122,7 +124,8 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                     icon: const Icon(
                       Icons.arrow_back_ios,
                     ),
-                    onPressed: () => Navigator.maybePop(context, 'Back'),
+                    onPressed: () =>
+                        Navigator.canPop(context) ? Navigator.pop(context) : {},
                     tooltip: S.of(context).appBar_TOOLTIP_backButton_hint,
                   ),
                 ),
@@ -215,31 +218,32 @@ class _AppBarCompleteState extends State<AppBarComplete> {
               label: S.of(context).appBar_switchDarkTheme_title,
               button: true,
             ),
-          Padding(
-            padding: EdgeInsets.only(
-                right:
-                    WebProvider.isWebPlatform && Responsive.isDesktop(context)
-                        ? kHugePadding
-                        : kHalfPadding),
-            child: IconButton(
-              padding: EdgeInsets.zero,
-              icon: CircleAvatar(
-                // backgroundImage:
-                //     NetworkImage('https://placeimg.com/640/480/people'),
-                backgroundImage: signedInAccount != null
-                    ? AssetImage(signedInAccount.avatarThumbnail!)
-                    : null,
-                backgroundColor: kComplementaryColor,
-                radius: kHugeIconSize * 1.5,
+          if (widget.hasGoogleAccountAvatar)
+            Padding(
+              padding: EdgeInsets.only(
+                  right:
+                      WebProvider.isWebPlatform && Responsive.isDesktop(context)
+                          ? kHugePadding
+                          : kHalfPadding),
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                icon: CircleAvatar(
+                  // backgroundImage:
+                  //     NetworkImage('https://placeimg.com/640/480/people'),
+                  backgroundImage: signedInAccount != null
+                      ? AssetImage(signedInAccount.avatarThumbnail!)
+                      : null,
+                  backgroundColor: kComplementaryColor,
+                  radius: kHugeIconSize * 1.5,
+                ),
+                iconSize: kMediumIconSize,
+                onPressed: () => GoogleAccountDialog().showDialogDismissible(
+                    context, signedInAccount, myAccounts),
+                tooltip: S
+                    .of(context)
+                    .googleAccountDialog_TOOLTIP_googleAccountDialog_description,
               ),
-              iconSize: kMediumIconSize,
-              onPressed: () => GoogleAccountDialog()
-                  .showDialogDismissible(context, signedInAccount, myAccounts),
-              tooltip: S
-                  .of(context)
-                  .googleAccountDialog_TOOLTIP_googleAccountDialog_description,
             ),
-          ),
         ],
       ),
     );
