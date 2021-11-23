@@ -17,6 +17,7 @@ class SendMoneyScreen extends StatefulWidget {
 class _SendMoneyScreenState extends State<SendMoneyScreen> {
   final double _listScrollBottomSpacer = 360.0;
   final double fontSize = 16.0;
+  final double HeightSpacingBigFonts = 1;
 
   final _scrollControllerFixed = FixedExtentScrollController();
   final _textEditing01 = TextEditingController();
@@ -72,7 +73,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
   void _updateForm02(String value) {
     setState(() {
       hasFilledForm02 = true;
-      // _inputWheelIndices = 2; // TODO
+      _inputWheelIndices = 2; // TODO
       if (_textEditing02.value.text.length > 2) {
         filledFormText02 = _textEditing02.value.text;
       }
@@ -87,7 +88,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         controller: _textEditing01,
         style: Theme.of(context)
             .textTheme
-            .headline4
+            .headline5
             ?.copyWith(color: Colors.black),
         decoration: buildInputDecorationStyle(context, 'R\$', false),
         keyboardType: TextInputType.number,
@@ -99,7 +100,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         controller: _textEditing02,
         style: Theme.of(context)
             .textTheme
-            .headline4
+            .headline5
             ?.copyWith(color: Colors.black),
         decoration:
             buildInputDecorationStyle(context, 'Name, phone, SSN, EIN', true),
@@ -128,7 +129,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 return true;
               },
               child: ListWheelScrollView(
-                itemExtent: 245,
+                itemExtent: 265,
                 controller: _scrollControllerFixed, //  scrollController,
                 diameterRatio: 2.5,
                 squeeze: 1.0, // 0.9,
@@ -170,14 +171,15 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         children: [
           Text(
             'Qual é o valor da transferência?',
-            style: AppTextStyles.kMenuTitle(context)
-                .copyWith(fontSize: fontSize * 1.8),
+            style: AppTextStyles.kMenuTitle(context).copyWith(
+                fontSize: fontSize * 1.8, height: HeightSpacingBigFonts),
             textAlign: TextAlign.left,
           ),
           Text.rich(
             TextSpan(
               text: 'Amount available in your wallet ',
-              style: TextStyle(fontSize: fontSize),
+              style:
+                  TextStyle(fontSize: fontSize, height: HeightSpacingBigFonts),
               children: [
                 TextSpan(
                   text: '\$${21700}',
@@ -188,7 +190,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
             ),
             softWrap: true,
           ),
-          const SizedBox(height: kHugePadding),
+          const SizedBox(height: kDefaultPadding),
           inputFieldsOrder[0],
         ],
       ),
@@ -205,8 +207,8 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
           Text.rich(
             TextSpan(
               text: 'Para quem você quer transferir ',
-              style: AppTextStyles.kMenuTitle(context)
-                  .copyWith(fontSize: fontSize * 1.8),
+              style: AppTextStyles.kMenuTitle(context).copyWith(
+                  fontSize: fontSize * 1.8, height: HeightSpacingBigFonts),
               children: [
                 TextSpan(
                   text: '\$${filledFormText01} ?',
