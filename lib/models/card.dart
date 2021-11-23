@@ -204,6 +204,6 @@ List<CardModel> myCards = [
     expDate: "10/21",
     cardBrand: CardBrand.mastercard,
     cardColor: kComplementaryColor,
-    nickname: 'paypal',
+    nickname: 'PayPal',
   ),
 ];
