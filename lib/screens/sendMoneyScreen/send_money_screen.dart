@@ -109,29 +109,37 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
           child: Padding(
             padding: const EdgeInsets.only(
                 top: kHugePadding, bottom: kDefaultPadding),
-            child: ListWheelScrollView(
-              itemExtent: 245,
-              controller: _scrollControllerFixed, //  scrollController,
-              diameterRatio: 2.5,
-              squeeze: 1.0, // 0.9,
-              physics: const ClampingScrollPhysics(),
-              children: [
-                ResponsiveInputFieldWithConstrained(child: _buildFirstForm()),
-                ResponsiveInputFieldWithConstrained(child: _buildSecondForm()),
-              ],
-              onSelectedItemChanged: (index) {
-                setState(() {
-                  _inputWheelIndices = index;
-
-                  // switch (_inputWheelIndices) {
-                  //   case 0:
-                  //     inputFieldsOrder[0].onTap?.call();
-                  //     break;
-                  //   case 1:
-                  //     inputFieldsOrder[1].onTap?.call();
-                  // }
-                });
+            // behavior: AppScrollBehavior(),
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (overscroll) {
+                overscroll.disallowIndicator();
+                return true;
               },
+              child: ListWheelScrollView(
+                itemExtent: 245,
+                controller: _scrollControllerFixed, //  scrollController,
+                diameterRatio: 2.5,
+                squeeze: 1.0, // 0.9,
+                physics: const ClampingScrollPhysics(),
+                children: [
+                  ResponsiveInputFieldWithConstrained(child: _buildFirstForm()),
+                  ResponsiveInputFieldWithConstrained(
+                      child: _buildSecondForm()),
+                ],
+                onSelectedItemChanged: (index) {
+                  setState(() {
+                    _inputWheelIndices = index;
+
+                    // switch (_inputWheelIndices) {
+                    //   case 0:
+                    //     inputFieldsOrder[0].onTap?.call();
+                    //     break;
+                    //   case 1:
+                    //     inputFieldsOrder[1].onTap?.call();
+                    // }
+                  });
+                },
+              ),
             ),
           ),
         ),

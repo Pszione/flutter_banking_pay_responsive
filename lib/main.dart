@@ -167,6 +167,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// The glow effect from GlowingOverscrollIndicator added by ScrollBehavior
+/// To remove this effect, simply wrap any given part of your application into
+/// a ScrollConfiguration with the desired ScrollBehavior
+class AppScrollBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
+  }
+}
+
 //
 class AppCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
