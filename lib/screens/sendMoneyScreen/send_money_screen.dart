@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/screens/googleScreenBase/google_screen_base.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SendMoneyScreen extends StatefulWidget {
   const SendMoneyScreen({Key? key}) : super(key: key);
@@ -16,12 +14,12 @@ class SendMoneyScreen extends StatefulWidget {
 
 class _SendMoneyScreenState extends State<SendMoneyScreen> {
   final scrollController = ScrollController();
-  final itemController = ItemScrollController();
+  final _scrollControllerFixed = FixedExtentScrollController();
   // final itemsListener = ItemPositionsListener.create();
   final double _listScrollBottomSpacer = 360.0;
   final double fontSize = 16.0;
 
-  List<Widget> processStepsList = [];
+  List<TextField> inputFieldsOrder = [];
   bool hasFilledForm01 = false;
   bool hasFilledForm02 = false;
 
@@ -49,12 +47,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
               hasNotificationsButton: false,
               hasGoogleAccountAvatar: false,
             ),
-      child: GestureDetector(
-        // onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        // behavior: HitTestBehavior.translucent,
-        // excludeFromSemantics: true,
-        child: buildSendMoneyScreen(),
-      ),
+      child: buildSendMoneyScreen(),
       // onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       // behavior: HitTestBehavior.translucent,
       // excludeFromSemantics: true,
@@ -64,9 +57,35 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
   Widget buildSendMoneyScreen() {
     final bool hasEnoughSpacing = GoogleScreenBase.hasEnoughSpacing(context);
 
+    inputFieldsOrder = [
+      TextField(
+        style: Theme.of(context)
+            .textTheme
+            .headline4
+            ?.copyWith(color: Colors.black),
+        decoration: buildInputDecorationStyle(context, 'R\$', false),
+        keyboardType: TextInputType.number,
+        autofocus: true,
+        // TODO
+        onSubmitted: _updateForm01,
+      ),
+      TextField(
+        style: Theme.of(context)
+            .textTheme
+            .headline4
+            ?.copyWith(color: Colors.black),
+        decoration:
+            buildInputDecorationStyle(context, 'Name, phone, SSN, EIN', true),
+        keyboardType: TextInputType.number,
+        autofocus: true,
+        // TODO
+        onSubmitted: _updateForm02,
+      ),
+    ];
+
     return SizedBox(
       width: double.infinity,
-      height: 470,
+      height: !WebProvider.isWebPlatform ? 470 : 670,
       child: Padding(
         padding:
             const EdgeInsets.only(bottom: kSmallPadding, top: kDefaultPadding),
@@ -77,7 +96,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 top: kHugePadding, bottom: kDefaultPadding),
             child: ListWheelScrollView(
               itemExtent: 245,
-              controller: scrollController,
+              controller: _scrollControllerFixed, //  scrollController,
               diameterRatio: 2.5,
               squeeze: 1.0, // 0.9,
               physics: const ClampingScrollPhysics(),
@@ -85,26 +104,6 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 ResponsiveInputFieldWithConstrained(child: _buildFirstForm()),
                 ResponsiveInputFieldWithConstrained(child: _buildSecondForm()),
               ],
-              // physics: const FixedExtentScrollPhysics(),
-              // itemScrollController: itemController,
-              // itemPositionsListener: itemsListener,
-              // itemCount: processStepsList.length,
-              // itemBuilder: (context, index) {
-              //   var emptySizedBox = const SizedBox.shrink();
-              //
-              //   if (processStepsList.isEmpty) {
-              //     print('error: SizedBox.shrink');
-              //     return emptySizedBox;
-              //   }
-              //   //
-              //   if (index == 0) {
-              //     return processStepsList[index];
-              //   } else if (index == 1) {
-              //     return hasFilledForm01 ? processStepsList[index] : emptySizedBox;
-              //   } else {
-              //     return emptySizedBox;
-              //   }
-              // },
             ),
           ),
         ),
