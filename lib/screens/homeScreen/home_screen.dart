@@ -291,7 +291,7 @@ class ShimmerHomeScreen extends StatelessWidget {
                     ),
                     // Transactions List
                     Padding(
-                      padding: HomeScreen.desiredPadding.copyWith(right: 170),
+                      padding: HomeScreen.desiredPadding.copyWith(right: 200),
                       child: ShimmerProgressIndicator(
                         child: Container(
                           height: kHalfPadding * 1.2,
@@ -321,10 +321,10 @@ class ShimmerHomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: CircularProgressIndicator(
-                  strokeWidth: 6, color: Theme.of(context).colorScheme.primary),
-            ),
+            // Center(
+            //   child: CircularProgressIndicator(
+            //       strokeWidth: 6, color: Theme.of(context).colorScheme.primary),
+            // ),
           ],
         ),
       ),
