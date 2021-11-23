@@ -19,6 +19,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
   final double _listScrollBottomSpacer = 360.0;
   final double fontSize = 16.0;
 
+  int? _inputWheelIndices;
   List<TextField> inputFieldsOrder = [];
   bool hasFilledForm01 = false;
   bool hasFilledForm02 = false;
@@ -30,7 +31,6 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
 
   @override
   void dispose() {
-    // processStepsList = [];
     //
     super.dispose();
   }
@@ -54,6 +54,21 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
     );
   }
 
+  //
+  void _updateForm01(String value) {
+    setState(() {
+      hasFilledForm01 = true;
+      _inputWheelIndices = 1; // TODO
+    });
+  }
+
+  void _updateForm02(String value) {
+    setState(() {
+      hasFilledForm02 = true;
+      // _inputWheelIndices = 2; // TODO
+    });
+  }
+
   Widget buildSendMoneyScreen() {
     final bool hasEnoughSpacing = GoogleScreenBase.hasEnoughSpacing(context);
 
@@ -65,8 +80,8 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
             ?.copyWith(color: Colors.black),
         decoration: buildInputDecorationStyle(context, 'R\$', false),
         keyboardType: TextInputType.number,
-        autofocus: true,
-        // TODO
+        autofocus: _inputWheelIndices == null || _inputWheelIndices == 0,
+        // TODO: check _update next index
         onSubmitted: _updateForm01,
       ),
       TextField(
@@ -76,9 +91,9 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
             ?.copyWith(color: Colors.black),
         decoration:
             buildInputDecorationStyle(context, 'Name, phone, SSN, EIN', true),
-        keyboardType: TextInputType.number,
-        autofocus: true,
-        // TODO
+        keyboardType: TextInputType.emailAddress,
+        autofocus: _inputWheelIndices == 1,
+        // TODO: check _update next index
         onSubmitted: _updateForm02,
       ),
     ];
@@ -104,6 +119,19 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 ResponsiveInputFieldWithConstrained(child: _buildFirstForm()),
                 ResponsiveInputFieldWithConstrained(child: _buildSecondForm()),
               ],
+              onSelectedItemChanged: (index) {
+                setState(() {
+                  _inputWheelIndices = index;
+
+                  // switch (_inputWheelIndices) {
+                  //   case 0:
+                  //     inputFieldsOrder[0].onTap?.call();
+                  //     break;
+                  //   case 1:
+                  //     inputFieldsOrder[1].onTap?.call();
+                  // }
+                });
+              },
             ),
           ),
         ),
@@ -138,17 +166,18 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
             ),
           ),
           const SizedBox(height: kHugePadding),
-          TextField(
-            style: Theme.of(context)
-                .textTheme
-                .headline4
-                ?.copyWith(color: Colors.black),
-            decoration: buildInputDecorationStyle(context, 'R\$', false),
-            keyboardType: TextInputType.number,
-            autofocus: true,
-            // TODO
-            onSubmitted: _updateForm01,
-          ),
+          inputFieldsOrder[0],
+          // TextField(
+          //   style: Theme.of(context)
+          //       .textTheme
+          //       .headline4
+          //       ?.copyWith(color: Colors.black),
+          //   decoration: buildInputDecorationStyle(context, 'R\$', false),
+          //   keyboardType: TextInputType.number,
+          //   autofocus: true,
+          //   // TODO
+          //   onSubmitted: _updateForm01,
+          // ),
         ],
       ),
     );
@@ -175,30 +204,22 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
             textAlign: TextAlign.left,
           ),
           const SizedBox(height: kHugePadding),
-          TextField(
-            style: Theme.of(context)
-                .textTheme
-                .headline4
-                ?.copyWith(color: Colors.black),
-            decoration: buildInputDecorationStyle(
-                context, 'Name, phone, SSN, EIN', true),
-            keyboardType: TextInputType.number,
-            autofocus: true,
-            // TODO
-            onSubmitted: _updateForm02,
-          ),
+          inputFieldsOrder[1],
+          // TextField(
+          //   style: Theme.of(context)
+          //       .textTheme
+          //       .headline4
+          //       ?.copyWith(color: Colors.black),
+          //   decoration: buildInputDecorationStyle(
+          //       context, 'Name, phone, SSN, EIN', true),
+          //   keyboardType: TextInputType.number,
+          //   autofocus: true,
+          //   // TODO
+          //   onSubmitted: _updateForm02,
+          // ),
         ],
       ),
     );
-  }
-
-  void _updateForm01(String value) {
-    hasFilledForm01 = true;
-    // scrollToItem(next);
-  }
-
-  void _updateForm02(String value) {
-    hasFilledForm02 = true;
   }
 
   InputDecoration buildInputDecorationStyle(
