@@ -77,6 +77,7 @@ var kTextBoxShadowSubtle = BoxShadow(
 
 var kDivider = const Divider(thickness: 2, height: 0);
 const K_GOOGLE_TEXT = 'Google';
+const K_WEBSITE_PEDRO_SANTOS = 'https://www.pedrosantos.xyz/';
 
 const kDefaultDuration = Duration(milliseconds: 700);
 const kShorterDuration = Duration(milliseconds: 320);

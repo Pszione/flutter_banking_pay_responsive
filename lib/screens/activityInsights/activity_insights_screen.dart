@@ -13,6 +13,7 @@ import 'package:flutter_banking_pay_responsive/models/transaction.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:share_plus/share_plus.dart';
 
 PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 
@@ -82,7 +83,7 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
       return;
     }
     scrollToItem(index);
-    transactionList[index].onPress.call();
+    // transactionList[index].onPress.call(); // TODO
   }
 
   void trackOnScreenIndices() {
@@ -184,7 +185,9 @@ class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
                         withAvatarImage: false,
                         withClickableIndicator: true,
                         // TODO
-                        onPress: () {},
+                        onPress: () => Share.share(
+                            '${S.of(context).share_message_checkOutMyNewProject} $K_WEBSITE_PEDRO_SANTOS',
+                            subject: S.of(context).share_message_iveDoneIt),
                         // onPress: () => AppSlidingBottomSheet.demoSheet(context),
                       );
                       transactionList.add(newItem);

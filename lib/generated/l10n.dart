@@ -982,6 +982,36 @@ class S {
   }
 
   /// ``
+  String get __98 {
+    return Intl.message(
+      '',
+      name: '__98',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `*Check out my new project*`
+  String get share_message_checkOutMyNewProject {
+    return Intl.message(
+      '*Check out my new project*',
+      name: 'share_message_checkOutMyNewProject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I'VE DONE IT!`
+  String get share_message_iveDoneIt {
+    return Intl.message(
+      'I\'VE DONE IT!',
+      name: 'share_message_iveDoneIt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
   String get __99 {
     return Intl.message(
       '',

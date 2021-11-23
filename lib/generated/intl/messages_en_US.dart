@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -34,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "__4": MessageLookupByLibrary.simpleMessage(""),
         "__5": MessageLookupByLibrary.simpleMessage(""),
         "__6": MessageLookupByLibrary.simpleMessage(""),
+        "__98": MessageLookupByLibrary.simpleMessage(""),
         "__99": MessageLookupByLibrary.simpleMessage(""),
         "___": MessageLookupByLibrary.simpleMessage(""),
         "activityScreen_TOOLTIP_fabDownward_description":
@@ -239,6 +241,10 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Enjoy your trip! But please let us know, we monitor all purchases against possible frauds"),
         "settingsScreen_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Settings"),
+        "share_message_checkOutMyNewProject":
+            MessageLookupByLibrary.simpleMessage("*Check out my new project*"),
+        "share_message_iveDoneIt":
+            MessageLookupByLibrary.simpleMessage("I\'VE DONE IT!"),
         "snackBar_featureUnavailableButBeingFixed_text":
             MessageLookupByLibrary.simpleMessage(
                 "Feature unavailable at the moment. We\'ll fix it right away!")
