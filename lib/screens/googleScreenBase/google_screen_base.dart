@@ -39,7 +39,7 @@ class _GoogleScreenBaseState extends State<GoogleScreenBase> {
             physics: const ClampingScrollPhysics(),
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.symmetric(
-                horizontal: kDefaultPadding,
+                // horizontal: kDefaultPadding,
                 vertical: hasEnoughSpacing ? kHugePadding : kHalfPadding),
             children: [
               if (widget.showGoogleIcon && hasEnoughSpacing)
