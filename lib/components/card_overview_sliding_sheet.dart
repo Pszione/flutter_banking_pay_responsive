@@ -79,7 +79,9 @@ class CardOverviewSlidingSheet extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: kHalfPadding),
                         child: CategoryCard(
-                          label: 'Open Bank',
+                          label: S
+                              .of(context)
+                              .cardOverviewBottomSheet_openBank_categoryTitle,
                           icon: Icons.account_balance_rounded,
                           onPress: () =>
                               AppSnackBarErrors.showSnackBarFeatureUnavailable(
@@ -89,7 +91,9 @@ class CardOverviewSlidingSheet extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: kHalfPadding),
                         child: CategoryCard(
-                          label: 'Block Card',
+                          label: S
+                              .of(context)
+                              .cardOverviewBottomSheet_blockCard_categoryTitle,
                           icon: Icons.add_alert_sharp,
                           onPress: () {},
                         ),
@@ -122,18 +126,27 @@ class CardOverviewSlidingSheet extends StatelessWidget {
                 height: 50,
                 child: CardWidget.buildCardLogo(card),
               ),
-              Text(
-                CardModel.getCardNickname(card)!,
-                style: AppTextStyles.getBodyText(context)
-                    .copyWith(fontSize: 22, overflow: TextOverflow.ellipsis),
-              ),
+              if (card.nickname != null)
+                Text(
+                  card.nickname!,
+                  style: AppTextStyles.getBodyText(context)
+                      .copyWith(fontSize: 22, overflow: TextOverflow.ellipsis),
+                ),
+              if (card.cardNumber != null)
+                Text(
+                  card.cardNumber!,
+                  style: AppTextStyles.getBodyText(context)
+                      .copyWith(fontSize: 22, overflow: TextOverflow.ellipsis),
+                ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: kHugePadding),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: kHugePadding),
                   child: Text(
-                    'Edit card info',
-                    style: TextStyle(fontSize: 17),
+                    S
+                        .of(context)
+                        .cardOverviewBottomSheet_editCardInfo_button_title,
+                    style: const TextStyle(fontSize: 17),
                   ),
                 ),
               ),

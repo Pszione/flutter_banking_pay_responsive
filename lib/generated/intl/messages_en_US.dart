@@ -56,6 +56,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Search"),
         "appBar_switchDarkTheme_title":
             MessageLookupByLibrary.simpleMessage("Dark theme"),
+        "cardOverviewBottomSheet_blockCard_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Block Card"),
+        "cardOverviewBottomSheet_editCardInfo_button_title":
+            MessageLookupByLibrary.simpleMessage("Edit card info"),
+        "cardOverviewBottomSheet_openBank_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Open Bank"),
+        "cardOverviewBottomSheet_supportChat_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Support Chat"),
         "cardScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
             "Add credit or debit cards, Gift cards, Transit and more"),
         "cardScreen_fab_title":

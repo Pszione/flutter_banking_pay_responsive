@@ -531,6 +531,46 @@ class S {
     );
   }
 
+  /// `Open Bank`
+  String get cardOverviewBottomSheet_openBank_categoryTitle {
+    return Intl.message(
+      'Open Bank',
+      name: 'cardOverviewBottomSheet_openBank_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block Card`
+  String get cardOverviewBottomSheet_blockCard_categoryTitle {
+    return Intl.message(
+      'Block Card',
+      name: 'cardOverviewBottomSheet_blockCard_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support Chat`
+  String get cardOverviewBottomSheet_supportChat_categoryTitle {
+    return Intl.message(
+      'Support Chat',
+      name: 'cardOverviewBottomSheet_supportChat_categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit card info`
+  String get cardOverviewBottomSheet_editCardInfo_button_title {
+    return Intl.message(
+      'Edit card info',
+      name: 'cardOverviewBottomSheet_editCardInfo_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get __2 {
     return Intl.message(

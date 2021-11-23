@@ -57,6 +57,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Suche"),
         "appBar_switchDarkTheme_title":
             MessageLookupByLibrary.simpleMessage("Dunkles Thema"),
+        "cardOverviewBottomSheet_blockCard_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Sperren Karte"),
+        "cardOverviewBottomSheet_editCardInfo_button_title":
+            MessageLookupByLibrary.simpleMessage("Karteninfo bearbeiten"),
+        "cardOverviewBottomSheet_openBank_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Öffnen Bank"),
+        "cardOverviewBottomSheet_supportChat_categoryTitle":
+            MessageLookupByLibrary.simpleMessage("Support Chat"),
         "cardScreen_TOOLTIP_fab_options": MessageLookupByLibrary.simpleMessage(
             "Fügen Sie Kreditkarten oder Debitkarten, Geschenkkarten, Fahrausweis und mehr hinzu"),
         "cardScreen_fab_title":
