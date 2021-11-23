@@ -1102,6 +1102,36 @@ class S {
     );
   }
 
+  /// `Search`
+  String get quickActions_first_title {
+    return Intl.message(
+      'Search',
+      name: 'quickActions_first_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Transaction`
+  String get quickActions_second_title {
+    return Intl.message(
+      'New Transaction',
+      name: 'quickActions_second_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Activities`
+  String get quickActions_third_title {
+    return Intl.message(
+      'Recent Activities',
+      name: 'quickActions_third_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `January`
   String get dateTime_january {
     return Intl.message(

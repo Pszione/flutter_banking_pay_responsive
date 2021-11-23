@@ -189,6 +189,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Debit Card"),
         "paymentMethod_googlePay":
             MessageLookupByLibrary.simpleMessage("Google Pay"),
+        "quickActions_first_title":
+            MessageLookupByLibrary.simpleMessage("Search"),
+        "quickActions_second_title":
+            MessageLookupByLibrary.simpleMessage("New Transaction"),
+        "quickActions_third_title":
+            MessageLookupByLibrary.simpleMessage("Recent Activities"),
         "scanCardScreen_clickToScan_title":
             MessageLookupByLibrary.simpleMessage("Click to scan"),
         "scanCardScreen_enterCardManually_title":
