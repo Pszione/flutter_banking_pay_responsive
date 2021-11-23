@@ -26,6 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(current, length) => " ${current} de ${length}";
 
+  static String m3(money_sign, amount) =>
+      "Para quem você quer transferir ${money_sign}${amount} ?";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "__0": MessageLookupByLibrary.simpleMessage(""),
@@ -200,6 +203,21 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Alinhe-o certinho para conseguirmos ler\nos detalhes"),
         "scanCardScreen_tabBarTitle":
             MessageLookupByLibrary.simpleMessage("Adicionar um cartão"),
+        "sendMoneyScreen_MONEY_SIGN":
+            MessageLookupByLibrary.simpleMessage("R\$"),
+        "sendMoneyScreen_continue_button_title":
+            MessageLookupByLibrary.simpleMessage("Continuar"),
+        "sendMoneyScreen_walletAvailableAmount":
+            MessageLookupByLibrary.simpleMessage(
+                "Valor disponível na carteira"),
+        "sendMoneyScreen_whatTransferAmount_field_description":
+            MessageLookupByLibrary.simpleMessage("R\$"),
+        "sendMoneyScreen_whatTransferAmount_title":
+            MessageLookupByLibrary.simpleMessage(
+                "Qual é o valor da transferência?"),
+        "sendMoneyScreen_whomTransferReceiver_field_description":
+            MessageLookupByLibrary.simpleMessage("Nome,telefone,CPF"),
+        "sendMoneyScreen_whomTransferReceiver_title": m3,
         "settingsScreen_optionAppSystemNFCSettings":
             MessageLookupByLibrary.simpleMessage("(Sistema) Aproximação/NFC"),
         "settingsScreen_optionAppSystemNFCSettings_description":

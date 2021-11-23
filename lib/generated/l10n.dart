@@ -631,6 +631,77 @@ class S {
     );
   }
 
+  /// `Amount available in your wallet`
+  String get sendMoneyScreen_walletAvailableAmount {
+    return Intl.message(
+      'Amount available in your wallet',
+      name: 'sendMoneyScreen_walletAvailableAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `$`
+  String get sendMoneyScreen_MONEY_SIGN {
+    return Intl.message(
+      '\$',
+      name: 'sendMoneyScreen_MONEY_SIGN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is the transfer amount?`
+  String get sendMoneyScreen_whatTransferAmount_title {
+    return Intl.message(
+      'What is the transfer amount?',
+      name: 'sendMoneyScreen_whatTransferAmount_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `$`
+  String get sendMoneyScreen_whatTransferAmount_field_description {
+    return Intl.message(
+      '\$',
+      name: 'sendMoneyScreen_whatTransferAmount_field_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To whom do you want to transfer {money_sign}{amount} ?`
+  String sendMoneyScreen_whomTransferReceiver_title(
+      Object money_sign, Object amount) {
+    return Intl.message(
+      'To whom do you want to transfer $money_sign$amount ?',
+      name: 'sendMoneyScreen_whomTransferReceiver_title',
+      desc: '',
+      args: [money_sign, amount],
+    );
+  }
+
+  /// `Name,phone,SSN,EIN`
+  String get sendMoneyScreen_whomTransferReceiver_field_description {
+    return Intl.message(
+      'Name,phone,SSN,EIN',
+      name: 'sendMoneyScreen_whomTransferReceiver_field_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get sendMoneyScreen_continue_button_title {
+    return Intl.message(
+      'Continue',
+      name: 'sendMoneyScreen_continue_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get __4 {
     return Intl.message(

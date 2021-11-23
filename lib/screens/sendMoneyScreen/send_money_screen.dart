@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
-import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
+import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/googleScreenBase/google_screen_base.dart';
 
@@ -15,7 +15,6 @@ class SendMoneyScreen extends StatefulWidget {
 }
 
 class _SendMoneyScreenState extends State<SendMoneyScreen> {
-  final double _listScrollBottomSpacer = 360.0;
   final double fontSize = 16.0;
   final double HeightSpacingBigFonts = 1;
 
@@ -90,7 +89,8 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
             .textTheme
             .headline5
             ?.copyWith(color: Colors.black),
-        decoration: buildInputDecorationStyle(context, 'R\$', false),
+        decoration: buildInputDecorationStyle(
+            context, S.of(context).sendMoneyScreen_MONEY_SIGN, false),
         keyboardType: TextInputType.number,
         // TODO: check _update next index
         autofocus: _inputWheelIndices == null || _inputWheelIndices == 0,
@@ -102,8 +102,12 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
             .textTheme
             .headline5
             ?.copyWith(color: Colors.black),
-        decoration:
-            buildInputDecorationStyle(context, 'Name, phone, SSN, EIN', true),
+        decoration: buildInputDecorationStyle(
+            context,
+            S
+                .of(context)
+                .sendMoneyScreen_whomTransferReceiver_field_description,
+            true),
         keyboardType: TextInputType.emailAddress,
         // TODO: check _update next index
         autofocus: _inputWheelIndices == 1,
@@ -170,19 +174,19 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Qual é o valor da transferência?',
+            S.of(context).sendMoneyScreen_whatTransferAmount_title,
             style: AppTextStyles.kMenuTitle(context).copyWith(
                 fontSize: fontSize * 1.8, height: HeightSpacingBigFonts),
             textAlign: TextAlign.left,
           ),
           Text.rich(
             TextSpan(
-              text: 'Amount available in your wallet ',
+              text: S.of(context).sendMoneyScreen_walletAvailableAmount,
               style:
                   TextStyle(fontSize: fontSize, height: HeightSpacingBigFonts),
               children: [
                 TextSpan(
-                  text: '\$${21700}',
+                  text: ' ${S.of(context).sendMoneyScreen_MONEY_SIGN}${21700}',
                   style: AppTextStyles.kMenuTitle(context)
                       .copyWith(fontSize: fontSize * 1.2, letterSpacing: 1),
                 ),
@@ -206,14 +210,10 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         children: [
           Text.rich(
             TextSpan(
-              text: 'Para quem você quer transferir ',
+              text: S.of(context).sendMoneyScreen_whomTransferReceiver_title(
+                  S.of(context).sendMoneyScreen_MONEY_SIGN, filledFormText01),
               style: AppTextStyles.kMenuTitle(context).copyWith(
                   fontSize: fontSize * 1.8, height: HeightSpacingBigFonts),
-              children: [
-                TextSpan(
-                  text: '\$${filledFormText01} ?',
-                ),
-              ],
             ),
             textAlign: TextAlign.left,
           ),
@@ -245,7 +245,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: kHugePadding * 2, vertical: kDefaultPadding),
                   child: Text(
-                    'Continue',
+                    S.of(context).sendMoneyScreen_continue_button_title,
                     softWrap: false,
                   ),
                 ),
