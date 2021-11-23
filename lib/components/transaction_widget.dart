@@ -91,6 +91,7 @@ class TransactionCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
+                        // TODO
                         width: MediaQuery.of(context).orientation ==
                                 Orientation.portrait
                             ? withAvatarImage
@@ -106,16 +107,26 @@ class TransactionCard extends StatelessWidget {
                           overflow: TextOverflow.fade,
                         ),
                       ),
+                      // TODO
                       if (fullTransactionView)
-                        Text(
-                          TransactionModel.parsePaymentMethodToLocalized(
-                                  transaction.paymentMethod, context) ??
-                              '',
-                          style: AppTextStyles.kListTileTitle
-                              .copyWith(fontSize: 16)
-                              .copyWith(height: kTextMediumHeightSpacing),
-                          maxLines: 1,
-                          overflow: TextOverflow.clip,
+                        SizedBox(
+                          width: MediaQuery.of(context).orientation ==
+                                  Orientation.portrait
+                              ? withAvatarImage
+                                  ? 140
+                                  : 180
+                              : 300,
+                          child: Text(
+                            TransactionModel.parsePaymentMethodToLocalized(
+                                    transaction.paymentMethod, context) ??
+                                '',
+                            style: AppTextStyles.kListTileTitle
+                                .copyWith(fontSize: 16)
+                                .copyWith(height: kTextMediumHeightSpacing),
+                            maxLines: 1,
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                          ),
                         ),
                       Text(
                         CardModel.parseDateTimeMonthToString(
