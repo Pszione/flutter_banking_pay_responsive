@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
+import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
+import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/googleScreenBase/google_screen_base.dart';
 
 class SendMoneyScreen extends StatefulWidget {
@@ -13,14 +15,16 @@ class SendMoneyScreen extends StatefulWidget {
 }
 
 class _SendMoneyScreenState extends State<SendMoneyScreen> {
-  final scrollController = ScrollController();
-  final _scrollControllerFixed = FixedExtentScrollController();
-  // final itemsListener = ItemPositionsListener.create();
   final double _listScrollBottomSpacer = 360.0;
   final double fontSize = 16.0;
 
+  final _scrollControllerFixed = FixedExtentScrollController();
+  final _textEditing01 = TextEditingController();
+  final _textEditing02 = TextEditingController();
   int? _inputWheelIndices;
   List<TextField> inputFieldsOrder = [];
+  String filledFormText01 = '0.00';
+  String filledFormText02 = 'Second';
   bool hasFilledForm01 = false;
   bool hasFilledForm02 = false;
 
@@ -54,11 +58,14 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
     );
   }
 
-  //
+  // TODO: check _update next index
   void _updateForm01(String value) {
     setState(() {
       hasFilledForm01 = true;
       _inputWheelIndices = 1; // TODO
+      if (_textEditing01.value.text.length > 2) {
+        filledFormText01 = _textEditing01.value.text;
+      }
     });
   }
 
@@ -66,6 +73,9 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
     setState(() {
       hasFilledForm02 = true;
       // _inputWheelIndices = 2; // TODO
+      if (_textEditing02.value.text.length > 2) {
+        filledFormText02 = _textEditing02.value.text;
+      }
     });
   }
 
@@ -74,17 +84,19 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
 
     inputFieldsOrder = [
       TextField(
+        controller: _textEditing01,
         style: Theme.of(context)
             .textTheme
             .headline4
             ?.copyWith(color: Colors.black),
         decoration: buildInputDecorationStyle(context, 'R\$', false),
         keyboardType: TextInputType.number,
-        autofocus: _inputWheelIndices == null || _inputWheelIndices == 0,
         // TODO: check _update next index
+        autofocus: _inputWheelIndices == null || _inputWheelIndices == 0,
         onSubmitted: _updateForm01,
       ),
       TextField(
+        controller: _textEditing02,
         style: Theme.of(context)
             .textTheme
             .headline4
@@ -92,8 +104,8 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         decoration:
             buildInputDecorationStyle(context, 'Name, phone, SSN, EIN', true),
         keyboardType: TextInputType.emailAddress,
-        autofocus: _inputWheelIndices == 1,
         // TODO: check _update next index
+        autofocus: _inputWheelIndices == 1,
         onSubmitted: _updateForm02,
       ),
     ];
@@ -124,7 +136,9 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 children: [
                   ResponsiveInputFieldWithConstrained(child: _buildFirstForm()),
                   ResponsiveInputFieldWithConstrained(
-                      child: _buildSecondForm()),
+                    child: _buildSecondForm(),
+                  ),
+                  buildContinueButton(context),
                 ],
                 onSelectedItemChanged: (index) {
                   setState(() {
@@ -166,26 +180,16 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
               style: TextStyle(fontSize: fontSize),
               children: [
                 TextSpan(
-                  text: '\$${172.00}',
+                  text: '\$${21700}',
                   style: AppTextStyles.kMenuTitle(context)
-                      .copyWith(fontSize: fontSize),
+                      .copyWith(fontSize: fontSize * 1.2, letterSpacing: 1),
                 ),
               ],
             ),
+            softWrap: true,
           ),
           const SizedBox(height: kHugePadding),
           inputFieldsOrder[0],
-          // TextField(
-          //   style: Theme.of(context)
-          //       .textTheme
-          //       .headline4
-          //       ?.copyWith(color: Colors.black),
-          //   decoration: buildInputDecorationStyle(context, 'R\$', false),
-          //   keyboardType: TextInputType.number,
-          //   autofocus: true,
-          //   // TODO
-          //   onSubmitted: _updateForm01,
-          // ),
         ],
       ),
     );
@@ -205,7 +209,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                   .copyWith(fontSize: fontSize * 1.8),
               children: [
                 TextSpan(
-                  text: '\$${5000.0}?',
+                  text: '\$${filledFormText01} ?',
                 ),
               ],
             ),
@@ -213,19 +217,43 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
           ),
           const SizedBox(height: kHugePadding),
           inputFieldsOrder[1],
-          // TextField(
-          //   style: Theme.of(context)
-          //       .textTheme
-          //       .headline4
-          //       ?.copyWith(color: Colors.black),
-          //   decoration: buildInputDecorationStyle(
-          //       context, 'Name, phone, SSN, EIN', true),
-          //   keyboardType: TextInputType.number,
-          //   autofocus: true,
-          //   // TODO
-          //   onSubmitted: _updateForm02,
-          // ),
         ],
+      ),
+    );
+  }
+
+  Widget buildContinueButton(BuildContext context) {
+    return ResponsiveWidthConstrained(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: kMaxButtonConstraintWidth),
+        child: Card(
+          margin: const EdgeInsets.symmetric(horizontal: kHugePadding * 2.5),
+          color: Theme.of(context).colorScheme.secondary,
+          shape: RoundedRectangleBorder(
+            borderRadius: kDefaultBorderRadius,
+            side: BorderSide(width: 2, color: kLightGrayColor),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                vertical: kHalfPadding, horizontal: 3),
+            child: BuildGoogleListButton(
+              icon: Icons.send_rounded,
+              label: 'Continue',
+              alignment: MainAxisAlignment.center,
+              onPress: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      Navigator.pop(context);
+                      return const Scaffold();
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
