@@ -87,14 +87,24 @@ class TransactionCard extends StatelessWidget {
                     ),
                   const SizedBox(width: kHalfPadding),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '${transaction.title}',
-                        style: AppTextStyles.kListTileTitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
+                      SizedBox(
+                        width: MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? withAvatarImage
+                                ? 140
+                                : 180
+                            : 300,
+                        child: Text(
+                          '${transaction.title}',
+                          style: AppTextStyles.kListTileTitle
+                              .copyWith(height: kTextSmallHeightSpacing),
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                        ),
                       ),
                       if (fullTransactionView)
                         Text(
@@ -102,7 +112,8 @@ class TransactionCard extends StatelessWidget {
                                   transaction.paymentMethod, context) ??
                               '',
                           style: AppTextStyles.kListTileTitle
-                              .copyWith(fontSize: 16),
+                              .copyWith(fontSize: 16)
+                              .copyWith(height: kTextMediumHeightSpacing),
                           maxLines: 1,
                           overflow: TextOverflow.clip,
                         ),
@@ -110,7 +121,8 @@ class TransactionCard extends StatelessWidget {
                         CardModel.parseDateTimeMonthToString(
                                 transaction.month, context) ??
                             '',
-                        style: AppTextStyles.kListTileSubtitle,
+                        style: AppTextStyles.kListTileSubtitle
+                            .copyWith(height: kTextMediumHeightSpacing),
                       ),
                     ],
                   ),
@@ -119,53 +131,60 @@ class TransactionCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        // '${transaction.currentBalance}',
-                        //transaction.price! == transaction.price!.roundToDouble()
-                        transaction.price!.hasFractional
-                            ? '\$${transaction.price!}'
-                            : '\$${transaction.price!.round()}',
-                        style: fullTransactionView
-                            ? AppTextStyles.kListTileTitle
-                                .copyWith(fontSize: 21)
-                            : AppTextStyles.kListTileTitle,
-                        textAlign: TextAlign.right,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      ExcludeSemantics(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            transaction.changePercentageIndicator == "up"
-                                ? Icon(
-                                    FontAwesomeIcons.levelUpAlt,
-                                    size: fullTransactionView ? 14 : 10,
-                                    color: Colors.green,
-                                  )
-                                : Icon(
-                                    FontAwesomeIcons.levelDownAlt,
-                                    size: fullTransactionView ? 14 : 10,
-                                    color: Colors.red,
-                                  ),
-                            const SizedBox(width: kHalfPadding),
-                            Text(
-                              '${transaction.changePercentage}',
-                              style: fullTransactionView
-                                  ? AppTextStyles.kListTileSubtitle
-                                      .copyWith(fontSize: 18)
-                                  : AppTextStyles.kListTileSubtitle,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
+                  SizedBox(
+                    width: 120,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            // '${transaction.currentBalance}',
+                            //transaction.price! == transaction.price!.roundToDouble()
+                            transaction.price!.hasFractional
+                                ? '\$${transaction.price!}'
+                                : '\$${transaction.price!.round()}',
+                            style: fullTransactionView
+                                ? AppTextStyles.kListTileTitle
+                                    .copyWith(fontSize: 20)
+                                : AppTextStyles.kListTileTitle,
+                            textAlign: TextAlign.right,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                    ],
+                        ExcludeSemantics(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              transaction.changePercentageIndicator == "up"
+                                  ? Icon(
+                                      FontAwesomeIcons.levelUpAlt,
+                                      size: fullTransactionView ? 14 : 10,
+                                      color: Colors.green,
+                                    )
+                                  : Icon(
+                                      FontAwesomeIcons.levelDownAlt,
+                                      size: fullTransactionView ? 14 : 10,
+                                      color: Colors.red,
+                                    ),
+                              const SizedBox(width: kHalfPadding),
+                              Text(
+                                '${transaction.changePercentage}',
+                                style: fullTransactionView
+                                    ? AppTextStyles.kListTileSubtitle
+                                        .copyWith(fontSize: 18)
+                                    : AppTextStyles.kListTileSubtitle
+                                        .copyWith(height: 1),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   if (isClickable && withClickableIndicator)
                     Icon(

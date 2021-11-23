@@ -110,7 +110,8 @@ class NewsSection extends StatelessWidget {
             Text(
               // myNews[index].title ?? 'Check it out!',
               myNews[index].getLocalizedTitle(Localizations.localeOf(context)),
-              style: AppTextStyles.kListTileTitle.copyWith(fontSize: 17),
+              style: AppTextStyles.kListTileTitle
+                  .copyWith(fontSize: 17, height: kTextSmallHeightSpacing),
               maxLines: 2,
               textAlign: TextAlign.start,
               overflow: TextOverflow.clip,
@@ -119,7 +120,8 @@ class NewsSection extends StatelessWidget {
               // myNews[index].description ?? '...',
               myNews[index]
                   .getLocalizedDescription(Localizations.localeOf(context)),
-              style: AppTextStyles.kListTileSubtitle.copyWith(fontSize: 14),
+              style: AppTextStyles.kListTileSubtitle
+                  .copyWith(fontSize: 14, height: kTextSmallHeightSpacing),
               maxLines: 5,
               textAlign: TextAlign.justify,
               overflow: TextOverflow.clip,
@@ -132,7 +134,7 @@ class NewsSection extends StatelessWidget {
                 child: Text(
                   S.of(context).homeScreen_seeMore_title,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     letterSpacing: 0.4,
                   ),

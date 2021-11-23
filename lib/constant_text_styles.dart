@@ -50,11 +50,12 @@ class AppTextStyles {
   );
 
   static TextStyle kListTileTitle = const TextStyle(
-    // color: kTextBodyColor,
-    fontSize: 19,
-    fontWeight: FontWeight.w600,
-    //fontSize: SizeConfig().getProportionateScreenWidth(20),
-  );
+      // color: kTextBodyColor,
+      fontSize: 19,
+      fontWeight: FontWeight.w600,
+      height: kTextSmallHeightSpacing
+      //fontSize: SizeConfig().getProportionateScreenWidth(20),
+      );
 
   static TextStyle kListTileSubtitle = const TextStyle(
     // color: kTextBodyColor,

@@ -21,8 +21,9 @@ const kTextWhiteColor = Colors.white;
 const kTextGrayColor = Colors.grey;
 Color kTextRedColor = Colors.red.shade400;
 const kTextHighHeightSpacing = 1.5;
-const kTextMediumHeightSpacing = 1.35;
+const kTextMediumHeightSpacing = 1.25;
 const kTextSmallHeightSpacing = 1.0;
+const kTextNegativeHeightSpacing = 0.6;
 
 const kHugePadding = 33.0;
 const kDefaultPadding = 20.0;
