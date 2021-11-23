@@ -45,7 +45,13 @@ class SetupScreenState extends State<SetupScreen> {
 
     widget.keyValueScreen = ValueKey(this);
 
-    /// Should run only on Android and iOS | macOS?
+    initializeQuickActionsDelayed();
+  }
+
+  void initializeQuickActionsDelayed() async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    BuildContext _context = widget.keyScreen.currentContext!; // GlobalKey
+
     // if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) { // dart.io
     if (!WebProvider.isWebPlatform) {
       widget.quickActionsList.setShortcutItems([
@@ -61,13 +67,18 @@ class SetupScreenState extends State<SetupScreen> {
             type: QuickActionState.activity.toString(),
             localizedTitle: 'Recent Activities',
             icon: 'quick_chart_outline'),
-        // TODO: localize reference using Consumer
         // PS: iOS icons not setup in Runner/Xcode
       ]);
+    }
+
+    await Future.delayed(const Duration(milliseconds: 200));
+
+    /// Should run only on Android and iOS | macOS?
+    if (!WebProvider.isWebPlatform) {
       widget.quickActionsList.initialize((String type) {
         if (type == QuickActionState.search.toString()) {
           changeSelectedMenuByState(MenuState.home);
-          (menuWidgets[0] as HomeScreen)
+          Provider.of<HomeScreen>(_context, listen: false)
               .keyValueScreen
               .value
               .openCloseStateSearch
@@ -75,7 +86,7 @@ class SetupScreenState extends State<SetupScreen> {
           print("Should've open search bar");
         } else if (type == QuickActionState.transactionsOptions.toString()) {
           changeSelectedMenuByState(MenuState.home);
-          (menuWidgets[0] as HomeScreen)
+          Provider.of<HomeScreen>(_context, listen: false)
               .keyValueScreen
               .value
               .openFAB_quickAction();
