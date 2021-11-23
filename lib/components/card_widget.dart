@@ -16,7 +16,7 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
     required this.card,
     required this.index,
     this.width = 350,
-    this.height = 200,
+    this.height = 210,
     this.isClickable = true,
     required this.onPress,
   }) : super(key: key);
@@ -47,7 +47,8 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
   @override
   late GestureTapCallback onPress;
 
-  static const EdgeInsets _borderPadding = EdgeInsets.all(kDefaultPadding);
+  static const EdgeInsets _borderPadding =
+      EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: kHalfPadding);
 
   @override
   Widget build(BuildContext context) {
@@ -87,14 +88,16 @@ class CardWidget extends StatelessWidget implements ICardImplementation {
                         ),
                         Text(
                           '${card.cardHolderName}',
-                          style: AppTextStyles.kCardSubtitle,
+                          style: AppTextStyles.kCardSubtitle
+                              .copyWith(height: 1.2), // TODO
                         ),
                       ],
                     ),
                     Semantics(
                       child: Text(
                         CardModel.obscureCardInfo(card.cardNumber!, 4),
-                        style: AppTextStyles.kCardSubtitle,
+                        style: AppTextStyles.kCardSubtitle
+                            .copyWith(height: 0.6), // TODO
                         semanticsLabel: S
                             .of(context)
                             .cardWidget_TOOLTIP_cardNumber_title(
@@ -238,7 +241,7 @@ class CardOutlineWidget extends StatelessWidget {
   const CardOutlineWidget({
     Key? key,
     this.width = 350,
-    this.height = 200,
+    this.height = 210,
     this.backgroundColor,
     this.isClickable = true,
     required this.onPress,
@@ -297,7 +300,8 @@ class CardOutlineWidget extends StatelessWidget {
                           textAlign: TextAlign.center,
                           speed: const Duration(milliseconds: 45),
                           textStyle: AppTextStyles.getBodyText(context)
-                              .copyWith(color: color, fontSize: 17),
+                              .copyWith(
+                                  color: color, fontSize: 17, height: 1.0),
                         ),
                       ],
                     ),
