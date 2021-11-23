@@ -95,7 +95,7 @@ class TransactionCard extends StatelessWidget {
                         width: MediaQuery.of(context).orientation ==
                                 Orientation.portrait
                             ? withAvatarImage
-                                ? 140
+                                ? 130
                                 : 180
                             : 300,
                         child: Text(
@@ -113,7 +113,7 @@ class TransactionCard extends StatelessWidget {
                           width: MediaQuery.of(context).orientation ==
                                   Orientation.portrait
                               ? withAvatarImage
-                                  ? 140
+                                  ? 130
                                   : 180
                               : 300,
                           child: Text(

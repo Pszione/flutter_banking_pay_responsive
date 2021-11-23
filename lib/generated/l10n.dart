@@ -702,6 +702,16 @@ class S {
     );
   }
 
+  /// `Transaction\nSuccessful`
+  String get transactionSuccessfulScreen_success_title {
+    return Intl.message(
+      'Transaction\nSuccessful',
+      name: 'transactionSuccessfulScreen_success_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get __4 {
     return Intl.message(

@@ -265,6 +265,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("I\'VE DONE IT!"),
         "snackBar_featureUnavailableButBeingFixed_text":
             MessageLookupByLibrary.simpleMessage(
-                "Feature unavailable at the moment. We\'ll fix it right away!")
+                "Feature unavailable at the moment. We\'ll fix it right away!"),
+        "transactionSuccessfulScreen_success_title":
+            MessageLookupByLibrary.simpleMessage("Transaction\nSuccessful")
       };
 }

@@ -6,6 +6,7 @@ import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/googleScreenBase/google_screen_base.dart';
+import 'package:flutter_banking_pay_responsive/screens/sendMoneyScreen/transaction_successful.dart';
 
 class SendMoneyScreen extends StatefulWidget {
   const SendMoneyScreen({Key? key}) : super(key: key);
@@ -77,6 +78,19 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         filledFormText02 = _textEditing02.value.text;
       }
     });
+    _updateButton03(); // next screen
+  }
+
+  void _updateButton03() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return const TransactionSuccessful();
+      }),
+    );
   }
 
   Widget buildSendMoneyScreen() {

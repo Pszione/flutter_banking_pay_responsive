@@ -65,6 +65,7 @@
   "sendMoneyScreen_whomTransferReceiver_title": "Para quem você quer transferir {money_sign}{amount} ?",
   "sendMoneyScreen_whomTransferReceiver_field_description": "Nome,telefone,CPF",
   "sendMoneyScreen_continue_button_title": "Continuar",
+  "transactionSuccessfulScreen_success_title": "Transferência\nConcluída",
   "__4": "",
   "googleAccountDialog_TOOLTIP_googleAccountDialog_description": "Conta Google e mais outras configurações",
   "googleAccountDialog_manageGoogleAccount_title": "Gerenciar conta Google",
