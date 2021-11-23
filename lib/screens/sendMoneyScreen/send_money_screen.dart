@@ -228,33 +228,34 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
     return ResponsiveWidthConstrained(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: kMaxButtonConstraintWidth),
-        child: Card(
-          margin: const EdgeInsets.symmetric(horizontal: kHugePadding * 2.5),
-          color: Theme.of(context).colorScheme.secondary,
-          shape: RoundedRectangleBorder(
-            borderRadius: kDefaultBorderRadius,
-            side: BorderSide(width: 2, color: kLightGrayColor),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-                vertical: kHalfPadding, horizontal: 3),
-            child: BuildGoogleListButton(
-              icon: Icons.send_rounded,
-              label: 'Continue',
-              alignment: MainAxisAlignment.center,
-              onPress: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      Navigator.pop(context);
-                      return const Scaffold();
-                    },
+        child: Column(
+          children: [
+            Card(
+              clipBehavior: Clip.antiAlias,
+              margin:
+                  const EdgeInsets.symmetric(horizontal: kHugePadding * 2.5),
+              color: Theme.of(context).scaffoldBackgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: kDefaultBorderRadius,
+                side:
+                    BorderSide(width: 2, color: Theme.of(context).dividerColor),
+              ),
+              child: TextButton(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: kHugePadding * 2, vertical: kDefaultPadding),
+                  child: Text(
+                    'Continue',
+                    softWrap: false,
                   ),
-                );
-              },
+                ),
+                // TODO: check _update next index
+                autofocus: _inputWheelIndices == 2,
+                onPressed: () {},
+              ),
             ),
-          ),
+            const SizedBox(height: 120),
+          ],
         ),
       ),
     );
