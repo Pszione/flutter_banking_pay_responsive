@@ -22,7 +22,7 @@ class TransactionSuccessful extends StatelessWidget {
                   child: Text(
                     S.of(context).transactionSuccessfulScreen_success_title,
                     textAlign: TextAlign.center,
-                    style: AppTextStyles.kListTileTitle,
+                    style: AppTextStyles.kListTileTitle.copyWith(fontSize: 24),
                   ),
                 ),
                 Image.asset(
