@@ -20,14 +20,14 @@ PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
   ActivityInsightsScreen({Key? key}) : super(key: key);
 
-  final keyScreen = GlobalKey<_ActivityInsightsScreenState>();
-  late ValueKey<_ActivityInsightsScreenState> keyValueScreen;
+  final keyScreen = GlobalKey<ActivityInsightsScreenState>();
+  late ValueKey<ActivityInsightsScreenState> keyValueScreen;
 
   @override
-  State<ActivityInsightsScreen> createState() => _ActivityInsightsScreenState();
+  State<ActivityInsightsScreen> createState() => ActivityInsightsScreenState();
 }
 
-class _ActivityInsightsScreenState extends State<ActivityInsightsScreen>
+class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 // implements AutomaticKeepAliveClientMixin<ActivityInsightsScreen> //
 {
   final itemController = ItemScrollController();

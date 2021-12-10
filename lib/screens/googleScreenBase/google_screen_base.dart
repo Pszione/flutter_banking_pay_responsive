@@ -23,10 +23,10 @@ class GoogleScreenBase extends StatefulWidget {
       Responsive.isDesktop(context);
 
   @override
-  _GoogleScreenBaseState createState() => _GoogleScreenBaseState();
+  GoogleScreenBaseState createState() => GoogleScreenBaseState();
 }
 
-class _GoogleScreenBaseState extends State<GoogleScreenBase> {
+class GoogleScreenBaseState extends State<GoogleScreenBase> {
   @override
   Widget build(BuildContext context) {
     final bool hasEnoughSpacing = GoogleScreenBase.hasEnoughSpacing(context);

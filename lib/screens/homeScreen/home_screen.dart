@@ -23,14 +23,14 @@ class HomeScreen extends StatefulWidget with ChangeNotifier {
   static EdgeInsets desiredPadding = const EdgeInsets.only(
       left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
 
-  final keyScreen = GlobalKey<_HomeScreenState>();
-  late ValueKey<_HomeScreenState> keyValueScreen;
+  final keyScreen = GlobalKey<HomeScreenState>();
+  late ValueKey<HomeScreenState> keyValueScreen;
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreen> createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   bool _isFloatingButtonVisible = true;
   final ValueNotifier<bool> openCloseStateFAB = ValueNotifier(false);
   final ValueNotifier<bool> openCloseStateSearch = ValueNotifier(false);

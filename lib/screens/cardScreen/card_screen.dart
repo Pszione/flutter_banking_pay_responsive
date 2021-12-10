@@ -16,14 +16,14 @@ import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.da
 class CardScreen extends StatefulWidget with ChangeNotifier {
   CardScreen({Key? key}) : super(key: key);
 
-  final keyScreen = GlobalKey<_CardScreenState>();
-  late ValueKey<_CardScreenState> keyValueScreen;
+  final keyScreen = GlobalKey<CardScreenState>();
+  late ValueKey<CardScreenState> keyValueScreen;
 
   @override
-  State<CardScreen> createState() => _CardScreenState();
+  State<CardScreen> createState() => CardScreenState();
 }
 
-class _CardScreenState extends State<CardScreen> {
+class CardScreenState extends State<CardScreen> {
   @override
   void initState() {
     super.initState();
@@ -47,6 +47,7 @@ class _CardScreenState extends State<CardScreen> {
         label: S.of(context).homeScreen_second_tabBarTitle);
 
     return Scaffold(
+      key: widget.keyScreen,
       appBar: AppBarComplete(
         title: S.of(context).homeScreen_second_tabBarTitle,
         hasNotificationsButton: true,
