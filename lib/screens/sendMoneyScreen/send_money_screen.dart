@@ -19,6 +19,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
   final double fontSize = 16.0;
   final double HeightSpacingBigFonts = 1;
 
+  final formKey = GlobalKey<FormState>();
   final _scrollControllerFixed = FixedExtentScrollController();
   final _textEditing01 = TextEditingController();
   final _textEditing02 = TextEditingController();
@@ -36,6 +37,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
 
   @override
   void dispose() {
+    formKey.currentState?.dispose();
     //
     super.dispose();
   }
@@ -99,6 +101,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
     inputFieldsOrder = [
       TextField(
         controller: _textEditing01,
+        autocorrect: false,
         style: Theme.of(context)
             .textTheme
             .headline5
@@ -106,12 +109,14 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
         decoration: buildInputDecorationStyle(
             context, S.of(context).sendMoneyScreen_MONEY_SIGN, false),
         keyboardType: TextInputType.number,
+        // TODO: apply validator, users still can paste to the field
         // TODO: check _update next index
         autofocus: _inputWheelIndices == null || _inputWheelIndices == 0,
         onSubmitted: _updateForm01,
       ),
       TextField(
         controller: _textEditing02,
+        autocorrect: false,
         style: Theme.of(context)
             .textTheme
             .headline5
@@ -123,6 +128,7 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 .sendMoneyScreen_whomTransferReceiver_field_description,
             true),
         keyboardType: TextInputType.emailAddress,
+        // TODO: apply validator, users still can paste to the field
         // TODO: check _update next index
         autofocus: _inputWheelIndices == 1,
         onSubmitted: _updateForm02,
@@ -146,32 +152,36 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 overscroll.disallowIndicator();
                 return true;
               },
-              child: ListWheelScrollView(
-                itemExtent: 265,
-                controller: _scrollControllerFixed, //  scrollController,
-                diameterRatio: 2.5,
-                squeeze: 1.0, // 0.9,
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  ResponsiveInputFieldWithConstrained(child: _buildFirstForm()),
-                  ResponsiveInputFieldWithConstrained(
-                    child: _buildSecondForm(),
-                  ),
-                  buildContinueButton(context),
-                ],
-                onSelectedItemChanged: (index) {
-                  setState(() {
-                    _inputWheelIndices = index;
+              child: Form(
+                key: formKey,
+                child: ListWheelScrollView(
+                  itemExtent: 265,
+                  controller: _scrollControllerFixed, //  scrollController,
+                  diameterRatio: 2.5,
+                  squeeze: 1.0, // 0.9,
+                  physics: const ClampingScrollPhysics(),
+                  children: [
+                    ResponsiveInputFieldWithConstrained(
+                        child: _buildFirstForm()),
+                    ResponsiveInputFieldWithConstrained(
+                      child: _buildSecondForm(),
+                    ),
+                    buildContinueButton(context),
+                  ],
+                  onSelectedItemChanged: (index) {
+                    setState(() {
+                      _inputWheelIndices = index;
 
-                    // switch (_inputWheelIndices) {
-                    //   case 0:
-                    //     inputFieldsOrder[0].onTap?.call();
-                    //     break;
-                    //   case 1:
-                    //     inputFieldsOrder[1].onTap?.call();
-                    // }
-                  });
-                },
+                      // switch (_inputWheelIndices) {
+                      //   case 0:
+                      //     inputFieldsOrder[0].onTap?.call();
+                      //     break;
+                      //   case 1:
+                      //     inputFieldsOrder[1].onTap?.call();
+                      // }
+                    });
+                  },
+                ),
               ),
             ),
           ),
