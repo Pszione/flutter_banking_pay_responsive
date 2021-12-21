@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
@@ -118,8 +119,8 @@ class GoogleAccountDialog {
                         .googleAccountDialog_addAnotherAccount_button_title,
                     icon: Icons.person_add,
                     onPress: () {
-                      MyApp.handleSystemUIColor(context, null);
-                      Navigator.pop(context);
+                      MyApp.handleSystemUIColor(context, null); // TODO
+                      Navigator.of(context).pop();
                     }),
                 kDivider,
                 BuildGoogleListButton(
@@ -127,15 +128,8 @@ class GoogleAccountDialog {
                       S.of(context).googleAccountDialog_settings_button_title,
                   icon: Icons.settings_rounded,
                   onPress: () {
-                    // button will also dismiss/pop this sliding sheet
-                    Navigator.pop(context);
-                    MyApp.handleSystemUIColor(context, null);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const SettingsScreen()),
-                    );
+                    Navigator.of(context)
+                        .pushReplacementNamed(RouteController.routeSettings);
                   },
                 ),
                 // TODO: add FAQ link
