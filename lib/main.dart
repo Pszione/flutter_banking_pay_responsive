@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
@@ -73,13 +74,15 @@ class MyApp extends StatelessWidget {
           themeMode: Provider.of<ThemeProvider>(context).themeMode,
           theme: AppThemes.lightThemeData,
           darkTheme: AppThemes.darkThemeData,
-          //home: const SetupScreen(),
-          home: Builder(
-            builder: (_) {
-              handleFullscreenSystemUIMode(_);
-              return buildFuture();
-            },
-          ),
+          // home: Builder(
+          //   builder: (_) {
+          //     handleFullscreenSystemUIMode(_);
+          //     return buildFuture();
+          //   },
+          // ),
+          initialRoute: RouteController.routeInitialRoute,
+          onGenerateRoute: (settings) =>
+              RouteController.onHandleRoutes(settings, context),
         );
       }),
     );
