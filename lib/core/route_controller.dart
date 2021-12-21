@@ -27,4 +27,12 @@ class RouteController {
   static Route _errorRoute() {
     return MaterialPageRoute(builder: (context) => const ErrorRouteScreen());
   }
+
+  static void popNavigationWithResult(BuildContext context, bool success) {
+    Navigator.pop(context, success); // return value
+  }
+
+  static void popNavigationWithResults(BuildContext context, dynamic results) {
+    Navigator.pop(context, results); // return value
+  }
 }

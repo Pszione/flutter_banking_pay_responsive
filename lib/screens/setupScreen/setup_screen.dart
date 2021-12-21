@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/material_you_navigation_bar_custom.dart';
-import 'package:flutter_banking_pay_responsive/core/android_quick_actions_shotcuts.dart';
+import 'package:flutter_banking_pay_responsive/core/android_quick_actions_shortcuts.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
@@ -29,15 +29,14 @@ class SetupScreenState extends State<SetupScreen> {
     Consumer<ActivityInsightsScreen>(builder: (_, screen, __) => screen),
   ];
 
-  late final MaterialYouNavigationBarCustom navBar =
-      MaterialYouNavigationBarCustom(
-    getCurrentIndex: getValueCurrentIndex,
+  late MaterialYouNavigationBarCustom navBar = MaterialYouNavigationBarCustom(
+    getCurrentIndex: getValueSelectedIndex,
     callbackOnPress: callbackOnBottomNavigationPress,
   );
 
   int _selectedIndex = 0;
-  MenuState get selectedMenuState => MenuState.values[_selectedIndex];
   int get selectedIndex => _selectedIndex;
+  MenuState get selectedMenuState => MenuState.values[_selectedIndex];
   Type get selectedWidgetType => menuWidgets[_selectedIndex].runtimeType;
 
   @override
@@ -80,32 +79,31 @@ class SetupScreenState extends State<SetupScreen> {
     );
   }
 
+  /// this will work as Navigator.push route
   void changeSelectedMenuByState(MenuState menu) {
     int index = MenuState.values.indexOf(menu);
     changeSelectedMenu(index);
   }
 
+  /// this will work as Navigator.push route
   void changeSelectedMenu(int index) {
     setState(() {
       if (index < 0 || index >= MenuState.values.length) {
         index = 0;
       }
       _selectedIndex = index;
-      // this will work as Navigator.push route
-      // because our Scaffold body will update its state
-      // unfortunately wwe can not maintain widget state
       HapticFeedback.selectionClick();
       notifyPopDependencies();
     });
   }
+
+  int getValueSelectedIndex() => _selectedIndex;
 
   void callbackOnBottomNavigationPress(int index) {
     // _selectedIndex
     print('clicked! with $index');
     changeSelectedMenu(index);
   }
-
-  int getValueCurrentIndex() => _selectedIndex;
 
   void notifyPopDependencies() {
     // TODO: create observer pattern
@@ -128,14 +126,5 @@ class SetupScreenState extends State<SetupScreen> {
       changeSelectedMenu(_selectedIndex - 1);
     }
     return false; // or will exit app
-  }
-
-  void popNavigationWithResult(/*BuildContext context, */ bool success) {
-    Navigator.pop(context, success); // return value
-  }
-
-  void popNavigationWithResults(/*BuildContext context, */ dynamic results) {
-    //popNavigationWithResults(context, 'from_back_button');
-    Navigator.pop(context, results); // return value
   }
 }
