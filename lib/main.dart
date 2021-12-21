@@ -83,6 +83,7 @@ class MyApp extends StatelessWidget {
           initialRoute: RouteController.routeInitialRoute,
           onGenerateRoute: (settings) =>
               RouteController.onHandleRoutes(settings, context),
+          // navigatorObservers: [], // TODO
         );
       }),
     );
