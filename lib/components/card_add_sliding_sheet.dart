@@ -70,6 +70,7 @@ class CardAddSlidingSheet {
     return SizedBox(
       width: double.infinity,
       height: buttonHeight,
+      // TODO
       child: InkWell(
         onTap: onPress,
         splashColor: Theme.of(context).colorScheme.secondary,
@@ -89,23 +90,6 @@ class CardAddSlidingSheet {
           ),
         ),
       ),
-    );
-  }
-}
-
-class BorderDefaultPadding extends StatelessWidget {
-  const BorderDefaultPadding({
-    Key? key,
-    this.child,
-  }) : super(key: key);
-
-  final Widget? child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 2),
-      child: child,
     );
   }
 }
