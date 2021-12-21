@@ -7,11 +7,11 @@ import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'app_sliding_bottom_sheet.dart';
 
 class CardAddSlidingSheet {
-  Future<Widget> showOptionsSlidingSheet(BuildContext context) async {
+  Future<Widget?> showOptionsSlidingSheet(BuildContext context) {
     final _isScreenVertical =
         MediaQuery.of(context).orientation == Orientation.portrait;
 
-    return await AppSlidingBottomSheet(
+    return AppSlidingBottomSheet(
       context: context,
       snappings: _isScreenVertical ? [0.4] : [0.7],
       initialSnap: _isScreenVertical ? 0.4 : 0.7,

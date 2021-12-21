@@ -17,9 +17,9 @@ class AppSlidingBottomSheet {
   final List<double> snappings;
   final Color headerColor;
 
-  Future<Widget> showStyledSheet() async => await showSlidingBottomSheet(
+  Future<Widget?> showStyledSheet() => showSlidingBottomSheet(
         context,
-        builder: (_) => SlidingSheetDialog(
+        builder: (context) => SlidingSheetDialog(
           avoidStatusBar: true,
           duration: kDefaultDuration,
           cornerRadius: kDefaultBorderRadiusAsDouble,
@@ -53,7 +53,7 @@ class AppSlidingBottomSheet {
         ),
       );
 
-  static Future<Widget> demoSheet(BuildContext context) =>
+  static Future<Widget?> demoSheet(BuildContext context) =>
       AppSlidingBottomSheet(
         context: context,
         snappings: [0.3, 0.5],
@@ -98,7 +98,7 @@ class AppSlidingBottomSheet {
         ),
       ).showStyledSheet();
 
-  Future<Widget> showAndroidStyledSheet() async => await showModalBottomSheet(
+  Future<Widget?> showAndroidStyledSheet() => showModalBottomSheet(
         context: context,
         backgroundColor: Theme.of(context).backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
