@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/screens/errorRouteScreen/error_route_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 
 class RouteController {
   /// '/'
   static const String routeInitialRoute = '/';
+
+  /// '/scan\_card
+  static const String routeScanCard = '/scan_card';
 
   /// '/recent\_opened\_policies'
   static const String routeRecentOpenedPolicies = '/recent_opened_policies';
@@ -18,6 +22,8 @@ class RouteController {
     switch (settings.name) {
       case routeInitialRoute:
         return MaterialPageRoute(builder: (context) => SetupScreen());
+      case routeScanCard:
+        return MaterialPageRoute(builder: (context) => const ScanCardScreen());
 
       default:
         return _errorRoute();
