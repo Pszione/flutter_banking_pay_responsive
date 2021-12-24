@@ -9,7 +9,6 @@ import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
-import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:flutter_banking_pay_responsive/utils.dart';
 import 'package:provider/provider.dart';
 
@@ -70,7 +69,7 @@ class GoogleAccountDialog {
                   kSmallIconSize,
                   () {
                     MyApp.handleSystemUIColor(context, null);
-                    Navigator.pop(context);
+                    Navigator.of(context).pop();
                   },
                   signedInAccount == null
                       ? null

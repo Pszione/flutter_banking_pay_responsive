@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/screens/errorRouteScreen/error_route_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/sendMoneyScreen/send_money_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 
@@ -17,6 +18,9 @@ class RouteController {
   /// '/recent\_opened\_policies'
   static const String routeRecentOpenedPolicies = '/recent_opened_policies';
 
+  /// '/send\_money'
+  static const String routeSendMoney = '/send_money';
+
   static Route<dynamic>? onHandleRoutes(
       RouteSettings settings, BuildContext context) {
     // Getting arguments passed in while calling [Navigator.pushNamed]
@@ -32,6 +36,8 @@ class RouteController {
         // MyApp.handleSystemUIColor(
         //     context, null); // TODO: context does not have ThemeData
         return MaterialPageRoute(builder: (context) => const SettingsScreen());
+      case routeSendMoney:
+        return MaterialPageRoute(builder: (context) => const SendMoneyScreen());
 
       default:
         return _errorRoute();

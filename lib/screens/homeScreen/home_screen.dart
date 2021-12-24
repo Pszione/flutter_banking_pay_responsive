@@ -6,6 +6,7 @@ import 'package:flutter_banking_pay_responsive/components/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
 import 'package:flutter_banking_pay_responsive/components/transaction_widget.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/news_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
-import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 
 import 'categories_cards.dart';
 
@@ -182,13 +182,8 @@ class HomeScreenState extends State<HomeScreen> {
                               .googleAccountDialog_settings_button_title,
                           alignment: MainAxisAlignment.center,
                           onPress: () {
-                            // do not .pop
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const SettingsScreen()),
-                            );
+                            Navigator.of(context)
+                                .pushNamed(RouteController.routeSettings);
                           },
                         ),
                       ),
