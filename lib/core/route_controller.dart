@@ -12,14 +12,11 @@ class RouteController {
   /// '/scan\_card
   static const String routeScanCard = '/scan_card';
 
-  /// '/settings
-  static const String routeSettings = '/settings';
-
-  /// '/recent\_opened\_policies'
-  static const String routeRecentOpenedPolicies = '/recent_opened_policies';
-
   /// '/send\_money'
   static const String routeSendMoney = '/send_money';
+
+  /// '/settings
+  static const String routeSettings = '/settings';
 
   static Route<dynamic>? onHandleRoutes(
       RouteSettings settings, BuildContext context) {
