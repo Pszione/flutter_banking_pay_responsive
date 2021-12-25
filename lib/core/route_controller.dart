@@ -4,6 +4,7 @@ import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_
 import 'package:flutter_banking_pay_responsive/screens/sendMoneyScreen/send_money_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
+import 'package:get_it/get_it.dart';
 
 class RouteController {
   /// '/'
@@ -26,13 +27,14 @@ class RouteController {
 
     switch (settings.name) {
       case routeInitialRoute:
-        return MaterialPageRoute(builder: (context) => SetupScreen());
+        return MaterialPageRoute(builder: (context) => GetIt.I<SetupScreen>());
       case routeScanCard:
         return MaterialPageRoute(builder: (context) => const ScanCardScreen());
       case routeSettings:
         // MyApp.handleSystemUIColor(
         //     context, null); // TODO: context does not have ThemeData
-        return MaterialPageRoute(builder: (context) => const SettingsScreen());
+        return MaterialPageRoute(
+            builder: (context) => GetIt.I<SettingsScreen>());
       case routeSendMoney:
         return MaterialPageRoute(builder: (context) => const SendMoneyScreen());
 

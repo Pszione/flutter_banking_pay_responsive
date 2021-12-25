@@ -10,6 +10,7 @@ import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.da
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
         ),
         //
         ChangeNotifierProvider<SetupScreen>(
-          create: (_) => SetupScreen(),
+          // create: (_) => SetupScreen(),
+          create: (_) => GetIt.I<SetupScreen>(),
         ),
         ChangeNotifierProvider<HomeScreen>(
           create: (_) => HomeScreen(),
