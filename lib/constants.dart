@@ -75,7 +75,7 @@ var kTextBoxShadowSubtle = BoxShadow(
   blurRadius: 1.5,
 );
 
-var kDivider = const Divider(thickness: 2, height: 0);
+var kDivider = const Divider(thickness: 2, height: 0); // TODO
 const K_GOOGLE_TEXT = 'Google';
 const K_WEBSITE_PEDRO_SANTOS = 'https://www.pedrosantos.xyz/';
 

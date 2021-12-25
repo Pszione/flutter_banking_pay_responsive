@@ -1,15 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
+import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
-import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
 import 'package:flutter_banking_pay_responsive/utils.dart';
 import 'package:provider/provider.dart';
 
@@ -20,10 +19,11 @@ class GoogleAccountDialog {
     Key? key,
   });
 
-  static const double kAccountRowHeight = 66;
+  static const double _kAccountRowHeight = 66;
 
   Future<String?> showDialogDismissible(BuildContext context,
       AccountModel? signedInAccount, List<AccountModel>? otherAccounts) async {
+    // TODO: create observer pattern
     HapticFeedback.heavyImpact();
     MyApp.handleSystemUIColor(
         context, Colors.black.withOpacity(kAlertOverlayOpacity));
@@ -35,6 +35,7 @@ class GoogleAccountDialog {
       barrierColor: Colors.black.withOpacity(kAlertOverlayOpacity),
       builder: (context) => WillPopScope(
         onWillPop: () {
+          // TODO: create observer pattern
           MyApp.handleSystemUIColor(context, null);
           return Future.value(true);
         },
@@ -46,14 +47,7 @@ class GoogleAccountDialog {
           titlePadding: const EdgeInsets.fromLTRB(
               kDefaultPadding, kHalfPadding, kDefaultPadding, 0),
           contentPadding: EdgeInsets.zero,
-          insetPadding: EdgeInsets.only(
-              left: kDefaultPadding,
-              right: kDefaultPadding,
-              bottom:
-                  MediaQuery.of(context).orientation == Orientation.portrait ||
-                          Responsive.isDesktop(context)
-                      ? 80
-                      : 0),
+          insetPadding: buildExternalPadding(context),
           title: buildGoogleHeader(context),
           content: Container(
             width: MediaQuery.of(context).orientation == Orientation.portrait
@@ -75,7 +69,7 @@ class GoogleAccountDialog {
                   kSmallIconSize,
                   () {
                     MyApp.handleSystemUIColor(context, null);
-                    Navigator.pop(context);
+                    Navigator.of(context).pop();
                   },
                   signedInAccount == null
                       ? null
@@ -102,6 +96,7 @@ class GoogleAccountDialog {
                       itemCount: otherAccounts!.length,
                       itemBuilder: (_, int index) {
                         if (signedInAccount?.ID == otherAccounts[index].ID) {
+                          // TODO: controller set this
                           return const SizedBox(height: 0); // null
                         }
                         return buildAccountItem(
@@ -123,8 +118,8 @@ class GoogleAccountDialog {
                         .googleAccountDialog_addAnotherAccount_button_title,
                     icon: Icons.person_add,
                     onPress: () {
-                      MyApp.handleSystemUIColor(context, null);
-                      Navigator.pop(context);
+                      MyApp.handleSystemUIColor(context, null); // TODO
+                      Navigator.of(context).pop();
                     }),
                 kDivider,
                 BuildGoogleListButton(
@@ -132,15 +127,8 @@ class GoogleAccountDialog {
                       S.of(context).googleAccountDialog_settings_button_title,
                   icon: Icons.settings_rounded,
                   onPress: () {
-                    // button will also dismiss/pop this sliding sheet
-                    Navigator.pop(context);
-                    MyApp.handleSystemUIColor(context, null);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const SettingsScreen()),
-                    );
+                    Navigator.of(context)
+                        .pushReplacementNamed(RouteController.routeSettings);
                   },
                 ),
                 // TODO: add FAQ link
@@ -166,12 +154,21 @@ class GoogleAccountDialog {
     );
   }
 
+  EdgeInsets buildExternalPadding(BuildContext context) {
+    return EdgeInsets.only(
+        left: kDefaultPadding,
+        right: kDefaultPadding,
+        bottom: MediaQuery.of(context).orientation == Orientation.portrait ||
+                Responsive.isDesktop(context)
+            ? 80
+            : 0);
+  }
+
   //
   Widget buildGoogleHeader(BuildContext context) {
     return Stack(
       children: [
         Semantics(
-          sortKey: const OrdinalSortKey(1),
           label: '',
           // My IconButton widget
           child: SizedBox(
@@ -221,7 +218,7 @@ class GoogleAccountDialog {
       bool includeFullSemantics) {
     return SizedBox(
       width: double.infinity,
-      height: kAccountRowHeight,
+      height: _kAccountRowHeight,
       child: Semantics(
         label: prefixSemantics,
         child: InkWell(

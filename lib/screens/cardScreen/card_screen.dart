@@ -88,12 +88,10 @@ class CardScreenState extends State<CardScreen> {
                 itemCount: myCards.length + 1,
                 itemBuilder: (_, index) {
                   if (index == myCards.length) {
-                    if (!_isAxisVertical)
-                      return CardWidget.defaultDimension;
-                    else {
-                      // because of +1 in length I have to return something
-                      return const SizedBox.shrink();
-                    }
+                    // because of +1 in length I have to return something
+                    return !_isAxisVertical
+                        ? CardWidget.defaultDimension
+                        : const SizedBox.shrink();
                   }
                   return ResponsiveWidthConstrained(
                     child: Center(
