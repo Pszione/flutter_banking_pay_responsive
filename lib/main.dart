@@ -13,11 +13,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_banking_pay_responsive/core/di/dependency_injection_get_it.dart'
+    as dependency_injection;
 
 const kAPP_TITLE = 'Flutter Banking Pay';
 const kAPP_TITLE_SHORT = 'Banking Pay';
 
 void main() {
+  dependency_injection.init();
   runApp(const MyApp());
 }
 
