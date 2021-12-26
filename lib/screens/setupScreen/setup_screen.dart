@@ -30,14 +30,14 @@ class SetupScreenState extends State<SetupScreen> {
   ];
 
   late MaterialYouNavigationBarCustom navBar = MaterialYouNavigationBarCustom(
-    getCurrentIndex: getValueSelectedIndex,
+    getCurrentIndex: getCurrentSelectedIndex,
     callbackOnPress: callbackOnBottomNavigationPress,
   );
 
-  int _selectedIndex = 0;
-  int get selectedIndex => _selectedIndex;
-  MenuState get selectedMenuState => MenuState.values[_selectedIndex];
-  Type get selectedWidgetType => menuWidgets[_selectedIndex].runtimeType;
+  ValueNotifier<int> getCurrentSelectedIndex = ValueNotifier(0);
+  int get selectedIndex => getCurrentSelectedIndex.value;
+  MenuState get selectedMenuState => MenuState.values[selectedIndex];
+  Type get selectedWidgetType => menuWidgets[selectedIndex].runtimeType;
 
   @override
   void initState() {
@@ -72,7 +72,7 @@ class SetupScreenState extends State<SetupScreen> {
       child: Scaffold(
         key: widget.keyScreen,
         body: Center(
-          child: menuWidgets.elementAt(_selectedIndex),
+          child: menuWidgets.elementAt(selectedIndex),
         ),
         bottomNavigationBar: navBar,
       ),
@@ -91,18 +91,16 @@ class SetupScreenState extends State<SetupScreen> {
       if (index < 0 || index >= MenuState.values.length) {
         index = 0;
       }
-      _selectedIndex = index;
+      getCurrentSelectedIndex.value = index;
       HapticFeedback.selectionClick();
       notifyPopDependencies();
+
+      print("Index: $selectedIndex");
     });
   }
 
-  int getValueSelectedIndex() => _selectedIndex;
-
-  void callbackOnBottomNavigationPress(int index) {
-    // _selectedIndex
-    print('clicked! with $index');
-    changeSelectedMenu(index);
+  void callbackOnBottomNavigationPress(int newIndex) {
+    changeSelectedMenu(newIndex);
   }
 
   void notifyPopDependencies() {
@@ -119,11 +117,11 @@ class SetupScreenState extends State<SetupScreen> {
   }
 
   bool popSelectedMenu() {
-    if (_selectedIndex == 0) {
+    if (selectedIndex == 0) {
       return false;
     }
-    if (_selectedIndex < MenuState.values.length) {
-      changeSelectedMenu(_selectedIndex - 1);
+    if (selectedIndex < MenuState.values.length) {
+      changeSelectedMenu(selectedIndex - 1);
     }
     return false; // or will exit app
   }
