@@ -11,7 +11,7 @@ class MaterialYouNavigationBarCustom extends StatelessWidget {
     required this.callbackOnPress,
   }) : super(key: key);
 
-  final int Function() getCurrentIndex;
+  final ValueNotifier<int> getCurrentIndex;
   final void Function(int) callbackOnPress;
 
   @override
@@ -46,25 +46,31 @@ class MaterialYouNavigationBarCustom extends StatelessWidget {
         ),
         indicatorColor: kSecondaryColor,
       ),
-      child: NavigationBar(
-        selectedIndex: getCurrentIndex.call(),
-        onDestinationSelected: callbackOnPress,
-        animationDuration: const Duration(seconds: 1, milliseconds: 700),
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(FontAwesomeIcons.dollarSign),
-            label: S.of(context).navigationBar_first_title,
-          ),
-          NavigationDestination(
-            icon: const Icon(FontAwesomeIcons.solidCreditCard),
-            label: S.of(context).navigationBar_second_title,
-            selectedIcon: const Icon(FontAwesomeIcons.creditCard),
-          ),
-          NavigationDestination(
-            icon: const Icon(FontAwesomeIcons.chartLine),
-            label: S.of(context).navigationBar_third_title,
-          ),
-        ],
+      child: ValueListenableBuilder<int>(
+        valueListenable: getCurrentIndex,
+        builder: (_, index, __) {
+          print("listenable: $index");
+          return NavigationBar(
+            selectedIndex: index,
+            onDestinationSelected: callbackOnPress,
+            animationDuration: const Duration(seconds: 1, milliseconds: 700),
+            destinations: [
+              NavigationDestination(
+                icon: const Icon(FontAwesomeIcons.dollarSign),
+                label: S.of(context).navigationBar_first_title,
+              ),
+              NavigationDestination(
+                icon: const Icon(FontAwesomeIcons.solidCreditCard),
+                label: S.of(context).navigationBar_second_title,
+                selectedIcon: const Icon(FontAwesomeIcons.creditCard),
+              ),
+              NavigationDestination(
+                icon: const Icon(FontAwesomeIcons.chartLine),
+                label: S.of(context).navigationBar_third_title,
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -82,18 +88,24 @@ class MaterialYouNavigationBarCustom extends StatelessWidget {
           enableFeedback: true,
           elevation: 0,
         ),
-        child: BottomNavigationBar(
-          currentIndex: getCurrentIndex.call(),
-          onTap: (int index) => callbackOnPress,
-          iconSize: kMediumIconSize,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.solidCreditCard), label: 'Cards'),
-            BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
-          ],
+        child: ValueListenableBuilder<int>(
+          valueListenable: getCurrentIndex,
+          builder: (_, index, __) {
+            return BottomNavigationBar(
+              currentIndex: index,
+              onTap: callbackOnPress,
+              iconSize: kMediumIconSize,
+              items: const [
+                BottomNavigationBarItem(
+                    icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
+                BottomNavigationBarItem(
+                    icon: Icon(FontAwesomeIcons.solidCreditCard),
+                    label: 'Cards'),
+                BottomNavigationBarItem(
+                    icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
+              ],
+            );
+          },
         ),
       ),
     );
