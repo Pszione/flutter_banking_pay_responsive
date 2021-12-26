@@ -9,9 +9,10 @@ import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
-import 'google_account_dialog.dart';
+import '../screens/googleAccountDialogScreen/google_account_dialog.dart';
 
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
   AppBarComplete(
@@ -237,8 +238,8 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                   radius: kHugeIconSize * 1.5,
                 ),
                 iconSize: kMediumIconSize,
-                onPressed: () => GoogleAccountDialog().showDialogDismissible(
-                    context, signedInAccount, myAccounts),
+                onPressed: () => GoogleAccountDialog()
+                    .showDialogDismissible(context, GetIt.I()),
                 tooltip: S
                     .of(context)
                     .googleAccountDialog_TOOLTIP_googleAccountDialog_description,

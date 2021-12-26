@@ -9,10 +9,11 @@ import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
+import 'package:flutter_banking_pay_responsive/screens/googleAccountDialogScreen/google_account_dialog_controller.dart';
 import 'package:flutter_banking_pay_responsive/utils.dart';
 import 'package:provider/provider.dart';
 
-import 'google_list_decorations.dart';
+import '../../components/google_list_decorations.dart';
 
 class GoogleAccountDialog {
   GoogleAccountDialog({
@@ -21,14 +22,14 @@ class GoogleAccountDialog {
 
   static const double _kAccountRowHeight = 66;
 
-  Future<String?> showDialogDismissible(BuildContext context,
-      AccountModel? signedInAccount, List<AccountModel>? otherAccounts) async {
+  Future<Object?> showDialogDismissible(BuildContext context,
+      GoogleAccountDialogScreenController controller) async {
     // TODO: create observer pattern
     HapticFeedback.heavyImpact();
     MyApp.handleSystemUIColor(
         context, Colors.black.withOpacity(kAlertOverlayOpacity));
 
-    return await showDialog<String>(
+    return await showDialog<Object>(
       context: context,
       useSafeArea: true,
       barrierDismissible: true, // click outside to dismiss
@@ -65,13 +66,13 @@ class GoogleAccountDialog {
               children: [
                 buildAccountItem(
                   context,
-                  signedInAccount,
+                  controller.signedInAccount,
                   kSmallIconSize,
                   () {
                     MyApp.handleSystemUIColor(context, null);
                     Navigator.of(context).pop();
                   },
-                  signedInAccount == null
+                  controller.signedInAccount == null
                       ? null
                       : S
                           .of(context)
@@ -93,15 +94,16 @@ class GoogleAccountDialog {
                           : 130,
                   child: ListView.builder(
                       physics: const ClampingScrollPhysics(),
-                      itemCount: otherAccounts!.length,
+                      itemCount: controller.otherAccounts!.length,
                       itemBuilder: (_, int index) {
-                        if (signedInAccount?.ID == otherAccounts[index].ID) {
-                          // TODO: controller set this
+                        // TODO: controller set this
+                        if (controller.signedInAccount?.ID ==
+                            controller.otherAccounts?[index].ID) {
                           return const SizedBox(height: 0); // null
                         }
                         return buildAccountItem(
                           _,
-                          otherAccounts[index],
+                          controller.otherAccounts?[index],
                           kSmallIconSize02,
                           () {},
                           S
