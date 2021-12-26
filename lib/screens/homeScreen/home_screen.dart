@@ -14,6 +14,7 @@ import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/news_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/user_cards_section.dart';
+import 'package:provider/provider.dart';
 
 import 'categories_cards.dart';
 
@@ -72,6 +73,7 @@ class HomeScreenState extends State<HomeScreen> {
         hasSearchField: true,
         hasDarkThemeToggle: true,
         openCloseStateSearch: openCloseStateSearch,
+        googleAvatarThumbnail: Provider.of<DBSyncProvider>(context, listen: false).user.avatarThumbnail,
       ),
       // Cards
       floatingActionButton: _isFloatingButtonVisible

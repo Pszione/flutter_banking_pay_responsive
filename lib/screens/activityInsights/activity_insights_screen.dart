@@ -129,6 +129,7 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
         title: S.of(context).homeScreen_third_tabBarTitle,
         hasNotificationsButton: false,
         hasDarkThemeToggle: true,
+        googleAvatarThumbnail: Provider.of<DBSyncProvider>(context, listen: false).user.avatarThumbnail,
       ),
       floatingActionButton: _isFloatingButtonVisible
           ? AppFloatingButtonIconAndText(

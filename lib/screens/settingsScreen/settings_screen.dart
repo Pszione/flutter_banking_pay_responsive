@@ -28,6 +28,10 @@ class SettingsScreen extends StatelessWidget {
         title: S.of(context).googleAccountDialog_settings_button_title,
         hasNotificationsButton: false,
         hasDarkThemeToggle: true,
+        googleAvatarThumbnail:
+            Provider.of<DBSyncProvider>(context, listen: false)
+                .user
+                .avatarThumbnail,
       ),
       body: ResponsiveWidthConstrained(
         child: SingleChildScrollView(
