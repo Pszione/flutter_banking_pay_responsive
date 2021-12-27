@@ -46,9 +46,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SetupScreenObservable>(
           create: (_) => SetupScreenObservable(),
         ),
-        // ChangeNotifierProvider<MaterialYouNavigationBarCustom>(
-        //   create: (_) MaterialYouNavigationBarCustom(),
-        // ),
+        ChangeNotifierProvider<NavigationBarShared>(
+          create: (_) => NavigationBarShared(),
+        ),
         //
         ChangeNotifierProvider<SetupScreen>(
           // create: (_) => SetupScreen(),

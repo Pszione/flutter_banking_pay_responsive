@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/components/material_you_navigation_bar_custom.dart';
 import 'package:flutter_banking_pay_responsive/core/android_quick_actions_shortcuts.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
@@ -36,11 +35,6 @@ class SetupScreenState extends State<SetupScreen> {
     Consumer<ActivityInsightsScreen>(builder: (_, screen, __) => screen),
   ];
 
-  late MaterialYouNavigationBarCustom navBar = MaterialYouNavigationBarCustom(
-    getCurrentIndex: getCurrentSelectedIndex,
-    callbackOnPress: callbackOnBottomNavigationPress,
-  );
-
   @override
   void initState() {
     super.initState();
@@ -61,6 +55,10 @@ class SetupScreenState extends State<SetupScreen> {
   Widget build(BuildContext context) {
     MyApp.handleFullscreenSystemUIMode(context);
 
+    Provider.of<NavigationBarShared>(context, listen: false).init(
+        getCurrentIndex: getCurrentSelectedIndex,
+        callbackOnPress: callbackOnBottomNavigationPress);
+
     return WillPopScope(
       onWillPop: () {
         bool willPop = popSelectedMenu();
@@ -72,7 +70,9 @@ class SetupScreenState extends State<SetupScreen> {
         body: Center(
           child: menuWidgets.elementAt(selectedIndex),
         ),
-        bottomNavigationBar: navBar,
+        bottomNavigationBar:
+            Provider.of<NavigationBarShared>(context, listen: false)
+                .getNavigationBar,
       ),
     );
   }
@@ -112,7 +112,6 @@ class SetupScreenState extends State<SetupScreen> {
   }
 
   void notifyPopDependencies(bool willPop) {
-    // TODO: create observer pattern
     Provider.of<SetupScreenObservable>(context, listen: false)
         .notifyOnWillPop();
   }
