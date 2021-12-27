@@ -10,14 +10,18 @@ import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.da
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_banking_pay_responsive/core/di/dependency_injection_get_it.dart'
+    as dependency_injection;
 
 const kAPP_TITLE = 'Flutter Banking Pay';
 const kAPP_TITLE_SHORT = 'Banking Pay';
 
 void main() {
+  dependency_injection.init();
   runApp(const MyApp());
 }
 
@@ -39,18 +43,24 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<DBSyncProvider>(
           create: (_) => DBSyncProvider(),
         ),
+        ChangeNotifierProvider<SetupScreenObservable>(
+          create: (_) => SetupScreenObservable(),
+        ),
+        ChangeNotifierProvider<NavigationBarShared>(
+          create: (_) => NavigationBarShared(),
+        ),
         //
         ChangeNotifierProvider<SetupScreen>(
-          create: (_) => SetupScreen(),
+          create: (_) => GetIt.I<SetupScreen>(),
         ),
         ChangeNotifierProvider<HomeScreen>(
-          create: (_) => HomeScreen(),
+          create: (_) => GetIt.I<HomeScreen>(),
         ),
         ChangeNotifierProvider<CardScreen>(
-          create: (_) => CardScreen(),
+          create: (_) => GetIt.I<CardScreen>(),
         ),
         ChangeNotifierProvider<ActivityInsightsScreen>(
-          create: (_) => ActivityInsightsScreen(),
+          create: (_) => GetIt.I<ActivityInsightsScreen>(),
         ),
       ],
       child: Builder(builder: (context) {

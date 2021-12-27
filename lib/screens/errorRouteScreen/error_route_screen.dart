@@ -9,6 +9,7 @@ class ErrorRouteScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBarComplete(
         title: 'Error',
+        googleAvatarThumbnail: '',
       ),
       body: const Center(
         // TODO: make this look good

@@ -5,31 +5,33 @@ import 'package:flutter_banking_pay_responsive/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/models/account.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
-import 'google_account_dialog.dart';
+import '../screens/googleAccountDialogScreen/google_account_dialog.dart';
 
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
-  AppBarComplete(
-      {Key? key,
-      this.title,
-      this.hasSearchField = false,
-      this.hasNotificationsButton = true,
-      this.hasDarkThemeToggle = false,
-      this.hasGoogleAccountAvatar = true,
-      this.excludeTitleFromSemantics = true,
-      this.openCloseStateSearch})
-      : super(key: key);
+  AppBarComplete({
+    Key? key,
+    this.title,
+    this.hasSearchField = false,
+    this.hasNotificationsButton = true,
+    this.hasDarkThemeToggle = false,
+    this.hasGoogleAccountAvatar = true,
+    this.excludeTitleFromSemantics = true,
+    this.openCloseStateSearch,
+    /*required*/ this.googleAvatarThumbnail,
+  }) : super(key: key);
   final String? title;
   final bool hasSearchField;
   final bool hasNotificationsButton;
   final bool hasGoogleAccountAvatar;
   final bool hasDarkThemeToggle;
   final bool excludeTitleFromSemantics;
+  final String? googleAvatarThumbnail;
 
   late ValueNotifier<bool>? openCloseStateSearch;
 
@@ -93,8 +95,6 @@ class _AppBarCompleteState extends State<AppBarComplete> {
     final dbProvider = Provider.of<DBSyncProvider>(context);
     bool anyNewNotificationsToDisplay =
         dbProvider != null && dbProvider.newNotifications > 0;
-    AccountModel? signedInAccount =
-        Provider.of<DBSyncProvider>(context, listen: false).user;
 
     return Semantics(
       namesRoute: true,
@@ -230,15 +230,16 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                 icon: CircleAvatar(
                   // backgroundImage:
                   //     NetworkImage('https://placeimg.com/640/480/people'),
-                  backgroundImage: signedInAccount != null
-                      ? AssetImage(signedInAccount.avatarThumbnail!)
+                  // TODO
+                  backgroundImage: widget.googleAvatarThumbnail != null
+                      ? AssetImage(widget.googleAvatarThumbnail!)
                       : null,
                   backgroundColor: kComplementaryColor,
                   radius: kHugeIconSize * 1.5,
                 ),
                 iconSize: kMediumIconSize,
-                onPressed: () => GoogleAccountDialog().showDialogDismissible(
-                    context, signedInAccount, myAccounts),
+                onPressed: () => GoogleAccountDialog()
+                    .showDialogDismissible(context, GetIt.I()),
                 tooltip: S
                     .of(context)
                     .googleAccountDialog_TOOLTIP_googleAccountDialog_description,

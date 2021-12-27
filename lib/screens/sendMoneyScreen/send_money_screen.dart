@@ -7,6 +7,7 @@ import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/googleScreenBase/google_screen_base.dart';
 import 'package:flutter_banking_pay_responsive/screens/sendMoneyScreen/transaction_successful.dart';
+import 'package:provider/provider.dart';
 
 class SendMoneyScreen extends StatefulWidget {
   const SendMoneyScreen({Key? key}) : super(key: key);
@@ -53,6 +54,10 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
           : AppBarComplete(
               hasNotificationsButton: false,
               hasGoogleAccountAvatar: false,
+              googleAvatarThumbnail:
+                  Provider.of<DBSyncProvider>(context, listen: false)
+                      .user
+                      .avatarThumbnail,
             ),
       child: buildSendMoneyScreen(),
       // onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

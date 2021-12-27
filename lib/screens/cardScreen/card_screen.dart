@@ -12,6 +12,7 @@ import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/card.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
+import 'package:provider/provider.dart';
 
 class CardScreen extends StatefulWidget with ChangeNotifier {
   CardScreen({Key? key}) : super(key: key);
@@ -52,6 +53,10 @@ class CardScreenState extends State<CardScreen> {
         title: S.of(context).homeScreen_second_tabBarTitle,
         hasNotificationsButton: true,
         hasDarkThemeToggle: true,
+        googleAvatarThumbnail:
+            Provider.of<DBSyncProvider>(context, listen: false)
+                .user
+                .avatarThumbnail,
       ),
       floatingActionButton: AppFloatingButtonIconAndText(
         label: S.of(context).cardScreen_fab_title,
@@ -65,6 +70,9 @@ class CardScreenState extends State<CardScreen> {
         // AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
       ),
       floatingActionButtonLocation: kFloatingButtonLocationAdaptive(context),
+      bottomNavigationBar:
+          Provider.of<NavigationBarShared>(context, listen: false)
+              .getNavigationBar,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

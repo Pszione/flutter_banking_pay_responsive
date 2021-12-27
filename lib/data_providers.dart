@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/components/material_you_navigation_bar_custom.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -32,6 +33,34 @@ class ThemeProvider extends ChangeNotifier {
   // Provider.of<ThemeProvider>(context).isDarkMode
   //     ? ThemeMode.dark
   //     : ThemeMode.light;
+}
+
+class SetupScreenObservable extends ChangeNotifier {
+  //
+  void notifyOnWillPop() {
+    notifyListeners();
+  }
+}
+
+class NavigationBarShared extends ChangeNotifier {
+  late final MaterialYouNavigationBarCustom _navigationBar;
+
+  bool isInitialized = false;
+  MaterialYouNavigationBarCustom? get getNavigationBar =>
+      isInitialized ? _navigationBar : null;
+
+  void init(
+      {required ValueNotifier<int> getCurrentIndex,
+      required void Function(int) callbackOnPress}) {
+    if (!isInitialized) {
+      _navigationBar = MaterialYouNavigationBarCustom(
+        getCurrentIndex: getCurrentIndex,
+        callbackOnPress: callbackOnPress,
+      );
+      isInitialized = true;
+      notifyListeners();
+    }
+  }
 }
 
 class SettingsProvider extends ChangeNotifier {

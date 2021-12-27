@@ -8,6 +8,7 @@ import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/screens/googleScreenBase/google_screen_base.dart';
 import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class ScanCardScreen extends StatefulWidget {
   const ScanCardScreen({Key? key}) : super(key: key);
@@ -27,6 +28,10 @@ class _ScanCardScreenState extends State<ScanCardScreen> {
           : AppBarComplete(
               hasNotificationsButton: false,
               hasGoogleAccountAvatar: false,
+              googleAvatarThumbnail:
+                  Provider.of<DBSyncProvider>(context, listen: false)
+                      .user
+                      .avatarThumbnail,
             ),
       child: buildScanCard(),
     );
