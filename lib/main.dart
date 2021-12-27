@@ -43,6 +43,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<DBSyncProvider>(
           create: (_) => DBSyncProvider(),
         ),
+        ChangeNotifierProvider<SetupScreenObservable>(
+          create: (_) => SetupScreenObservable(),
+        ),
+        // ChangeNotifierProvider<MaterialYouNavigationBarCustom>(
+        //   create: (_) MaterialYouNavigationBarCustom(),
+        // ),
         //
         ChangeNotifierProvider<SetupScreen>(
           // create: (_) => SetupScreen(),

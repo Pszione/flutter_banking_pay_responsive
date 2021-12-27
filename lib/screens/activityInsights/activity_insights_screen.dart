@@ -123,6 +123,10 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
     handleObservableTransactionOpening();
 
+    // TODO: add to will pop
+    // Provider.of<DBSyncProvider>(context, listen: false)
+    //     .clearClickedTransactionIndex();
+
     return Scaffold(
       key: widget.keyScreen,
       appBar: AppBarComplete(

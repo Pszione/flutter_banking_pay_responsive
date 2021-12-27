@@ -8,6 +8,8 @@ import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity
 import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen_controller.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 // ignore_for_file: unused_local_variable, unused_field_variable
@@ -22,6 +24,8 @@ class SetupScreen extends StatefulWidget with ChangeNotifier {
 }
 
 class SetupScreenState extends State<SetupScreen> {
+  final SetupScreenController controller = GetIt.I<SetupScreenController>();
+
   List<Widget> menuWidgets = <Widget>[
     // HomeScreen(), CardScreen(), ActivityInsightsScreen(),
     Consumer<HomeScreen>(builder: (_, screen, __) => screen),
@@ -65,9 +69,9 @@ class SetupScreenState extends State<SetupScreen> {
 
     return WillPopScope(
       onWillPop: () {
-        notifyPopDependencies();
-        print('Press: back button on ${widget.keyScreen}');
-        return Future.value(popSelectedMenu());
+        bool willPop = popSelectedMenu();
+        notifyPopDependencies(willPop);
+        return Future.value(false);
       },
       child: Scaffold(
         key: widget.keyScreen,
@@ -93,27 +97,10 @@ class SetupScreenState extends State<SetupScreen> {
       }
       getCurrentSelectedIndex.value = index;
       HapticFeedback.selectionClick();
-      notifyPopDependencies();
+      notifyPopDependencies(true);
 
       print("Index: $selectedIndex");
     });
-  }
-
-  void callbackOnBottomNavigationPress(int newIndex) {
-    changeSelectedMenu(newIndex);
-  }
-
-  void notifyPopDependencies() {
-    // TODO: create observer pattern
-    // HomeScreen
-    Provider.of<HomeScreen>(context, listen: false)
-        .keyValueScreen
-        .value
-        .openCloseStateFAB
-        .value = false;
-    // ActivityScreen
-    Provider.of<DBSyncProvider>(context, listen: false)
-        .clearClickedTransactionIndex();
   }
 
   bool popSelectedMenu() {
@@ -124,5 +111,14 @@ class SetupScreenState extends State<SetupScreen> {
       changeSelectedMenu(selectedIndex - 1);
     }
     return false; // or will exit app
+  }
+
+  void callbackOnBottomNavigationPress(int newIndex) {
+    changeSelectedMenu(newIndex);
+  }
+
+  void notifyPopDependencies(bool willPop) {
+    // TODO: create observer pattern
+    Provider.of<SetupScreenObservable>(context, listen: false).notifyOnWillPop();
   }
 }

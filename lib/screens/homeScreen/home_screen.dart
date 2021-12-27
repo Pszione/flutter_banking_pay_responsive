@@ -62,6 +62,13 @@ class HomeScreenState extends State<HomeScreen> {
     openCloseStateFAB.value = true; // toggle
   }
 
+  // TODO: add to will pop
+  // Provider.of<HomeScreen>(context, listen: false)
+  //     .keyValueScreen
+  //     .value
+  //     .openCloseStateFAB
+  //     .value = false;
+
   @override
   Widget build(BuildContext context) {
     MyApp.changeWebAppTabName(label: null);

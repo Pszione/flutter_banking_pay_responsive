@@ -34,6 +34,13 @@ class ThemeProvider extends ChangeNotifier {
   //     : ThemeMode.light;
 }
 
+class SetupScreenObservable extends ChangeNotifier{
+  //
+  void notifyOnWillPop(){
+    notifyListeners();
+  }
+}
+
 class SettingsProvider extends ChangeNotifier {
   List<bool?> options = [true, false, false, null, true, true, null, null];
   // TODO: we are not using last two booleans
