@@ -20,6 +20,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     MyApp.changeWebAppTabName(
         label: S.of(context).googleAccountDialog_settings_button_title);
+    MyApp.handleSystemUIColor(context, null);
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final settingsData = SettingsTexts(l10nInstance: S.of(context));
 
