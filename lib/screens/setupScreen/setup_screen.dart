@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/core/android_quick_actions_shortcuts.dart';
+import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
 import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/enums.dart';
@@ -41,8 +42,17 @@ class SetupScreenState extends State<SetupScreen> {
 
     widget.keyValueScreen = ValueKey(this);
 
-    // BuildContext _context = widget.keyScreen.currentContext!;
-    // QuickActionsCustom().initializeDelayed(_context);
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      MyApp.handleFullscreenSystemUIMode(context);
+      Provider.of<NavigationBarShared>(context, listen: false).init(
+          getCurrentIndex: getCurrentSelectedIndex,
+          callbackOnPress: callbackOnBottomNavigationPress);
+      // TODO
+      Navigator.of(context).pushNamed(RouteController.routeHomeScreen);
+      //
+      BuildContext _context = widget.keyScreen.currentContext!;
+      QuickActionsCustom().initializeDelayed(_context);
+    });
   }
 
   @override
@@ -53,12 +63,6 @@ class SetupScreenState extends State<SetupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    MyApp.handleFullscreenSystemUIMode(context);
-
-    Provider.of<NavigationBarShared>(context, listen: false).init(
-        getCurrentIndex: getCurrentSelectedIndex,
-        callbackOnPress: callbackOnBottomNavigationPress);
-
     return WillPopScope(
       onWillPop: () {
         bool willPop = popSelectedMenu();
@@ -67,9 +71,9 @@ class SetupScreenState extends State<SetupScreen> {
       },
       child: Scaffold(
         key: widget.keyScreen,
-        body: Center(
-          child: menuWidgets.elementAt(selectedIndex),
-        ),
+        // body: Center(
+        //   child: menuWidgets.elementAt(selectedIndex),
+        // ),
         bottomNavigationBar:
             Provider.of<NavigationBarShared>(context, listen: false)
                 .getNavigationBar,
