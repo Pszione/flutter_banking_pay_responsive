@@ -37,85 +37,101 @@ class SettingsScreen extends StatelessWidget {
             children: [
               const SizedBox(height: kHugePadding),
               // TODO: use List and Loop
-              BuildGoogleListSettingButton(
-                label: settingsData.optionEmailUpdates().label,
-                description: settingsData.optionEmailUpdates().description,
-                icon: settingsData.optionEmailUpdates().icon,
-                switchValue: settingsProvider
-                    .options[settingsData.optionEmailUpdates().saveIndex!]!,
-                onPress: (bool value) => settingsProvider.changeOption(
-                    settingsData.optionEmailUpdates().saveIndex!, value),
-              ),
-              BuildGoogleListSettingButton(
-                label: settingsData.optionPurchaseNotifications().label,
-                description:
-                    settingsData.optionPurchaseNotifications().description,
-                icon: settingsData.optionPurchaseNotifications().icon,
-                switchValue: settingsProvider.options[
-                    settingsData.optionPurchaseNotifications().saveIndex!]!,
-                onPress: (bool value) => settingsProvider.changeOption(
-                    settingsData.optionPurchaseNotifications().saveIndex!,
-                    value),
-              ),
-              BuildGoogleListSettingButton(
-                label: settingsData.optionTicketsUpdates().label,
-                description: settingsData.optionTicketsUpdates().description,
-                icon: settingsData.optionTicketsUpdates().icon,
-                switchValue: settingsProvider
-                    .options[settingsData.optionTicketsUpdates().saveIndex!]!,
-                onPress: (bool value) => settingsProvider.changeOption(
-                    settingsData.optionTicketsUpdates().saveIndex!, value),
-              ),
+              Builder(builder: (_) {
+                var data = settingsData.optionEmailUpdates();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: settingsProvider.options[data.saveIndex!]!,
+                  onPress: (bool value) =>
+                      settingsProvider.changeOption(data.saveIndex!, value),
+                );
+              }),
+              Builder(builder: (_) {
+                var data = settingsData.optionPurchaseNotifications();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: settingsProvider.options[data.saveIndex!]!,
+                  onPress: (bool value) =>
+                      settingsProvider.changeOption(data.saveIndex!, value),
+                );
+              }),
+              Builder(builder: (_) {
+                var data = settingsData.optionTicketsUpdates();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: settingsProvider.options[data.saveIndex!]!,
+                  onPress: (bool value) =>
+                      settingsProvider.changeOption(data.saveIndex!, value),
+                );
+              }),
               buildDividerWithPadding(),
-              BuildGoogleListSettingButton(
-                label: settingsData.optionEditAccountInfo().label,
-                description: settingsData.optionEditAccountInfo().description,
-                icon: settingsData.optionEditAccountInfo().icon,
-                switchValue: false,
-                onPress: (bool value) => controller.launchUrlGoogleAccount(),
-                overrideSwitchButton: buildOptionEditAccountInfo(context),
-              ),
+              Builder(builder: (_) {
+                var data = settingsData.optionEditAccountInfo();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: false,
+                  onPress: (bool value) => controller.launchUrlGoogleAccount(),
+                  overrideSwitchButton: buildOptionEditAccountInfo(context),
+                );
+              }),
               buildDividerWithPadding(),
-              BuildGoogleListSettingButton(
-                label: settingsData.optionShareUserLocation().label,
-                description: settingsData.optionShareUserLocation().description,
-                icon: settingsData.optionShareUserLocation().icon,
-                switchValue: settingsProvider.options[
-                    settingsData.optionShareUserLocation().saveIndex!]!,
-                onPress: (bool value) => settingsProvider.changeOption(
-                    settingsData.optionShareUserLocation().saveIndex!, value),
-              ),
-              BuildGoogleListSettingButton(
-                label: settingsData.optionTravelNotice().label,
-                description: settingsData.optionTravelNotice().description,
-                icon: settingsData.optionTravelNotice().icon,
-                switchValue: settingsProvider
-                    .options[settingsData.optionTravelNotice().saveIndex!]!,
-                onPress: (bool value) => settingsProvider.changeOption(
-                    settingsData.optionTravelNotice().saveIndex!, value),
-              ),
+              Builder(builder: (_) {
+                var data = settingsData.optionShareUserLocation();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: settingsProvider.options[data.saveIndex!]!,
+                  onPress: (bool value) =>
+                      settingsProvider.changeOption(data.saveIndex!, value),
+                );
+              }),
+              Builder(builder: (_) {
+                var data = settingsData.optionTravelNotice();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: settingsProvider.options[data.saveIndex!]!,
+                  onPress: (bool value) =>
+                      settingsProvider.changeOption(data.saveIndex!, value),
+                );
+              }),
               buildDividerWithPadding(),
               //
               const BuildGoogleListTitle(label: 'Advanced'),
-              BuildGoogleListSettingButton(
-                label: settingsData.optionAppSystemSettings().label,
-                description: settingsData.optionAppSystemSettings().description,
-                icon: settingsData.optionAppSystemSettings().icon,
-                switchValue: false,
-                onPress: (bool value) async => controller.callPlatformSettings(
-                    context, SettingsEnum01.APP),
-                overrideSwitchButton: const SizedBox(),
-              ),
-              BuildGoogleListSettingButton(
-                label: settingsData.optionAppSystemNFCSettings().label,
-                description:
-                    settingsData.optionAppSystemNFCSettings().description,
-                icon: settingsData.optionAppSystemNFCSettings().icon,
-                switchValue: false,
-                onPress: (bool value) async => controller.callPlatformSettings(
-                    context, SettingsEnum01.NFC),
-                overrideSwitchButton: const SizedBox(),
-              ),
+              Builder(builder: (_) {
+                var data = settingsData.optionAppSystemSettings();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: false,
+                  onPress: (bool value) async => controller
+                      .callPlatformSettings(context, SettingsEnum01.APP),
+                  overrideSwitchButton: const SizedBox(),
+                );
+              }),
+              Builder(builder: (_) {
+                var data = settingsData.optionAppSystemNFCSettings();
+                return BuildGoogleListSettingButton(
+                  label: data.label,
+                  description: data.description,
+                  icon: data.icon,
+                  switchValue: false,
+                  onPress: (bool value) async => controller
+                      .callPlatformSettings(context, SettingsEnum01.NFC),
+                  overrideSwitchButton: const SizedBox(),
+                );
+              }),
             ],
           ),
         ),
