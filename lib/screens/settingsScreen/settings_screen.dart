@@ -1,37 +1,34 @@
-import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/components/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/components/google_list_decorations.dart';
 import 'package:flutter_banking_pay_responsive/constants.dart';
-import 'package:flutter_banking_pay_responsive/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/models/settings_texts.dart';
 import 'package:flutter_banking_pay_responsive/responsive.dart';
-import 'package:flutter_banking_pay_responsive/snackbar_errors.dart';
-import 'package:flutter_banking_pay_responsive/utils.dart';
+import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen_controller.dart';
 import 'package:provider/provider.dart';
 
+import '../../data_providers.dart';
+
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({Key? key, required this.controller}) : super(key: key);
+
+  final SettingsScreenController controller;
 
   @override
   Widget build(BuildContext context) {
-    late SettingsTexts settingsData =
-        SettingsTexts(l10nInstance: S.of(context));
-    final settingsProvider = Provider.of<SettingsProvider>(context);
     MyApp.changeWebAppTabName(
         label: S.of(context).googleAccountDialog_settings_button_title);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+    final settingsData = SettingsTexts(l10nInstance: S.of(context));
 
     return Scaffold(
       appBar: AppBarComplete(
         title: S.of(context).googleAccountDialog_settings_button_title,
         hasNotificationsButton: false,
         hasDarkThemeToggle: true,
-        googleAvatarThumbnail:
-            Provider.of<DBSyncProvider>(context, listen: false)
-                .user
-                .avatarThumbnail,
+        googleAvatarThumbnail: controller.getGoogleAvatarThumbnail(),
       ),
       body: ResponsiveWidthConstrained(
         child: SingleChildScrollView(
@@ -39,16 +36,15 @@ class SettingsScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: kHugePadding),
+              // TODO: use List and Loop
               BuildGoogleListSettingButton(
                 label: settingsData.optionEmailUpdates().label,
                 description: settingsData.optionEmailUpdates().description,
                 icon: settingsData.optionEmailUpdates().icon,
                 switchValue: settingsProvider
                     .options[settingsData.optionEmailUpdates().saveIndex!]!,
-                onPress: (bool value) =>
-                    // switch automagically inverts !value
-                    settingsProvider.changeOption(
-                        settingsData.optionEmailUpdates().saveIndex!, value),
+                onPress: (bool value) => settingsProvider.changeOption(
+                    settingsData.optionEmailUpdates().saveIndex!, value),
               ),
               BuildGoogleListSettingButton(
                 label: settingsData.optionPurchaseNotifications().label,
@@ -76,12 +72,7 @@ class SettingsScreen extends StatelessWidget {
                 description: settingsData.optionEditAccountInfo().description,
                 icon: settingsData.optionEditAccountInfo().icon,
                 switchValue: false,
-                onPress: (bool value) {
-                  Https.launchURL(
-                      url: 'https://myaccount.google.com/',
-                      forceWebView: false);
-                },
-                //
+                onPress: (bool value) => controller.launchUrlGoogleAccount(),
                 overrideSwitchButton: buildOptionEditAccountInfo(context),
               ),
               buildDividerWithPadding(),
@@ -111,10 +102,8 @@ class SettingsScreen extends StatelessWidget {
                 description: settingsData.optionAppSystemSettings().description,
                 icon: settingsData.optionAppSystemSettings().icon,
                 switchValue: false,
-                onPress: (bool value) async => !WebProvider.isWebPlatform
-                    ? await AppSettings.openAppSettings()
-                    : AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
-                //
+                onPress: (bool value) async => controller.callPlatformSettings(
+                    context, SettingsEnum01.APP),
                 overrideSwitchButton: const SizedBox(),
               ),
               BuildGoogleListSettingButton(
@@ -123,10 +112,8 @@ class SettingsScreen extends StatelessWidget {
                     settingsData.optionAppSystemNFCSettings().description,
                 icon: settingsData.optionAppSystemNFCSettings().icon,
                 switchValue: false,
-                onPress: (bool value) async => !WebProvider.isWebPlatform
-                    ? await AppSettings.openNFCSettings()
-                    : AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
-                //
+                onPress: (bool value) async => controller.callPlatformSettings(
+                    context, SettingsEnum01.NFC),
                 overrideSwitchButton: const SizedBox(),
               ),
             ],
@@ -137,17 +124,16 @@ class SettingsScreen extends StatelessWidget {
   }
 
   // TODO: is this right? Duplicate for other options?
-  Padding buildOptionEditAccountInfo(BuildContext context) {
+  Widget buildOptionEditAccountInfo(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: kHalfPadding / 2),
+      padding: const EdgeInsets.symmetric(horizontal: kHalfPadding / 2),
       child: IconButton(
         icon: Icon(
           Icons.add_to_home_screen_rounded,
           size: kMediumIconSize * 1.2,
           color: Theme.of(context).primaryColorDark.withOpacity(0.65),
         ),
-        onPressed: () => Https.launchURL(
-            url: 'https://myaccount.google.com/', forceWebView: false),
+        onPressed: () => controller.launchUrlGoogleAccount(),
       ),
     );
   }

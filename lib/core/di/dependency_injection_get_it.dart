@@ -1,5 +1,8 @@
+import 'package:flutter_banking_pay_responsive/data_providers.dart';
+import 'package:flutter_banking_pay_responsive/screens/googleAccountDialogScreen/google_account_dialog.dart';
 import 'package:flutter_banking_pay_responsive/screens/googleAccountDialogScreen/google_account_dialog_controller.dart';
 import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen_controller.dart';
 import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,14 +19,25 @@ Future<void> init() async {
 
   // controllers
   // your application may need a Singleton or Factory, you decide!
+  getIt.registerLazySingleton<DBSyncProvider>(
+    () => DBSyncProvider(),
+  );
   getIt.registerLazySingleton<GoogleAccountDialogScreenController>(
     () => GoogleAccountDialogScreenController(),
+  );
+  getIt.registerLazySingleton<SettingsScreenController>(
+    () => SettingsScreenController(),
   );
   // screens
   getIt.registerLazySingleton<SetupScreen>(
     () => SetupScreen(),
   );
+  // TODO
+  // getIt.registerLazySingletonAsync(
+  //   GoogleAccountDialog(key: UniqueKey())
+  //       .showDialogDismissible(getIt(), getIt()),
+  // );
   getIt.registerLazySingleton<SettingsScreen>(
-    () => const SettingsScreen(),
+    () => SettingsScreen(controller: getIt()),
   );
 }
