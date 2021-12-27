@@ -26,6 +26,9 @@ class SetupScreen extends StatefulWidget with ChangeNotifier {
 class SetupScreenState extends State<SetupScreen> {
   final SetupScreenController controller = GetIt.I<SetupScreenController>();
 
+  ValueNotifier<int> getCurrentSelectedIndex = ValueNotifier(0);
+  int get selectedIndex => getCurrentSelectedIndex.value;
+
   List<Widget> menuWidgets = <Widget>[
     // HomeScreen(), CardScreen(), ActivityInsightsScreen(),
     Consumer<HomeScreen>(builder: (_, screen, __) => screen),
@@ -37,11 +40,6 @@ class SetupScreenState extends State<SetupScreen> {
     getCurrentIndex: getCurrentSelectedIndex,
     callbackOnPress: callbackOnBottomNavigationPress,
   );
-
-  ValueNotifier<int> getCurrentSelectedIndex = ValueNotifier(0);
-  int get selectedIndex => getCurrentSelectedIndex.value;
-  MenuState get selectedMenuState => MenuState.values[selectedIndex];
-  Type get selectedWidgetType => menuWidgets[selectedIndex].runtimeType;
 
   @override
   void initState() {
@@ -62,10 +60,6 @@ class SetupScreenState extends State<SetupScreen> {
   @override
   Widget build(BuildContext context) {
     MyApp.handleFullscreenSystemUIMode(context);
-    final currentThemeMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark
-            ? ThemeMode.dark
-            : ThemeMode.light;
 
     return WillPopScope(
       onWillPop: () {
@@ -119,6 +113,7 @@ class SetupScreenState extends State<SetupScreen> {
 
   void notifyPopDependencies(bool willPop) {
     // TODO: create observer pattern
-    Provider.of<SetupScreenObservable>(context, listen: false).notifyOnWillPop();
+    Provider.of<SetupScreenObservable>(context, listen: false)
+        .notifyOnWillPop();
   }
 }

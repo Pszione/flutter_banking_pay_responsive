@@ -13,6 +13,7 @@ enum SettingsEnum01 { APP, NFC }
 class SettingsScreenController {
   final SettingsProvider settingsProvider = SettingsProvider();
   // TODO: Provider.of<SettingsProvider>(context); without context
+  // TODO: Consumer<HomeScreen>(builder: (_, screen, __) => screen)
 
   final SettingsTexts settingsLocalization =
       SettingsTexts(l10nInstance: S.current);

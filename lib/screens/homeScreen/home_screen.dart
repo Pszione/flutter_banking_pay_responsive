@@ -80,7 +80,10 @@ class HomeScreenState extends State<HomeScreen> {
         hasSearchField: true,
         hasDarkThemeToggle: true,
         openCloseStateSearch: openCloseStateSearch,
-        googleAvatarThumbnail: Provider.of<DBSyncProvider>(context, listen: false).user.avatarThumbnail,
+        googleAvatarThumbnail:
+            Provider.of<DBSyncProvider>(context, listen: false)
+                .user
+                .avatarThumbnail,
       ),
       // Cards
       floatingActionButton: _isFloatingButtonVisible
