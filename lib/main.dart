@@ -51,17 +51,16 @@ class MyApp extends StatelessWidget {
         ),
         //
         ChangeNotifierProvider<SetupScreen>(
-          // create: (_) => SetupScreen(),
           create: (_) => GetIt.I<SetupScreen>(),
         ),
         ChangeNotifierProvider<HomeScreen>(
-          create: (_) => HomeScreen(),
+          create: (_) => GetIt.I<HomeScreen>(),
         ),
         ChangeNotifierProvider<CardScreen>(
-          create: (_) => CardScreen(),
+          create: (_) => GetIt.I<CardScreen>(),
         ),
         ChangeNotifierProvider<ActivityInsightsScreen>(
-          create: (_) => ActivityInsightsScreen(),
+          create: (_) => GetIt.I<ActivityInsightsScreen>(),
         ),
       ],
       child: Builder(builder: (context) {
