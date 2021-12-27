@@ -48,6 +48,8 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
     SchedulerBinding.instance?.addPostFrameCallback((_) {
       // WidgetsBinding.instance?.addPostFrameCallback
+      MyApp.changeWebAppTabName(
+          label: S.of(context).homeScreen_third_tabBarTitle);
       Provider.of<DBSyncProvider>(context, listen: false)
           .markNotificationsAsRead();
     });
@@ -103,7 +105,7 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     // print(indicesVisible);
   }
 
-  void handleObservableTransactionOpening() async {
+  void handleObservableTransactionOpening(BuildContext context) async {
     await Future.delayed(const Duration(milliseconds: 500));
     var provider = Provider.of<DBSyncProvider>(context, listen: false);
 
@@ -118,106 +120,111 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
   @override
   Widget build(BuildContext context) {
-    MyApp.changeWebAppTabName(
-        label: S.of(context).homeScreen_third_tabBarTitle);
+    handleObservableTransactionOpening(context);
 
-    handleObservableTransactionOpening();
+    return WillPopScope(
+      onWillPop: () {
+        Provider.of<DBSyncProvider>(context, listen: false)
+            .clearClickedTransactionIndex();
+        return Future.value(true);
+      },
+      child: Scaffold(
+        key: widget.keyScreen,
+        appBar: AppBarComplete(
+          title: S.of(context).homeScreen_third_tabBarTitle,
+          hasNotificationsButton: false,
+          hasDarkThemeToggle: true,
+          googleAvatarThumbnail:
+              Provider.of<DBSyncProvider>(context, listen: false)
+                  .user
+                  .avatarThumbnail,
+        ),
+        floatingActionButton: _isFloatingButtonVisible
+            ? AppFloatingButtonIconAndText(
+                icon: Icons.arrow_downward_rounded,
+                label: null,
+                tooltip: S
+                    .of(context)
+                    .activityScreen_TOOLTIP_fabDownward_description,
+                // TODO
+                onPressed: () =>
+                    scrollToItem((indicesVisible.last * 1.5).abs().round()),
+              )
+            : AppFloatingButtonIconAndText(
+                icon: Icons.arrow_upward_rounded,
+                label: null,
+                tooltip:
+                    S.of(context).activityScreen_TOOLTIP_fabUpward_description,
+                // TODO
+                onPressed: () =>
+                    scrollToItem((indicesVisible.first / 2.5).abs().ceil()),
+              ),
+        bottomNavigationBar:
+            Provider.of<NavigationBarShared>(context, listen: false)
+                .getNavigationBar,
+        body: NotificationListener<UserScrollNotification>(
+          onNotification: (notification) {
+            // opposite
+            if (notification.direction == ScrollDirection.reverse) {
+              if (!_isFloatingButtonVisible)
+                setState(() => _isFloatingButtonVisible = true);
+            } else if (notification.direction == ScrollDirection.forward) {
+              if (_isFloatingButtonVisible)
+                setState(() => _isFloatingButtonVisible = false);
+            }
+            return true;
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: kHalfPadding), // only
+            child: PageStorage(
+              bucket: bucketStorageForActivityScreen,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ScrollablePositionedList.separated(
+                      itemScrollController: itemController,
+                      itemPositionsListener: itemsListener,
+                      key: const PageStorageKey<String>('activityScreenKey'),
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: kHalfPadding);
+                      },
+                      itemCount: myTransactions.length,
+                      itemBuilder: (_, int index) {
+                        var newItem = TransactionCard(
+                          transaction: myTransactions[index],
+                          transactionIndex: index,
+                          withAvatarImage: false,
+                          withClickableIndicator: true,
+                          // TODO
+                          onPress: () => Share.share(
+                              '${S.of(context).share_message_checkOutMyNewProject} $K_WEBSITE_PEDRO_SANTOS',
+                              subject: S.of(context).share_message_iveDoneIt),
+                          // onPress: () => AppSlidingBottomSheet.demoSheet(context),
+                        );
+                        transactionList.add(newItem);
 
-    // TODO: add to will pop
-    // Provider.of<DBSyncProvider>(context, listen: false)
-    //     .clearClickedTransactionIndex();
-
-    return Scaffold(
-      key: widget.keyScreen,
-      appBar: AppBarComplete(
-        title: S.of(context).homeScreen_third_tabBarTitle,
-        hasNotificationsButton: false,
-        hasDarkThemeToggle: true,
-        googleAvatarThumbnail:
-            Provider.of<DBSyncProvider>(context, listen: false)
-                .user
-                .avatarThumbnail,
-      ),
-      floatingActionButton: _isFloatingButtonVisible
-          ? AppFloatingButtonIconAndText(
-              icon: Icons.arrow_downward_rounded,
-              label: null,
-              tooltip:
-                  S.of(context).activityScreen_TOOLTIP_fabDownward_description,
-              // TODO
-              onPressed: () =>
-                  scrollToItem((indicesVisible.last * 1.5).abs().round()),
-            )
-          : AppFloatingButtonIconAndText(
-              icon: Icons.arrow_upward_rounded,
-              label: null,
-              tooltip:
-                  S.of(context).activityScreen_TOOLTIP_fabUpward_description,
-              // TODO
-              onPressed: () =>
-                  scrollToItem((indicesVisible.first / 2.5).abs().ceil()),
-            ),
-      body: NotificationListener<UserScrollNotification>(
-        onNotification: (notification) {
-          // opposite
-          if (notification.direction == ScrollDirection.reverse) {
-            if (!_isFloatingButtonVisible)
-              setState(() => _isFloatingButtonVisible = true);
-          } else if (notification.direction == ScrollDirection.forward) {
-            if (_isFloatingButtonVisible)
-              setState(() => _isFloatingButtonVisible = false);
-          }
-          return true;
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: kHalfPadding), // only
-          child: PageStorage(
-            bucket: bucketStorageForActivityScreen,
-            child: Column(
-              children: [
-                Expanded(
-                  child: ScrollablePositionedList.separated(
-                    itemScrollController: itemController,
-                    itemPositionsListener: itemsListener,
-                    key: const PageStorageKey<String>('activityScreenKey'),
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: kHalfPadding);
-                    },
-                    itemCount: myTransactions.length,
-                    itemBuilder: (_, int index) {
-                      var newItem = TransactionCard(
-                        transaction: myTransactions[index],
-                        transactionIndex: index,
-                        withAvatarImage: false,
-                        withClickableIndicator: true,
-                        // TODO
-                        onPress: () => Share.share(
-                            '${S.of(context).share_message_checkOutMyNewProject} $K_WEBSITE_PEDRO_SANTOS',
-                            subject: S.of(context).share_message_iveDoneIt),
-                        // onPress: () => AppSlidingBottomSheet.demoSheet(context),
-                      );
-                      transactionList.add(newItem);
-
-                      return ResponsiveWidthConstrained(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: kDefaultPadding,
-                              right: kDefaultPadding,
-                              bottom: index == myTransactions.length - 1
-                                  ? _listScrollBottomSpacer
-                                  : 0),
-                          child: newItem,
-                        ),
-                      );
-                    },
-                    padding: const EdgeInsets.only(bottom: kHalfPadding),
+                        return ResponsiveWidthConstrained(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: kDefaultPadding,
+                                right: kDefaultPadding,
+                                bottom: index == myTransactions.length - 1
+                                    ? _listScrollBottomSpacer
+                                    : 0),
+                            child: newItem,
+                          ),
+                        );
+                      },
+                      padding: const EdgeInsets.only(bottom: kHalfPadding),
+                    ),
                   ),
-                ),
-                if (MediaQuery.of(context).orientation == Orientation.portrait)
-                  const SizedBox(height: 70),
-              ],
+                  if (MediaQuery.of(context).orientation ==
+                      Orientation.portrait)
+                    const SizedBox(height: 70),
+                ],
+              ),
             ),
           ),
         ),

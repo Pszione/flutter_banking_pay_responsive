@@ -70,6 +70,9 @@ class CardScreenState extends State<CardScreen> {
         // AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
       ),
       floatingActionButtonLocation: kFloatingButtonLocationAdaptive(context),
+      bottomNavigationBar:
+          Provider.of<NavigationBarShared>(context, listen: false)
+              .getNavigationBar,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

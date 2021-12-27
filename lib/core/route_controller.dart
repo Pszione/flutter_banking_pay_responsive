@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/errorRouteScreen/error_route_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
 import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_screen.dart';
@@ -14,6 +15,9 @@ class RouteController {
 
   /// '/home
   static const String routeHomeScreen = '/home';
+
+  /// '/cards
+  static const String routeCardScreen = '/cards';
 
   /// '/activity\_insights
   static const String routeActivityInsights = '/activity_insights';
@@ -50,6 +54,11 @@ class RouteController {
           builder: (context) => GetIt.I<HomeScreen>(),
           settings: settings,
         );
+      case routeCardScreen:
+        return MaterialPageRoute(
+          builder: (context) => GetIt.I<CardScreen>(),
+          settings: settings,
+        );
       case routeScanCard:
         return MaterialPageRoute(
           builder: (context) => const ScanCardScreen(),
@@ -61,9 +70,6 @@ class RouteController {
           settings: settings,
         );
       case routeSettings:
-        // TODO: context does not have ThemeData
-        // MyApp.handleSystemUIColor(
-        //     context, null);
         return MaterialPageRoute(
           builder: (context) => GetIt.I<SettingsScreen>(),
           settings: settings,

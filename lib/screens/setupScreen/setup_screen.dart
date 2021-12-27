@@ -93,10 +93,10 @@ class SetupScreenState extends State<SetupScreen> {
       getCurrentSelectedIndex.value = index;
       // Navigator.of(context).maybePop();
       Navigator.of(context)
-          .popUntil(ModalRoute.withName(RouteController.routeInitialRoute));
+          .popUntil(ModalRoute.withName(RouteController.routeHomeScreen));
     } else if (index == 1) {
       getCurrentSelectedIndex.value = index;
-      Navigator.of(context).pushNamed(RouteController.routeHomeScreen);
+      Navigator.of(context).pushNamed(RouteController.routeCardScreen);
     } else if (index == 2) {
       getCurrentSelectedIndex.value = index;
       Navigator.of(context).pushNamed(RouteController.routeActivityInsights);
@@ -104,16 +104,6 @@ class SetupScreenState extends State<SetupScreen> {
     HapticFeedback.selectionClick();
     notifyPopDependencies(true);
     print("New Index: $selectedIndex");
-    // setState(() {
-    //   if (index < 0 || index >= MenuState.values.length) {
-    //     index = 0;
-    //   }
-    //   getCurrentSelectedIndex.value = index;
-    //   HapticFeedback.selectionClick();
-    //   notifyPopDependencies(true);
-    //
-    //   print("Index: $selectedIndex");
-    // });
   }
 
   bool popSelectedMenu() {
@@ -122,6 +112,7 @@ class SetupScreenState extends State<SetupScreen> {
     }
     if (selectedIndex < MenuState.values.length) {
       changeSelectedMenu(selectedIndex - 1);
+      return true;
     }
     return false; // or will exit app
   }
