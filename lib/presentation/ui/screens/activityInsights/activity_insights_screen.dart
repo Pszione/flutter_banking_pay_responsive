@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/activity_insights_screen_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/transaction_widget.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/transaction.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
 import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/main.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:share_plus/share_plus.dart';
 
+// ignore_for_file: curly_braces_in_flow_control_structures
 class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
   ActivityInsightsScreen({Key? key}) : super(key: key);
 
@@ -28,13 +29,12 @@ class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
 class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 // implements AutomaticKeepAliveClientMixin<ActivityInsightsScreen> //
 {
+  var controller = GetIt.I<ActivityInsightsScreenController>();
+
+  final List<TransactionCard> _transactionCards = <TransactionCard>[];
   final itemController = ItemScrollController();
   final itemsListener = ItemPositionsListener.create();
   bool _isFloatingButtonVisible = true;
-  final double _listScrollBottomSpacer = 360.0;
-
-  final transactionList = <TransactionCard>[];
-  late List<int> indicesVisible = <int>[];
 
   @override
   void initState() {
@@ -60,34 +60,8 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     super.dispose();
   }
 
-  Future scrollToItem(int index) async {
-    itemController.scrollTo(
-        index: index, alignment: 0.33, duration: kShorterDuration);
-  }
-
-  Future scrollToFirst() async {
-    itemController.scrollTo(
-        index: 0, alignment: 0.33, duration: kShorterDuration);
-  }
-
-  Future scrollToLast() async {
-    itemController.scrollTo(
-        index: transactionList.length - 1,
-        alignment: 0.33,
-        duration: kShorterDuration);
-  }
-
-  void openSelectedTransaction(int index) {
-    if (transactionList.isEmpty || index >= transactionList.length) {
-      print('Error: ${openSelectedTransaction.toString()}');
-      return;
-    }
-    scrollToItem(index);
-    // transactionList[index].onPress.call(); // TODO
-  }
-
   void trackOnScreenIndices() {
-    indicesVisible = itemsListener.itemPositions.value
+    controller.indicesVisible = itemsListener.itemPositions.value
         .where((item) {
           // if (item.index == 10) print(item.itemLeadingEdge);
           // if (item.index == 10) print(item.itemTrailingEdge);
@@ -103,22 +77,38 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     // print(indicesVisible);
   }
 
-  void handleObservableTransactionOpening(BuildContext context) async {
-    await Future.delayed(const Duration(milliseconds: 500));
-    var provider = Provider.of<DBSyncProvider>(context, listen: false);
-
-    if (provider.clickedTransactionIndex != null) {
-      print('Transactions index is: ${provider.clickedTransactionIndex}');
-      openSelectedTransaction(provider.clickedTransactionIndex!);
-
-      await Future.delayed(const Duration(seconds: 3));
-      provider.clearClickedTransactionIndex(); // important
+  void openSelectedTransaction(int index) {
+    if (_transactionCards.isEmpty || index >= _transactionCards.length) {
+      print('Error: ${openSelectedTransaction.toString()}');
+      return;
     }
+    scrollToItem(index);
+    // transactionList[index].onPress.call(); // TODO
+  }
+
+  Future scrollToItem(int index) async {
+    itemController.scrollTo(
+        index: index, alignment: 0.33, duration: kShorterDuration);
+  }
+
+  Future scrollToFirst() async {
+    itemController.scrollTo(
+        index: 0, alignment: 0.33, duration: kShorterDuration);
+  }
+
+  Future scrollToLast() async {
+    itemController.scrollTo(
+        index: _transactionCards.length - 1,
+        alignment: 0.33,
+        duration: kShorterDuration);
   }
 
   @override
   Widget build(BuildContext context) {
-    handleObservableTransactionOpening(context);
+    controller.handleObservableTransactionOpening(
+      context,
+      openSelectedTransaction,
+    );
 
     return WillPopScope(
       onWillPop: () {
@@ -146,7 +136,7 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
                     .activityScreen_TOOLTIP_fabDownward_description,
                 // TODO
                 onPressed: () =>
-                    scrollToItem((indicesVisible.last * 1.5).abs().round()),
+                    scrollToItem(controller.calculateScrollDownIndices()),
               )
             : AppFloatingButtonIconAndText(
                 icon: Icons.arrow_upward_rounded,
@@ -155,7 +145,7 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
                     S.of(context).activityScreen_TOOLTIP_fabUpward_description,
                 // TODO
                 onPressed: () =>
-                    scrollToItem((indicesVisible.first / 2.5).abs().ceil()),
+                    scrollToItem(controller.calculateScrollUpIndices()),
               ),
         bottomNavigationBar:
             Provider.of<NavigationBarShared>(context, listen: false)
@@ -188,29 +178,26 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
                       separatorBuilder: (context, index) {
                         return const SizedBox(height: kHalfPadding);
                       },
-                      itemCount: myTransactions.length,
+                      itemCount: controller.transactions.length,
                       itemBuilder: (_, int index) {
                         var newItem = TransactionCard(
-                          transaction: myTransactions[index],
+                          transaction: controller.transactions[index],
                           transactionIndex: index,
                           withAvatarImage: false,
                           withClickableIndicator: true,
-                          // TODO
-                          onPress: () => Share.share(
-                              '${S.of(context).share_message_checkOutMyNewProject} $K_WEBSITE_PEDRO_SANTOS',
-                              subject: S.of(context).share_message_iveDoneIt),
-                          // onPress: () => AppSlidingBottomSheet.demoSheet(context),
+                          onPress: () => controller.showShareOptions(context),
                         );
-                        transactionList.add(newItem);
+                        _transactionCards.add(newItem);
 
                         return ResponsiveWidthConstrained(
                           child: Padding(
                             padding: EdgeInsets.only(
                                 left: kDefaultPadding,
                                 right: kDefaultPadding,
-                                bottom: index == myTransactions.length - 1
-                                    ? _listScrollBottomSpacer
-                                    : 0),
+                                bottom:
+                                    index == controller.transactions.length - 1
+                                        ? controller.listScrollBottomSpacer
+                                        : 0),
                             child: newItem,
                           ),
                         );

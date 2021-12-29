@@ -1,4 +1,7 @@
+import 'package:flutter_banking_pay_responsive/presentation/controllers/activity_insights_screen_controller.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/card_screen_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/home_screen_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/screens/activityInsights/activity_insights_screen.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/screens/cardScreen/card_screen.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/screens/googleAccountDialogScreen/google_account_dialog.dart';
@@ -28,6 +31,15 @@ Future<void> init() async {
   );
   getIt.registerLazySingleton<SetupScreenController>(
     () => SetupScreenController(),
+  );
+  getIt.registerLazySingleton<HomeScreenController>(
+    () => HomeScreenController(),
+  );
+  getIt.registerLazySingleton<CardScreenController>(
+    () => CardScreenController(),
+  );
+  getIt.registerLazySingleton<ActivityInsightsScreenController>(
+    () => ActivityInsightsScreenController(),
   );
   getIt.registerLazySingleton<GoogleAccountDialogScreenController>(
     () => GoogleAccountDialogScreenController(),
