@@ -9,6 +9,10 @@ import 'package:flutter_banking_pay_responsive/presentation/ui/screens/settingsS
 import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
 import 'package:get_it/get_it.dart';
 
+PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
+PageStorageBucket bucketStorageForHomeScreen = PageStorageBucket();
+PageStorageBucket bucketStorageForCardScreen = PageStorageBucket();
+
 class RouteController {
   /// '/'
   static const String routeInitialRoute = '/';

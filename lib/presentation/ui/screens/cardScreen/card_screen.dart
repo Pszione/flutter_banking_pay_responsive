@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_sliding_bottom_sheet.dart';
@@ -73,69 +74,73 @@ class CardScreenState extends State<CardScreen> {
       bottomNavigationBar:
           Provider.of<NavigationBarShared>(context, listen: false)
               .getNavigationBar,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: MediaQuery.of(context).orientation == Orientation.portrait ||
-                    Responsive.isDesktop(context)
-                ? 6
-                : 500, // no flex
-            // TODO: almost a copy of [UserCardsSection] widget in HomeScreen
-            child: Scrollbar(
-              isAlwaysShown: WebProvider.isWebPlatform,
-              child: ListView.separated(
-                key: const PageStorageKey<String>('cardScreenUserCardsKey'),
-                physics: const ClampingScrollPhysics(),
-                scrollDirection: _currentScrollAxis,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(
-                      width: kHalfPadding, height: kDefaultPadding);
-                },
-                shrinkWrap: true,
-                itemCount: myCards.length + 1,
-                itemBuilder: (_, index) {
-                  if (index == myCards.length) {
-                    // because of +1 in length I have to return something
-                    return !_isAxisVertical
-                        ? CardWidget.defaultDimension
-                        : const SizedBox.shrink();
-                  }
-                  return ResponsiveWidthConstrained(
-                    child: Center(
-                      child: CardWidget(
-                        // TODO: implement controller
-                        card: myCards[index],
-                        index: index,
-                        onPress: () => AppSlidingBottomSheet(
-                          context: context,
-                          initialSnap: _isAxisVertical ? 0.5 : 1.0,
-                          headerColor: CardModel.getCardColorNullSafety(
-                              card: myCards[index], opacity: 0.85),
-                          bodyWidget:
-                              CardOverviewSlidingSheet(card: myCards[index]),
-                        ).showStyledSheet(),
+      body: PageStorage(
+        bucket: bucketStorageForCardScreen,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex:
+                  MediaQuery.of(context).orientation == Orientation.portrait ||
+                          Responsive.isDesktop(context)
+                      ? 6
+                      : 500, // no flex
+              // TODO: almost a copy of [UserCardsSection] widget in HomeScreen
+              child: Scrollbar(
+                isAlwaysShown: WebProvider.isWebPlatform,
+                child: ListView.separated(
+                  key: const PageStorageKey<String>('cardScreenUserCardsKey'),
+                  physics: const ClampingScrollPhysics(),
+                  scrollDirection: _currentScrollAxis,
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(
+                        width: kHalfPadding, height: kDefaultPadding);
+                  },
+                  shrinkWrap: true,
+                  itemCount: myCards.length + 1,
+                  itemBuilder: (_, index) {
+                    if (index == myCards.length) {
+                      // because of +1 in length I have to return something
+                      return !_isAxisVertical
+                          ? CardWidget.defaultDimension
+                          : const SizedBox.shrink();
+                    }
+                    return ResponsiveWidthConstrained(
+                      child: Center(
+                        child: CardWidget(
+                          // TODO: implement controller
+                          card: myCards[index],
+                          index: index,
+                          onPress: () => AppSlidingBottomSheet(
+                            context: context,
+                            initialSnap: _isAxisVertical ? 0.5 : 1.0,
+                            headerColor: CardModel.getCardColorNullSafety(
+                                card: myCards[index], opacity: 0.85),
+                            bodyWidget:
+                                CardOverviewSlidingSheet(card: myCards[index]),
+                          ).showStyledSheet(),
+                        ),
                       ),
-                    ),
-                  );
-                },
-                padding: EdgeInsets.only(
-                  left: HomeScreen.desiredPadding.left,
-                  right: HomeScreen.desiredPadding.right,
-                  top: HomeScreen.desiredPadding.top,
-                  bottom: HomeScreen.desiredPadding.top,
+                    );
+                  },
+                  padding: EdgeInsets.only(
+                    left: HomeScreen.desiredPadding.left,
+                    right: HomeScreen.desiredPadding.right,
+                    top: HomeScreen.desiredPadding.top,
+                    bottom: HomeScreen.desiredPadding.top,
+                  ),
                 ),
               ),
             ),
-          ),
-          const Flexible(
-            flex: 1,
-            child: SizedBox(
-              width: double.infinity,
-              height: kHugePadding * 4,
+            const Flexible(
+              flex: 1,
+              child: SizedBox(
+                width: double.infinity,
+                height: kHugePadding * 4,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating_button_with_icon_and_text.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/transaction_widget.dart';
@@ -13,8 +14,6 @@ import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/resp
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
-
-PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 
 class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
   ActivityInsightsScreen({Key? key}) : super(key: key);

@@ -125,92 +125,96 @@ class HomeScreenState extends State<HomeScreen> {
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             behavior: HitTestBehavior.translucent,
             excludeFromSemantics: true,
-            child: Scrollbar(
-              isAlwaysShown: WebProvider.isWebPlatform,
-              // showTrackOnHover: WebProvider.isWebPlatform,
-              child: ListView(
-                physics: const ClampingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                // padding: const EdgeInsets.symmetric
-                children: [
-                  Padding(
-                    padding: !WebProvider.isWebPlatform
-                        ? EdgeInsets.zero
-                        : HomeScreen.desiredPadding.copyWith(top: 0, bottom: 0),
-                    child: ResponsiveWidthConstrained(
-                      child: Semantics(
-                        child: UserCardsSection(
-                            desiredPadding: HomeScreen.desiredPadding),
-                        label: S
-                            .of(context)
-                            .homeScreen_userCardSection_pageSubtitle,
-                        slider: true,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: kHalfPadding),
-                  Padding(
-                    padding: HomeScreen.desiredPadding,
-                    child: ResponsiveWidthConstrained(
-                        child: Semantics(
-                            child: CategoriesSection(
-                      onPressList: [
-                        () => openFAB(),
-                      ],
-                    ))),
-                  ),
-                  const SizedBox(height: kHalfPadding),
-                  Padding(
-                      padding: HomeScreen.desiredPadding,
-                      child: ResponsiveWidthConstrained(
-                        child:
-                            Semantics(child: const RecentTransactionsSection()),
-                      )),
-                  const SizedBox(height: kHalfPadding),
-                  Padding(
+            child: PageStorage(
+              bucket: bucketStorageForHomeScreen,
+              child: Scrollbar(
+                isAlwaysShown: WebProvider.isWebPlatform,
+                // showTrackOnHover: WebProvider.isWebPlatform,
+                child: ListView(
+                  key: const PageStorageKey<String>('homeScreenKey'),
+                  physics: const ClampingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
                       padding: !WebProvider.isWebPlatform
                           ? EdgeInsets.zero
                           : HomeScreen.desiredPadding
                               .copyWith(top: 0, bottom: 0),
                       child: ResponsiveWidthConstrained(
                         child: Semantics(
-                            child: NewsSection(
-                                desiredPadding: HomeScreen.desiredPadding)),
-                      )),
-                  const SizedBox(height: kDefaultPadding),
-                  const SizedBox(height: kDefaultPadding),
-                  ResponsiveWidthConstrained(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                          maxWidth: kMaxButtonConstraintWidth),
-                      child: Card(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: kHugePadding * 2.5),
-                        color: Theme.of(context).primaryColorLight,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: kDefaultBorderRadius,
-                          side: BorderSide(width: 2, color: kLightGrayColor),
+                          child: UserCardsSection(
+                              desiredPadding: HomeScreen.desiredPadding),
+                          label: S
+                              .of(context)
+                              .homeScreen_userCardSection_pageSubtitle,
+                          slider: true,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: kHalfPadding, horizontal: 3),
-                          child: BuildGoogleListButton(
-                            icon: Icons.settings_rounded,
-                            label: S
-                                .of(context)
-                                .googleAccountDialog_settings_button_title,
-                            alignment: MainAxisAlignment.center,
-                            onPress: () {
-                              Navigator.of(context)
-                                  .pushNamed(RouteController.routeSettings);
-                            },
+                      ),
+                    ),
+                    const SizedBox(height: kHalfPadding),
+                    Padding(
+                      padding: HomeScreen.desiredPadding,
+                      child: ResponsiveWidthConstrained(
+                          child: Semantics(
+                              child: CategoriesSection(
+                        onPressList: [
+                          () => openFAB(),
+                        ],
+                      ))),
+                    ),
+                    const SizedBox(height: kHalfPadding),
+                    Padding(
+                        padding: HomeScreen.desiredPadding,
+                        child: ResponsiveWidthConstrained(
+                          child: Semantics(
+                              child: const RecentTransactionsSection()),
+                        )),
+                    const SizedBox(height: kHalfPadding),
+                    Padding(
+                        padding: !WebProvider.isWebPlatform
+                            ? EdgeInsets.zero
+                            : HomeScreen.desiredPadding
+                                .copyWith(top: 0, bottom: 0),
+                        child: ResponsiveWidthConstrained(
+                          child: Semantics(
+                              child: NewsSection(
+                                  desiredPadding: HomeScreen.desiredPadding)),
+                        )),
+                    const SizedBox(height: kDefaultPadding),
+                    const SizedBox(height: kDefaultPadding),
+                    ResponsiveWidthConstrained(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                            maxWidth: kMaxButtonConstraintWidth),
+                        child: Card(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: kHugePadding * 2.5),
+                          color: Theme.of(context).primaryColorLight,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: kDefaultBorderRadius,
+                            side: BorderSide(width: 2, color: kLightGrayColor),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: kHalfPadding, horizontal: 3),
+                            child: BuildGoogleListButton(
+                              icon: Icons.settings_rounded,
+                              label: S
+                                  .of(context)
+                                  .googleAccountDialog_settings_button_title,
+                              alignment: MainAxisAlignment.center,
+                              onPress: () {
+                                Navigator.of(context)
+                                    .pushNamed(RouteController.routeSettings);
+                              },
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 80),
-                ],
+                    const SizedBox(height: 80),
+                  ],
+                ),
               ),
             ),
           ),
