@@ -21,7 +21,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
 
   final String? label, tooltip;
   final IconData? icon;
-  late ValueNotifier<bool>? openCloseState;
+  late final ValueNotifier<bool>? openCloseState;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
         color: Theme.of(context).primaryColorDark,
         size: kHugeIconSize,
       ),
-      buttonSize: kFabIconSize,
+      buttonSize: const Size(kFabIconSize, kFabIconSize),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
       label: label != null
