@@ -1,13 +1,13 @@
-import 'package:flutter_banking_pay_responsive/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/googleAccountDialogScreen/google_account_dialog.dart';
-import 'package:flutter_banking_pay_responsive/screens/googleAccountDialogScreen/google_account_dialog_controller.dart';
-import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen_controller.dart';
-import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen_controller.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/cardScreen/card_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/googleAccountDialogScreen/google_account_dialog.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/google_account_dialog_controller.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/home_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/settingsScreen/settings_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/settings_screen_controller.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/setup_screen_controller.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;

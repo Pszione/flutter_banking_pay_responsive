@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/screens/activityInsights/activity_insights_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/cardScreen/card_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/errorRouteScreen/error_route_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/homeScreen/home_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/scanCardScreen/scan_card_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/sendMoneyScreen/send_money_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/settingsScreen/settings_screen.dart';
-import 'package:flutter_banking_pay_responsive/screens/setupScreen/setup_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/activityInsights/activity_insights_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/cardScreen/card_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/errorRouteScreen/error_route_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/home_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/scanCardScreen/scan_card_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/sendMoneyScreen/send_money_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/settingsScreen/settings_screen.dart';
+import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
 import 'package:get_it/get_it.dart';
 
 class RouteController {
