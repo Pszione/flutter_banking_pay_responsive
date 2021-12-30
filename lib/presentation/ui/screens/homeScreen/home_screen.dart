@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/home_screen_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating_button_speed_dial.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/card_widget.dart';
@@ -14,17 +15,20 @@ import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/resp
 import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/news_section.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/recent_transactions_section.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/user_cards_section.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import 'categories_cards.dart';
 
+// ignore_for_file: curly_braces_in_flow_control_structures
 class HomeScreen extends StatefulWidget with ChangeNotifier {
   HomeScreen({Key? key}) : super(key: key);
 
+  // TODO: design system should implement in a beautiful way
   static EdgeInsets desiredPadding = const EdgeInsets.only(
       left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
 
-  // final keyScreen = GlobalKey<HomeScreenState>();
+  final GlobalKey<HomeScreenState> keyScreen = GlobalKey<HomeScreenState>();
   late ValueKey<HomeScreenState> keyValueScreen;
 
   @override
@@ -32,6 +36,8 @@ class HomeScreen extends StatefulWidget with ChangeNotifier {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  final HomeScreenController controller = GetIt.I<HomeScreenController>();
+
   bool _isFloatingButtonVisible = true;
   final ValueNotifier<bool> openCloseStateFAB = ValueNotifier(false);
   final ValueNotifier<bool> openCloseStateSearch = ValueNotifier(false);
@@ -41,6 +47,10 @@ class HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     widget.keyValueScreen = ValueKey(this);
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      MyApp.changeWebAppTabName(label: null);
+    });
   }
 
   @override
@@ -64,7 +74,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    MyApp.changeWebAppTabName(label: null);
+    print(Localizations.localeOf(context));
 
     return WillPopScope(
       onWillPop: () {
@@ -90,7 +100,6 @@ class HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar:
             Provider.of<NavigationBarShared>(context, listen: false)
                 .getNavigationBar,
-        // Cards
         floatingActionButton: _isFloatingButtonVisible
             ? AppFloatingButtonSpeedDial(
                 label: S.of(context).homeScreen_fab_title,
@@ -106,20 +115,8 @@ class HomeScreenState extends State<HomeScreen> {
               ),
         floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
         body: NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            // Get screen page scroll and block children widget listviews scroll notifications
-            if (notification.metrics.axis != Axis.vertical) {
-              return true;
-            }
-            if (notification.direction == ScrollDirection.forward) {
-              if (!_isFloatingButtonVisible)
-                setState(() => _isFloatingButtonVisible = true);
-            } else if (notification.direction == ScrollDirection.reverse) {
-              if (_isFloatingButtonVisible)
-                setState(() => _isFloatingButtonVisible = false);
-            }
-            return true;
-          },
+          onNotification: handleUserScrollState,
+          // TODO: DRY
           // Un focus keyboard/textfield
           child: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -203,10 +200,8 @@ class HomeScreenState extends State<HomeScreen> {
                                   .of(context)
                                   .googleAccountDialog_settings_button_title,
                               alignment: MainAxisAlignment.center,
-                              onPress: () {
-                                Navigator.of(context)
-                                    .pushNamed(RouteController.routeSettings);
-                              },
+                              onPress: () =>
+                                  handleOnPressSettingsButton(context),
                             ),
                           ),
                         ),
@@ -221,6 +216,25 @@ class HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  void handleOnPressSettingsButton(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteController.routeSettings);
+  }
+
+  bool handleUserScrollState(notification) {
+    // Get screen page scroll and block children widget listviews scroll notifications
+    if (notification.metrics.axis != Axis.vertical) {
+      return true;
+    }
+    if (notification.direction == ScrollDirection.forward) {
+      if (!_isFloatingButtonVisible)
+        setState(() => _isFloatingButtonVisible = true);
+    } else if (notification.direction == ScrollDirection.reverse) {
+      if (_isFloatingButtonVisible)
+        setState(() => _isFloatingButtonVisible = false);
+    }
+    return true;
   }
 }
 

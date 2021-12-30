@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/home_screen_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
 import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/news.dart';
+import 'package:get_it/get_it.dart';
 
 class NewsSection extends StatelessWidget {
-  const NewsSection({Key? key, required this.desiredPadding}) : super(key: key);
+  NewsSection({Key? key, required this.desiredPadding}) : super(key: key);
 
+  // TODO: should only depend on a repository
+  final HomeScreenController controller = GetIt.I<HomeScreenController>();
   final EdgeInsets desiredPadding;
 
   @override
@@ -60,9 +63,9 @@ class NewsSection extends StatelessWidget {
                 separatorBuilder: (context, index) {
                   return const SizedBox(width: kHugePadding);
                 },
-                itemCount: myNews.length + 1,
+                itemCount: controller.news.length + 1,
                 itemBuilder: (context, index) {
-                  if (index == myNews.length) {
+                  if (index == controller.news.length) {
                     return const SizedBox(width: kHugePadding);
                   }
 
@@ -84,9 +87,6 @@ class NewsSection extends StatelessWidget {
   }
 
   Widget buildNewsCard(BuildContext context, int index) {
-    print(Localizations.localeOf(context));
-    print(Locale('pt', 'BR'));
-
     return Container(
       // onPress: () {}
       width: MediaQuery.of(context).orientation == Orientation.portrait
@@ -106,10 +106,10 @@ class NewsSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // const SizedBox(height: kHalfPadding),
             Text(
-              // myNews[index].title ?? 'Check it out!',
-              myNews[index].getLocalizedTitle(Localizations.localeOf(context)),
+              // controller.news[index].title ?? 'Check it out!',
+              controller.news[index]
+                  .getLocalizedTitle(Localizations.localeOf(context)),
               style: AppTextStyles.kListTileTitle
                   .copyWith(fontSize: 17, height: kTextSmallHeightSpacing),
               maxLines: 2,
@@ -117,8 +117,8 @@ class NewsSection extends StatelessWidget {
               overflow: TextOverflow.clip,
             ),
             Text(
-              // myNews[index].description ?? '...',
-              myNews[index]
+              // controller.news[index].description ?? '...',
+              controller.news[index]
                   .getLocalizedDescription(Localizations.localeOf(context)),
               style: AppTextStyles.kListTileSubtitle
                   .copyWith(fontSize: 14, height: kTextSmallHeightSpacing),

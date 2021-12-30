@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/presentation/controllers/card_screen_controller.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/app_sliding_bottom_sheet.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/card_add_sliding_sheet.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/card_overview_sliding_sheet.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/card.dart';
 import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
 import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/card_widget.dart';
+import 'package:get_it/get_it.dart';
 
 class UserCardsSection extends StatelessWidget {
-  const UserCardsSection({
+  UserCardsSection({
     Key? key,
     required this.desiredPadding,
   }) : super(key: key);
 
+  // TODO: should only depend on a repository
+  final CardScreenController controller = GetIt.I<CardScreenController>();
   final EdgeInsets desiredPadding;
 
   @override
@@ -29,25 +32,26 @@ class UserCardsSection extends StatelessWidget {
         },
         shrinkWrap: true,
         // TODO: implement controller
-        itemCount: myCards.length + 1,
+        itemCount: controller.cards.length + 1,
         itemBuilder: (_, index) {
           // checking if the index item is the last item of the list or not
-          if (index == myCards.length) {
+          if (index == controller.cards.length) {
             return CardOutlineWidget(
                 width: 320,
                 label: S.of(context).cardWidgetOutlined_addPaymentMethod_title,
-                onPress: () =>
-                    CardAddSlidingSheet().showOptionsSlidingSheet(context));
+                onPress: () => handleOnPressCard(context));
           }
           return CardWidget(
-            card: myCards[index],
+            card: controller.cards[index],
             index: index,
             width: 320,
             onPress: () => AppSlidingBottomSheet(
               context: context,
-              headerColor: CardModel.getCardColorNullSafety(
-                  card: myCards[index], opacity: 0.85),
-              bodyWidget: CardOverviewSlidingSheet(card: myCards[index]),
+              headerColor: controller.getCardColorNullSafety(
+                  controller.cards[index],
+                  opacity: 0.85),
+              bodyWidget:
+                  CardOverviewSlidingSheet(card: controller.cards[index]),
             ).showStyledSheet(),
           );
         },
@@ -60,4 +64,7 @@ class UserCardsSection extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> handleOnPressCard(BuildContext context) =>
+      CardAddSlidingSheet().showOptionsSlidingSheet(context);
 }
