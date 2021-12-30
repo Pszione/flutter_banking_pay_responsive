@@ -44,10 +44,11 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 
     itemsListener.itemPositions.addListener(trackOnScreenIndices);
 
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
-      // WidgetsBinding.instance?.addPostFrameCallback
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       MyApp.changeWebAppTabName(
           label: S.of(context).homeScreen_third_tabBarTitle);
+    });
+    SchedulerBinding.instance?.addPostFrameCallback((_) {
       Provider.of<DBSyncProvider>(context, listen: false)
           .markNotificationsAsRead();
     });
@@ -86,17 +87,17 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     // transactionList[index].onPress.call(); // TODO
   }
 
-  Future scrollToItem(int index) async {
+  Future<void> scrollToItem(int index) async {
     itemController.scrollTo(
         index: index, alignment: 0.33, duration: kShorterDuration);
   }
 
-  Future scrollToFirst() async {
+  Future<void> scrollToFirst() async {
     itemController.scrollTo(
         index: 0, alignment: 0.33, duration: kShorterDuration);
   }
 
-  Future scrollToLast() async {
+  Future<void> scrollToLast() async {
     itemController.scrollTo(
         index: _transactionCards.length - 1,
         alignment: 0.33,
