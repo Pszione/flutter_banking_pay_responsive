@@ -18,6 +18,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: initState()?
     MyApp.changeWebAppTabName(
         label: S.of(context).googleAccountDialog_settings_button_title);
     MyApp.handleSystemUIColor(context, null);

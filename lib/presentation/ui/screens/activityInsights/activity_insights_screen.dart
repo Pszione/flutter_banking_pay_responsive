@@ -19,7 +19,8 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
   ActivityInsightsScreen({Key? key}) : super(key: key);
 
-  final keyScreen = GlobalKey<ActivityInsightsScreenState>();
+  final GlobalKey<ActivityInsightsScreenState> keyScreen =
+      GlobalKey<ActivityInsightsScreenState>();
   late ValueKey<ActivityInsightsScreenState> keyValueScreen;
 
   @override

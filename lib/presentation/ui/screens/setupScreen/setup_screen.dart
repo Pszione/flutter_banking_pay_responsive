@@ -12,11 +12,10 @@ import 'package:flutter_banking_pay_responsive/presentation/controllers/setup_sc
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
-// ignore_for_file: unused_local_variable, unused_field_variable
 class SetupScreen extends StatefulWidget with ChangeNotifier {
   SetupScreen({Key? key}) : super(key: key);
 
-  final keyScreen = GlobalKey<SetupScreenState>();
+  final GlobalKey<SetupScreenState> keyScreen = GlobalKey<SetupScreenState>();
   late ValueKey<SetupScreenState> keyValueScreen;
 
   @override
