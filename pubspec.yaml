@@ -40,9 +40,9 @@ dependencies:
   flutter_svg: ^1.0.0
   font_awesome_flutter: ^9.2.0
   get_it:
-  google_fonts: ^2.1.1
+  google_fonts: ^2.2.0
   image_picker: ^0.8.4+4
-  provider: ^6.0.1
+  provider: ^6.0.2
   scrollable_positioned_list: ^0.2.3
   sliding_sheet: ^0.5.2
   share_plus: ^3.0.4
@@ -57,7 +57,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_launcher_icons: ^0.9.2
-  flutter_lints: ^1.0.0
+  flutter_lints: ^1.0.4
   flutter_vector_icons: ^1.0.0
 
 flutter_icons:
