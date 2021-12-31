@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/material_you_navigation_bar_custom.dart';
-import 'package:flutter_banking_pay_responsive/main.dart';
-
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
+import 'package:flutter_banking_pay_responsive/main.dart';
+import 'package:flutter_banking_pay_responsive/presentation/widgets/material_you_navigation_bar_custom.dart';
 
-import '../../layers/domain/account.dart';
+import 'package:flutter_banking_pay_responsive/layers/domain/account.dart';
 
 class WebProvider {
   static get isWebPlatform => kIsWeb;
@@ -103,8 +102,6 @@ class DBSyncProvider extends ChangeNotifier {
 
   void clearClickedTransactionIndex() {
     _clickedTransaction = null;
-
-    print('Provider: clickedTransaction $_clickedTransaction'); // TODO
   }
 
   void incrementCounterDebug() {
