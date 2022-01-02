@@ -15,6 +15,7 @@ import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating
 import 'package:flutter_banking_pay_responsive/presentation/widgets/card_widget.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/google_list_decorations.dart';
 import 'package:flutter_banking_pay_responsive/presentation/widgets/transaction_widget.dart';
+import 'package:flutter_banking_pay_responsive/presentation/widgets/keyboard_unfocus_gesture_detector.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -115,12 +116,7 @@ class HomeScreenState extends State<HomeScreen> {
         floatingActionButtonLocation: kFloatingButtonLocationFixed(context),
         body: NotificationListener<UserScrollNotification>(
           onNotification: handleUserScrollState,
-          // TODO: DRY
-          // Un focus keyboard/textfield
-          child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            behavior: HitTestBehavior.translucent,
-            excludeFromSemantics: true,
+          child: KeyboardUnfocusGestureDetector(
             child: PageStorage(
               bucket: bucketStorageForHomeScreen,
               child: Scrollbar(
