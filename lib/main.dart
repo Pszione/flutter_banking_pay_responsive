@@ -35,19 +35,19 @@ class MyApp extends StatelessWidget {
       // initialize instances
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => ThemeProvider(),
+          create: (_) => GetIt.I<ThemeProvider>(),
         ),
         ChangeNotifierProvider<SettingsProvider>(
-          create: (_) => SettingsProvider(),
+          create: (_) => GetIt.I<SettingsProvider>(),
         ),
         ChangeNotifierProvider<DBSyncProvider>(
-          create: (_) => DBSyncProvider(),
+          create: (_) => GetIt.I<DBSyncProvider>(),
         ),
         ChangeNotifierProvider<SetupScreenObservable>(
           create: (_) => SetupScreenObservable(),
         ),
         ChangeNotifierProvider<NavigationBarShared>(
-          create: (_) => NavigationBarShared(),
+          create: (_) => GetIt.I<NavigationBarShared>(),
         ),
         //
         ChangeNotifierProvider<SetupScreen>(

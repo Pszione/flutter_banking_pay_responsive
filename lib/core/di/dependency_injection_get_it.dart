@@ -26,9 +26,19 @@ Future<void> init() async {
 
   // controllers
   // your application may need a Singleton or Factory, you decide!
+  getIt.registerLazySingleton<ThemeProvider>(
+    () => ThemeProvider(),
+  );
   getIt.registerLazySingleton<DBSyncProvider>(
     () => DBSyncProvider(),
   );
+  getIt.registerLazySingleton<SettingsProvider>(
+    () => SettingsProvider(),
+  );
+  getIt.registerLazySingleton<NavigationBarShared>(
+    () => NavigationBarShared(),
+  );
+  //
   getIt.registerLazySingleton<SetupScreenController>(
     () => SetupScreenController(),
   );
