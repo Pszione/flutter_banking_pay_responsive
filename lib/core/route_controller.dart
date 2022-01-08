@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/activityInsights/activity_insights_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/cardScreen/card_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/errorRouteScreen/error_route_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/home_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/scanCardScreen/scan_card_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/sendMoneyScreen/send_money_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/settingsScreen/settings_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
-import 'package:get_it/get_it.dart';
+
+import 'core.dart';
+import '../presentation/ui/ui.dart';
 
 PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 PageStorageBucket bucketStorageForHomeScreen = PageStorageBucket();
@@ -44,23 +38,23 @@ class RouteController {
     switch (settings.name) {
       case routeInitialRoute:
         return MaterialPageRoute(
-          builder: (context) => GetIt.I<SetupScreen>(),
+          builder: (context) => G<SetupScreen>(),
           settings: settings,
           maintainState: true,
         );
       case routeActivityInsights:
         return MaterialPageRoute(
-          builder: (context) => GetIt.I<ActivityInsightsScreen>(),
+          builder: (context) => G<ActivityInsightsScreen>(),
           settings: settings,
         );
       case routeHomeScreen:
         return MaterialPageRoute(
-          builder: (context) => GetIt.I<HomeScreen>(),
+          builder: (context) => G<HomeScreen>(),
           settings: settings,
         );
       case routeCardScreen:
         return MaterialPageRoute(
-          builder: (context) => GetIt.I<CardScreen>(),
+          builder: (context) => G<CardScreen>(),
           settings: settings,
         );
       case routeScanCard:
@@ -75,7 +69,7 @@ class RouteController {
         );
       case routeSettings:
         return MaterialPageRoute(
-          builder: (context) => GetIt.I<SettingsScreen>(),
+          builder: (context) => G<SettingsScreen>(),
           settings: settings,
         );
 

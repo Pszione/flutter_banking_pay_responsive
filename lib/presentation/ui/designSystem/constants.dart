@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
+import 'responsive.dart';
 
 const kPrimaryColor = Color(0xFF1A73E9);
 const kSecondaryColor = Color(0xffff7b67);
