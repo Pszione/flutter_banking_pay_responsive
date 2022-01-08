@@ -1,12 +1,9 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/settings_texts.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/snackbar_errors.dart';
 
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/utils.dart';
-import 'package:get_it/get_it.dart';
+import '../../../../core/core.dart';
+import '../../../../layers/layers.dart';
+import '../../presentation/widgets/widgets.dart';
 
 enum SettingsEnum01 { APP, NFC }
 
@@ -19,11 +16,14 @@ class SettingsScreenController {
       SettingsTexts(l10nInstance: S.current);
 
   String? getGoogleAvatarThumbnail() =>
-      GetIt.I<DBSyncProvider>().user.avatarThumbnail;
+      G<DBSyncProvider>().user.avatarThumbnail;
   // Provider.of<DBSyncProvider>(context, listen: false).user.avatarThumbnail
 
   void launchUrlGoogleAccount() {
-    Https.launchURL(url: 'https://myaccount.google.com/', forceWebView: false);
+    HttpsService.launchURL(
+      url: 'https://myaccount.google.com/',
+      forceWebView: false,
+    );
   }
 
   Future<void> callPlatformSettings(
