@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/card_screen_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_sliding_bottom_sheet.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_add_sliding_sheet.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_overview_sliding_sheet.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_widget.dart';
-import 'package:get_it/get_it.dart';
+
+import '../../../../core/core.dart';
+import '../../../../layers/layers.dart';
+import '../../ui.dart';
 
 class UserCardsSection extends StatelessWidget {
   UserCardsSection({
@@ -16,7 +11,7 @@ class UserCardsSection extends StatelessWidget {
   }) : super(key: key);
 
   // TODO: should only depend on a repository
-  final CardScreenController controller = GetIt.I<CardScreenController>();
+  final CardScreenController controller = G<CardScreenController>();
   final EdgeInsets desiredPadding;
 
   @override

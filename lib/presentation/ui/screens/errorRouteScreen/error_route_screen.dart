@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
+
+import '../../ui.dart';
 
 class ErrorRouteScreen extends StatelessWidget {
   const ErrorRouteScreen({Key? key}) : super(key: key);

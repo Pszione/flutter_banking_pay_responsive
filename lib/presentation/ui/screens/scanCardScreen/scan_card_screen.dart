@@ -1,14 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/googleScreenBase/google_screen_base.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_widget.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/snackbar_errors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../layers/layers.dart';
+import '../../ui.dart';
 
 class ScanCardScreen extends StatefulWidget {
   const ScanCardScreen({Key? key}) : super(key: key);

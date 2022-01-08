@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/card_screen_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating_button_with_icon_and_text.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_sliding_bottom_sheet.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_add_sliding_sheet.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_overview_sliding_sheet.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/main.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/home_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_widget.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../core/core.dart';
+import '../../../../layers/layers.dart';
+import '../../../../main.dart';
+import '../../ui.dart';
 
 class CardScreen extends StatefulWidget with ChangeNotifier {
   CardScreen({Key? key}) : super(key: key);
@@ -27,7 +17,7 @@ class CardScreen extends StatefulWidget with ChangeNotifier {
 }
 
 class CardScreenState extends State<CardScreen> {
-  var controller = GetIt.I<CardScreenController>();
+  var controller = G<CardScreenController>();
 
   Axis _currentScrollAxis = Axis.vertical;
   bool _isAxisVertical = true;

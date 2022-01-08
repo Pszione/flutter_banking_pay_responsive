@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/activity_insights_screen_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating_button_with_icon_and_text.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/transaction_widget.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/main.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
+import '../../../../core/core.dart';
+import '../../../../layers/layers.dart';
+import '../../../../main.dart';
+import '../../ui.dart';
 
 // ignore_for_file: curly_braces_in_flow_control_structures
 class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
@@ -30,7 +24,7 @@ class ActivityInsightsScreen extends StatefulWidget with ChangeNotifier {
 class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
 // implements AutomaticKeepAliveClientMixin<ActivityInsightsScreen> //
 {
-  var controller = GetIt.I<ActivityInsightsScreenController>();
+  var controller = G<ActivityInsightsScreenController>();
 
   final List<TransactionCard> _transactionCards = <TransactionCard>[];
   final itemController = ItemScrollController();
