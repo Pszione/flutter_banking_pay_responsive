@@ -1,5 +1,4 @@
-import 'package:flutter_banking_pay_responsive/layers/domain/repositories/account_transactions_repository.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/transaction.dart';
+import '../../layers.dart';
 
 class AccountTransactionsRepositoryImpl
     implements AccountTransactionsRepository {
