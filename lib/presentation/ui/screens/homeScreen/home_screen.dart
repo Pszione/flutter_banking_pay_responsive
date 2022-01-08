@@ -25,10 +25,6 @@ import 'categories_cards.dart';
 class HomeScreen extends StatefulWidget with ChangeNotifier {
   HomeScreen({Key? key}) : super(key: key);
 
-  // TODO: design system should implement in a beautiful way
-  static EdgeInsets desiredPadding = const EdgeInsets.only(
-      left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
-
   final GlobalKey<HomeScreenState> keyScreen = GlobalKey<HomeScreenState>();
   late ValueKey<HomeScreenState> keyValueScreen;
 
@@ -130,12 +126,10 @@ class HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: !WebProvider.isWebPlatform
                           ? EdgeInsets.zero
-                          : HomeScreen.desiredPadding
-                              .copyWith(top: 0, bottom: 0),
+                          : kPageSpacing.copyWith(top: 0, bottom: 0),
                       child: ResponsiveWidthConstrained(
                         child: Semantics(
-                          child: UserCardsSection(
-                              desiredPadding: HomeScreen.desiredPadding),
+                          child: UserCardsSection(desiredPadding: kPageSpacing),
                           label: S
                               .of(context)
                               .homeScreen_userCardSection_pageSubtitle,
@@ -145,7 +139,7 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: kHalfPadding),
                     Padding(
-                      padding: HomeScreen.desiredPadding,
+                      padding: kPageSpacing,
                       child: ResponsiveWidthConstrained(
                           child: Semantics(
                               child: CategoriesSection(
@@ -156,7 +150,7 @@ class HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: kHalfPadding),
                     Padding(
-                        padding: HomeScreen.desiredPadding,
+                        padding: kPageSpacing,
                         child: ResponsiveWidthConstrained(
                           child: Semantics(
                               child: const RecentTransactionsSection()),
@@ -165,12 +159,10 @@ class HomeScreenState extends State<HomeScreen> {
                     Padding(
                         padding: !WebProvider.isWebPlatform
                             ? EdgeInsets.zero
-                            : HomeScreen.desiredPadding
-                                .copyWith(top: 0, bottom: 0),
+                            : kPageSpacing.copyWith(top: 0, bottom: 0),
                         child: ResponsiveWidthConstrained(
                           child: Semantics(
-                              child: NewsSection(
-                                  desiredPadding: HomeScreen.desiredPadding)),
+                              child: NewsSection(desiredPadding: kPageSpacing)),
                         )),
                     const SizedBox(height: kDefaultPadding),
                     const SizedBox(height: kDefaultPadding),
@@ -282,7 +274,7 @@ class ShimmerHomeScreen extends StatelessWidget {
                     SizedBox(height: AppBarComplete().preferredSize.height),
                     // CardWidget List
                     Padding(
-                      padding: HomeScreen.desiredPadding.copyWith(right: 0),
+                      padding: kPageSpacing.copyWith(right: 0),
                       child: SizedBox(
                         height: 220,
                         child: ListView.separated(
@@ -300,8 +292,8 @@ class ShimmerHomeScreen extends StatelessWidget {
                     ),
                     // Categories List
                     Padding(
-                      padding: HomeScreen.desiredPadding
-                          .copyWith(top: kHugePadding, bottom: kHugePadding),
+                      padding: kPageSpacing.copyWith(
+                          top: kHugePadding, bottom: kHugePadding),
                       child: SizedBox(
                         height: 70,
                         child: ListView.separated(
@@ -319,7 +311,7 @@ class ShimmerHomeScreen extends StatelessWidget {
                     ),
                     // Transactions List
                     Padding(
-                      padding: HomeScreen.desiredPadding.copyWith(right: 200),
+                      padding: kPageSpacing.copyWith(right: 200),
                       child: ShimmerProgressIndicator(
                         child: Container(
                           height: kHalfPadding * 1.2,
@@ -328,7 +320,7 @@ class ShimmerHomeScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: HomeScreen.desiredPadding,
+                      padding: kPageSpacing,
                       child: SizedBox(
                         height: 800,
                         child: ListView.separated(

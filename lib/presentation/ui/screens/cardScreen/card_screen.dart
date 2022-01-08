@@ -119,13 +119,7 @@ class CardScreenState extends State<CardScreen> {
                       ),
                     );
                   },
-                  // TODO: violation of responsibilities
-                  padding: EdgeInsets.only(
-                    left: HomeScreen.desiredPadding.left,
-                    right: HomeScreen.desiredPadding.right,
-                    top: HomeScreen.desiredPadding.top,
-                    bottom: HomeScreen.desiredPadding.top,
-                  ),
+                  padding: kPageSpacing.copyWith(bottom: kPageSpacing.top),
                 ),
               ),
             ),

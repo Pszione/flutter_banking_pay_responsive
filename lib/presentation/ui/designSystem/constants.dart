@@ -32,6 +32,8 @@ const kHalfPadding = kDefaultPadding / 2;
 const kMediumPadding = kDefaultPadding / 1.5;
 const kSmallPadding = kDefaultPadding / 3;
 const kFloatingButtonLocation = FloatingActionButtonLocation.centerFloat;
+EdgeInsets kPageSpacing = const EdgeInsets.only(
+    left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
 
 FloatingActionButtonLocation kFloatingButtonLocationAdaptive(
         BuildContext context) =>
