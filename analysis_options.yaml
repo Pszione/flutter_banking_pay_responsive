@@ -27,7 +27,7 @@ linter:
     avoid_field_initializers_in_const_classes: false
     non_constant_identifier_names: false
     unused_local_variable: false
-    avoid_print: false # TODO: disable for production code
+    prefer_relative_imports: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
