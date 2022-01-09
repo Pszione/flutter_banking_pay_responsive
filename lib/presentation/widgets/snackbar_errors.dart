@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
+
+import '../../core/core.dart';
+import '../ui/ui.dart';
 
 class AppSnackBarErrors {
   static void showSnackBarFeatureUnavailable(BuildContext context) =>

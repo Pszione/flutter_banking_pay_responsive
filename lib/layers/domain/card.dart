@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../layers/layers.dart';
 import '../../presentation/ui/ui.dart';
-// TODO: remove this class dependency
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 
 class CardModel {
   CardModel({

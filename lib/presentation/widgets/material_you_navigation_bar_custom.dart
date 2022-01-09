@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../core/core.dart';
+import '../ui/ui.dart';
 
 class MaterialYouNavigationBarCustom extends StatelessWidget {
   const MaterialYouNavigationBarCustom({

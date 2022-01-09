@@ -1,13 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/card.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'dart:core';
-
-import 'package:flutter_banking_pay_responsive/layers/data/card_brand.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../layers/layers.dart';
+import '../ui/ui.dart';
 
 class CardWidget extends StatelessWidget {
   CardWidget({

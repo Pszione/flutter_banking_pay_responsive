@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
+
+import '../ui/ui.dart';
 
 class BorderDefaultPadding extends StatelessWidget {
   const BorderDefaultPadding({

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/card.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/categories_cards.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/snackbar_errors.dart';
 
-import 'card_widget.dart';
+import '../../layers/layers.dart';
+import '../ui/ui.dart';
 
 class CardOverviewSlidingSheet extends StatelessWidget {
   const CardOverviewSlidingSheet({Key? key, required this.card})
