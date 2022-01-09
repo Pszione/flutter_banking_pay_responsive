@@ -139,10 +139,12 @@ class SettingsScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kHalfPadding / 2),
       child: IconButton(
-        icon: Icon(
-          Icons.add_to_home_screen_rounded,
-          size: kMediumIconSize * 1.2,
-          color: Theme.of(context).primaryColorDark.withOpacity(0.65),
+        icon: const Opacity(
+          opacity: 0.65,
+          child: Icon(
+            Icons.add_to_home_screen_rounded,
+            size: kMediumIconSize * 1.2,
+          ),
         ),
         onPressed: () => controller.launchUrlGoogleAccount(),
       ),

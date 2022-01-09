@@ -138,9 +138,6 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: Theme.of(context).colorScheme.secondary,
-      //focusColor: Colors.transparent,
-      //highlightColor: Colors.transparent,
       borderRadius: kHugeBorderRadius,
       radius: kInkWellMediumRadius,
       onTap: onPress,

@@ -58,7 +58,6 @@ class TransactionCard extends StatelessWidget {
         padding: const EdgeInsets.all(kHalfPadding),
         child: InkWell(
           borderRadius: kDefaultBorderRadius,
-          splashColor: Theme.of(context).colorScheme.secondary,
           onTap: () => onPress.call(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

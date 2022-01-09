@@ -44,7 +44,6 @@ class BuildGoogleListButton extends StatelessWidget {
       height: 45,
       child: InkWell(
         onTap: onPress,
-        splashColor: Theme.of(context).colorScheme.secondary,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: Row(
@@ -105,7 +104,6 @@ class BuildGoogleListSettingButton extends StatelessWidget {
           //if (overrideSwitchButton == null)
           onPress.call(!switchValue);
         },
-        splashColor: Theme.of(context).colorScheme.secondary,
         child: Padding(
           padding: EdgeInsets.only(
               left: horizontalPadding, right: horizontalPadding / 2),

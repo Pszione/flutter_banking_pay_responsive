@@ -187,8 +187,6 @@ class CardWidget extends StatelessWidget {
             width: width,
             height: height,
             child: InkWell(
-              splashColor: Theme.of(context).colorScheme.secondary,
-              focusColor: Colors.transparent,
               highlightColor: Colors.transparent,
               borderRadius: kHugeBorderRadius,
               radius: kInkWellMediumRadius,
@@ -311,8 +309,6 @@ class CardOutlineWidget extends StatelessWidget {
             width: width,
             height: height,
             child: InkWell(
-              splashColor: Theme.of(context).colorScheme.secondary,
-              focusColor: Colors.transparent,
               highlightColor: Colors.transparent,
               borderRadius: kHugeBorderRadius,
               radius: kInkWellMediumRadius,

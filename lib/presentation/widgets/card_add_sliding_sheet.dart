@@ -74,8 +74,6 @@ class CardAddSlidingSheet {
       // TODO
       child: InkWell(
         onTap: onPress,
-        splashColor: Theme.of(context).colorScheme.secondary,
-        focusColor: Colors.transparent,
         highlightColor: Colors.transparent,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
