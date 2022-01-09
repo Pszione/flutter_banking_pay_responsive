@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../layers/layers.dart';
-import '../../../../main.dart';
 import '../../ui.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -13,9 +12,9 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: initState()?
-    MyApp.changeWebAppTabName(
+    changeWebAppTabName(
         label: S.of(context).googleAccountDialog_settings_button_title);
-    MyApp.handleSystemUIColor(context, null);
+    handleSystemUIColor(context, null);
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final settingsData = SettingsTexts(l10nInstance: S.of(context));
 

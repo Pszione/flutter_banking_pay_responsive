@@ -32,7 +32,7 @@ class HomeScreenState extends State<HomeScreen> {
     widget.keyValueScreen = ValueKey(this);
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      MyApp.changeWebAppTabName(label: null);
+      changeWebAppTabName(label: null);
       print(Localizations.localeOf(context));
     });
   }

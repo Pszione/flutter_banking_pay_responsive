@@ -6,7 +6,6 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../core/core.dart';
 import '../../../../layers/layers.dart';
-import '../../../../main.dart';
 import '../../ui.dart';
 
 // ignore_for_file: curly_braces_in_flow_control_structures
@@ -40,8 +39,7 @@ class ActivityInsightsScreenState extends State<ActivityInsightsScreen>
     itemsListener.itemPositions.addListener(trackOnScreenIndices);
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      MyApp.changeWebAppTabName(
-          label: S.of(context).homeScreen_third_tabBarTitle);
+      changeWebAppTabName(label: S.of(context).homeScreen_third_tabBarTitle);
     });
     SchedulerBinding.instance?.addPostFrameCallback((_) {
       Provider.of<DBSyncProvider>(context, listen: false)

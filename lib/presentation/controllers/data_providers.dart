@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import '../../layers/layers.dart';
-import '../../main.dart';
-import '../widgets/widgets.dart';
+import '../ui/ui.dart';
 
 class WebProvider {
   static get isWebPlatform => kIsWeb;
@@ -19,7 +18,7 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners(); // this them update our UI
     //print(themeMode.toString());
 
-    MyApp.handleFullscreenSystemUIMode(context);
+    handleFullscreenSystemUIMode(context);
   }
 
   // how to use it's state

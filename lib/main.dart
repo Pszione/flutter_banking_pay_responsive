@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shimmer/shimmer.dart';
@@ -85,50 +84,6 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
-  }
-
-  static Future<void> handleFullscreenSystemUIMode(BuildContext context) async {
-    await Future.delayed(const Duration(milliseconds: 500));
-
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-    //     overlays: [SystemUiOverlay.bottom]);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Theme.of(context).colorScheme.background,
-      systemNavigationBarColor: Theme.of(context).colorScheme.background,
-      systemNavigationBarDividerColor: Theme.of(context).colorScheme.background,
-      systemStatusBarContrastEnforced: true,
-      systemNavigationBarContrastEnforced: true,
-    ));
-
-    // SystemChrome.setSystemUIChangeCallback((isUiVisible) async {
-    //   if (isUiVisible) {
-    //     return;
-    //   }
-    //   await Future.delayed(const Duration(milliseconds: 3000));
-    //   SystemChrome.restoreSystemUIOverlays();
-    // });
-  }
-
-  static Future<void> handleSystemUIColor(
-      BuildContext context, Color? newColor) async {
-    await Future.delayed(const Duration(milliseconds: 100));
-
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: newColor ?? Theme.of(context).colorScheme.background,
-      systemNavigationBarColor:
-          newColor ?? Theme.of(context).colorScheme.background,
-      systemNavigationBarDividerColor: Theme.of(context).colorScheme.background,
-      systemStatusBarContrastEnforced: true,
-      systemNavigationBarContrastEnforced: true,
-    ));
-  }
-
-  static Future changeWebAppTabName(
-      {required String? label, String title = kAPP_TITLE}) async {
-    var _finalName = label != null ? '$label - $title' : kAPP_TITLE;
-    return await SystemChrome.setApplicationSwitcherDescription(
-        ApplicationSwitcherDescription(
-            label: _finalName, primaryColor: kSecondaryColor.value));
   }
 }
 
