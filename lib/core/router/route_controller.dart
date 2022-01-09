@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'core.dart';
-import '../presentation/ui/ui.dart';
+import '../core.dart';
+import '../../presentation/ui/ui.dart';
 
 PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 PageStorageBucket bucketStorageForHomeScreen = PageStorageBucket();
@@ -9,25 +9,25 @@ PageStorageBucket bucketStorageForCardScreen = PageStorageBucket();
 
 class RouteController {
   /// '/'
-  static const String routeInitialRoute = '/';
+  static const String routeInitialRoute = ROUTE_INITIAL_HOME;
 
   /// '/home
-  static const String routeHomeScreen = '/home';
+  static const String routeHomeScreen = ROUTE_HOME_SCREEN;
 
   /// '/cards
-  static const String routeCardScreen = '/cards';
+  static const String routeCardScreen = ROUTE_CARD_SCREEN;
 
   /// '/activity\_insights
-  static const String routeActivityInsights = '/activity_insights';
+  static const String routeActivityInsights = ROUTE_ACTIVITY_INSIGHTS_SCREEN;
 
   /// '/scan\_card
-  static const String routeScanCard = '/scan_card';
+  static const String routeScanCard = ROUTE_SCAN_CARD_SCREEN;
 
   /// '/send\_money'
-  static const String routeSendMoney = '/send_money';
+  static const String routeSendMoney = ROUTE_SEND_MONEY_SCREEN;
 
   /// '/settings
-  static const String routeSettings = '/settings';
+  static const String routeSettings = ROUTE_SETTINGS_SCREEN;
 
   static Route<dynamic>? onHandleRoutes(
       RouteSettings settings, BuildContext context) {
