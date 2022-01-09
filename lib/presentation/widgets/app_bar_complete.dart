@@ -7,6 +7,7 @@ import '../../core/core.dart';
 import '../../layers/layers.dart';
 import '../ui/ui.dart';
 
+// ignore_for_file: curly_braces_in_flow_control_structures
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
   AppBarComplete({
     Key? key,
@@ -87,8 +88,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final dbProvider = Provider.of<DBSyncProvider>(context);
-    bool anyNewNotificationsToDisplay =
-        dbProvider != null && dbProvider.newNotifications > 0;
+    bool anyNewNotificationsToDisplay = dbProvider.newNotifications > 0;
 
     return Semantics(
       namesRoute: true,
