@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/transaction.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import 'data_providers.dart';
+import '../../layers/layers.dart';
+import '../ui/ui.dart';
 
 class ActivityInsightsScreenController {
   List<TransactionModel> transactions = [];

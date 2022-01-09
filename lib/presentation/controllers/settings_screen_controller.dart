@@ -1,8 +1,8 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/core.dart';
-import '../../../../layers/layers.dart';
+import '../../core/core.dart';
+import '../../layers/layers.dart';
 import '../../presentation/widgets/widgets.dart';
 
 enum SettingsEnum01 { APP, NFC }

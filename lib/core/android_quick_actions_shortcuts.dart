@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/layers/data/enums.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/home_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'package:quick_actions/quick_actions.dart';
+
+import '../layers/layers.dart';
+import '../presentation/ui/ui.dart';
 
 class QuickActionsCustom {
   final quickActionsInstance = const QuickActions();

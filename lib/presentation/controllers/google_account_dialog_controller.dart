@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/account.dart';
+
+import '../../layers/layers.dart';
 
 class GoogleAccountDialogScreenController {
   // TODO

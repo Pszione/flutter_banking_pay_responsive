@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/core.dart';
@@ -20,7 +19,7 @@ class HomeScreen extends StatefulWidget with ChangeNotifier {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  final HomeScreenController controller = GetIt.I<HomeScreenController>();
+  final HomeScreenController controller = G<HomeScreenController>();
 
   bool _isFloatingButtonVisible = true;
   final ValueNotifier<bool> openCloseStateFAB = ValueNotifier(false);
