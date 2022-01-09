@@ -36,7 +36,10 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
       ),
       buttonSize: const Size(kFabIconSize, kFabIconSize),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
+        borderRadius: BorderRadius.circular(
+          kSmallBorderRadiusAsDouble,
+        ),
+      ),
       label: label != null
           ? AutoSizeText(
               label!,
@@ -88,9 +91,9 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
             builder: (_) => Theme(
               data: Theme.of(context).copyWith(
                 dialogBackgroundColor: Theme.of(context).colorScheme.background,
-                colorScheme: Theme.of(context)
-                    .colorScheme
-                    .copyWith(primary: kSecondaryColor),
+                colorScheme: Theme.of(context).colorScheme.copyWith(
+                      primary: kSecondaryColor,
+                    ),
                 textButtonTheme: TextButtonThemeData(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontWeight: FontWeight.bold),

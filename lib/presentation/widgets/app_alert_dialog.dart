@@ -23,7 +23,9 @@ class AppAlertDialog {
       builder: (BuildContext context) => AlertDialog(
         title: Text(title ?? 'Alert'),
         elevation: 20,
-        shape: RoundedRectangleBorder(borderRadius: kHugeBorderRadius),
+        shape: RoundedRectangleBorder(
+          borderRadius: kHugeBorderRadius,
+        ),
         titleTextStyle: AppTextStyles.kMenuTitle(context),
         backgroundColor: backgroundColor,
         content: SingleChildScrollView(

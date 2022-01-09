@@ -37,13 +37,15 @@ class AppSlidingBottomSheet {
                 children: [
                   Center(
                     child: Container(
-                      margin:
-                          const EdgeInsets.symmetric(vertical: kHalfPadding),
+                      margin: const EdgeInsets.symmetric(
+                        vertical: kHalfPadding,
+                      ),
                       width: 32,
                       height: 8,
                       decoration: BoxDecoration(
-                          borderRadius: kDefaultBorderRadius,
-                          color: Theme.of(context).primaryColorDark),
+                        borderRadius: kDefaultBorderRadius,
+                        color: Theme.of(context).primaryColorDark,
+                      ),
                     ),
                   ),
                 ],
@@ -70,7 +72,8 @@ class AppSlidingBottomSheet {
                     shadowColor: Theme.of(context).colorScheme.error,
                     shape: const StadiumBorder(),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: kDefaultPadding * 2),
+                      horizontal: kDefaultPadding * 2,
+                    ),
                   ),
                   child: const Text('Close'),
                   onPressed: () => Navigator.of(context).pop(),

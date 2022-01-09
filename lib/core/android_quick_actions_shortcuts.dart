@@ -11,24 +11,27 @@ class QuickActionsCustom {
   void initializeDelayed(BuildContext context) async {
     await Future.delayed(const Duration(milliseconds: 200));
 
-    // if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) { // dart.io
+    // if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
     if (!WebProvider.isWebPlatform) {
       quickActionsInstance.setShortcutItems([
         ShortcutItem(
-            type: QuickActionState.search.toString(),
-            // localizedTitle: 'Search',
-            localizedTitle: S.of(context).quickActions_first_title,
-            icon: 'quick_search'),
+          type: QuickActionState.search.toString(),
+          // localizedTitle: 'Search',
+          localizedTitle: S.of(context).quickActions_first_title,
+          icon: 'quick_search',
+        ),
         ShortcutItem(
-            type: QuickActionState.transactionsOptions.toString(),
-            // localizedTitle: 'New Transaction',
-            localizedTitle: S.of(context).quickActions_second_title,
-            icon: 'quick_read_more'),
+          type: QuickActionState.transactionsOptions.toString(),
+          // localizedTitle: 'New Transaction',
+          localizedTitle: S.of(context).quickActions_second_title,
+          icon: 'quick_read_more',
+        ),
         ShortcutItem(
-            type: QuickActionState.activity.toString(),
-            // localizedTitle: 'Recent Activities',
-            localizedTitle: S.of(context).quickActions_third_title,
-            icon: 'quick_chart_outline'),
+          type: QuickActionState.activity.toString(),
+          // localizedTitle: 'Recent Activities',
+          localizedTitle: S.of(context).quickActions_third_title,
+          icon: 'quick_chart_outline',
+        ),
         // PS: iOS icons not setup in Runner/Xcode
       ]);
     }

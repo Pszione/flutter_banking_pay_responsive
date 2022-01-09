@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/core.dart';
 import '../../../../layers/layers.dart';
-import '../../../../main.dart';
 import '../../ui.dart';
 
 class GoogleAccountDialog {
@@ -19,7 +18,7 @@ class GoogleAccountDialog {
       GoogleAccountDialogScreenController controller) async {
     // TODO: create observer pattern
     HapticFeedback.heavyImpact();
-    MyApp.handleSystemUIColor(
+    handleSystemUIColor(
         context, Colors.black.withOpacity(kAlertOverlayOpacity));
 
     return await showDialog<Object>(
@@ -30,7 +29,7 @@ class GoogleAccountDialog {
       builder: (context) => WillPopScope(
         onWillPop: () {
           // TODO: create observer pattern
-          MyApp.handleSystemUIColor(context, null);
+          handleSystemUIColor(context, null);
           return Future.value(true);
         },
         child: AlertDialog(
@@ -39,7 +38,11 @@ class GoogleAccountDialog {
           backgroundColor: Theme.of(context).colorScheme.background,
           shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
           titlePadding: const EdgeInsets.fromLTRB(
-              kDefaultPadding, kHalfPadding, kDefaultPadding, 0),
+            kDefaultPadding,
+            kHalfPadding,
+            kDefaultPadding,
+            0,
+          ),
           contentPadding: EdgeInsets.zero,
           insetPadding: buildExternalPadding(context),
           title: buildGoogleHeader(context),
@@ -62,7 +65,7 @@ class GoogleAccountDialog {
                   controller.signedInAccount,
                   kSmallIconSize,
                   () {
-                    MyApp.handleSystemUIColor(context, null);
+                    handleSystemUIColor(context, null);
                     Navigator.of(context).pop();
                   },
                   controller.signedInAccount == null
@@ -86,25 +89,24 @@ class GoogleAccountDialog {
                           ? 150
                           : 130,
                   child: ListView.builder(
-                      physics: const ClampingScrollPhysics(),
-                      itemCount: controller.otherAccounts!.length,
-                      itemBuilder: (_, int index) {
-                        // TODO: controller set this
-                        if (controller.signedInAccount?.ID ==
-                            controller.otherAccounts?[index].ID) {
-                          return const SizedBox(height: 0); // null
-                        }
-                        return buildAccountItem(
-                          _,
-                          controller.otherAccounts?[index],
-                          kSmallIconSize02,
-                          () {},
-                          S
-                              .of(context)
-                              .googleAccountDialog_TOOLTIP_account_hint,
-                          false,
-                        );
-                      }),
+                    physics: const ClampingScrollPhysics(),
+                    itemCount: controller.otherAccounts!.length,
+                    itemBuilder: (_, int index) {
+                      // TODO: controller set this
+                      if (controller.signedInAccount?.ID ==
+                          controller.otherAccounts?[index].ID) {
+                        return const SizedBox(height: 0); // null
+                      }
+                      return buildAccountItem(
+                        _,
+                        controller.otherAccounts?[index],
+                        kSmallIconSize02,
+                        () {},
+                        S.of(context).googleAccountDialog_TOOLTIP_account_hint,
+                        false,
+                      );
+                    },
+                  ),
                 ),
                 const SizedBox(height: kHalfPadding),
                 BuildGoogleListButton(
@@ -113,7 +115,7 @@ class GoogleAccountDialog {
                         .googleAccountDialog_addAnotherAccount_button_title,
                     icon: Icons.person_add,
                     onPress: () {
-                      MyApp.handleSystemUIColor(context, null); // TODO
+                      handleSystemUIColor(context, null); // TODO
                       Navigator.of(context).pop();
                     }),
                 kDivider,
@@ -151,12 +153,13 @@ class GoogleAccountDialog {
 
   EdgeInsets buildExternalPadding(BuildContext context) {
     return EdgeInsets.only(
-        left: kDefaultPadding,
-        right: kDefaultPadding,
-        bottom: MediaQuery.of(context).orientation == Orientation.portrait ||
-                Responsive.isDesktop(context)
-            ? 80
-            : 0);
+      left: kDefaultPadding,
+      right: kDefaultPadding,
+      bottom: MediaQuery.of(context).orientation == Orientation.portrait ||
+              Responsive.isDesktop(context)
+          ? 80
+          : 0,
+    );
   }
 
   //
@@ -172,15 +175,16 @@ class GoogleAccountDialog {
             child: Tooltip(
               child: InkWell(
                 onTap: () {
-                  MyApp.handleSystemUIColor(context, null);
+                  handleSystemUIColor(context, null);
                   Navigator.pop(context);
                 },
                 borderRadius: kDefaultBorderRadius,
                 child: const Padding(
                   padding: EdgeInsets.only(top: kHalfPadding / 1.8),
                   child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Icon(Icons.close_rounded)),
+                    alignment: Alignment.topLeft,
+                    child: Icon(Icons.close_rounded),
+                  ),
                 ),
               ),
               message: S.of(context).other_TOOLTIP_closeButton,
@@ -303,8 +307,9 @@ class GoogleAccountDialog {
               child: AutoSizeText(
                 label ??
                     S.of(context).googleAccountDialog_manageGoogleAccount_title,
-                style: AppTextStyles.kSmallBoldText()
-                    .copyWith(color: Theme.of(context).primaryColorDark),
+                style: AppTextStyles.kSmallBoldText().copyWith(
+                  color: Theme.of(context).primaryColorDark,
+                ),
                 maxLines: 1,
                 maxFontSize: 20,
                 minFontSize: 11,
@@ -315,10 +320,13 @@ class GoogleAccountDialog {
               style: TextButton.styleFrom(
                 backgroundColor: Colors.transparent,
                 shape: StadiumBorder(
-                    side: BorderSide(color: kLightGrayColor, width: 2)),
+                  side: BorderSide(color: kLightGrayColor, width: 2),
+                ),
                 elevation: 0,
                 padding: const EdgeInsets.symmetric(
-                    horizontal: kDefaultPadding, vertical: kHalfPadding * 0.9),
+                  horizontal: kDefaultPadding,
+                  vertical: kHalfPadding * 0.9,
+                ),
               ),
               onPressed: onPress,
             ),

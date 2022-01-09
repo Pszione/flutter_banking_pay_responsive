@@ -102,14 +102,14 @@ class _AppBarCompleteState extends State<AppBarComplete> {
         leadingWidth: 120,
         leading: Padding(
           padding: EdgeInsets.only(
-              left: WebProvider.isWebPlatform && Responsive.isDesktop(context)
-                  ? kHugePadding
-                  : kHalfPadding),
+            left: WebProvider.isWebPlatform && Responsive.isDesktop(context)
+                ? kHugePadding
+                : kHalfPadding,
+          ),
           child: Row(
-            // mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (!widget.hasNotificationsButton) // false
+              if (!widget.hasNotificationsButton)
                 Semantics(
                   sortKey: const OrdinalSortKey(0),
                   child: IconButton(
@@ -118,8 +118,9 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                     icon: const Icon(
                       Icons.arrow_back_ios,
                     ),
-                    onPressed: () =>
-                        Navigator.canPop(context) ? Navigator.pop(context) : {},
+                    onPressed: () => Navigator.of(context).canPop()
+                        ? Navigator.of(context).pop()
+                        : {},
                     tooltip: S.of(context).appBar_TOOLTIP_backButton_hint,
                   ),
                 ),
@@ -157,8 +158,6 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Theme.of(context).colorScheme.primary,
-                            // border: Border.all(
-                            //     width: 1.0, color: Theme.of(context).primaryColor),
                           ),
                           child: Center(
                             child: ExcludeSemantics(
@@ -168,8 +167,9 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                                 style:
                                     AppTextStyles.kSmallWhiteSubtitle(context)
                                         .copyWith(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                ),
                                 maxLines: 1,
                                 maxFontSize: 15,
                                 minFontSize: 10,
@@ -201,7 +201,6 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                 child: Switch.adaptive(
                   value: themeProvider.isDarkMode,
                   onChanged: (bool value) {
-                    //final provider = Provider.of<ThemeProvider>(context);
                     themeProvider.toggleTheme(value, context);
                   },
                   activeColor: kSecondaryColor,
@@ -215,15 +214,14 @@ class _AppBarCompleteState extends State<AppBarComplete> {
           if (widget.hasGoogleAccountAvatar)
             Padding(
               padding: EdgeInsets.only(
-                  right:
-                      WebProvider.isWebPlatform && Responsive.isDesktop(context)
-                          ? kHugePadding
-                          : kHalfPadding),
+                right:
+                    WebProvider.isWebPlatform && Responsive.isDesktop(context)
+                        ? kHugePadding
+                        : kHalfPadding,
+              ),
               child: IconButton(
                 padding: EdgeInsets.zero,
                 icon: CircleAvatar(
-                  // backgroundImage:
-                  //     NetworkImage('https://placeimg.com/640/480/people'),
                   // TODO
                   backgroundImage: widget.googleAvatarThumbnail != null
                       ? AssetImage(widget.googleAvatarThumbnail!)
@@ -277,14 +275,14 @@ class SearchBarField extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: kMaxButtonConstraintWidth),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.57,
-        height: kMediumIconSize * 1.2, // widget.preferredSize.height / 1.6,
+        height: kMediumIconSize * 1.2,
         decoration: BoxDecoration(
           borderRadius: kDefaultBorderRadius,
           color: kTextBodyColor.withOpacity(0.85),
         ),
         child: TextField(
           onChanged: (String value) {
-            // search by string
+            // TODO: search by string
           },
           maxLines: 1,
           keyboardType: TextInputType.name,
@@ -300,8 +298,10 @@ class SearchBarField extends StatelessWidget {
             hintText: S.of(context).appBar_searchInput_title,
             hintStyle: AppTextStyles.kSmallWhiteSubtitle(context)
                 .copyWith(color: kTextWhiteColor),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 9,
+            ),
           ),
         ),
       ),

@@ -15,8 +15,7 @@ class ThemeProvider extends ChangeNotifier {
 
   void toggleTheme(bool isDark, BuildContext context) {
     themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-    notifyListeners(); // this them update our UI
-    //print(themeMode.toString());
+    notifyListeners();
 
     handleFullscreenSystemUIMode(context);
   }
@@ -47,9 +46,10 @@ class NavigationBarShared extends ChangeNotifier {
   MaterialYouNavigationBarCustom? get getNavigationBar =>
       isInitialized ? _navigationBar : null;
 
-  void init(
-      {required ValueNotifier<int> getCurrentIndex,
-      required void Function(int) callbackOnPress}) {
+  void init({
+    required ValueNotifier<int> getCurrentIndex,
+    required void Function(int) callbackOnPress,
+  }) {
     if (!isInitialized) {
       _navigationBar = MaterialYouNavigationBarCustom(
         getCurrentIndex: getCurrentIndex,

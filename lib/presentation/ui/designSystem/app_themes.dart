@@ -41,7 +41,10 @@ class AppThemes {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: kSecondaryColor,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
+        borderRadius: BorderRadius.circular(
+          kSmallBorderRadiusAsDouble,
+        ),
+      ),
       elevation: 8,
       //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
     ),
@@ -61,7 +64,9 @@ class AppThemes {
     ),
     dialogTheme: DialogTheme(
       // elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
+      shape: RoundedRectangleBorder(
+        borderRadius: kDefaultBorderRadius,
+      ),
       // backgroundColor: Theme.of(context).colorScheme.background, // TODO
     ),
     colorScheme: AppThemes.appColorScheme,
@@ -93,7 +98,10 @@ class AppThemes {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: kSecondaryColor,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
+        borderRadius: BorderRadius.circular(
+          kSmallBorderRadiusAsDouble,
+        ),
+      ),
       elevation: 8,
       //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
     ),
@@ -112,7 +120,9 @@ class AppThemes {
     ),
     dialogTheme: DialogTheme(
       // elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: kDefaultBorderRadius),
+      shape: RoundedRectangleBorder(
+        borderRadius: kDefaultBorderRadius,
+      ),
       // backgroundColor: Theme.of(context).colorScheme.background, // TODO
     ),
     colorScheme: AppThemes.appDarkColorScheme,

@@ -10,5 +10,8 @@ class CardScreenController {
   }
 
   Color getCardColorNullSafety(CardModel card, {double opacity = 1.0}) =>
-      CardModel.getCardColorNullSafety(card: card, opacity: opacity);
+      CardModel.getCardColorNullSafety(
+        card: card,
+        opacity: opacity,
+      );
 }

@@ -49,6 +49,8 @@ Future changeWebAppTabName({
 
   return await SystemChrome.setApplicationSwitcherDescription(
     ApplicationSwitcherDescription(
-        label: _finalName, primaryColor: kSecondaryColor.value),
+      label: _finalName,
+      primaryColor: kSecondaryColor.value,
+    ),
   );
 }
