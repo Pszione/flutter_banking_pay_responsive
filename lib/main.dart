@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
           supportedLocales: S.delegate.supportedLocales,
           // themeMode: ThemeMode.system,
           themeMode: Provider.of<ThemeProvider>(context).themeMode,
-          theme: AppThemes.lightThemeData,
-          darkTheme: AppThemes.darkThemeData,
+          theme: AppThemes.kLightThemeData(),
+          darkTheme: AppThemes.kDarkThemeData(),
           initialRoute: ROUTE_INITIAL,
           onGenerateRoute: (settings) =>
               RouteController.onHandleRoutes(settings, context),

@@ -4,137 +4,154 @@ import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart';
 
 class AppThemes {
-  static ColorScheme appColorScheme = const ColorScheme.light(
+  static ColorScheme kLightColorScheme = const ColorScheme.light(
     primary: kPrimaryColor,
     secondary: kSecondaryColor,
     primaryVariant: kPrimaryColor,
     secondaryVariant: kComplementaryColor,
     surface: kWhiteColor,
+    // onSurface: kDarkColor,
     background: kWhiteColor,
+    surfaceVariant: kBackgroundColor,
+    inverseSurface: kGrayColor,
     error: kErrorColor,
   );
-  static ColorScheme appDarkColorScheme = const ColorScheme.dark(
+  static ColorScheme kDarkColorScheme = const ColorScheme.dark(
     primary: kPrimaryColor,
     secondary: kSecondaryColor,
     primaryVariant: kPrimaryColor,
     secondaryVariant: kComplementaryColor,
     surface: kDarkBackgroundColor,
+    // onSurface: kWhiteColor,
     background: kDarkBackgroundColor,
+    surfaceVariant: kDarkBackgroundColor,
+    inverseSurface: kDarkShimmerColor,
     error: kErrorColor,
   );
 
-  static final ThemeData lightThemeData = ThemeData(
-    appBarTheme: const AppBarTheme(
-      backgroundColor: kWhiteColor,
-      centerTitle: true,
-      titleSpacing: kSmallPadding,
-      elevation: 0,
-      iconTheme: IconThemeData(
-        color: kDarkColor,
-        size: kMediumIconSize,
-      ),
-    ),
-    iconTheme: const IconThemeData(
-      color: kDarkColor,
-      size: kMediumIconSize,
-    ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: kSecondaryColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          kSmallBorderRadiusAsDouble,
-        ),
-      ),
-      elevation: 8,
-      //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(fontWeight: FontWeight.bold),
-        primary: kPrimaryColor, // text color?
-      ),
-    ),
-    cardTheme: CardTheme(
-      elevation: 0,
-      //clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: kDefaultBorderRadius,
-      ),
-      color: Colors.transparent,
-    ),
-    dialogTheme: DialogTheme(
-      // elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: kDefaultBorderRadius,
-      ),
-      // backgroundColor: Theme.of(context).colorScheme.background, // TODO
-    ),
-    colorScheme: AppThemes.appColorScheme,
-    primaryColor: kWhiteColor,
-    primaryColorDark: kDarkColor,
-    primaryColorLight: kGrayColor,
-    scaffoldBackgroundColor: kBackgroundColor,
-    backgroundColor: kBackgroundColor,
-    dialogBackgroundColor: kSecondaryColor,
-    // hoverColor: ,
-    fontFamily: GoogleFonts.poppins().fontFamily,
-  );
+  static ThemeData kLightThemeData() => appMainThemeData(kLightColorScheme);
 
-  static final ThemeData darkThemeData = ThemeData(
-    appBarTheme: const AppBarTheme(
-      backgroundColor: kDarkBackgroundColor,
-      centerTitle: true,
-      titleSpacing: kSmallPadding,
-      elevation: 0,
-      iconTheme: IconThemeData(
-        color: kWhiteColor,
-        size: kMediumIconSize,
-      ),
-    ),
-    iconTheme: const IconThemeData(
-      color: kWhiteColor,
-      size: kMediumIconSize,
-    ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: kSecondaryColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          kSmallBorderRadiusAsDouble,
+  static ThemeData kDarkThemeData() =>
+      appMainThemeData(kDarkColorScheme).copyWith(
+        hoverColor: Colors.black26,
+      );
+
+  static ThemeData appMainThemeData(ColorScheme scheme) => ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: scheme.surface,
+          centerTitle: true,
+          titleSpacing: kSmallPadding,
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: scheme.onSurface,
+            size: kMediumIconSize,
+          ),
         ),
-      ),
-      elevation: 8,
-      //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(fontWeight: FontWeight.bold),
-        primary: kPrimaryColor, // kSecondaryColor
-      ),
-    ),
-    cardTheme: CardTheme(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: kDefaultBorderRadius,
-      ),
-      color: Colors.transparent,
-    ),
-    dialogTheme: DialogTheme(
-      // elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: kDefaultBorderRadius,
-      ),
-      // backgroundColor: Theme.of(context).colorScheme.background, // TODO
-    ),
-    colorScheme: AppThemes.appDarkColorScheme,
-    primaryColor: kDarkBackgroundColor,
-    primaryColorDark: kWhiteColor,
-    primaryColorLight: kDarkShimmerColor,
-    scaffoldBackgroundColor: kDarkBackgroundColor,
-    backgroundColor: kDarkBackgroundColor,
-    dialogBackgroundColor: kSecondaryColor,
-    hoverColor: Colors.black26,
-    fontFamily: GoogleFonts.poppins().fontFamily,
-  );
+        iconTheme: IconThemeData(
+          color: scheme.onSurface,
+          size: kMediumIconSize,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: scheme.secondary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              kSmallBorderRadiusAsDouble,
+            ),
+          ),
+          elevation: 8,
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            textStyle: const TextStyle(fontWeight: FontWeight.bold),
+            primary: scheme.primary,
+          ),
+        ),
+        cardTheme: CardTheme(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: kDefaultBorderRadius,
+          ),
+          color: Colors.transparent,
+        ),
+        dialogTheme: DialogTheme(
+          // elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: kDefaultBorderRadius,
+          ),
+          // backgroundColor: Theme.of(context).colorScheme.background,
+        ),
+        colorScheme: scheme,
+        primaryColor: scheme.surface,
+        primaryColorDark: scheme.onSurface,
+        primaryColorLight: scheme.inverseSurface,
+        scaffoldBackgroundColor: scheme.surfaceVariant,
+        backgroundColor: scheme.surfaceVariant,
+        dialogBackgroundColor: scheme.secondary,
+        // highlightColor: ,
+        focusColor: Colors.transparent,
+        splashColor: scheme.secondary,
+        // hoverColor: Colors.white26,
+        fontFamily: GoogleFonts.poppins().fontFamily,
+      );
+
+  // static ThemeData darkThemeData(ColorScheme scheme) => ThemeData(
+  //       appBarTheme: AppBarTheme(
+  //         backgroundColor: scheme.surface,
+  //         centerTitle: true,
+  //         titleSpacing: kSmallPadding,
+  //         elevation: 0,
+  //         iconTheme: const IconThemeData(
+  //           color: kWhiteColor,
+  //           size: kMediumIconSize,
+  //         ),
+  //       ),
+  //       iconTheme: const IconThemeData(
+  //         color: kWhiteColor,
+  //         size: kMediumIconSize,
+  //       ),
+  //       floatingActionButtonTheme: FloatingActionButtonThemeData(
+  //         backgroundColor: scheme.secondary,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.circular(
+  //             kSmallBorderRadiusAsDouble,
+  //           ),
+  //         ),
+  //         elevation: 8,
+  //         //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
+  //       ),
+  //       textButtonTheme: TextButtonThemeData(
+  //         style: TextButton.styleFrom(
+  //           textStyle: const TextStyle(fontWeight: FontWeight.bold),
+  //           primary: kPrimaryColor, // kSecondaryColor
+  //         ),
+  //       ),
+  //       cardTheme: CardTheme(
+  //         elevation: 0,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: kDefaultBorderRadius,
+  //         ),
+  //         color: Colors.transparent,
+  //       ),
+  //       dialogTheme: DialogTheme(
+  //         // elevation: 0,
+  //         shape: RoundedRectangleBorder(
+  //           borderRadius: kDefaultBorderRadius,
+  //         ),
+  //         // backgroundColor: Theme.of(context).colorScheme.background, // TODO
+  //       ),
+  //       colorScheme: scheme,
+  //       primaryColor: scheme.surface,
+  //       primaryColorDark: scheme.onSurface,
+  //       primaryColorLight: scheme.inverseSurface,
+  //       scaffoldBackgroundColor: scheme.surfaceVariant,
+  //       backgroundColor: scheme.surfaceVariant,
+  //       dialogBackgroundColor: scheme.secondary,
+  //       // highlightColor: ,
+  //       focusColor: Colors.transparent,
+  //       splashColor: scheme.secondary,
+  //       hoverColor: Colors.black26,
+  //       fontFamily: GoogleFonts.poppins().fontFamily,
+  //     );
 
   MaterialColor createMaterialColor(Color color) {
     // primarySwatch: createMaterialColor(kComplementaryColor),

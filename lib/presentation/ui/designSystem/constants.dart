@@ -32,6 +32,7 @@ const kDefaultRowSpacing = kDefaultPadding * 1.5;
 const kHalfPadding = kDefaultPadding / 2;
 const kMediumPadding = kDefaultPadding / 1.5;
 const kSmallPadding = kDefaultPadding / 3;
+const kVerySmallPadding = kHalfPadding / 2;
 const kFloatingButtonLocation = FloatingActionButtonLocation.centerFloat;
 EdgeInsets kPageSpacing = const EdgeInsets.only(
   left: kDefaultPadding,
