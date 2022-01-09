@@ -12,5 +12,6 @@ export 'keyboard_unfocus_gesture_detector.dart';
 export 'material_you_navigation_bar_custom.dart';
 export 'scaffold_banner_errors.dart';
 export 'scroll_configuration_without_effect.dart';
+export 'shimmer_progress_indicator.dart';
 export 'snackbar_errors.dart';
 export 'transaction_widget.dart';

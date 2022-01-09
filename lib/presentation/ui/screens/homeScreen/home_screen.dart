@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/core.dart';
-import '../../../../main.dart';
 import '../../../../layers/layers.dart';
 import '../../ui.dart';
 
@@ -127,38 +126,42 @@ class HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: kPageSpacing,
                       child: ResponsiveWidthConstrained(
-                          child: Semantics(
-                              child: CategoriesSection(
-                        onPressList: [
+                        child: Semantics(
+                            child: CategoriesSection(onPressList: [
                           () => openFAB(),
-                        ],
-                      ))),
+                        ])),
+                      ),
                     ),
                     const SizedBox(height: kHalfPadding),
                     Padding(
-                        padding: kPageSpacing,
-                        child: ResponsiveWidthConstrained(
-                          child: Semantics(
-                              child: const RecentTransactionsSection()),
-                        )),
+                      padding: kPageSpacing,
+                      child: ResponsiveWidthConstrained(
+                        child: Semantics(
+                          child: const RecentTransactionsSection(),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: kHalfPadding),
                     Padding(
-                        padding: !WebProvider.isWebPlatform
-                            ? EdgeInsets.zero
-                            : kPageSpacing.copyWith(top: 0, bottom: 0),
-                        child: ResponsiveWidthConstrained(
-                          child: Semantics(
-                              child: NewsSection(desiredPadding: kPageSpacing)),
-                        )),
+                      padding: !WebProvider.isWebPlatform
+                          ? EdgeInsets.zero
+                          : kPageSpacing.copyWith(top: 0, bottom: 0),
+                      child: ResponsiveWidthConstrained(
+                        child: Semantics(
+                            child: NewsSection(desiredPadding: kPageSpacing)),
+                      ),
+                    ),
                     const SizedBox(height: kDefaultPadding),
                     const SizedBox(height: kDefaultPadding),
                     ResponsiveWidthConstrained(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(
-                            maxWidth: kMaxButtonConstraintWidth),
+                          maxWidth: kMaxButtonConstraintWidth,
+                        ),
                         child: Card(
                           margin: const EdgeInsets.symmetric(
-                              horizontal: kHugePadding * 2.5),
+                            horizontal: kHugePadding * 2.5,
+                          ),
                           color: Theme.of(context).primaryColorLight,
                           shape: RoundedRectangleBorder(
                             borderRadius: kDefaultBorderRadius,
