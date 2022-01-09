@@ -94,65 +94,6 @@ class AppThemes {
         fontFamily: GoogleFonts.poppins().fontFamily,
       );
 
-  // static ThemeData darkThemeData(ColorScheme scheme) => ThemeData(
-  //       appBarTheme: AppBarTheme(
-  //         backgroundColor: scheme.surface,
-  //         centerTitle: true,
-  //         titleSpacing: kSmallPadding,
-  //         elevation: 0,
-  //         iconTheme: const IconThemeData(
-  //           color: kWhiteColor,
-  //           size: kMediumIconSize,
-  //         ),
-  //       ),
-  //       iconTheme: const IconThemeData(
-  //         color: kWhiteColor,
-  //         size: kMediumIconSize,
-  //       ),
-  //       floatingActionButtonTheme: FloatingActionButtonThemeData(
-  //         backgroundColor: scheme.secondary,
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(
-  //             kSmallBorderRadiusAsDouble,
-  //           ),
-  //         ),
-  //         elevation: 8,
-  //         //extendedTextStyle: TextStyle(color: Theme.of(context).primaryColorDark),
-  //       ),
-  //       textButtonTheme: TextButtonThemeData(
-  //         style: TextButton.styleFrom(
-  //           textStyle: const TextStyle(fontWeight: FontWeight.bold),
-  //           primary: kPrimaryColor, // kSecondaryColor
-  //         ),
-  //       ),
-  //       cardTheme: CardTheme(
-  //         elevation: 0,
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: kDefaultBorderRadius,
-  //         ),
-  //         color: Colors.transparent,
-  //       ),
-  //       dialogTheme: DialogTheme(
-  //         // elevation: 0,
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: kDefaultBorderRadius,
-  //         ),
-  //         // backgroundColor: Theme.of(context).colorScheme.background, // TODO
-  //       ),
-  //       colorScheme: scheme,
-  //       primaryColor: scheme.surface,
-  //       primaryColorDark: scheme.onSurface,
-  //       primaryColorLight: scheme.inverseSurface,
-  //       scaffoldBackgroundColor: scheme.surfaceVariant,
-  //       backgroundColor: scheme.surfaceVariant,
-  //       dialogBackgroundColor: scheme.secondary,
-  //       // highlightColor: ,
-  //       focusColor: Colors.transparent,
-  //       splashColor: scheme.secondary,
-  //       hoverColor: Colors.black26,
-  //       fontFamily: GoogleFonts.poppins().fontFamily,
-  //     );
-
   MaterialColor createMaterialColor(Color color) {
     // primarySwatch: createMaterialColor(kComplementaryColor),
 
