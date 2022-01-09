@@ -117,9 +117,10 @@ class TransactionCard extends StatelessWidget {
                             TransactionModel.parsePaymentMethodToLocalized(
                                     transaction.paymentMethod, context) ??
                                 '',
-                            style: AppTextStyles.kListTileTitle
-                                .copyWith(fontSize: 16)
-                                .copyWith(height: kTextMediumHeightSpacing),
+                            style: AppTextStyles.kListTileTitle.copyWith(
+                              fontSize: 16,
+                              height: kTextMediumHeightSpacing,
+                            ),
                             maxLines: 1,
                             overflow: TextOverflow.fade,
                             softWrap: false,

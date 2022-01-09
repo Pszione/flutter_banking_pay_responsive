@@ -14,8 +14,10 @@ class BorderDefaultPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.only(left: kDefaultPadding, right: kHalfPadding),
+      padding: const EdgeInsets.only(
+        left: kDefaultPadding,
+        right: kHalfPadding,
+      ),
       child: child,
     );
   }
@@ -51,8 +53,9 @@ class BuildGoogleListButton extends StatelessWidget {
             mainAxisAlignment: alignment,
             children: [
               SizedBox(
-                  width: kDefaultRowSpacing,
-                  child: Icon(icon, size: kSmallIconSize)),
+                width: kDefaultRowSpacing,
+                child: Icon(icon, size: kSmallIconSize),
+              ),
               const SizedBox(width: 14),
               Semantics(
                 button: true,
@@ -72,25 +75,23 @@ class BuildGoogleListButton extends StatelessWidget {
 }
 
 class BuildGoogleListSettingButton extends StatelessWidget {
-  const BuildGoogleListSettingButton(
-      {Key? key,
-      this.horizontalPadding = kDefaultPadding,
-      required this.label,
-      this.description,
-      required this.icon,
-      required this.switchValue,
-      required this.onPress,
-      this.overrideSwitchButton})
-      : super(key: key);
+  const BuildGoogleListSettingButton({
+    Key? key,
+    this.horizontalPadding = kDefaultPadding,
+    required this.label,
+    this.description,
+    required this.icon,
+    required this.switchValue,
+    required this.onPress,
+    this.overrideSwitchButton,
+  }) : super(key: key);
 
   final double horizontalPadding;
   final String? label;
   final String? description;
   final IconData? icon;
   final bool switchValue;
-  final Function(bool) onPress;
-  //final ValueChanged<bool> onPress;
-  //final Function(int, bool) onHeyyy;
+  final void Function(bool) onPress;
   final Widget? overrideSwitchButton;
 
   @override
@@ -106,14 +107,17 @@ class BuildGoogleListSettingButton extends StatelessWidget {
         },
         child: Padding(
           padding: EdgeInsets.only(
-              left: horizontalPadding, right: horizontalPadding / 2),
+            left: horizontalPadding,
+            right: horizontalPadding / 2,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                  width: kDefaultRowSpacing,
-                  child: Icon(icon, size: kMediumIconSize)),
+                width: kDefaultRowSpacing,
+                child: Icon(icon, size: kMediumIconSize),
+              ),
               const SizedBox(width: kHalfPadding), // 14
               Expanded(
                 flex: 16,

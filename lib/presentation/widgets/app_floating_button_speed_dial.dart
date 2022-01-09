@@ -28,18 +28,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
     return SpeedDial(
       openCloseDial: openCloseState,
       closeDialOnPop: true,
-      foregroundColor: Theme.of(context).primaryColorDark,
       icon: icon, // animatedIcon: AnimatedIcons.menu_close,
-      iconTheme: IconThemeData(
-        color: Theme.of(context).primaryColorDark,
-        size: kHugeIconSize,
-      ),
-      buttonSize: const Size(kFabIconSize, kFabIconSize),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          kSmallBorderRadiusAsDouble,
-        ),
-      ),
       label: label != null
           ? AutoSizeText(
               label!,
@@ -52,6 +41,17 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
             )
           : null,
       tooltip: tooltip,
+      foregroundColor: Theme.of(context).primaryColorDark,
+      iconTheme: IconThemeData(
+        color: Theme.of(context).primaryColorDark,
+        size: kHugeIconSize,
+      ),
+      buttonSize: const Size(kFabIconSize, kFabIconSize),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          kSmallBorderRadiusAsDouble,
+        ),
+      ),
       elevation: _floatingElevation,
       animationSpeed: 400,
       spacing: kSmallPadding, // initial child

@@ -222,7 +222,6 @@ class GoogleAccountDialog {
         label: prefixSemantics,
         child: InkWell(
           onTap: onPressed,
-          splashColor: Theme.of(context).colorScheme.secondary,
           child: BorderDefaultPadding(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -346,7 +345,6 @@ class GoogleAccountDialog {
         width: width,
         height: height,
         child: InkWell(
-          splashColor: kSecondaryColor,
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble),
           onTap: () => HttpsService.launchURL(
               url: 'https://policies.google.com/privacy'),
@@ -371,7 +369,6 @@ class GoogleAccountDialog {
         width: width * 0.85,
         height: height,
         child: InkWell(
-          splashColor: kSecondaryColor,
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble),
           onTap: () =>
               HttpsService.launchURL(url: 'https://policies.google.com/terms'),
