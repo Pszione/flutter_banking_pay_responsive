@@ -5,7 +5,7 @@ import '../../presentation/ui/ui.dart';
 
 GetIt G = GetIt.instance;
 
-Future<void> init() async {
+Future<void> initDependencies() async {
 // dependency = objects/classes
   // *In this order! - from outside layers to inside layers
   // core services
