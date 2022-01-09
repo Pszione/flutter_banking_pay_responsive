@@ -1,3 +1,3 @@
-import 'package:flutter_banking_pay_responsive/layers/data/datasources/cards/cards_datasource.dart';
+import '../../../layers.dart';
 
 class CardsLocalDataSourceImpl implements CardsDataSource {}

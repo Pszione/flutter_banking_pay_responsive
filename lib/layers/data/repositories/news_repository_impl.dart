@@ -1,5 +1,4 @@
-import 'package:flutter_banking_pay_responsive/layers/domain/news.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/repositories/news_repository.dart';
+import '../../layers.dart';
 
 class NewsRepositoryImpl implements NewsRepository {
   @override

@@ -1,5 +1,4 @@
-import 'package:flutter_banking_pay_responsive/layers/domain/account.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/repositories/account_repository.dart';
+import '../../layers.dart';
 
 class AccountRepositoryImpl implements AccountRepository {
   @override

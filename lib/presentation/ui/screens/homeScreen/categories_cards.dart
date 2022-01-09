@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/snackbar_errors.dart';
+
+import '../../ui.dart';
+import '../../../../core/core.dart';
 
 class CategoriesSection extends StatelessWidget {
   const CategoriesSection({Key? key, required this.onPressList})

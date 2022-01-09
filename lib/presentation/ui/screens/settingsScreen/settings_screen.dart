@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/main.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/settings_texts.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/settings_screen_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/google_list_decorations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/data_providers.dart';
+import '../../../../layers/layers.dart';
+import '../../../../main.dart';
+import '../../ui.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key, required this.controller}) : super(key: key);

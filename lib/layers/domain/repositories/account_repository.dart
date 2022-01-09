@@ -1,4 +1,4 @@
-import 'package:flutter_banking_pay_responsive/layers/domain/account.dart';
+import '../../layers.dart';
 
 abstract class AccountRepository {
   AccountModel? get current;

@@ -1,6 +1,4 @@
 import 'package:flutter_banking_pay_responsive/layers/data/enums.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/home_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

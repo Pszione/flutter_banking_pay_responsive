@@ -1,27 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/activityInsights/activity_insights_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/cardScreen/card_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/home_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get_it/get_it.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:flutter_banking_pay_responsive/core/di/dependency_injection_get_it.dart'
-    as dependency_injection;
+
+import 'core/core.dart';
+import 'layers/layers.dart';
+import 'presentation/ui/ui.dart';
 
 const kAPP_TITLE = 'Flutter Banking Pay';
 const kAPP_TITLE_SHORT = 'Banking Pay';
 
 void main() {
-  dependency_injection.init();
+  init();
   runApp(const MyApp());
 }
 
@@ -35,32 +28,32 @@ class MyApp extends StatelessWidget {
       // initialize instances
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => GetIt.I<ThemeProvider>(),
+          create: (_) => G<ThemeProvider>(),
         ),
         ChangeNotifierProvider<SettingsProvider>(
-          create: (_) => GetIt.I<SettingsProvider>(),
+          create: (_) => G<SettingsProvider>(),
         ),
         ChangeNotifierProvider<DBSyncProvider>(
-          create: (_) => GetIt.I<DBSyncProvider>(),
+          create: (_) => G<DBSyncProvider>(),
         ),
         ChangeNotifierProvider<SetupScreenObservable>(
           create: (_) => SetupScreenObservable(),
         ),
         ChangeNotifierProvider<NavigationBarShared>(
-          create: (_) => GetIt.I<NavigationBarShared>(),
+          create: (_) => G<NavigationBarShared>(),
         ),
         //
         ChangeNotifierProvider<SetupScreen>(
-          create: (_) => GetIt.I<SetupScreen>(),
+          create: (_) => G<SetupScreen>(),
         ),
         ChangeNotifierProvider<HomeScreen>(
-          create: (_) => GetIt.I<HomeScreen>(),
+          create: (_) => G<HomeScreen>(),
         ),
         ChangeNotifierProvider<CardScreen>(
-          create: (_) => GetIt.I<CardScreen>(),
+          create: (_) => G<CardScreen>(),
         ),
         ChangeNotifierProvider<ActivityInsightsScreen>(
-          create: (_) => GetIt.I<ActivityInsightsScreen>(),
+          create: (_) => G<ActivityInsightsScreen>(),
         ),
       ],
       child: Builder(builder: (context) {
@@ -90,7 +83,7 @@ class MyApp extends StatelessWidget {
           //     return buildFuture();
           //   },
           // ),
-          initialRoute: RouteController.routeInitialRoute,
+          initialRoute: ROUTE_INITIAL,
           onGenerateRoute: (settings) =>
               RouteController.onHandleRoutes(settings, context),
           // navigatorObservers: [], // TODO

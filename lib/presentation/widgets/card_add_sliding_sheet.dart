@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'app_sliding_bottom_sheet.dart';
+
+import '../../core/core.dart';
+import '../ui/ui.dart';
 
 class CardAddSlidingSheet {
   Future<Widget?> showOptionsSlidingSheet(BuildContext context) {
@@ -53,7 +51,7 @@ class CardAddSlidingSheet {
   }
 
   void _openScanScreen(BuildContext context) {
-    Navigator.of(context).pushReplacementNamed(RouteController.routeScanCard);
+    Navigator.of(context).pushReplacementNamed(ROUTE_SCAN_CARD_SCREEN);
   }
 
   Widget buildListButton(

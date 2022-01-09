@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
+
+import '../../ui.dart';
 
 class GoogleScreenBase extends StatefulWidget {
   const GoogleScreenBase({

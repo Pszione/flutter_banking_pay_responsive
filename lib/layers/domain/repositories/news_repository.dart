@@ -1,4 +1,4 @@
-import 'package:flutter_banking_pay_responsive/layers/domain/news.dart';
+import '../../layers.dart';
 
 abstract class NewsRepository {
   int? get currentLoadedLength;

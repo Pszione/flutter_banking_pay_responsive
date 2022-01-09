@@ -1,17 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/layers/data/enums.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/googleAccountDialogScreen/google_account_dialog.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/setupScreen/setup_screen.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/core.dart';
+import '../../layers/layers.dart';
+import '../ui/ui.dart';
+
+// ignore_for_file: curly_braces_in_flow_control_structures
 class AppBarComplete extends StatefulWidget implements PreferredSizeWidget {
   AppBarComplete({
     Key? key,
@@ -92,8 +88,7 @@ class _AppBarCompleteState extends State<AppBarComplete> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final dbProvider = Provider.of<DBSyncProvider>(context);
-    bool anyNewNotificationsToDisplay =
-        dbProvider != null && dbProvider.newNotifications > 0;
+    bool anyNewNotificationsToDisplay = dbProvider.newNotifications > 0;
 
     return Semantics(
       namesRoute: true,
@@ -238,8 +233,8 @@ class _AppBarCompleteState extends State<AppBarComplete> {
                 ),
                 iconSize: kMediumIconSize,
                 // TODO: not right
-                onPressed: () => GoogleAccountDialog()
-                    .showDialogDismissible(context, GetIt.I()),
+                onPressed: () =>
+                    GoogleAccountDialog().showDialogDismissible(context, G()),
                 tooltip: S
                     .of(context)
                     .googleAccountDialog_TOOLTIP_googleAccountDialog_description,

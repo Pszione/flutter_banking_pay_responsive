@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
+
+import '../ui/ui.dart';
 
 class AppScaffoldBannerErrors {
   static void showBannerUnavailable(BuildContext context) =>

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/googleScreenBase/google_screen_base.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/sendMoneyScreen/transaction_successful.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../layers/layers.dart';
+import '../../ui.dart';
 
 class SendMoneyScreen extends StatefulWidget {
   const SendMoneyScreen({Key? key}) : super(key: key);

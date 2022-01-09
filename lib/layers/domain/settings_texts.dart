@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// TODO: remove this dependency
 import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
 
 class SettingsOptionText {

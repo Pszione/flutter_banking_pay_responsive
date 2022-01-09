@@ -1,18 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/main.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/account.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/google_account_dialog_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/google_list_decorations.dart';
-import 'package:flutter_banking_pay_responsive/utils.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../core/core.dart';
+import '../../../../layers/layers.dart';
+import '../../../../main.dart';
+import '../../ui.dart';
 
 class GoogleAccountDialog {
   GoogleAccountDialog({
@@ -80,7 +74,7 @@ class GoogleAccountDialog {
                 ),
                 buildManageAccountButton(
                     context: context,
-                    onPress: () => Https.launchURL(
+                    onPress: () => HttpsService.launchURL(
                         url: 'https://myaccount.google.com/',
                         forceWebView: false)),
                 const SizedBox(height: kHalfPadding),
@@ -129,14 +123,14 @@ class GoogleAccountDialog {
                   icon: Icons.settings_rounded,
                   onPress: () {
                     Navigator.of(context)
-                        .pushReplacementNamed(RouteController.routeSettings);
+                        .pushReplacementNamed(ROUTE_SETTINGS_SCREEN);
                   },
                 ),
                 // TODO: add FAQ link
                 BuildGoogleListButton(
                   label: S.of(context).googleAccountDialog_help_button_title,
                   icon: Icons.help_outline_sharp,
-                  onPress: () => Https.launchURL(
+                  onPress: () => HttpsService.launchURL(
                       url: Provider.of<ThemeProvider>(context, listen: false)
                               .isDarkMode
                           ? 'https://support.google.com/pay/?dark=1'
@@ -346,8 +340,8 @@ class GoogleAccountDialog {
         child: InkWell(
           splashColor: kSecondaryColor,
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble),
-          onTap: () =>
-              Https.launchURL(url: 'https://policies.google.com/privacy'),
+          onTap: () => HttpsService.launchURL(
+              url: 'https://policies.google.com/privacy'),
           child: Center(
             child: Semantics(
               label: S.of(context).googleAccountDialog_TOOLTIP_readTerms_hint,
@@ -372,7 +366,7 @@ class GoogleAccountDialog {
           splashColor: kSecondaryColor,
           borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble),
           onTap: () =>
-              Https.launchURL(url: 'https://policies.google.com/terms'),
+              HttpsService.launchURL(url: 'https://policies.google.com/terms'),
           child: Center(
             child: Semantics(
               label: S.of(context).googleAccountDialog_TOOLTIP_readTerms_hint,

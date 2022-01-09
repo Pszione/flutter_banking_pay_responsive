@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/layers/domain/card.dart';
+
+import '../../layers/layers.dart';
 
 class CardScreenController {
   List<CardModel> cards = [];

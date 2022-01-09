@@ -1,12 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constant_text_styles.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/snackbar_errors.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../core/core.dart';
+import '../ui/ui.dart';
 
 double _floatingElevation = 9;
 
@@ -60,8 +58,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
           child: const Icon(Icons.send_rounded, color: dialIconsColor),
           label: S.of(context).homeScreen_first_fab_optionsDescription,
           elevation: _floatingElevation,
-          onTap: () =>
-              Navigator.of(context).pushNamed(RouteController.routeSendMoney),
+          onTap: () => Navigator.of(context).pushNamed(ROUTE_SEND_MONEY_SCREEN),
         ),
         SpeedDialChild(
           child: const Icon(Icons.arrow_circle_down_rounded,

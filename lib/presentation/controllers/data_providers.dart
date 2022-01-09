@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/main.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/material_you_navigation_bar_custom.dart';
 
-import 'package:flutter_banking_pay_responsive/layers/domain/account.dart';
+import '../../layers/layers.dart';
+import '../../main.dart';
+import '../widgets/widgets.dart';
 
 class WebProvider {
   static get isWebPlatform => kIsWeb;

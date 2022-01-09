@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banking_pay_responsive/layers/data/card_brand.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import '../../layers/layers.dart';
+import '../../presentation/ui/ui.dart';
 
 class CardModel {
   CardModel({

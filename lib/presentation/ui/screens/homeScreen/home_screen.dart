@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_banking_pay_responsive/core/route_controller.dart';
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
-import 'package:flutter_banking_pay_responsive/main.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/data_providers.dart';
-import 'package:flutter_banking_pay_responsive/presentation/controllers/home_screen_controller.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/constants.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/designSystem/responsive.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/news_section.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/recent_transactions_section.dart';
-import 'package:flutter_banking_pay_responsive/presentation/ui/screens/homeScreen/user_cards_section.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_bar_complete.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/app_floating_button_speed_dial.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/card_widget.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/google_list_decorations.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/transaction_widget.dart';
-import 'package:flutter_banking_pay_responsive/presentation/widgets/keyboard_unfocus_gesture_detector.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
-import 'categories_cards.dart';
+import '../../../../core/core.dart';
+import '../../../../main.dart';
+import '../../../../layers/layers.dart';
+import '../../ui.dart';
 
 // ignore_for_file: curly_braces_in_flow_control_structures
 class HomeScreen extends StatefulWidget with ChangeNotifier {
@@ -33,7 +19,7 @@ class HomeScreen extends StatefulWidget with ChangeNotifier {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  final HomeScreenController controller = GetIt.I<HomeScreenController>();
+  final HomeScreenController controller = G<HomeScreenController>();
 
   bool _isFloatingButtonVisible = true;
   final ValueNotifier<bool> openCloseStateFAB = ValueNotifier(false);
@@ -206,7 +192,7 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   void handleOnPressSettingsButton(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteController.routeSettings);
+    Navigator.of(context).pushNamed(ROUTE_SETTINGS_SCREEN);
   }
 
   bool handleUserScrollState(notification) {
