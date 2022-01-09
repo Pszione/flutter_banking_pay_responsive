@@ -8,27 +8,6 @@ PageStorageBucket bucketStorageForHomeScreen = PageStorageBucket();
 PageStorageBucket bucketStorageForCardScreen = PageStorageBucket();
 
 class RouteController {
-  /// '/'
-  static const String routeInitialRoute = ROUTE_INITIAL_HOME;
-
-  /// '/home
-  static const String routeHomeScreen = ROUTE_HOME_SCREEN;
-
-  /// '/cards
-  static const String routeCardScreen = ROUTE_CARD_SCREEN;
-
-  /// '/activity\_insights
-  static const String routeActivityInsights = ROUTE_ACTIVITY_INSIGHTS_SCREEN;
-
-  /// '/scan\_card
-  static const String routeScanCard = ROUTE_SCAN_CARD_SCREEN;
-
-  /// '/send\_money'
-  static const String routeSendMoney = ROUTE_SEND_MONEY_SCREEN;
-
-  /// '/settings
-  static const String routeSettings = ROUTE_SETTINGS_SCREEN;
-
   static Route<dynamic>? onHandleRoutes(
       RouteSettings settings, BuildContext context) {
     // Getting arguments passed in while calling [Navigator.pushNamed]
@@ -36,38 +15,38 @@ class RouteController {
     print("Route '${settings.name}' with args: $args");
 
     switch (settings.name) {
-      case routeInitialRoute:
+      case ROUTE_INITIAL:
         return MaterialPageRoute(
           builder: (context) => G<SetupScreen>(),
           settings: settings,
           maintainState: true,
         );
-      case routeActivityInsights:
+      case ROUTE_ACTIVITY_INSIGHTS_SCREEN:
         return MaterialPageRoute(
           builder: (context) => G<ActivityInsightsScreen>(),
           settings: settings,
         );
-      case routeHomeScreen:
+      case ROUTE_HOME_SCREEN:
         return MaterialPageRoute(
           builder: (context) => G<HomeScreen>(),
           settings: settings,
         );
-      case routeCardScreen:
+      case ROUTE_CARD_SCREEN:
         return MaterialPageRoute(
           builder: (context) => G<CardScreen>(),
           settings: settings,
         );
-      case routeScanCard:
+      case ROUTE_SCAN_CARD_SCREEN:
         return MaterialPageRoute(
           builder: (context) => const ScanCardScreen(),
           settings: settings,
         );
-      case routeSendMoney:
+      case ROUTE_SEND_MONEY_SCREEN:
         return MaterialPageRoute(
           builder: (context) => const SendMoneyScreen(),
           settings: settings,
         );
-      case routeSettings:
+      case ROUTE_SETTINGS_SCREEN:
         return MaterialPageRoute(
           builder: (context) => G<SettingsScreen>(),
           settings: settings,

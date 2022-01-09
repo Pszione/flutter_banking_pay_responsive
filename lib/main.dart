@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
           //     return buildFuture();
           //   },
           // ),
-          initialRoute: RouteController.routeInitialRoute,
+          initialRoute: ROUTE_INITIAL,
           onGenerateRoute: (settings) =>
               RouteController.onHandleRoutes(settings, context),
           // navigatorObservers: [], // TODO

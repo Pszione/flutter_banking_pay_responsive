@@ -42,7 +42,7 @@ class SetupScreenState extends State<SetupScreen> {
           getCurrentIndex: getCurrentSelectedIndex,
           callbackOnPress: callbackOnBottomNavigationPress);
       // TODO
-      Navigator.of(context).pushNamed(RouteController.routeHomeScreen);
+      Navigator.of(context).pushNamed(ROUTE_HOME_SCREEN);
       //
       BuildContext _context = widget.keyScreen.currentContext!;
       QuickActionsCustom().initializeDelayed(_context);
@@ -86,14 +86,13 @@ class SetupScreenState extends State<SetupScreen> {
     if (index == 0) {
       getCurrentSelectedIndex.value = index;
       // Navigator.of(context).maybePop();
-      Navigator.of(context)
-          .popUntil(ModalRoute.withName(RouteController.routeHomeScreen));
+      Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_HOME_SCREEN));
     } else if (index == 1) {
       getCurrentSelectedIndex.value = index;
-      Navigator.of(context).pushNamed(RouteController.routeCardScreen);
+      Navigator.of(context).pushNamed(ROUTE_CARD_SCREEN);
     } else if (index == 2) {
       getCurrentSelectedIndex.value = index;
-      Navigator.of(context).pushNamed(RouteController.routeActivityInsights);
+      Navigator.of(context).pushNamed(ROUTE_ACTIVITY_INSIGHTS_SCREEN);
     }
     HapticFeedback.selectionClick();
     notifyPopDependencies(true);

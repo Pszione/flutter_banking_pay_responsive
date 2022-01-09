@@ -58,8 +58,7 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
           child: const Icon(Icons.send_rounded, color: dialIconsColor),
           label: S.of(context).homeScreen_first_fab_optionsDescription,
           elevation: _floatingElevation,
-          onTap: () =>
-              Navigator.of(context).pushNamed(RouteController.routeSendMoney),
+          onTap: () => Navigator.of(context).pushNamed(ROUTE_SEND_MONEY_SCREEN),
         ),
         SpeedDialChild(
           child: const Icon(Icons.arrow_circle_down_rounded,

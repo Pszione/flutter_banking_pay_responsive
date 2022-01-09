@@ -123,7 +123,7 @@ class GoogleAccountDialog {
                   icon: Icons.settings_rounded,
                   onPress: () {
                     Navigator.of(context)
-                        .pushReplacementNamed(RouteController.routeSettings);
+                        .pushReplacementNamed(ROUTE_SETTINGS_SCREEN);
                   },
                 ),
                 // TODO: add FAQ link

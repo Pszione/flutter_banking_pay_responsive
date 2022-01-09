@@ -1,5 +1,5 @@
 /// '/'
-const String ROUTE_INITIAL_HOME = '/';
+const String ROUTE_INITIAL = '/';
 
 /// '/home
 const String ROUTE_HOME_SCREEN = '/home';

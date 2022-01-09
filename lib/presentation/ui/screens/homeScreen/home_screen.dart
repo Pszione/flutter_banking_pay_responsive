@@ -192,7 +192,7 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   void handleOnPressSettingsButton(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteController.routeSettings);
+    Navigator.of(context).pushNamed(ROUTE_SETTINGS_SCREEN);
   }
 
   bool handleUserScrollState(notification) {
