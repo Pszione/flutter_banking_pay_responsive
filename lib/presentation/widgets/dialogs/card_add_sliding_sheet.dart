@@ -71,21 +71,28 @@ class CardAddSlidingSheet {
     return SizedBox(
       width: double.infinity,
       height: buttonHeight,
-      // TODO
       child: InkWell(
         onTap: onPress,
         highlightColor: Colors.transparent,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
                 width: kDefaultRowSpacing,
-                child: Icon(icon, size: kMediumIconSize),
+                child: Icon(
+                  icon,
+                  size: kMediumIconSize,
+                ),
               ),
               const SizedBox(width: 14),
-              Text(label!, style: style)
+              Text(
+                label!,
+                style: style,
+              ),
             ],
           ),
         ),

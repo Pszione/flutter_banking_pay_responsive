@@ -102,7 +102,6 @@ class BuildGoogleListSettingButton extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // InkWell will act as switch
-          //if (overrideSwitchButton == null)
           onPress.call(!switchValue);
         },
         child: Padding(
@@ -146,8 +145,9 @@ class BuildGoogleListSettingButton extends StatelessWidget {
                           maxFontSize: 12,
                           minFontSize: 6,
                           stepGranularity: 0.2,
-                          style: AppTextStyles.kSmallText()
-                              .copyWith(fontSize: null),
+                          style: AppTextStyles.kSmallText().copyWith(
+                            fontSize: null,
+                          ),
                         ),
                     ],
                   ),
@@ -194,7 +194,7 @@ class BuildGoogleListTitle extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(width: kSmallPadding / 1.2),
+          const SizedBox(width: kVerySmallPadding),
           Semantics(
             child: Text(
               label,

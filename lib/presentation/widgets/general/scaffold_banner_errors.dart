@@ -11,7 +11,8 @@ class AppScaffoldBannerErrors {
             padding: const EdgeInsets.only(top: kHugePadding),
             backgroundColor: Theme.of(context).colorScheme.error,
             content: const Text(
-                "Feature unavailable at the moment. We'll fix it right away!"),
+              "Feature unavailable at the moment. We'll fix it right away!",
+            ),
             contentTextStyle: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -23,7 +24,7 @@ class AppScaffoldBannerErrors {
                 child: Text(
                   'Dismiss'.toUpperCase(),
                 ),
-              )
+              ),
             ],
           ),
         );

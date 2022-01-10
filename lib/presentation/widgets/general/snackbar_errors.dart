@@ -13,7 +13,10 @@ class AppSnackBarErrors {
             backgroundColor: Theme.of(context).colorScheme.error,
             content: Text(
               S.of(context).snackBar_featureUnavailableButBeingFixed_text,
-              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+              style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
               textAlign:
                   Responsive.isDesktop(context) ? TextAlign.center : null,
             ),
@@ -32,7 +35,10 @@ class AppSnackBarErrors {
             backgroundColor: Theme.of(context).colorScheme.error,
             content: Text(
               text,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             dismissDirection: DismissDirection.down,
             // contentTextStyle:

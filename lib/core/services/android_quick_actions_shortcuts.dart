@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-import '../layers/layers.dart';
-import '../presentation/ui/ui.dart';
+import '../../layers/layers.dart';
+import '../../presentation/ui/ui.dart';
 
 class QuickActionsCustom {
   final quickActionsInstance = const QuickActions();

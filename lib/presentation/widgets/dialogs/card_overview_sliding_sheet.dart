@@ -14,25 +14,29 @@ class CardOverviewSlidingSheet extends StatelessWidget {
     return Material(
       child: Stack(
         alignment: Alignment.topCenter,
-        // fit: StackFit.loose,
         clipBehavior: Clip.antiAlias,
         children: [
           Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.97, // 780,
-            color: CardModel.getCardColorNullSafety(card: card, opacity: 0.85),
+            color: CardModel.getCardColorNullSafety(
+              card: card,
+              opacity: 0.85,
+            ),
           ),
           Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.77,
             margin: const EdgeInsets.only(
-                left: kDefaultPadding,
-                right: kDefaultPadding,
-                bottom: kHalfPadding),
+              left: kDefaultPadding,
+              right: kDefaultPadding,
+              bottom: kHalfPadding,
+            ),
             padding: const EdgeInsets.only(
-                left: kDefaultPadding,
-                right: kDefaultPadding,
-                top: kDefaultPadding),
+              left: kDefaultPadding,
+              right: kDefaultPadding,
+              top: kDefaultPadding,
+            ),
             decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
               borderRadius: kDefaultBorderRadius,
@@ -46,8 +50,9 @@ class CardOverviewSlidingSheet extends StatelessWidget {
                 child: TextButton(
                   onPressed: () => Navigator.of(context).pop(),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kHugePadding),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: kHugePadding,
+                    ),
                     child: Text(
                       S.of(context).other_TOOLTIP_closeButton,
                       style: const TextStyle(fontSize: 17),
@@ -55,13 +60,6 @@ class CardOverviewSlidingSheet extends StatelessWidget {
                   ),
                 ),
               ),
-              // Builder(
-              //     // sheetController needs a builder around it to get the right context
-              //     child: const Text('Show more'),
-              //     onPressed: () =>
-              //         SheetController.of(context)!.expand(),
-              // ),
-
               const SizedBox(height: kDefaultPadding),
               Align(
                 alignment: Alignment.topCenter,
@@ -114,8 +112,10 @@ class CardOverviewSlidingSheet extends StatelessWidget {
               const SizedBox(height: kDefaultPadding * 2),
               Text(
                 '${card.cardHolderName}',
-                style: AppTextStyles.getBodyText(context)
-                    .copyWith(fontSize: 21, overflow: TextOverflow.ellipsis),
+                style: AppTextStyles.getBodyText(context).copyWith(
+                  fontSize: 21,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               SizedBox(
                 width: 50,
@@ -125,19 +125,25 @@ class CardOverviewSlidingSheet extends StatelessWidget {
               if (card.nickname != null)
                 Text(
                   card.nickname!,
-                  style: AppTextStyles.getBodyText(context)
-                      .copyWith(fontSize: 22, overflow: TextOverflow.ellipsis),
+                  style: AppTextStyles.getBodyText(context).copyWith(
+                    fontSize: 22,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               if (card.cardNumber != null)
                 Text(
                   card.cardNumber!,
-                  style: AppTextStyles.getBodyText(context)
-                      .copyWith(fontSize: 22, overflow: TextOverflow.ellipsis),
+                  style: AppTextStyles.getBodyText(context).copyWith(
+                    fontSize: 22,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: kHugePadding),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: kHugePadding,
+                  ),
                   child: Text(
                     S
                         .of(context)

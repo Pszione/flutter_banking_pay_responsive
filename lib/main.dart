@@ -49,11 +49,13 @@ class MyApp extends StatelessWidget {
   }
 
   Future<String?> _fetchNetworkData(int milliseconds) {
-    final myFuture =
-        Future<String?>.delayed(Duration(milliseconds: milliseconds), () {
-      print('future finished');
-      return 'Success: Future.delayed for $milliseconds';
-    });
+    final myFuture = Future<String?>.delayed(
+      Duration(milliseconds: milliseconds),
+      () {
+        print('future finished');
+        return 'Success: Future.delayed for $milliseconds';
+      },
+    );
     // .then((value) => print('Whaaaaat? 2'));
     return myFuture;
   }
@@ -70,7 +72,9 @@ class MyApp extends StatelessWidget {
           // Checking future result
           if (httpSnapshot.hasError) {
             print(httpSnapshot.error);
-            return Center(child: Text(httpSnapshot.error.toString()));
+            return Center(
+              child: Text(httpSnapshot.error.toString()),
+            );
           }
           // Success
           else if (httpSnapshot.hasData) {

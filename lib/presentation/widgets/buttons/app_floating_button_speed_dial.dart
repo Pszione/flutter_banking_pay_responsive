@@ -32,8 +32,9 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
       label: label != null
           ? AutoSizeText(
               label!,
-              style:
-                  AppTextStyles.kFloatingButtonText().copyWith(fontSize: null),
+              style: AppTextStyles.kFloatingButtonText().copyWith(
+                fontSize: null,
+              ),
               maxLines: 1,
               maxFontSize: 17,
               minFontSize: 12,
