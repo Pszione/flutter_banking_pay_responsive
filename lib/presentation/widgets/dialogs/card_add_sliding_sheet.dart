@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/core.dart';
-import '../ui/ui.dart';
+import '../../../core/core.dart';
+import '../../ui/ui.dart';
 
 class CardAddSlidingSheet {
   Future<Widget?> showOptionsSlidingSheet(BuildContext context) {

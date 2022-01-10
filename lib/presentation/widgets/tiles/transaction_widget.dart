@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/core.dart';
-import '../../layers/layers.dart';
-import '../ui/ui.dart';
+import '../../../core/core.dart';
+import '../../../layers/layers.dart';
+import '../../ui/ui.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;

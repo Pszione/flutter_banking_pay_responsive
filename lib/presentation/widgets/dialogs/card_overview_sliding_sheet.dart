@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../layers/layers.dart';
-import '../ui/ui.dart';
+import '../../../layers/layers.dart';
+import '../../ui/ui.dart';
 
 class CardOverviewSlidingSheet extends StatelessWidget {
   const CardOverviewSlidingSheet({Key? key, required this.card})
