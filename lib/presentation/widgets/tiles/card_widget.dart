@@ -87,8 +87,9 @@ class CardWidget extends StatelessWidget {
                     Semantics(
                       child: Text(
                         CardModel.obscureCardInfo(card.cardNumber!, 4),
-                        style: AppTextStyles.kCardSubtitle
-                            .copyWith(height: 0.6), // TODO
+                        style: AppTextStyles.kCardSubtitle.copyWith(
+                          height: 0.6,
+                        ), // TODO
                         semanticsLabel: S
                             .of(context)
                             .cardWidget_TOOLTIP_cardNumber_title(
@@ -113,6 +114,7 @@ class CardWidget extends StatelessWidget {
                                   ? AppTextStyles.kCardSubtitle
                                   : AppTextStyles.kCardTitle
                                       .copyWith(color: kTextRedColor),
+                              // TODO
                               semanticsLabel:
                                   "${CardModel.parseExpDateStringToDateTime(card.expDate)?.month} ${CardModel.parseExpDateStringToDateTime(card.expDate)?.year} ${CardModel.hasCardExpired(card.expDate) ? S.of(context).cardWidget_expDateExpired_title : null}",
                             ),
@@ -145,9 +147,9 @@ class CardWidget extends StatelessWidget {
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ],
@@ -254,14 +256,12 @@ class CardOutlineWidget extends StatelessWidget {
           width: width,
           height: height,
           decoration: ShapeDecoration(
-            // color: Colors.transparent,
             color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
             shadows: [kBoxDownShadowSubtle],
             shape: RoundedRectangleBorder(
               borderRadius: kDefaultBorderRadius,
               side: BorderSide(
                 width: 3,
-                //color: kLightGrayColor,
                 color: color,
               ),
             ),
@@ -288,15 +288,15 @@ class CardOutlineWidget extends StatelessWidget {
                           label!,
                           textAlign: TextAlign.center,
                           speed: const Duration(milliseconds: 45),
-                          textStyle: AppTextStyles.getBodyText(context)
-                              .copyWith(
-                                  color: color, fontSize: 17, height: 1.0),
+                          textStyle:
+                              AppTextStyles.getBodyText(context).copyWith(
+                            color: color,
+                            fontSize: 17,
+                            height: 1.0,
+                          ),
                         ),
                       ],
                     ),
-                  // Text('Add payment method',
-                  //     style: AppTextStyles.getBodyText(context)
-                  //         .copyWith(color: color)),
                 ],
               ),
             ),
@@ -305,7 +305,6 @@ class CardOutlineWidget extends StatelessWidget {
         // Clickable
         if (isClickable)
           SizedBox(
-            //padding: const EdgeInsets.all(kDefaultPadding * 2.3),
             width: width,
             height: height,
             child: InkWell(
@@ -313,7 +312,6 @@ class CardOutlineWidget extends StatelessWidget {
               borderRadius: kHugeBorderRadius,
               radius: kInkWellMediumRadius,
               onTap: onPress,
-              //onTap: () => AppSlidingBottomSheet.demoSheet(context),
             ),
           ),
       ],

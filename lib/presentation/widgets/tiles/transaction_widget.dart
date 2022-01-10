@@ -46,13 +46,13 @@ class TransactionCard extends StatelessWidget {
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: kDefaultBorderRadius,
-        //border: Border.all(width: 2, color: Colors.grey[300]!),
         side: BorderSide(
-            width: 2,
-            color: listProvider.clickedTransactionIndex != null &&
-                    listProvider.clickedTransactionIndex == transactionIndex
-                ? kPrimaryColor
-                : kLightGrayColor),
+          width: 2,
+          color: listProvider.clickedTransactionIndex != null &&
+                  listProvider.clickedTransactionIndex == transactionIndex
+              ? kPrimaryColor
+              : kLightGrayColor,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(kHalfPadding),

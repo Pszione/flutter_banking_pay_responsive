@@ -127,9 +127,12 @@ class HomeScreenState extends State<HomeScreen> {
                       padding: kPageSpacing,
                       child: ResponsiveWidthConstrained(
                         child: Semantics(
-                            child: CategoriesSection(onPressList: [
-                          () => openFAB(),
-                        ])),
+                          child: CategoriesSection(
+                            onPressList: [
+                              () => openFAB(),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: kHalfPadding),
@@ -148,7 +151,8 @@ class HomeScreenState extends State<HomeScreen> {
                           : kPageSpacing.copyWith(top: 0, bottom: 0),
                       child: ResponsiveWidthConstrained(
                         child: Semantics(
-                            child: NewsSection(desiredPadding: kPageSpacing)),
+                          child: NewsSection(desiredPadding: kPageSpacing),
+                        ),
                       ),
                     ),
                     const SizedBox(height: kDefaultPadding),
@@ -169,7 +173,9 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                vertical: kHalfPadding, horizontal: 3),
+                              vertical: kHalfPadding,
+                              horizontal: 3,
+                            ),
                             child: BuildGoogleListButton(
                               icon: Icons.settings_rounded,
                               label: S
@@ -275,14 +281,17 @@ class ShimmerHomeScreen extends StatelessWidget {
                           },
                           itemCount: 5,
                           itemBuilder: (_, index) => ShimmerProgressIndicator(
-                              child: CardWidget.defaultDimensionColored),
+                            child: CardWidget.defaultDimensionColored,
+                          ),
                         ),
                       ),
                     ),
                     // Categories List
                     Padding(
                       padding: kPageSpacing.copyWith(
-                          top: kHugePadding, bottom: kHugePadding),
+                        top: kHugePadding,
+                        bottom: kHugePadding,
+                      ),
                       child: SizedBox(
                         height: 70,
                         child: ListView.separated(
@@ -290,7 +299,9 @@ class ShimmerHomeScreen extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           physics: const NeverScrollableScrollPhysics(),
                           separatorBuilder: (_, index) => const SizedBox(
-                              width: kHalfPadding * 1.1, height: kHalfPadding),
+                            width: kHalfPadding * 1.1,
+                            height: kHalfPadding,
+                          ),
                           itemCount: 5,
                           itemBuilder: (_, index) => ShimmerProgressIndicator(
                             child: CategoryCard.defaultDimensionColored,
@@ -330,10 +341,6 @@ class ShimmerHomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // Center(
-            //   child: CircularProgressIndicator(
-            //       strokeWidth: 6, color: Theme.of(context).colorScheme.primary),
-            // ),
           ],
         ),
       ),

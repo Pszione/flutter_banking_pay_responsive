@@ -38,14 +38,14 @@ class GoogleScreenBaseState extends State<GoogleScreenBase> {
             physics: const ClampingScrollPhysics(),
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.symmetric(
-                // horizontal: kDefaultPadding,
-                vertical: hasEnoughSpacing ? kHugePadding : kHalfPadding),
+              vertical: hasEnoughSpacing ? kHugePadding : kHalfPadding,
+            ),
             children: [
               if (widget.showGoogleIcon && hasEnoughSpacing)
                 Padding(
                   padding: EdgeInsets.only(
-                      bottom:
-                          hasEnoughSpacing ? kDefaultPadding : kHalfPadding),
+                    bottom: hasEnoughSpacing ? kDefaultPadding : kHalfPadding,
+                  ),
                   child: Text(
                     K_GOOGLE_TEXT,
                     style: AppTextStyles.getBodyText(context),
@@ -66,7 +66,6 @@ class GoogleScreenBaseState extends State<GoogleScreenBase> {
                   widget.description!,
                   textAlign: TextAlign.center,
                 ),
-              // const Spacer(), // TODO
               widget.child,
             ],
           ),

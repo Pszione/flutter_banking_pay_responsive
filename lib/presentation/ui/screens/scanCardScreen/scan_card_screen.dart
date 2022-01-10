@@ -54,17 +54,21 @@ class _ScanCardScreenState extends State<ScanCardScreen> {
               ),
             ),
             SizedBox(
-                height: hasEnoughSpacing ? kDefaultPadding : kSmallPadding),
+              height: hasEnoughSpacing ? kDefaultPadding : kSmallPadding,
+            ),
             Text(S.of(context).scanCardScreen_or_text),
             TextButton(
-                onPressed: () =>
-                    AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
-                child: AutoSizeText(
-                  S.of(context).scanCardScreen_enterCardManually_title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, letterSpacing: 0.4),
-                  maxFontSize: 14,
-                )),
+              onPressed: () =>
+                  AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
+              child: AutoSizeText(
+                S.of(context).scanCardScreen_enterCardManually_title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.4,
+                ),
+                maxFontSize: 14,
+              ),
+            ),
             if (hasEnoughSpacing) const Spacer(flex: 4),
             if (!hasEnoughSpacing) const SizedBox(height: kDefaultPadding),
             AutoSizeText(

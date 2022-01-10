@@ -16,17 +16,18 @@ class NewsSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-          color: Theme.of(context).hoverColor,
-          borderRadius:
-              !WebProvider.isWebPlatform ? null : kDefaultBorderRadius),
+        color: Theme.of(context).hoverColor,
+        borderRadius: !WebProvider.isWebPlatform ? null : kDefaultBorderRadius,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.only(
-                left: !WebProvider.isWebPlatform ? desiredPadding.left : 0,
-                top: desiredPadding.top / 2,
-                right: desiredPadding.left),
+              left: !WebProvider.isWebPlatform ? desiredPadding.left : 0,
+              top: desiredPadding.top / 2,
+              right: desiredPadding.left,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -86,7 +87,6 @@ class NewsSection extends StatelessWidget {
 
   Widget buildNewsCard(BuildContext context, int index) {
     return Container(
-      // onPress: () {}
       width: MediaQuery.of(context).orientation == Orientation.portrait
           ? 250
           : 300,
@@ -97,9 +97,10 @@ class NewsSection extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.only(
-            left: kDefaultPadding,
-            top: kDefaultPadding,
-            right: kDefaultPadding),
+          left: kDefaultPadding,
+          top: kDefaultPadding,
+          right: kDefaultPadding,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,7 +129,6 @@ class NewsSection extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () => {},
-                // AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
                 child: Text(
                   S.of(context).homeScreen_seeMore_title,
                   textAlign: TextAlign.left,

@@ -57,6 +57,7 @@ class AppSlidingBottomSheet {
       );
 
   static Future<Widget?> demoSheet(BuildContext context) =>
+      // TODO: use sliding up package
       AppSlidingBottomSheet(
         context: context,
         snappings: [0.3, 0.5],

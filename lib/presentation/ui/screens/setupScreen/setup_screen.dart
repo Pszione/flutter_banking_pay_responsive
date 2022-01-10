@@ -84,7 +84,6 @@ class SetupScreenState extends State<SetupScreen> {
   void changeSelectedMenu(int index) {
     if (index == 0) {
       getCurrentSelectedIndex.value = index;
-      // Navigator.of(context).maybePop();
       Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_HOME_SCREEN));
     } else if (index == 1) {
       getCurrentSelectedIndex.value = index;

@@ -37,8 +37,6 @@ class CategoriesSection extends StatelessWidget {
           CategoryCard(
             label: S.of(context).homeScreen_transactions_categoryTitle,
             icon: Icons.read_more_rounded,
-            // onPress: () =>
-            //     AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
             onPress: () => onPressList.isNotEmpty ? onPressList[0].call() : {},
           ),
           spacing,
@@ -55,7 +53,6 @@ class CategoriesSection extends StatelessWidget {
             onPress: () =>
                 AppSnackBarErrors.showSnackBarFeatureUnavailable(context),
           ),
-
           spacing,
           CategoryCard(
             label: S.of(context).homeScreen_supportChat_categoryTitle,
@@ -146,18 +143,19 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: kSmallPadding / 2),
+              padding: const EdgeInsets.symmetric(
+                horizontal: kVerySmallPadding,
+              ),
               child: AspectRatio(
                 aspectRatio: 1,
                 child: Container(
                   padding: const EdgeInsets.all(kHalfPadding),
                   decoration: BoxDecoration(
-                      // color: kGrayColor,
-                      color: Theme.of(context).primaryColorLight,
-                      borderRadius:
-                          BorderRadius.circular(kDefaultBorderRadiusAsDouble),
-                      boxShadow: [kBoxDownShadowSubtle]),
+                    color: Theme.of(context).primaryColorLight,
+                    borderRadius:
+                        BorderRadius.circular(kDefaultBorderRadiusAsDouble),
+                    boxShadow: [kBoxDownShadowSubtle],
+                  ),
                   child: Icon(
                     icon,
                     color: Theme.of(context).primaryColorDark,
@@ -170,7 +168,7 @@ class CategoryCard extends StatelessWidget {
             Semantics(
               child: AutoSizeText(
                 label,
-                maxLines: 2, // for phones with increased font size
+                maxLines: 2,
                 maxFontSize: 12,
                 minFontSize: 10,
                 stepGranularity: 0.2,
@@ -178,11 +176,12 @@ class CategoryCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.visible,
                 style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    height: kTextMediumHeightSpacing * 0.8),
+                  fontWeight: FontWeight.w400,
+                  height: kTextMediumHeightSpacing * 0.8,
+                ),
               ),
               button: true,
-            )
+            ),
           ],
         ),
       ),
