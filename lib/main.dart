@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/core.dart';
-import 'layers/layers.dart';
 import 'presentation/ui/ui.dart';
 
 const kAPP_TITLE = 'Flutter Banking Pay';

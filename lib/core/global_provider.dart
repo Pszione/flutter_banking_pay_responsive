@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core.dart';
-import '../layers/layers.dart';
 import '../presentation/ui/ui.dart';
 
 class GlobalProvider extends StatelessWidget {
