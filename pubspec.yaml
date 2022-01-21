@@ -68,3 +68,5 @@ flutter:
 flutter_intl:
   enabled: true
   main_locale: en_US
+  arb_dir: lib/core/l10n
+  output_dir: lib/core/l10n
