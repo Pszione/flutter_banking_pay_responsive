@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
-import '../../layers/layers.dart';
-import '../ui/ui.dart';
+import '../layers/layers.dart';
+import '../presentation/ui/ui.dart';
 
 class WebProvider {
   static get isWebPlatform => kIsWeb;
