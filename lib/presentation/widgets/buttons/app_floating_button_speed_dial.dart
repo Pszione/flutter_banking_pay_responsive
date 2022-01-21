@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../core/core.dart';
-import '../ui/ui.dart';
+import '../../../core/core.dart';
+import '../../ui/ui.dart';
 
 double _floatingElevation = 9;
 
@@ -28,20 +28,13 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
     return SpeedDial(
       openCloseDial: openCloseState,
       closeDialOnPop: true,
-      foregroundColor: Theme.of(context).primaryColorDark,
       icon: icon, // animatedIcon: AnimatedIcons.menu_close,
-      iconTheme: IconThemeData(
-        color: Theme.of(context).primaryColorDark,
-        size: kHugeIconSize,
-      ),
-      buttonSize: const Size(kFabIconSize, kFabIconSize),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kSmallBorderRadiusAsDouble)),
       label: label != null
           ? AutoSizeText(
               label!,
-              style:
-                  AppTextStyles.kFloatingButtonText().copyWith(fontSize: null),
+              style: AppTextStyles.kFloatingButtonText().copyWith(
+                fontSize: null,
+              ),
               maxLines: 1,
               maxFontSize: 17,
               minFontSize: 12,
@@ -49,6 +42,17 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
             )
           : null,
       tooltip: tooltip,
+      foregroundColor: Theme.of(context).primaryColorDark,
+      iconTheme: IconThemeData(
+        color: Theme.of(context).primaryColorDark,
+        size: kHugeIconSize,
+      ),
+      buttonSize: const Size(kFabIconSize, kFabIconSize),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          kSmallBorderRadiusAsDouble,
+        ),
+      ),
       elevation: _floatingElevation,
       animationSpeed: 400,
       spacing: kSmallPadding, // initial child
@@ -88,9 +92,9 @@ class AppFloatingButtonSpeedDial extends StatelessWidget {
             builder: (_) => Theme(
               data: Theme.of(context).copyWith(
                 dialogBackgroundColor: Theme.of(context).colorScheme.background,
-                colorScheme: Theme.of(context)
-                    .colorScheme
-                    .copyWith(primary: kSecondaryColor),
+                colorScheme: Theme.of(context).colorScheme.copyWith(
+                      primary: kSecondaryColor,
+                    ),
                 textButtonTheme: TextButtonThemeData(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontWeight: FontWeight.bold),

@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
-import '../../layers/layers.dart';
-import '../../main.dart';
-import '../widgets/widgets.dart';
+import '../layers/layers.dart';
+import '../presentation/ui/ui.dart';
 
 class WebProvider {
   static get isWebPlatform => kIsWeb;
@@ -16,10 +15,9 @@ class ThemeProvider extends ChangeNotifier {
 
   void toggleTheme(bool isDark, BuildContext context) {
     themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-    notifyListeners(); // this them update our UI
-    //print(themeMode.toString());
+    notifyListeners();
 
-    MyApp.handleFullscreenSystemUIMode(context);
+    handleFullscreenSystemUIMode(context);
   }
 
   // how to use it's state
@@ -48,9 +46,10 @@ class NavigationBarShared extends ChangeNotifier {
   MaterialYouNavigationBarCustom? get getNavigationBar =>
       isInitialized ? _navigationBar : null;
 
-  void init(
-      {required ValueNotifier<int> getCurrentIndex,
-      required void Function(int) callbackOnPress}) {
+  void init({
+    required ValueNotifier<int> getCurrentIndex,
+    required void Function(int) callbackOnPress,
+  }) {
     if (!isInitialized) {
       _navigationBar = MaterialYouNavigationBarCustom(
         getCurrentIndex: getCurrentIndex,

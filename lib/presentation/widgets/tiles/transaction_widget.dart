@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/core.dart';
-import '../../layers/layers.dart';
-import '../ui/ui.dart';
+import '../../../core/core.dart';
+import '../../../layers/layers.dart';
+import '../../ui/ui.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionModel transaction;
@@ -46,19 +46,18 @@ class TransactionCard extends StatelessWidget {
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: kDefaultBorderRadius,
-        //border: Border.all(width: 2, color: Colors.grey[300]!),
         side: BorderSide(
-            width: 2,
-            color: listProvider.clickedTransactionIndex != null &&
-                    listProvider.clickedTransactionIndex == transactionIndex
-                ? kPrimaryColor
-                : kLightGrayColor),
+          width: 2,
+          color: listProvider.clickedTransactionIndex != null &&
+                  listProvider.clickedTransactionIndex == transactionIndex
+              ? kPrimaryColor
+              : kLightGrayColor,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(kHalfPadding),
         child: InkWell(
           borderRadius: kDefaultBorderRadius,
-          splashColor: Theme.of(context).colorScheme.secondary,
           onTap: () => onPress.call(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,9 +117,10 @@ class TransactionCard extends StatelessWidget {
                             TransactionModel.parsePaymentMethodToLocalized(
                                     transaction.paymentMethod, context) ??
                                 '',
-                            style: AppTextStyles.kListTileTitle
-                                .copyWith(fontSize: 16)
-                                .copyWith(height: kTextMediumHeightSpacing),
+                            style: AppTextStyles.kListTileTitle.copyWith(
+                              fontSize: 16,
+                              height: kTextMediumHeightSpacing,
+                            ),
                             maxLines: 1,
                             overflow: TextOverflow.fade,
                             softWrap: false,

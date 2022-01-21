@@ -6,8 +6,8 @@ const kPrimaryColor = Color(0xFF1A73E9);
 const kSecondaryColor = Color(0xffff7b67);
 const kTertiaryColor = Color(0xfffcd76b);
 const kComplementaryColor = Color(0xff00444f);
-const kBackgroundColor = Color(0xfffff4ec); // Color(0xFFDBFFFB)
-const kLightShimmerColor = Color(0xFFE6E0DA); // Color(0xFFD6CDCD);
+const kBackgroundColor = Color(0xfffff4ec);
+const kLightShimmerColor = Color(0xFFE6E0DA);
 const kDarkBackgroundColor = Color(0xff343a44);
 const kDarkShimmerColor = Color(0xff394655);
 const kWhiteColor = Colors.white;
@@ -32,9 +32,13 @@ const kDefaultRowSpacing = kDefaultPadding * 1.5;
 const kHalfPadding = kDefaultPadding / 2;
 const kMediumPadding = kDefaultPadding / 1.5;
 const kSmallPadding = kDefaultPadding / 3;
+const kVerySmallPadding = kHalfPadding / 2;
 const kFloatingButtonLocation = FloatingActionButtonLocation.centerFloat;
 EdgeInsets kPageSpacing = const EdgeInsets.only(
-    left: kDefaultPadding, right: kDefaultPadding, top: kHalfPadding);
+  left: kDefaultPadding,
+  right: kDefaultPadding,
+  top: kHalfPadding,
+);
 
 FloatingActionButtonLocation kFloatingButtonLocationAdaptive(
         BuildContext context) =>

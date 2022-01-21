@@ -32,9 +32,10 @@ class UserCardsSection extends StatelessWidget {
           // checking if the index item is the last item of the list or not
           if (index == controller.cards.length) {
             return CardOutlineWidget(
-                width: 320,
-                label: S.of(context).cardWidgetOutlined_addPaymentMethod_title,
-                onPress: () => handleOnPressCard(context));
+              width: 320,
+              label: S.of(context).cardWidgetOutlined_addPaymentMethod_title,
+              onPress: () => handleOnPressCard(context),
+            );
           }
           return CardWidget(
             card: controller.cards[index],
@@ -45,8 +46,9 @@ class UserCardsSection extends StatelessWidget {
               headerColor: controller.getCardColorNullSafety(
                   controller.cards[index],
                   opacity: 0.85),
-              bodyWidget:
-                  CardOverviewSlidingSheet(card: controller.cards[index]),
+              bodyWidget: CardOverviewSlidingSheet(
+                card: controller.cards[index],
+              ),
             ).showStyledSheet(),
           );
         },

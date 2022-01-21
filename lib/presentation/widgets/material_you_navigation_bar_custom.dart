@@ -97,12 +97,17 @@ class MaterialYouNavigationBarCustom extends StatelessWidget {
               iconSize: kMediumIconSize,
               items: const [
                 BottomNavigationBarItem(
-                    icon: Icon(FontAwesomeIcons.dollarSign), label: 'Pay'),
+                  icon: Icon(FontAwesomeIcons.dollarSign),
+                  label: 'Pay',
+                ),
                 BottomNavigationBarItem(
-                    icon: Icon(FontAwesomeIcons.solidCreditCard),
-                    label: 'Cards'),
+                  icon: Icon(FontAwesomeIcons.solidCreditCard),
+                  label: 'Cards',
+                ),
                 BottomNavigationBarItem(
-                    icon: Icon(FontAwesomeIcons.chartLine), label: 'Insights'),
+                  icon: Icon(FontAwesomeIcons.chartLine),
+                  label: 'Insights',
+                ),
               ],
             );
           },

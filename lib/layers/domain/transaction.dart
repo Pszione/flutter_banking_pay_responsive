@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // TODO: remove this dependency
-import 'package:flutter_banking_pay_responsive/generated/l10n.dart';
+import 'package:flutter_banking_pay_responsive/core/l10n/l10n.dart';
 
 class TransactionModel {
   TransactionModel({

@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/core.dart';
-import '../../../../main.dart';
 import '../../../../layers/layers.dart';
 import '../../ui.dart';
 
@@ -32,7 +31,7 @@ class HomeScreenState extends State<HomeScreen> {
     widget.keyValueScreen = ValueKey(this);
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      MyApp.changeWebAppTabName(label: null);
+      changeWebAppTabName(label: null);
       print(Localizations.localeOf(context));
     });
   }
@@ -127,38 +126,46 @@ class HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: kPageSpacing,
                       child: ResponsiveWidthConstrained(
-                          child: Semantics(
-                              child: CategoriesSection(
-                        onPressList: [
-                          () => openFAB(),
-                        ],
-                      ))),
+                        child: Semantics(
+                          child: CategoriesSection(
+                            onPressList: [
+                              () => openFAB(),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: kHalfPadding),
                     Padding(
-                        padding: kPageSpacing,
-                        child: ResponsiveWidthConstrained(
-                          child: Semantics(
-                              child: const RecentTransactionsSection()),
-                        )),
+                      padding: kPageSpacing,
+                      child: ResponsiveWidthConstrained(
+                        child: Semantics(
+                          child: const RecentTransactionsSection(),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: kHalfPadding),
                     Padding(
-                        padding: !WebProvider.isWebPlatform
-                            ? EdgeInsets.zero
-                            : kPageSpacing.copyWith(top: 0, bottom: 0),
-                        child: ResponsiveWidthConstrained(
-                          child: Semantics(
-                              child: NewsSection(desiredPadding: kPageSpacing)),
-                        )),
+                      padding: !WebProvider.isWebPlatform
+                          ? EdgeInsets.zero
+                          : kPageSpacing.copyWith(top: 0, bottom: 0),
+                      child: ResponsiveWidthConstrained(
+                        child: Semantics(
+                          child: NewsSection(desiredPadding: kPageSpacing),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: kDefaultPadding),
                     const SizedBox(height: kDefaultPadding),
                     ResponsiveWidthConstrained(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(
-                            maxWidth: kMaxButtonConstraintWidth),
+                          maxWidth: kMaxButtonConstraintWidth,
+                        ),
                         child: Card(
                           margin: const EdgeInsets.symmetric(
-                              horizontal: kHugePadding * 2.5),
+                            horizontal: kHugePadding * 2.5,
+                          ),
                           color: Theme.of(context).primaryColorLight,
                           shape: RoundedRectangleBorder(
                             borderRadius: kDefaultBorderRadius,
@@ -166,7 +173,9 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                vertical: kHalfPadding, horizontal: 3),
+                              vertical: kHalfPadding,
+                              horizontal: 3,
+                            ),
                             child: BuildGoogleListButton(
                               icon: Icons.settings_rounded,
                               label: S
@@ -272,14 +281,17 @@ class ShimmerHomeScreen extends StatelessWidget {
                           },
                           itemCount: 5,
                           itemBuilder: (_, index) => ShimmerProgressIndicator(
-                              child: CardWidget.defaultDimensionColored),
+                            child: CardWidget.defaultDimensionColored,
+                          ),
                         ),
                       ),
                     ),
                     // Categories List
                     Padding(
                       padding: kPageSpacing.copyWith(
-                          top: kHugePadding, bottom: kHugePadding),
+                        top: kHugePadding,
+                        bottom: kHugePadding,
+                      ),
                       child: SizedBox(
                         height: 70,
                         child: ListView.separated(
@@ -287,7 +299,9 @@ class ShimmerHomeScreen extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           physics: const NeverScrollableScrollPhysics(),
                           separatorBuilder: (_, index) => const SizedBox(
-                              width: kHalfPadding * 1.1, height: kHalfPadding),
+                            width: kHalfPadding * 1.1,
+                            height: kHalfPadding,
+                          ),
                           itemCount: 5,
                           itemBuilder: (_, index) => ShimmerProgressIndicator(
                             child: CategoryCard.defaultDimensionColored,
@@ -327,10 +341,6 @@ class ShimmerHomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // Center(
-            //   child: CircularProgressIndicator(
-            //       strokeWidth: 6, color: Theme.of(context).colorScheme.primary),
-            // ),
           ],
         ),
       ),

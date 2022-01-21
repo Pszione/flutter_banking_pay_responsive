@@ -16,8 +16,9 @@ class ActivityInsightsScreenController {
 
   Future<void> showShareOptions(BuildContext context) {
     return Share.share(
-        '${S.of(context).share_message_checkOutMyNewProject} $K_WEBSITE_PEDRO_SANTOS',
-        subject: S.of(context).share_message_iveDoneIt);
+      '${S.of(context).share_message_checkOutMyNewProject} $K_WEBSITE_PEDRO_SANTOS',
+      subject: S.of(context).share_message_iveDoneIt,
+    );
   }
 
   void handleObservableTransactionOpening(

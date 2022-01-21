@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/core.dart';
 import '../../../../layers/layers.dart';
-import '../../../../main.dart';
 import '../../ui.dart';
 
 class SetupScreen extends StatefulWidget with ChangeNotifier {
@@ -37,7 +36,7 @@ class SetupScreenState extends State<SetupScreen> {
     widget.keyValueScreen = ValueKey(this);
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      MyApp.handleFullscreenSystemUIMode(context);
+      handleFullscreenSystemUIMode(context);
       Provider.of<NavigationBarShared>(context, listen: false).init(
           getCurrentIndex: getCurrentSelectedIndex,
           callbackOnPress: callbackOnBottomNavigationPress);
@@ -85,7 +84,6 @@ class SetupScreenState extends State<SetupScreen> {
   void changeSelectedMenu(int index) {
     if (index == 0) {
       getCurrentSelectedIndex.value = index;
-      // Navigator.of(context).maybePop();
       Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_HOME_SCREEN));
     } else if (index == 1) {
       getCurrentSelectedIndex.value = index;

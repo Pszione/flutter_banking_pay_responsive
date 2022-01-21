@@ -102,12 +102,14 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
       TextField(
         controller: _textEditing01,
         autocorrect: false,
-        style: Theme.of(context)
-            .textTheme
-            .headline5
-            ?.copyWith(color: Colors.black),
+        style: Theme.of(context).textTheme.headline5?.copyWith(
+              color: Colors.black,
+            ),
         decoration: buildInputDecorationStyle(
-            context, S.of(context).sendMoneyScreen_MONEY_SIGN, false),
+          context,
+          S.of(context).sendMoneyScreen_MONEY_SIGN,
+          false,
+        ),
         keyboardType: TextInputType.number,
         // TODO: apply validator, users still can paste to the field
         // TODO: check _update next index
@@ -117,16 +119,14 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
       TextField(
         controller: _textEditing02,
         autocorrect: false,
-        style: Theme.of(context)
-            .textTheme
-            .headline5
-            ?.copyWith(color: Colors.black),
+        style: Theme.of(context).textTheme.headline5?.copyWith(
+              color: Colors.black,
+            ),
         decoration: buildInputDecorationStyle(
-            context,
-            S
-                .of(context)
-                .sendMoneyScreen_whomTransferReceiver_field_description,
-            true),
+          context,
+          S.of(context).sendMoneyScreen_whomTransferReceiver_field_description,
+          true,
+        ),
         keyboardType: TextInputType.emailAddress,
         // TODO: apply validator, users still can paste to the field
         // TODO: check _update next index
@@ -139,13 +139,17 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
       width: double.infinity,
       height: !WebProvider.isWebPlatform ? 470 : 670,
       child: Padding(
-        padding:
-            const EdgeInsets.only(bottom: kSmallPadding, top: kDefaultPadding),
+        padding: const EdgeInsets.only(
+          bottom: kSmallPadding,
+          top: kDefaultPadding,
+        ),
         child: SizedBox(
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.only(
-                top: kHugePadding, bottom: kDefaultPadding),
+              top: kHugePadding,
+              bottom: kDefaultPadding,
+            ),
             // behavior: AppScrollBehavior(),
             child: NotificationListener<OverscrollIndicatorNotification>(
               onNotification: (overscroll) {
@@ -156,13 +160,14 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
                 key: formKey,
                 child: ListWheelScrollView(
                   itemExtent: 265,
-                  controller: _scrollControllerFixed, //  scrollController,
+                  controller: _scrollControllerFixed,
                   diameterRatio: 2.5,
                   squeeze: 1.0, // 0.9,
                   physics: const ClampingScrollPhysics(),
                   children: [
                     ResponsiveInputFieldWithConstrained(
-                        child: _buildFirstForm()),
+                      child: _buildFirstForm(),
+                    ),
                     ResponsiveInputFieldWithConstrained(
                       child: _buildSecondForm(),
                     ),
@@ -211,8 +216,10 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
               children: [
                 TextSpan(
                   text: ' ${S.of(context).sendMoneyScreen_MONEY_SIGN}${21700}',
-                  style: AppTextStyles.kMenuTitle(context)
-                      .copyWith(fontSize: fontSize * 1.2, letterSpacing: 1),
+                  style: AppTextStyles.kMenuTitle(context).copyWith(
+                    fontSize: fontSize * 1.2,
+                    letterSpacing: 1,
+                  ),
                 ),
               ],
             ),
@@ -235,9 +242,13 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
           Text.rich(
             TextSpan(
               text: S.of(context).sendMoneyScreen_whomTransferReceiver_title(
-                  S.of(context).sendMoneyScreen_MONEY_SIGN, filledFormText01),
+                    S.of(context).sendMoneyScreen_MONEY_SIGN,
+                    filledFormText01,
+                  ),
               style: AppTextStyles.kMenuTitle(context).copyWith(
-                  fontSize: fontSize * 1.8, height: HeightSpacingBigFonts),
+                fontSize: fontSize * 1.8,
+                height: HeightSpacingBigFonts,
+              ),
             ),
             textAlign: TextAlign.left,
           ),
@@ -256,18 +267,23 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
           children: [
             Card(
               clipBehavior: Clip.antiAlias,
-              margin:
-                  const EdgeInsets.symmetric(horizontal: kHugePadding * 2.5),
+              margin: const EdgeInsets.symmetric(
+                horizontal: kHugePadding * 2.5,
+              ),
               color: Theme.of(context).scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(
                 borderRadius: kDefaultBorderRadius,
-                side:
-                    BorderSide(width: 2, color: Theme.of(context).dividerColor),
+                side: BorderSide(
+                  width: 2,
+                  color: Theme.of(context).dividerColor,
+                ),
               ),
               child: TextButton(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: kHugePadding * 2, vertical: kDefaultPadding),
+                    horizontal: kHugePadding * 2,
+                    vertical: kDefaultPadding,
+                  ),
                   child: Text(
                     S.of(context).sendMoneyScreen_continue_button_title,
                     softWrap: false,
@@ -302,7 +318,8 @@ class _SendMoneyScreenState extends State<SendMoneyScreen> {
   Widget ResponsiveInputFieldWithConstrained({required Widget child}) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: WebProvider.isWebPlatform ? 0 : kDefaultPadding),
+        horizontal: WebProvider.isWebPlatform ? 0 : kDefaultPadding,
+      ),
       child: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(

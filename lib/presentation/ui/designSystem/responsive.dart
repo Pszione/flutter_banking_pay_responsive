@@ -86,14 +86,14 @@ class ResponsiveWidthConstrained extends StatelessWidget {
   }) : super(key: key);
 
   final Widget child;
-  // final bool isContentCentered;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(
-            maxWidth: Responsive.kMaxDesktopReadingModeWidth),
+          maxWidth: Responsive.kMaxDesktopReadingModeWidth,
+        ),
         child: child,
       ),
     );

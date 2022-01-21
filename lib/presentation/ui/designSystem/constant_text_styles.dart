@@ -5,10 +5,15 @@ import 'constants.dart';
 class AppTextStyles {
   const AppTextStyles();
 
-  static TextStyle kNavigationBarText = const TextStyle(fontSize: 14);
+  static TextStyle kNavigationBarText = const TextStyle(
+    fontSize: 14,
+  );
 
   static TextStyle kNavigationBarSelectedText = const TextStyle(
-      fontSize: 14, fontWeight: FontWeight.bold, letterSpacing: 1.4);
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.4,
+  );
 
   static TextStyle kFloatingButtonText() => const TextStyle(
         fontSize: 15,

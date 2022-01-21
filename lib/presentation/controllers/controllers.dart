@@ -1,6 +1,6 @@
 export 'activity_insights_screen_controller.dart';
 export 'card_screen_controller.dart';
-export 'data_providers.dart';
+export '../../core/data_provider.dart';
 export 'google_account_dialog_controller.dart';
 export 'home_screen_controller.dart';
 export 'scan_card_screen_controller.dart';

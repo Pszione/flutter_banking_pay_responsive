@@ -7,54 +7,48 @@ PageStorageBucket bucketStorageForActivityScreen = PageStorageBucket();
 PageStorageBucket bucketStorageForHomeScreen = PageStorageBucket();
 PageStorageBucket bucketStorageForCardScreen = PageStorageBucket();
 
+// ignore: unused_local_variable
 class RouteController {
   static Route<dynamic>? onHandleRoutes(
       RouteSettings settings, BuildContext context) {
-    // Getting arguments passed in while calling [Navigator.pushNamed]
-    var args = settings.arguments;
+    final args = settings.arguments;
+    final routeName = settings.name;
     print("Route '${settings.name}' with args: $args");
 
-    switch (settings.name) {
+    late Widget routeWidget;
+
+    switch (routeName) {
       case ROUTE_INITIAL:
-        return MaterialPageRoute(
-          builder: (context) => G<SetupScreen>(),
-          settings: settings,
-          maintainState: true,
-        );
+        routeWidget = G<SetupScreen>();
+        break;
       case ROUTE_ACTIVITY_INSIGHTS_SCREEN:
-        return MaterialPageRoute(
-          builder: (context) => G<ActivityInsightsScreen>(),
-          settings: settings,
-        );
+        routeWidget = G<ActivityInsightsScreen>();
+        break;
       case ROUTE_HOME_SCREEN:
-        return MaterialPageRoute(
-          builder: (context) => G<HomeScreen>(),
-          settings: settings,
-        );
+        routeWidget = G<HomeScreen>();
+        break;
       case ROUTE_CARD_SCREEN:
-        return MaterialPageRoute(
-          builder: (context) => G<CardScreen>(),
-          settings: settings,
-        );
+        routeWidget = G<CardScreen>();
+        break;
       case ROUTE_SCAN_CARD_SCREEN:
-        return MaterialPageRoute(
-          builder: (context) => const ScanCardScreen(),
-          settings: settings,
-        );
+        routeWidget = const ScanCardScreen();
+        break;
       case ROUTE_SEND_MONEY_SCREEN:
-        return MaterialPageRoute(
-          builder: (context) => const SendMoneyScreen(),
-          settings: settings,
-        );
+        routeWidget = const SendMoneyScreen();
+        break;
       case ROUTE_SETTINGS_SCREEN:
-        return MaterialPageRoute(
-          builder: (context) => G<SettingsScreen>(),
-          settings: settings,
-        );
+        routeWidget = G<SettingsScreen>();
+        break;
 
       default:
-        return _errorRoute();
+        routeWidget = const ErrorRouteScreen();
+        break;
     }
+
+    return MaterialPageRoute(
+      builder: (_) => routeWidget,
+      settings: settings,
+    );
   }
 
   static Route _errorRoute() {

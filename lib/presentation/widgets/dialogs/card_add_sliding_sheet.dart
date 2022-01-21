@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/core.dart';
-import '../ui/ui.dart';
+import '../../../core/core.dart';
+import '../../ui/ui.dart';
 
 class CardAddSlidingSheet {
   Future<Widget?> showOptionsSlidingSheet(BuildContext context) {
@@ -24,25 +24,29 @@ class CardAddSlidingSheet {
             children: [
               const SizedBox(height: kDefaultPadding),
               buildListButton(
-                  context,
-                  S.of(context).cardScreen_first_fab_optionsDescription,
-                  Icons.credit_card_outlined,
-                  () => _openScanScreen(context)),
+                context,
+                S.of(context).cardScreen_first_fab_optionsDescription,
+                Icons.credit_card_outlined,
+                () => _openScanScreen(context),
+              ),
               buildListButton(
-                  context,
-                  S.of(context).cardScreen_second_fab_optionsDescription,
-                  Icons.style,
-                  () => _openScanScreen(context)),
+                context,
+                S.of(context).cardScreen_second_fab_optionsDescription,
+                Icons.style,
+                () => _openScanScreen(context),
+              ),
               buildListButton(
-                  context,
-                  S.of(context).cardScreen_third_fab_optionsDescription,
-                  Icons.stars_rounded,
-                  () => _openScanScreen(context)),
+                context,
+                S.of(context).cardScreen_third_fab_optionsDescription,
+                Icons.stars_rounded,
+                () => _openScanScreen(context),
+              ),
               buildListButton(
-                  context,
-                  S.of(context).cardScreen_fourth_fab_optionsDescription,
-                  Icons.directions_bus_rounded,
-                  () => _openScanScreen(context)),
+                context,
+                S.of(context).cardScreen_fourth_fab_optionsDescription,
+                Icons.directions_bus_rounded,
+                () => _openScanScreen(context),
+              ),
             ],
           ),
         ),
@@ -67,22 +71,28 @@ class CardAddSlidingSheet {
     return SizedBox(
       width: double.infinity,
       height: buttonHeight,
-      // TODO
       child: InkWell(
         onTap: onPress,
-        splashColor: Theme.of(context).colorScheme.secondary,
-        focusColor: Colors.transparent,
         highlightColor: Colors.transparent,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+          padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                  width: kDefaultRowSpacing,
-                  child: Icon(icon, size: kMediumIconSize)),
+                width: kDefaultRowSpacing,
+                child: Icon(
+                  icon,
+                  size: kMediumIconSize,
+                ),
+              ),
               const SizedBox(width: 14),
-              Text(label!, style: style)
+              Text(
+                label!,
+                style: style,
+              ),
             ],
           ),
         ),

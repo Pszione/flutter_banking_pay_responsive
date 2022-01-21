@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/core.dart';
 import '../../../../layers/layers.dart';
-import '../../../../main.dart';
 import '../../ui.dart';
 
 class CardScreen extends StatefulWidget with ChangeNotifier {
@@ -29,8 +28,7 @@ class CardScreenState extends State<CardScreen> {
     widget.keyValueScreen = ValueKey(this);
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      MyApp.changeWebAppTabName(
-          label: S.of(context).homeScreen_second_tabBarTitle);
+      changeWebAppTabName(label: S.of(context).homeScreen_second_tabBarTitle);
     });
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../ui/ui.dart';
+import '../../ui/ui.dart';
 
 class ExampleCardWithButtons extends StatelessWidget {
   const ExampleCardWithButtons({Key? key}) : super(key: key);
@@ -11,7 +11,6 @@ class ExampleCardWithButtons extends StatelessWidget {
       color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: kDefaultBorderRadius,
-        //border: Border.all(width: 2, color: Colors.grey[300]!),
         side: BorderSide(width: 2, color: Colors.grey[300]!),
       ),
       child: Column(
@@ -28,12 +27,12 @@ class ExampleCardWithButtons extends StatelessWidget {
             children: <Widget>[
               TextButton(
                 child: const Text('BUY TICKETS'),
-                onPressed: () {/* ... */},
+                onPressed: () {},
               ),
               const SizedBox(width: 8),
               TextButton(
                 child: const Text('LISTEN'),
-                onPressed: () {/* ... */},
+                onPressed: () {},
               ),
               const SizedBox(width: 8),
             ],
