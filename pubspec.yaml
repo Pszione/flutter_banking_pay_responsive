@@ -29,7 +29,7 @@ dependencies:
   animated_text_kit: ^4.2.1
   app_settings: ^4.1.1
   auto_size_text: ^3.0.0
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.6
   flutter_speed_dial: ^5.0.0+1
   font_awesome_flutter: ^9.2.0
   get_it: ^7.2.0
